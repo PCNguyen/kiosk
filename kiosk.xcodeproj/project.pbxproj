@@ -17,6 +17,9 @@
 		0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */; };
 		0FA0ABEF1A40C0E9007AA263 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEE1A40C0E9007AA263 /* RPKKioskViewController.m */; };
 		0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
+		0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */; };
+		0FA0ABF81A40F707007AA263 /* gplus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF71A40F707007AA263 /* gplus_icon.png */; };
+		0FA0ABFB1A40F758007AA263 /* reputation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFA1A40F758007AA263 /* reputation_icon.png */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,10 @@
 		0FA0ABEE1A40C0E9007AA263 /* RPKKioskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskViewController.m; sourceTree = "<group>"; };
 		0FA0ABF01A40C1A8007AA263 /* RPKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNavigationController.h; sourceTree = "<group>"; };
 		0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNavigationController.m; sourceTree = "<group>"; };
+		0FA0ABF41A40C859007AA263 /* RPKMenuDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuDataSource.h; sourceTree = "<group>"; };
+		0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuDataSource.m; sourceTree = "<group>"; };
+		0FA0ABF71A40F707007AA263 /* gplus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gplus_icon.png; sourceTree = "<group>"; };
+		0FA0ABFA1A40F758007AA263 /* reputation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reputation_icon.png; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -155,6 +162,8 @@
 		0FA0ABE41A40B19E007AA263 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				0FA0ABF91A40F711007AA263 /* image */,
+				0FA0ABF31A40C835007AA263 /* Model */,
 				0FA0ABE51A40B1AB007AA263 /* Controllers */,
 			);
 			name = Screen;
@@ -180,6 +189,24 @@
 				0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */,
 			);
 			name = Wrapper;
+			sourceTree = "<group>";
+		};
+		0FA0ABF31A40C835007AA263 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0ABF41A40C859007AA263 /* RPKMenuDataSource.h */,
+				0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FA0ABF91A40F711007AA263 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0ABF71A40F707007AA263 /* gplus_icon.png */,
+				0FA0ABFA1A40F758007AA263 /* reputation_icon.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 		C9509CDA336D4DA3A9089C5C /* Frameworks */ = {
@@ -273,6 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FA0ABF81A40F707007AA263 /* gplus_icon.png in Resources */,
+				0FA0ABFB1A40F758007AA263 /* reputation_icon.png in Resources */,
 				0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */,
 				0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */,
 			);
@@ -328,6 +357,7 @@
 				0FA0ABEF1A40C0E9007AA263 /* RPKKioskViewController.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
+				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
