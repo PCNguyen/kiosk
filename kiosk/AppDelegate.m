@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "RPKLayoutManager.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+	
+	[self configureLayout];
+	[self.window makeKeyAndVisible];
 	return YES;
+}
+
+- (void)configureLayout
+{
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[self.window setRootViewController:[RPKLayoutManager rootViewController]];
 }
 
 @end

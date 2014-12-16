@@ -1,5 +1,5 @@
 //
-//  RPKLayoutManager.h
+//  RPKNavigationController.h
 //  kiosk
 //
 //  Created by PC Nguyen on 12/16/14.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RPKLayoutManager : NSObject
-
-+ (instancetype)sharedManager;
-
-+ (UIViewController *)rootViewController;
+@interface RPKNavigationController : UINavigationController
 
 @end

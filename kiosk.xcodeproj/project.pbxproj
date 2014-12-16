@@ -16,6 +16,7 @@
 		0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE81A40B87B007AA263 /* RPKViewController.m */; };
 		0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */; };
 		0FA0ABEF1A40C0E9007AA263 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEE1A40C0E9007AA263 /* RPKKioskViewController.m */; };
+		0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,8 @@
 		0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuViewController.m; sourceTree = "<group>"; };
 		0FA0ABED1A40C0E9007AA263 /* RPKKioskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskViewController.h; sourceTree = "<group>"; };
 		0FA0ABEE1A40C0E9007AA263 /* RPKKioskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskViewController.m; sourceTree = "<group>"; };
+		0FA0ABF01A40C1A8007AA263 /* RPKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNavigationController.h; sourceTree = "<group>"; };
+		0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNavigationController.m; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -173,6 +176,8 @@
 			children = (
 				0FA0ABE71A40B87B007AA263 /* RPKViewController.h */,
 				0FA0ABE81A40B87B007AA263 /* RPKViewController.m */,
+				0FA0ABF01A40C1A8007AA263 /* RPKNavigationController.h */,
+				0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */,
 			);
 			name = Wrapper;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
+				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
 			);
