@@ -13,6 +13,7 @@
 		0FA0ABD31A40ABE1007AA263 /* kioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABD21A40ABE1007AA263 /* kioskTests.m */; };
 		0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABDE1A40AE8A007AA263 /* Podfile */; };
 		0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
+		0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE81A40B87B007AA263 /* RPKViewController.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +37,11 @@
 		0FA0ABCC1A40ABE1007AA263 /* kioskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kioskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABD11A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABD21A40ABE1007AA263 /* kioskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kioskTests.m; sourceTree = "<group>"; };
-		0FA0ABDE1A40AE8A007AA263 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		0FA0ABDE1A40AE8A007AA263 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		0FA0ABE01A40B0C7007AA263 /* RPKLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLayoutManager.h; sourceTree = "<group>"; };
 		0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLayoutManager.m; sourceTree = "<group>"; };
+		0FA0ABE71A40B87B007AA263 /* RPKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKViewController.h; sourceTree = "<group>"; };
+		0FA0ABE81A40B87B007AA263 /* RPKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKViewController.m; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,10 +127,44 @@
 		0FA0ABDC1A40AE29007AA263 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0FA0ABE31A40B191007AA263 /* Manager */,
+				0FA0ABE61A40B1BB007AA263 /* Wrapper */,
+				0FA0ABE41A40B19E007AA263 /* Screen */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0FA0ABE31A40B191007AA263 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
 				0FA0ABE01A40B0C7007AA263 /* RPKLayoutManager.h */,
 				0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */,
 			);
-			path = UI;
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		0FA0ABE41A40B19E007AA263 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0ABE51A40B1AB007AA263 /* Controllers */,
+			);
+			name = Screen;
+			sourceTree = "<group>";
+		};
+		0FA0ABE51A40B1AB007AA263 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0FA0ABE61A40B1BB007AA263 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0ABE71A40B87B007AA263 /* RPKViewController.h */,
+				0FA0ABE81A40B87B007AA263 /* RPKViewController.m */,
+			);
+			name = Wrapper;
 			sourceTree = "<group>";
 		};
 		C9509CDA336D4DA3A9089C5C /* Frameworks */ = {
@@ -275,6 +312,7 @@
 			files = (
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
+				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
