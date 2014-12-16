@@ -19,6 +19,7 @@
 	[super loadView];
 	
 	self.view.backgroundColor = [UIColor greenColor];
+	[self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 @end

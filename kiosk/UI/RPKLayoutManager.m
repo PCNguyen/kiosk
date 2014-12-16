@@ -9,11 +9,11 @@
 #import <AppSDK/AppLibShared.h>
 
 #import "RPKLayoutManager.h"
-#import "RPKMenuViewController.h"
+#import "RPKNavigationController.h"
 
 @interface RPKLayoutManager ()
 
-@property (nonatomic, strong) RPKMenuViewController *menuViewController;
+@property (nonatomic, strong) RPKNavigationController *mainNavigationController;
 
 @end
 
@@ -28,7 +28,7 @@
 
 + (UIViewController *)rootViewController
 {
-	return [[self sharedManager] menuViewController];
+	return [[self sharedManager] mainNavigationController];
 }
 
 - (RPKMenuViewController *)menuViewController
@@ -38,6 +38,15 @@
 	}
 	
 	return _menuViewController;
+}
+
+- (RPKNavigationController *)mainNavigationController
+{
+	if (!_mainNavigationController) {
+		_mainNavigationController = [[RPKNavigationController alloc] initWithRootViewController:self.menuViewController];
+	}
+	
+	return _mainNavigationController;
 }
 
 @end

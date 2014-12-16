@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RPKMenuViewController.h"
 
 @interface RPKLayoutManager : NSObject
+
+@property (nonatomic, strong) RPKMenuViewController *menuViewController;
 
 + (instancetype)sharedManager;
 
