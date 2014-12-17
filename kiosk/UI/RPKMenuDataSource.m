@@ -21,7 +21,7 @@
 	//--loading Kiosk
 	RPKMenuItem *kioskItem = [[RPKMenuItem alloc] init];
 	kioskItem.itemURL = [NSURL URLWithString:@"http://google.com"];
-	kioskItem.imageName = @"reputation_icon.png";
+	kioskItem.imageName = @"icon_reputation.png";
 	kioskItem.itemTitle = @"Kiosk Review";
 	kioskItem.itemDetail = @"Leave a review for this business on Reputation.com";
 	[menuItems addObject:kioskItem];
@@ -32,7 +32,7 @@
 	redirectURL = [redirectURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@",redirectURL];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
-	googlePlusItem.imageName = @"gplus_icon.png";
+	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google Review";
 	googlePlusItem.itemDetail = @"Leave a review for this business on Google Plus";
 	[menuItems addObject:googlePlusItem];
