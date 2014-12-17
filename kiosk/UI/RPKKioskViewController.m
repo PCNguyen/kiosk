@@ -23,7 +23,6 @@
 	self.showActionButton = NO;
 	
 	self.webView.backgroundColor = [UIColor ul_colorWithR:12.0f G:79.0f B:120.0f A:1.0f];
-	self.webView.scalesPageToFit = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,7 +33,8 @@
 {
 	[super webViewDidFinishLoad:webView];
 	
-	NSLog(@"%@", webView.request);
+	NSString *zoomScript = [NSString stringWithFormat:@"window.parent.document.body.style.zoom = 1.5;"];
+	[webView stringByEvaluatingJavaScriptFromString:zoomScript];
 }
 
 @end
