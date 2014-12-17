@@ -22,6 +22,7 @@
 		0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFD1A40FBA9007AA263 /* RPKCollectionViewCell.m */; };
 		0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */; };
 		0FA0AC061A411693007AA263 /* icon_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC051A411693007AA263 /* icon_reputation.png */; };
+		0FA0AC0C1A411AEC007AA263 /* icon_review_submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RPK.m"; sourceTree = "<group>"; };
 		0FA0AC041A4104FD007AA263 /* RPKUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKUIKit.h; sourceTree = "<group>"; };
 		0FA0AC051A411693007AA263 /* icon_reputation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_reputation.png; sourceTree = "<group>"; };
+		0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_review_submit.png; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 		0FA0ABF91A40F711007AA263 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */,
 				0FA0ABF71A40F707007AA263 /* icon_gplus.png */,
 				0FA0AC051A411693007AA263 /* icon_reputation.png */,
 			);
@@ -324,6 +327,7 @@
 				0FA0ABF81A40F707007AA263 /* icon_gplus.png in Resources */,
 				0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */,
 				0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */,
+				0FA0AC0C1A411AEC007AA263 /* icon_review_submit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

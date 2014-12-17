@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UILabel *largeTitleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UIView *whiteBackground;
+@property (nonatomic, strong) UIButton *submitButton;
 
 @end
 
@@ -38,6 +39,7 @@
 	[self.contentView addSubview:self.logoImageView];
 	[self.contentView addSubview:self.largeTitleLabel];
 	[self.contentView addSubview:self.detailLabel];
+	[self.contentView addSubview:self.submitButton];
 }
 
 - (void)layoutSubviews
@@ -48,6 +50,7 @@
 	self.logoImageView.frame = [self logoImageFrame:self.largeTitleLabel.frame];
 	self.detailLabel.frame = [self detailLabelFrame:self.logoImageView.frame];
 	self.whiteBackground.frame = [self backgroundFrame];
+	self.submitButton.frame = [self submitButtonFrame];
 	
 	[self.logoImageView ul_round];
 }
@@ -160,6 +163,28 @@
 	}
 	
 	return _whiteBackground;
+}
+
+#pragma mark - Submit Button
+
+- (CGRect)submitButtonFrame
+{
+	CGFloat xOffset = self.paddings.left;
+	CGFloat height = 80.0f;
+	CGFloat width = 100.0f;
+	CGFloat yOffset = self.bounds.size.height - self.paddings.bottom - self.spacings.height - height;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (UIButton *)submitButton
+{
+	if (!_submitButton) {
+		_submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[_submitButton setBackgroundImage:[UIImage rpk_bundleImageNamed:@"icon_review_submit.png"] forState:UIControlStateNormal];
+	}
+	
+	return _submitButton;
 }
 
 @end
