@@ -52,8 +52,6 @@
 {
 	[super webViewDidFinishLoad:webView];
 	
-	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-	
 	if (!webView.isLoading) {
 		NSLog(@"%@",webView.request);
 		__weak RPKKioskViewController *selfPointer = self;
