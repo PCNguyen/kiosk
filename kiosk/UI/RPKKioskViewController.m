@@ -7,6 +7,7 @@
 //
 
 #import "RPKKioskViewController.h"
+#import "RPKUIKit.h"
 
 @interface RPKKioskViewController ()
 
@@ -20,6 +21,9 @@
 	self.showPageTitles = NO;
 	self.showUrlWhileLoading = NO;
 	self.showActionButton = NO;
+	
+	self.webView.backgroundColor = [UIColor ul_colorWithR:12.0f G:79.0f B:120.0f A:1.0f];
+	self.webView.scalesPageToFit = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +33,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	[super webViewDidFinishLoad:webView];
+	
+	NSLog(@"%@", webView.request);
 }
 
 @end

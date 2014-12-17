@@ -8,6 +8,8 @@
 
 #import "ULViewDataSource.h"
 
+#define kMenuDataSourceDummyURL			@"http://plus.reputation.google.com"
+
 @interface RPKMenuItem : NSObject
 
 /**

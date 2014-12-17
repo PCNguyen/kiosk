@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import <TOWebViewController/TOWebViewController.h>
-
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
+#import "RPKKioskViewController.h"
 
 #import "UIImage+RPK.h"
 
@@ -297,6 +296,15 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[menuCell assignModel:menuItem forIndexPath:indexPath];
 	
 	return menuCell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
+	
+	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
+	RPKKioskViewController *webViewController = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+	[self.navigationController presentViewController:webViewController animated:YES completion:NULL];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -29,8 +29,7 @@
 	//--loading Google Plus
 	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
 	NSString *redirectURL = @"https://plus.google.com/_/widget/render/localreview?hl=en&origin=https%3A%2F%2Fplus.google.com&placeid=2221140452266056572&source=lo-pp&jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.iBmVlTSSvHg.O%2Fm%3D__features__%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCNDdqzVHtQZOJq6TKMfnKZKIZX46Q#rpctoken=359128756&_methods=onSuccess%2ConCancel%2ConError%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart&id=I3_1418679196082&parent=https%3A%2F%2Fplus.google.com&pfname=";
-	redirectURL = [redirectURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@",redirectURL];
+	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:redirectURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google Review";
@@ -43,6 +42,20 @@
 - (RPKMenuItem *)menuItemAtIndex:(NSInteger)index
 {
 	return [self.menuItems objectAtIndex:index];
+}
+
+- (NSString *)urlEncodeString:(NSString *)originalString
+{
+//	return kMenuDataSourceDummyURL;
+	
+	NSString *trimString = [originalString stringByReplacingOccurrencesOfString:@"\\+" withString:@"%20"];
+	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%21" withString:@"!"];
+	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%27" withString:@"'"];
+	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%28" withString:@"("];
+	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%29" withString:@")"];
+	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%7E" withString:@"~"];
+	trimString =  [trimString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	return trimString;
 }
 
 @end
