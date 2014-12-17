@@ -25,6 +25,17 @@
 	self.webView.backgroundColor = [UIColor ul_colorWithR:12.0f G:79.0f B:120.0f A:1.0f];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	for (NSHTTPCookie *cookie in [storage cookies]) {
+		[storage deleteCookie:cookie];
+	}
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
