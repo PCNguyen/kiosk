@@ -46,16 +46,25 @@
 
 - (NSString *)urlEncodeString:(NSString *)originalString
 {
-//	return kMenuDataSourceDummyURL;
+	NSString *result = originalString;
 	
-	NSString *trimString = [originalString stringByReplacingOccurrencesOfString:@"\\+" withString:@"%20"];
-	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%21" withString:@"!"];
-	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%27" withString:@"'"];
-	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%28" withString:@"("];
-	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%29" withString:@")"];
-	trimString = [trimString stringByReplacingOccurrencesOfString:@"\\%7E" withString:@"~"];
-	trimString =  [trimString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	return trimString;
+	static CFStringRef doNotEscapeTheseIllegalCharacters = CFSTR(" "); /* prevent <space> being replaced with %20	*/
+	static CFStringRef escapeTheseLegalCharacters = CFSTR("\n\r:/=,!$&'()*+;[]@#?%."); /* Even if these are legal, escape them anyway */
+	
+	CFStringRef escapedStr = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+																	 (CFStringRef)originalString,
+																	 doNotEscapeTheseIllegalCharacters,
+																	 escapeTheseLegalCharacters,
+																	 kCFStringEncodingUTF8);
+	
+	if (escapedStr) {
+		NSMutableString *mutable = [NSMutableString stringWithString:(__bridge NSString *)escapedStr];
+		CFRelease(escapedStr);
+		[mutable replaceOccurrencesOfString:@" " withString:@"%20" options:0 range:NSMakeRange(0, [mutable length])];
+		result = [NSString stringWithString:mutable];
+	}
+
+	return result;
 }
 
 @end
