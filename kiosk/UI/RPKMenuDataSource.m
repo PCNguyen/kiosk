@@ -40,4 +40,9 @@
 	self.menuItems = menuItems;
 }
 
+- (RPKMenuItem *)menuItemAtIndex:(NSInteger)index
+{
+	return [self.menuItems objectAtIndex:index];
+}
+
 @end

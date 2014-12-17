@@ -7,7 +7,8 @@
 //
 
 #import "RPKViewController.h"
+#import "RPKMenuDataSource.h"
 
-@interface RPKMenuViewController : RPKViewController
+@interface RPKMenuViewController : RPKViewController <ULViewDataBinding>
 
 @end

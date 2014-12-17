@@ -39,4 +39,6 @@
  */
 @property (nonatomic, strong) NSArray *menuItems;
 
+- (RPKMenuItem *)menuItemAtIndex:(NSInteger)index;
+
 @end
