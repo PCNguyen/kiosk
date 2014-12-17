@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self ul_adjustIOS7Boundaries];
 }
 
 - (void)didReceiveMemoryWarning {

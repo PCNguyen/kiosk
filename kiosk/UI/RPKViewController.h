@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AppSDK/UILibDataBinding.h>
+#import "RPKUIKit.h"
 
 @interface RPKViewController : UIViewController
 
