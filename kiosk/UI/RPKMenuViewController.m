@@ -11,6 +11,8 @@
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
 
+#import "UIImage+RPK.h"
+
 /********************************
  *  RPKMenuCell
  ********************************/
@@ -34,6 +36,18 @@
 	[self.contentView addSubview:self.logoImageView];
 	[self.contentView addSubview:self.largeTitleLabel];
 	[self.contentView addSubview:self.detailLabel];
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+}
+
+- (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
+{
+	RPKMenuItem *menuItem = (RPKMenuItem *)model;
+	
+	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
 }
 
 @end

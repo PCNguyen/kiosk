@@ -21,6 +21,7 @@
 		0FA0ABF81A40F707007AA263 /* gplus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF71A40F707007AA263 /* gplus_icon.png */; };
 		0FA0ABFB1A40F758007AA263 /* reputation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFA1A40F758007AA263 /* reputation_icon.png */; };
 		0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFD1A40FBA9007AA263 /* RPKCollectionViewCell.m */; };
+		0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,9 @@
 		0FA0ABFA1A40F758007AA263 /* reputation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reputation_icon.png; sourceTree = "<group>"; };
 		0FA0ABFC1A40FBA9007AA263 /* RPKCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCollectionViewCell.h; sourceTree = "<group>"; };
 		0FA0ABFD1A40FBA9007AA263 /* RPKCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCollectionViewCell.m; sourceTree = "<group>"; };
+		0FA0AC001A4103FA007AA263 /* UIImage+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RPK.h"; sourceTree = "<group>"; };
+		0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RPK.m"; sourceTree = "<group>"; };
+		0FA0AC041A4104FD007AA263 /* RPKUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKUIKit.h; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,6 +150,8 @@
 		0FA0ABDC1A40AE29007AA263 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0FA0AC041A4104FD007AA263 /* RPKUIKit.h */,
+				0FA0ABFF1A4103E3007AA263 /* Extension */,
 				0FA0ABE31A40B191007AA263 /* Manager */,
 				0FA0ABE61A40B1BB007AA263 /* Wrapper */,
 				0FA0ABE41A40B19E007AA263 /* Screen */,
@@ -211,7 +217,16 @@
 				0FA0ABF71A40F707007AA263 /* gplus_icon.png */,
 				0FA0ABFA1A40F758007AA263 /* reputation_icon.png */,
 			);
-			name = image;
+			path = image;
+			sourceTree = "<group>";
+		};
+		0FA0ABFF1A4103E3007AA263 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0AC001A4103FA007AA263 /* UIImage+RPK.h */,
+				0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		C9509CDA336D4DA3A9089C5C /* Frameworks */ = {
@@ -368,6 +383,7 @@
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
+				0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
