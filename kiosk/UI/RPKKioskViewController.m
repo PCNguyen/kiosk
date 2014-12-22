@@ -6,15 +6,22 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
+#import <WebKit/WebKit.h>
 #import "RPKKioskViewController.h"
 #import "RPKUIKit.h"
 
 @interface RPKKioskViewController ()
 
+@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) NSURL *kioskURL;
+
 @end
 
 @implementation RPKKioskViewController
 
+/**
+ *  Modify Agent
+ */
 + (void)initialize {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 	[dictionary setObject:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
@@ -22,15 +29,22 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+
+- (instancetype)initWithURL:(NSURL *)kioskURL
+{
+	if (self = [super init]) {
+		_kioskURL = kioskURL;
+	}
 	
-	self.showPageTitles = NO;
-	self.showUrlWhileLoading = NO;
-	self.showActionButton = NO;
+	return self;
+}
+
+- (void)loadView
+{
+	[super loadView];
 	
-	self.webView.backgroundColor = [UIColor ul_colorWithR:12.0f G:79.0f B:120.0f A:1.0f];
-	self.webView.scalesPageToFit = YES;
+	[self.view addSubview:self.webView];
+	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -44,32 +58,21 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super webViewDidFinishLoad:webView];
+	[super viewWillAppear:animated];
 	
-	if (!webView.isLoading) {
-		NSLog(@"%@",webView.request);
-		__weak RPKKioskViewController *selfPointer = self;
-		[self performSelector:@selector(centerZoom) withObject:selfPointer afterDelay:5.0f];
-
-	}
+	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL]];
 }
 
-- (void)centerZoom
+- (WKWebView *)webView
 {
-	CGSize dialogSize = CGSizeMake(560.0f, 420.0f);
-	CGSize scrollViewSize = self.view.bounds.size;
-	CGFloat xOffset = (scrollViewSize.width - dialogSize.width) / 2;
-	CGFloat yOffset = (scrollViewSize.height - dialogSize.height) / 2;
-
-	CGRect zoomRect = CGRectMake(xOffset, yOffset, dialogSize.width, dialogSize.height);
-	[self.webView.scrollView zoomToRect:zoomRect animated:YES];
-
+	if (!_webView) {
+		_webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+		[_webView ul_enableAutoLayout];
+	}
+	
+	return _webView;
 }
 
 @end

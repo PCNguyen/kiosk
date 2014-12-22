@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import "TOWebViewController.h"
+#import "RPKViewController.h"
 
-@interface RPKKioskViewController : TOWebViewController
+@interface RPKKioskViewController : RPKViewController
+
+- (instancetype)initWithURL:(NSURL *)kioskURL;
 
 @end
