@@ -15,6 +15,7 @@
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) NSURL *kioskURL;
 @property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
@@ -78,10 +79,65 @@
 {
 	if (!_toolBar) {
 		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+		_toolBar.items = @[[self moreTimeItem],
+						   [self flexibleItem],
+						   [self titleItem],
+						   [self flexibleItem],
+						   [self logoutItem]];
 		[_toolBar ul_enableAutoLayout];
 	}
 	
 	return _toolBar;
+}
+
+- (UILabel *)titleLabel
+{
+	if (!_titleLabel) {
+		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_titleLabel.text = @"Google Review";
+	}
+	
+	return _titleLabel;
+}
+
+- (UIBarButtonItem *)moreTimeItem
+{
+	UIBarButtonItem *moreTimeItem = [[UIBarButtonItem alloc] initWithTitle:@"More Time"
+																	 style:UIBarButtonItemStylePlain
+																	target:self
+																	action:@selector(handleMoreTimeItemTapped:)];
+	return moreTimeItem;
+}
+
+- (void)handleMoreTimeItemTapped:(id)sender
+{
+
+}
+
+- (UIBarButtonItem *)titleItem
+{
+	UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithCustomView:self.titleLabel];
+	return titleItem;
+}
+
+- (UIBarButtonItem *)logoutItem
+{
+	UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(handleLogoutItemTapped:)];
+	return logoutItem;
+}
+
+- (void)handleLogoutItemTapped:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (UIBarButtonItem *)flexibleItem
+{
+	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+	return flexItem;
 }
 
 #pragma mark - Web View
