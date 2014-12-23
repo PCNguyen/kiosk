@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCookieHandler.h; sourceTree = "<group>"; };
+		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F4987781A4A203F0083F850 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */,
+				0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		0FA0ABAA1A40ABE1007AA263 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +132,7 @@
 				0FA0ABBA1A40ABE1007AA263 /* AppDelegate.h */,
 				0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */,
 				0FA0ABDC1A40AE29007AA263 /* UI */,
+				0F4987781A4A203F0083F850 /* Utility */,
 				0FA0ABC31A40ABE1007AA263 /* Images.xcassets */,
 				0FA0ABB61A40ABE1007AA263 /* Supporting Files */,
 			);
@@ -385,6 +398,7 @@
 				0FA0ABEF1A40C0E9007AA263 /* RPKKioskViewController.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
+				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,

@@ -29,7 +29,8 @@
 	//--loading Google Plus
 	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
 	NSString *googleURL = @"https://plus.google.com/116752878282870811079/about?review=1";
-	googlePlusItem.itemURL = [NSURL URLWithString:googleURL];
+	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
+	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google Review";
 	googlePlusItem.itemDetail = @"Leave a review for this business on Google Plus";

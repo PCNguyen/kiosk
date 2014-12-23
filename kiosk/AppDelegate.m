@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RPKLayoutManager.h"
+#import "RPKCookieHandler.h"
 
 @interface AppDelegate ()
 
@@ -17,13 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	
-	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	for (NSHTTPCookie *cookie in [storage cookies]) {
-		[storage deleteCookie:cookie];
-	}
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	
+	[RPKCookieHandler clearCookie];
 	[self configureLayout];
 	[self.window makeKeyAndVisible];
 	return YES;

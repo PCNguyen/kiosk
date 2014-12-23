@@ -9,8 +9,9 @@
 #import <WebKit/WebKit.h>
 #import "RPKKioskViewController.h"
 #import "RPKUIKit.h"
+#import "RPKCookieHandler.h"
 
-@interface RPKKioskViewController ()
+@interface RPKKioskViewController () <WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) NSURL *kioskURL;
@@ -51,7 +52,7 @@
 	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
 	
 	[self.view addSubview:self.toolBar];
-	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 100.0f) priority:UILayoutPriorityDefaultHigh];
+	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 }
 
@@ -59,16 +60,12 @@
 {
 	[super viewWillDisappear:animated];
 	
-	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	for (NSHTTPCookie *cookie in [storage cookies]) {
-		[storage deleteCookie:cookie];
-	}
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	[RPKCookieHandler clearCookie];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
+	[super viewDidAppear:animated];
 	
 	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL]];
 }
@@ -94,6 +91,8 @@
 {
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_titleLabel.textAlignment = NSTextAlignmentCenter;
+		_titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
 		_titleLabel.text = @"Google Review";
 	}
 	
@@ -145,11 +144,24 @@
 - (WKWebView *)webView
 {
 	if (!_webView) {
-		_webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[WKWebViewConfiguration new]];
+		_webView.navigationDelegate = self;
 		[_webView ul_enableAutoLayout];
 	}
 	
 	return _webView;
+}
+
+#pragma mark - Navigation Delegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+	decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
+{
+	decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 @end
