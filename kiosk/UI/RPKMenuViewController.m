@@ -305,8 +305,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
 	RPKKioskViewController *webViewController = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
-	RPKNavigationController *navigationController = [[RPKNavigationController alloc] initWithRootViewController:webViewController];
-	[self.navigationController presentViewController:navigationController animated:YES completion:NULL];
+	[self.navigationController presentViewController:webViewController animated:YES completion:NULL];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

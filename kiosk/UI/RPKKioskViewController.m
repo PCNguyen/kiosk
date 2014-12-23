@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) NSURL *kioskURL;
+@property (nonatomic, strong) UIToolbar *toolBar;
 
 @end
 
@@ -43,8 +44,14 @@
 {
 	[super loadView];
 	
+	[self ul_adjustIOS7Boundaries];
+	
 	[self.view addSubview:self.webView];
 	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
+	
+	[self.view addSubview:self.toolBar];
+	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 100.0f) priority:UILayoutPriorityDefaultHigh];
+	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -64,6 +71,20 @@
 	
 	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL]];
 }
+
+#pragma mark - Toolbar
+
+- (UIToolbar *)toolBar
+{
+	if (!_toolBar) {
+		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+		[_toolBar ul_enableAutoLayout];
+	}
+	
+	return _toolBar;
+}
+
+#pragma mark - Web View
 
 - (WKWebView *)webView
 {
