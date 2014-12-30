@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
+		0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
+		0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCookieHandler.h; sourceTree = "<group>"; };
 		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
+		0F78EEBC1A52FD9B003B7718 /* cookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cookies.js; sourceTree = "<group>"; };
+		0F78EEBE1A5305D4003B7718 /* deleteCookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deleteCookies.js; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			children = (
 				0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */,
 				0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */,
+				0F78EEBC1A52FD9B003B7718 /* cookies.js */,
+				0F78EEBE1A5305D4003B7718 /* deleteCookies.js */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -340,6 +346,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */,
+				0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */,
 				0FA0AC061A411693007AA263 /* icon_reputation.png in Resources */,
 				0FA0ABF81A40F707007AA263 /* icon_gplus.png in Resources */,
 				0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */,

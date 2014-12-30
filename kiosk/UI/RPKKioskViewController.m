@@ -56,20 +56,6 @@
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-	
-	[RPKCookieHandler clearCookie];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f]];
-}
-
 #pragma mark - Toolbar
 
 - (UIToolbar *)toolBar
@@ -110,7 +96,16 @@
 
 - (void)handleMoreTimeItemTapped:(id)sender
 {
-
+	NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+													  encoding:NSUTF8StringEncoding
+														 error:NULL];
+	
+	__weak RPKKioskViewController *selfPointer = self;
+	
+	[self.webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+		[selfPointer.webView reload];
+		[RPKCookieHandler clearCookie];
+	}];
 }
 
 - (UIBarButtonItem *)titleItem
@@ -144,7 +139,17 @@
 - (WKWebView *)webView
 {
 	if (!_webView) {
-		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[WKWebViewConfiguration new]];
+		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies" withExtension:@"js"]
+														  encoding:NSUTF8StringEncoding
+															 error:NULL];
+		WKUserScript *userScript = [[WKUserScript alloc] initWithSource:logoutScript
+														  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+													   forMainFrameOnly:YES];
+		WKUserContentController *userContentController = [WKUserContentController new];
+		[userContentController addUserScript:userScript];
+		WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+		configuration.userContentController = userContentController;
+		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
 		_webView.navigationDelegate = self;
 		[_webView ul_enableAutoLayout];
 	}
