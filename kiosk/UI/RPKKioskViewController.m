@@ -56,6 +56,14 @@
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.kioskURL cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	[self.webView loadRequest:nonCacheRequest];
+}
+
 #pragma mark - Toolbar
 
 - (UIToolbar *)toolBar
