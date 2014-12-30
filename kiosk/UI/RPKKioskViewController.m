@@ -67,7 +67,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL]];
+	[self.webView loadRequest:[NSURLRequest requestWithURL:self.kioskURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f]];
 }
 
 #pragma mark - Toolbar
