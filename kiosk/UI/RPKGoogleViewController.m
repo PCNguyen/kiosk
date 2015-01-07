@@ -54,7 +54,7 @@
 														  error:NULL];
 	WKUserScript *userScript = [[WKUserScript alloc] initWithSource:cookiesScript
 													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-												   forMainFrameOnly:NO];
+												   forMainFrameOnly:YES];
 	WKUserContentController *userContentController = [WKUserContentController new];
 	[userContentController addUserScript:userScript];
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
