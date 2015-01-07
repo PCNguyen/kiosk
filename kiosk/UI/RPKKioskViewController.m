@@ -49,7 +49,7 @@
 	[self ul_adjustIOS7Boundaries];
 	
 	[self.view addSubview:self.webView];
-	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
+	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f)]];
 	
 	[self.view addSubview:self.toolBar];
 	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
@@ -104,12 +104,15 @@
 
 - (void)handleMoreTimeItemTapped:(id)sender
 {
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://accounts.google.com/ServiceLogin"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	[self.webView loadRequest:request];
+	
 	NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 													  encoding:NSUTF8StringEncoding
 														 error:NULL];
 	
 	__weak RPKKioskViewController *selfPointer = self;
-	
+
 	[self.webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
 		[selfPointer.webView reload];
 		[RPKCookieHandler clearCookie];
@@ -152,7 +155,7 @@
 															 error:NULL];
 		WKUserScript *userScript = [[WKUserScript alloc] initWithSource:logoutScript
 														  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-													   forMainFrameOnly:YES];
+													   forMainFrameOnly:NO];
 		WKUserContentController *userContentController = [WKUserContentController new];
 		[userContentController addUserScript:userScript];
 		WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];

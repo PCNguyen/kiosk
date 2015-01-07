@@ -9,3 +9,5 @@ eraseCookie("GAPS");
 eraseCookie("GALX");
 eraseCookie("APISID");
 eraseCookie("ACCOUNT_CHOOSER");
+eraseCookie("OTZ");
+eraseCookie("S");
