@@ -142,7 +142,36 @@
 		}];
 	}
 	
-	decisionHandler(WKNavigationActionPolicyAllow);
+	__block BOOL didCancel = NO;
+	
+	//--black list domain
+	NSArray *blackListDomain = @[@"accounts.youtube.com",
+								 @"talkgadget.google.com"];
+	if ([blackListDomain containsObject:navigationAction.request.URL.host]) {
+		decisionHandler(WKNavigationActionPolicyCancel);
+		didCancel = YES;
+	}
+	
+	//--black list segments
+	NSArray *blackListSegment = @[@"hangouts", @"blank", @"notifications"];
+	[blackListSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
+		if ([[navigationAction.request.URL pathComponents] containsObject:segment]) {
+			decisionHandler(WKNavigationActionPolicyCancel);
+			didCancel = YES;
+			*stop = YES;
+		}
+	}];
+	
+	//--black list about:blank
+	if (![navigationAction.request.URL host]) {
+		decisionHandler(WKNavigationActionPolicyCancel);
+		didCancel = YES;
+	}
+	
+	if (!didCancel) {
+		NSLog(@"%@", [navigationAction.request.URL absoluteString]);
+		decisionHandler(WKNavigationActionPolicyAllow);
+	}
 }
 
 #pragma mark - Expiration View
