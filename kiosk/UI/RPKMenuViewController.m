@@ -8,7 +8,7 @@
 
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
-#import "RPKKioskViewController.h"
+#import "RPKGoogleViewController.h"
 #import "RPKNavigationController.h"
 
 #import "UIImage+RPK.h"
@@ -304,7 +304,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
-	RPKKioskViewController *webViewController = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+	RPKGoogleViewController *webViewController = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
 	[self.navigationController presentViewController:webViewController animated:YES completion:NULL];
 }
 

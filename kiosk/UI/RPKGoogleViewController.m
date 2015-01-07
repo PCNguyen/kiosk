@@ -7,11 +7,11 @@
 //
 
 #import <WebKit/WebKit.h>
-#import "RPKKioskViewController.h"
+#import "RPKGoogleViewController.h"
 #import "RPKUIKit.h"
 #import "RPKCookieHandler.h"
 
-@interface RPKKioskViewController () <WKNavigationDelegate>
+@interface RPKGoogleViewController () <WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) NSURL *kioskURL;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation RPKKioskViewController
+@implementation RPKGoogleViewController
 
 /**
  *  Modify Agent
@@ -104,19 +104,6 @@
 
 - (void)handleMoreTimeItemTapped:(id)sender
 {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://accounts.google.com/ServiceLogin"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
-	[self.webView loadRequest:request];
-	
-	NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-													  encoding:NSUTF8StringEncoding
-														 error:NULL];
-	
-	__weak RPKKioskViewController *selfPointer = self;
-
-	[self.webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
-		[selfPointer.webView reload];
-		[RPKCookieHandler clearCookie];
-	}];
 }
 
 - (UIBarButtonItem *)titleItem
@@ -136,7 +123,8 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://accounts.google.com/ServiceLogin?logout=1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	[self.webView loadRequest:request];
 }
 
 - (UIBarButtonItem *)flexibleItem
@@ -172,12 +160,18 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
+	if ([webView.URL.host isEqualToString:@"accounts.google.com"] && [webView.URL.query isEqualToString:@"logout=1"]) {
+		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+														  encoding:NSUTF8StringEncoding
+															 error:NULL];
+		
+		__weak RPKGoogleViewController *selfPointer = self;
+		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
+		}];
+	}
+	
 	decisionHandler(WKNavigationActionPolicyAllow);
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
-{
-	decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "RPKViewController.h"
 
-@interface RPKKioskViewController : RPKViewController
+@interface RPKGoogleViewController : RPKViewController
 
 - (instancetype)initWithURL:(NSURL *)kioskURL;
 
