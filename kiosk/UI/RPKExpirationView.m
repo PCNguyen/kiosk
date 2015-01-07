@@ -39,6 +39,7 @@
 		_countdownLabel = [[UILabel alloc] init];
 		_countdownLabel.font = [UIFont boldSystemFontOfSize:40.0f];
 		_countdownLabel.textColor = [UIColor redColor];
+		[_countdownLabel ul_enableAutoLayout];
 	}
 	
 	return _countdownLabel;
@@ -68,11 +69,22 @@
 		_countDownTask = [[ALScheduledTask alloc] initWithTaskInterval:1 taskBlock:^{
 			selfPointer.timeRemaining--;
 			[selfPointer refreshLabel];
+			[selfPointer checkExpired];
 		}];
 		_countDownTask.startImmediately = NO;
 	}
 	
 	return _countDownTask;
+}
+
+- (void)checkExpired
+{
+	if (self.timeRemaining <= 0) {
+		[self stopCountDown];
+		if ([self.delegate respondsToSelector:@selector(expirationViewTimeExpired:)]) {
+			[self.delegate expirationViewTimeExpired:self];
+		}
+	}
 }
 
 @end

@@ -8,12 +8,14 @@
 
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
+#import "RPKExpirationView.h"
 
 #define kGVCLogoutQuery				@"logout=1"
 
-@interface RPKGoogleViewController ()
+@interface RPKGoogleViewController () <RPKExpirationViewDelegate>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) RPKExpirationView *expirationView;
 
 @end
 
@@ -36,6 +38,9 @@
 	[self.view addSubview:self.toolBar];
 	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
+	
+	[self.webView addSubview:self.expirationView];
+	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
 }
 
 #pragma mark - Override
@@ -69,7 +74,8 @@
 {
 	if (!_toolBar) {
 		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-		_toolBar.items = @[[self flexibleItem],
+		_toolBar.items = @[[self testItem],
+						   [self flexibleItem],
 						   [self logoutItem]];
 		[_toolBar ul_enableAutoLayout];
 	}
@@ -94,6 +100,27 @@
 	[self.webView loadRequest:logoutRequest];
 }
 
+- (UIBarButtonItem *)testItem
+{
+	UIBarButtonItem *testItem = [[UIBarButtonItem alloc] initWithTitle:@"Test"
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(handleTestItemTapped:)];
+	return testItem;
+}
+
+- (void)handleTestItemTapped:(id)sender
+{
+	if (self.expirationView.alpha == 0) {
+		self.expirationView.alpha = 1.0f;
+		[self.expirationView startCountDown];
+	} else {
+		self.expirationView.alpha = 0.0f;
+		[self.expirationView stopCountDown];
+		self.expirationView.timeRemaining = 20;
+	}
+}
+
 - (UIBarButtonItem *)flexibleItem
 {
 	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
@@ -116,6 +143,28 @@
 	}
 	
 	decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+#pragma mark - Expiration View
+
+- (RPKExpirationView *)expirationView
+{
+	if (!_expirationView) {
+		_expirationView = [[RPKExpirationView alloc] init];
+		_expirationView.timeRemaining = 20;
+		_expirationView.alpha = 0.0f;
+		_expirationView.delegate = self;
+		[_expirationView ul_enableAutoLayout];
+	}
+	
+	return _expirationView;
+}
+
+#pragma mark - Expiration View Delegate
+
+- (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView
+{
+	[self handleLogoutItemTapped:nil];
 }
 
 @end
