@@ -112,7 +112,7 @@
 - (void)handleTestItemTapped:(id)sender
 {
 	if (self.expirationView.alpha == 0) {
-		self.expirationView.alpha = 1.0f;
+		self.expirationView.alpha = 0.5f;
 		[self.expirationView startCountDown];
 	} else {
 		self.expirationView.alpha = 0.0f;
