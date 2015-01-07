@@ -88,8 +88,7 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	NSString *logoutURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?%@", kGVCLogoutQuery];
-	NSMutableURLRequest *logoutRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:logoutURL]
+	NSMutableURLRequest *logoutRequest = [NSMutableURLRequest requestWithURL:self.logoutURL
 																 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
 															 timeoutInterval:30.0f];
 	[self.webView loadRequest:logoutRequest];
@@ -105,7 +104,7 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	if ([webView.URL.host isEqualToString:@"accounts.google.com"] && [webView.URL.query isEqualToString:kGVCLogoutQuery]) {
+	if ([webView.URL isEqual:self.logoutURL]) {
 		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 														  encoding:NSUTF8StringEncoding
 															 error:NULL];

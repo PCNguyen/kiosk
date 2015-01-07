@@ -10,4 +10,6 @@
 
 @interface RPKGoogleViewController : RPKWebViewController
 
+@property (nonatomic, strong) NSURL *logoutURL;
+
 @end

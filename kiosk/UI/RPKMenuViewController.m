@@ -304,8 +304,15 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
-	RPKGoogleViewController *webViewController = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
-	[self.navigationController presentViewController:webViewController animated:YES completion:NULL];
+	
+	if ([menuItem isKindOfClass:[RPKGoogleItem class]]) {
+		RPKGoogleViewController *googleWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
+		googleWebVC.logoutURL = [(RPKGoogleItem *)menuItem logoutURL];
+		[self.navigationController presentViewController:googleWebVC animated:YES completion:NULL];
+	} else {
+		RPKWebViewController *webVC = [[RPKWebViewController alloc] initWithURL:menuItem.itemURL];
+		[self.navigationController presentViewController:webVC animated:YES completion:NULL];
+	}
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

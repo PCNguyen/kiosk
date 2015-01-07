@@ -8,10 +8,6 @@
 
 #import "RPKMenuDataSource.h"
 
-@implementation RPKMenuItem
-
-@end
-
 @implementation RPKMenuDataSource
 
 - (void)loadData
@@ -27,7 +23,7 @@
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
-	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
+	RPKGoogleItem *googlePlusItem = [[RPKGoogleItem alloc] init];
 	NSString *googleURL = @"https://plus.google.com/117430950571267154753/about?review=1";
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];

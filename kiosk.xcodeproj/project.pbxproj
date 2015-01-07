@@ -28,6 +28,8 @@
 		0FA0AC0C1A411AEC007AA263 /* icon_review_submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */; };
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
+		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
+		0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,10 @@
 		0FA0AC191A489300007AA263 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
+		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
+		0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuItem.m; sourceTree = "<group>"; };
+		0FD805C51A5D20B200EE1AD6 /* RPKGoogleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleItem.h; sourceTree = "<group>"; };
+		0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleItem.m; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -236,6 +242,10 @@
 			children = (
 				0FA0ABF41A40C859007AA263 /* RPKMenuDataSource.h */,
 				0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */,
+				0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */,
+				0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */,
+				0FD805C51A5D20B200EE1AD6 /* RPKGoogleItem.h */,
+				0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -409,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FA0ABEF1A40C0E9007AA263 /* RPKGoogleViewController.m in Sources */,
+				0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
 				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
@@ -419,6 +430,7 @@
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
+				0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */,
 				0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
