@@ -11,6 +11,8 @@
 #import "RPKUIKit.h"
 #import "RPKCookieHandler.h"
 
+#define kGVCLogoutQuery				@"logout=1"
+
 @interface RPKGoogleViewController () <WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
@@ -64,52 +66,25 @@
 	[self.webView loadRequest:nonCacheRequest];
 }
 
+- (void)viewWillLayoutSubviews
+{
+	[super viewWillLayoutSubviews];
+	
+	self.titleLabel.frame = CGRectMake(0.0f, 0.0f, self.toolBar.frame.size.width / 2, self.toolBar.frame.size.height);
+}
+
 #pragma mark - Toolbar
 
 - (UIToolbar *)toolBar
 {
 	if (!_toolBar) {
 		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-		_toolBar.items = @[[self moreTimeItem],
-						   [self flexibleItem],
-						   [self titleItem],
-						   [self flexibleItem],
+		_toolBar.items = @[[self flexibleItem],
 						   [self logoutItem]];
 		[_toolBar ul_enableAutoLayout];
 	}
 	
 	return _toolBar;
-}
-
-- (UILabel *)titleLabel
-{
-	if (!_titleLabel) {
-		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_titleLabel.textAlignment = NSTextAlignmentCenter;
-		_titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
-		_titleLabel.text = @"Google Review";
-	}
-	
-	return _titleLabel;
-}
-
-- (UIBarButtonItem *)moreTimeItem
-{
-	UIBarButtonItem *moreTimeItem = [[UIBarButtonItem alloc] initWithTitle:@"More Time"
-																	 style:UIBarButtonItemStylePlain
-																	target:self
-																	action:@selector(handleMoreTimeItemTapped:)];
-	return moreTimeItem;
-}
-
-- (void)handleMoreTimeItemTapped:(id)sender
-{
-}
-
-- (UIBarButtonItem *)titleItem
-{
-	UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithCustomView:self.titleLabel];
-	return titleItem;
 }
 
 - (UIBarButtonItem *)logoutItem
@@ -123,7 +98,8 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://accounts.google.com/ServiceLogin?logout=1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	NSString *logoutURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?%@", kGVCLogoutQuery];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:logoutURL] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
 	[self.webView loadRequest:request];
 }
 
@@ -138,10 +114,10 @@
 - (WKWebView *)webView
 {
 	if (!_webView) {
-		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies" withExtension:@"js"]
+		NSString *cookiesScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies" withExtension:@"js"]
 														  encoding:NSUTF8StringEncoding
 															 error:NULL];
-		WKUserScript *userScript = [[WKUserScript alloc] initWithSource:logoutScript
+		WKUserScript *userScript = [[WKUserScript alloc] initWithSource:cookiesScript
 														  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
 													   forMainFrameOnly:NO];
 		WKUserContentController *userContentController = [WKUserContentController new];
@@ -160,7 +136,7 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	if ([webView.URL.host isEqualToString:@"accounts.google.com"] && [webView.URL.query isEqualToString:@"logout=1"]) {
+	if ([webView.URL.host isEqualToString:@"accounts.google.com"] && [webView.URL.query isEqualToString:kGVCLogoutQuery]) {
 		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 														  encoding:NSUTF8StringEncoding
 															 error:NULL];
