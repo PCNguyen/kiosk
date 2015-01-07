@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RPKUIKit.h"
 
 @interface RPKView : UIView
 
