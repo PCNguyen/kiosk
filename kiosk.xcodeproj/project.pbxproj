@@ -27,6 +27,7 @@
 		0FA0AC061A411693007AA263 /* icon_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC051A411693007AA263 /* icon_reputation.png */; };
 		0FA0AC0C1A411AEC007AA263 /* icon_review_submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */; };
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
+		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		0FA0AC051A411693007AA263 /* icon_reputation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_reputation.png; sourceTree = "<group>"; };
 		0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_review_submit.png; sourceTree = "<group>"; };
 		0FA0AC191A489300007AA263 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
+		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +210,8 @@
 			children = (
 				0FA0ABEA1A40C0AF007AA263 /* RPKMenuViewController.h */,
 				0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */,
+				0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */,
+				0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */,
 				0FA0ABED1A40C0E9007AA263 /* RPKGoogleViewController.h */,
 				0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */,
 			);
@@ -406,6 +411,7 @@
 				0FA0ABEF1A40C0E9007AA263 /* RPKGoogleViewController.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
+				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
 				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,

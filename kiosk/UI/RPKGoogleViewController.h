@@ -6,10 +6,8 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import "RPKViewController.h"
+#import "RPKWebViewController.h"
 
-@interface RPKGoogleViewController : RPKViewController
-
-- (instancetype)initWithURL:(NSURL *)kioskURL;
+@interface RPKGoogleViewController : RPKWebViewController
 
 @end

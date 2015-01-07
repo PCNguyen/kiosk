@@ -14,8 +14,9 @@
 
 @implementation RPKViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView
+{
+	[super loadView];
 	
 	[self ul_adjustIOS7Boundaries];
 }
