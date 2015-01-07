@@ -30,6 +30,8 @@
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */; };
+		0FD805CB1A5D977100EE1AD6 /* RPKExpirationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */; };
+		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,10 @@
 		0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuItem.m; sourceTree = "<group>"; };
 		0FD805C51A5D20B200EE1AD6 /* RPKGoogleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleItem.h; sourceTree = "<group>"; };
 		0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleItem.m; sourceTree = "<group>"; };
+		0FD805C91A5D977100EE1AD6 /* RPKExpirationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKExpirationView.h; sourceTree = "<group>"; };
+		0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKExpirationView.m; sourceTree = "<group>"; };
+		0FD805CC1A5D979500EE1AD6 /* RPKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKView.h; sourceTree = "<group>"; };
+		0FD805CD1A5D979500EE1AD6 /* RPKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKView.m; sourceTree = "<group>"; };
 		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,6 +212,7 @@
 			children = (
 				0FA0ABF91A40F711007AA263 /* image */,
 				0FA0ABF31A40C835007AA263 /* Model */,
+				0FD805C81A5D974D00EE1AD6 /* View */,
 				0FA0ABE51A40B1AB007AA263 /* Controllers */,
 			);
 			name = Screen;
@@ -227,6 +234,8 @@
 		0FA0ABE61A40B1BB007AA263 /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				0FD805CC1A5D979500EE1AD6 /* RPKView.h */,
+				0FD805CD1A5D979500EE1AD6 /* RPKView.m */,
 				0FA0ABE71A40B87B007AA263 /* RPKViewController.h */,
 				0FA0ABE81A40B87B007AA263 /* RPKViewController.m */,
 				0FA0ABF01A40C1A8007AA263 /* RPKNavigationController.h */,
@@ -267,6 +276,15 @@
 				0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		0FD805C81A5D974D00EE1AD6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0FD805C91A5D977100EE1AD6 /* RPKExpirationView.h */,
+				0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		C9509CDA336D4DA3A9089C5C /* Frameworks */ = {
@@ -428,7 +446,9 @@
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
+				0FD805CB1A5D977100EE1AD6 /* RPKExpirationView.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
+				0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
 				0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */,
 				0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */,
