@@ -169,9 +169,20 @@
 	}
 	
 	if (!didCancel) {
-		NSLog(@"%@", [navigationAction.request.URL absoluteString]);
+		NSLog(@"%@", navigationAction.request.URL);
 		decisionHandler(WKNavigationActionPolicyAllow);
 	}
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
+{
+	//--load widget manually
+	NSString *mainPageSegment = @"about";
+	if ([[navigationResponse.response.URL pathComponents] containsObject:mainPageSegment]) {
+		
+	}
+	
+	decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 #pragma mark - Expiration View
