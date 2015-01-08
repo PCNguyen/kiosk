@@ -14,6 +14,8 @@
 #import "RPKExpirationView.h"
 #import "RPKMessageView.h"
 
+#import "UIColor+RPK.h"
+
 #define kGVCLogoutQuery				@"logout=1"
 
 @interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate>
@@ -53,7 +55,7 @@
 	[super loadView];
 	
 	[self.view addSubview:self.toolBar];
-	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
+	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 70.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	
 	[self.view addSubview:self.messageView];
@@ -72,6 +74,17 @@
 	[super viewDidLoad];
 	
 	self.popupLoaded = NO;
+	
+	//--set bar button item color
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]
+	 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+							  NSFontAttributeName:[UIFont systemFontOfSize:20.0f]}
+	 forState:UIControlStateNormal];
+	
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]
+	 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],
+							  NSFontAttributeName:[UIFont systemFontOfSize:20.0f]}
+	 forState:UIControlStateDisabled];
 }
 
 #pragma mark - Override
@@ -91,6 +104,9 @@
 		_toolBar.items = @[[self testItem],
 						   [self flexibleItem],
 						   [self logoutItem]];
+		[_toolBar setBackgroundColor:[UIColor rpk_defaultBlue]];
+		[_toolBar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
+		_toolBar.opaque = YES;
 		[_toolBar ul_enableAutoLayout];
 	}
 	
@@ -268,7 +284,7 @@
 {
 	if (!_loadingView) {
 		_loadingView = [[SplittingTriangle alloc] init];
-		[_loadingView setForeColor:[UIColor ul_colorWithR:120.0f G:23.0f B:255.0f A:0.8f]
+		[_loadingView setForeColor:[UIColor rpk_defaultBlue]
 					  andBackColor:[UIColor clearColor]];
 		[_loadingView setClockwise:YES];
 		[_loadingView setDuration:2.4f];

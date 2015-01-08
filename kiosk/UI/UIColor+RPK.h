@@ -10,4 +10,8 @@
 
 @interface UIColor (RPK)
 
++ (UIColor *)rpk_defaultBlue;
+
++ (UIColor *)rpk_brightBlue;
+
 @end

@@ -27,7 +27,7 @@
 	[self.view addSubview:self.webView];
 	
 	if (self.enableToolBar) {
-		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f)]];
+		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsMake(70.0f, 0.0f, 0.0f, 0.0f)]];
 	} else {
 		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
 	}
