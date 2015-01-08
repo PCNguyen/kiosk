@@ -8,6 +8,17 @@
 
 #import "RPKView.h"
 
+@class RPKMessageView;
+
+@protocol RPKMessageViewDelegate <NSObject>
+
+@optional
+- (void)messagViewActionTapped:(RPKMessageView *)messageView;
+
+@end
+
 @interface RPKMessageView : RPKView
+
+@property (nonatomic, weak) id<RPKMessageViewDelegate>delegate;
 
 @end

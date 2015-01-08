@@ -55,10 +55,18 @@
 																		  textColor:[UIColor lightGrayColor]];
 		[_actionButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 		[_actionButton setAttributedTitle:selAttributedTitle forState:UIControlStateSelected];
+		[_actionButton addTarget:self action:@selector(handleActionButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_actionButton ul_enableAutoLayout];
 	}
 	
 	return _actionButton;
+}
+
+- (void)handleActionButtonTapped:(id)sender
+{
+	if ([self.delegate respondsToSelector:@selector(messagViewActionTapped:)]) {
+		[self.delegate messagViewActionTapped:self];
+	}
 }
 
 @end

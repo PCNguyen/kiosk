@@ -16,7 +16,7 @@
 
 #define kGVCLogoutQuery				@"logout=1"
 
-@interface RPKGoogleViewController () <RPKExpirationViewDelegate>
+@interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) RPKExpirationView *expirationView;
@@ -124,6 +124,7 @@
 
 - (void)handleTestItemTapped:(id)sender
 {
+	[RPKCookieHandler clearCookie];
 	self.popupLoaded = NO;
 	[self.webView reload];
 	
@@ -187,9 +188,13 @@
 {
 	if ([webView.request.URL.host isEqualToString:@"accounts.google.com"]) {
 		[self showLoading];
+		[self hideMessageView];
 	} else if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
 		if (self.popupLoaded) {
 			[self hideLoading];
+		} else {
+			[self showLoading];
+			[self hideMessageView];
 		}
 	}
 }
@@ -206,6 +211,8 @@
 			[self.webView stringByEvaluatingJavaScriptFromString:selectScript];
 			
 			[self.popupTask start];
+		} else {
+			[self showMessageView];
 		}
 	}
 }
@@ -295,11 +302,31 @@
 		_messageView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
 		_messageView.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
 		_messageView.layer.shadowRadius = 3.0f;
-		_messageView.layer.shadowOpacity = 0.8f;		
+		_messageView.layer.shadowOpacity = 0.8f;
+		_messageView.delegate = self;
+		_messageView.alpha = 0.0f;
 		[_messageView ul_enableAutoLayout];
 	}
 	
 	return _messageView;
+}
+
+- (void)showMessageView
+{
+	self.messageView.alpha = 1.0f;
+}
+
+- (void)hideMessageView
+{
+	self.messageView.alpha = 0.0f;
+}
+
+#pragma mark - Message View Delegate
+
+- (void)messagViewActionTapped:(RPKMessageView *)messageView
+{
+	self.popupLoaded = NO;
+	[self.webView reload];
 }
 
 @end
