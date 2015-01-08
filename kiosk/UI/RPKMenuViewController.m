@@ -6,12 +6,16 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
+#import <AppSDK/AppLibExtension.h>
+
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
 #import "RPKGoogleViewController.h"
 #import "RPKNavigationController.h"
 
 #import "UIImage+RPK.h"
+
+#define kMCLogoImageSize			CGSizeMake(100.0f, 100.0f)
 
 #pragma mark -
 
@@ -21,10 +25,7 @@
 @interface RPKMenuCell : RPKCollectionViewCell
 
 @property (nonatomic, strong) UIImageView *logoImageView;
-@property (nonatomic, strong) UILabel *largeTitleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
-@property (nonatomic, strong) UIView *whiteBackground;
-@property (nonatomic, strong) UIButton *submitButton;
 
 @end
 
@@ -32,25 +33,19 @@
 
 - (void)commonInit
 {
-	self.paddings = UIEdgeInsetsMake(20.0f, 40.0f, 40.0f, 40.0f);
-	self.spacings = CGSizeMake(20.0f, 10.0f);
+	self.paddings = UIEdgeInsetsMake(0.0f, 40.0f, 0.0f, 40.0f);
+	self.spacings = CGSizeMake(0.0f, 30.0f);
 	
-	[self.contentView addSubview:self.whiteBackground];
 	[self.contentView addSubview:self.logoImageView];
-	[self.contentView addSubview:self.largeTitleLabel];
 	[self.contentView addSubview:self.detailLabel];
-	[self.contentView addSubview:self.submitButton];
 }
 
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
 	
-	self.largeTitleLabel.frame = [self largeTitleLabelFrame];
-	self.logoImageView.frame = [self logoImageFrame:self.largeTitleLabel.frame];
-	self.detailLabel.frame = [self detailLabelFrame:self.logoImageView.frame];
-	self.whiteBackground.frame = [self backgroundFrame];
-	self.submitButton.frame = [self submitButtonFrame];
+	self.detailLabel.frame = [self detailLabelFrame];
+	self.logoImageView.frame = [self logoImageFrame:self.detailLabel.frame];
 	
 	[self.logoImageView ul_round];
 }
@@ -62,44 +57,18 @@
 	RPKMenuItem *menuItem = (RPKMenuItem *)model;
 	
 	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
-	self.largeTitleLabel.text = menuItem.itemTitle;
-	self.detailLabel.text = menuItem.itemDetail;
-}
-
-#pragma mark - Title
-
-- (CGRect)largeTitleLabelFrame
-{
-	CGFloat xOffset = self.paddings.left;
-	CGFloat yOffset = self.paddings.top;
-	CGFloat width = self.bounds.size.width - xOffset - self.paddings.right;
-	CGFloat height = [self.largeTitleLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
-- (UILabel *)largeTitleLabel
-{
-	if (!_largeTitleLabel) {
-		_largeTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_largeTitleLabel.textAlignment = NSTextAlignmentLeft;
-		_largeTitleLabel.textColor = [UIColor whiteColor];
-		_largeTitleLabel.font = [UIFont boldSystemFontOfSize:110.0f];
-		_largeTitleLabel.numberOfLines = 1;
-		_largeTitleLabel.adjustsFontSizeToFitWidth = YES;
-	}
-	
-	return _largeTitleLabel;
+	NSMutableAttributedString *attributedString = [menuItem.itemDetail al_attributedStringWithFont:[UIFont systemFontOfSize:40.0f] textColor:[UIColor lightGrayColor]];
+	self.detailLabel.attributedText = attributedString;
 }
 
 #pragma mark - Logo Image
 
-- (CGRect)logoImageFrame:(CGRect)topFrame
+- (CGRect)logoImageFrame:(CGRect)bottomFrame
 {
-	CGFloat yOffset = topFrame.origin.y + topFrame.size.height + self.spacings.height;
-	CGFloat height = self.bounds.size.height - yOffset - self.paddings.bottom - self.spacings.height;
-	CGFloat width = height;
-	CGFloat xOffset = self.bounds.size.width - width - self.paddings.right;
+	CGFloat width = kMCLogoImageSize.width;
+	CGFloat height = kMCLogoImageSize.height;
+	CGFloat xOffset = (self.bounds.size.width - width) / 2;
+	CGFloat yOffset = bottomFrame.origin.y - self.spacings.height - height;
 	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
@@ -116,12 +85,14 @@
 
 #pragma mark - Detail Label
 
-- (CGRect)detailLabelFrame:(CGRect)rightFrame
+- (CGRect)detailLabelFrame
 {
-	CGFloat yOffset = rightFrame.origin.y;
 	CGFloat xOffset = self.paddings.left;
-	CGFloat width = rightFrame.origin.x - xOffset - self.spacings.width;
+	CGFloat width = self.bounds.size.width - xOffset - self.paddings.right;
 	CGFloat height = [self.detailLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
+	CGFloat totalHeight = height + kMCLogoImageSize.height + self.spacings.height;
+	CGFloat yOffset = (self.bounds.size.height - totalHeight) / 2 + kMCLogoImageSize.height + self.spacings.height;
+	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
 
@@ -129,62 +100,14 @@
 {
 	if (!_detailLabel) {
 		_detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_detailLabel.textAlignment = NSTextAlignmentLeft;
-		_detailLabel.font = [UIFont systemFontOfSize:45.0f];
+		_detailLabel.textAlignment = NSTextAlignmentCenter;
+		_detailLabel.font = [UIFont systemFontOfSize:30.0f];
 		_detailLabel.numberOfLines = 0;
 		_detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		_detailLabel.textColor = [UIColor ul_colorWithR:73 G:189 B:236 A:1.0f];
 	}
 	
 	return _detailLabel;
-}
-
-#pragma mark - Background
-
-- (CGRect)backgroundFrame
-{
-	CGFloat xOffset = self.paddings.left / 2;
-	CGFloat yOffset = self.paddings.top / 2;
-	CGFloat width = self.bounds.size.width - xOffset - self.paddings.right / 2;
-	CGFloat height = self.bounds.size.height - yOffset - self.paddings.bottom / 4;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
-- (UIView *)whiteBackground
-{
-	if (!_whiteBackground) {
-		_whiteBackground = [[UIView alloc] initWithFrame:CGRectZero];
-		_whiteBackground.backgroundColor = [UIColor ul_colorWithR:29 G:89 B:124 A:1.0f];
-		_whiteBackground.layer.cornerRadius = 10.0f;
-		_whiteBackground.layer.masksToBounds = YES;
-		_whiteBackground.layer.borderWidth = 3.0f;
-		_whiteBackground.layer.borderColor = [[UIColor ul_colorWithR:23 G:124 B:179 A:1.0f] CGColor];
-	}
-	
-	return _whiteBackground;
-}
-
-#pragma mark - Submit Button
-
-- (CGRect)submitButtonFrame
-{
-	CGFloat xOffset = self.paddings.left;
-	CGFloat height = 80.0f;
-	CGFloat width = 100.0f;
-	CGFloat yOffset = self.bounds.size.height - self.paddings.bottom - self.spacings.height - height;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
-- (UIButton *)submitButton
-{
-	if (!_submitButton) {
-		_submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		[_submitButton setBackgroundImage:[UIImage rpk_bundleImageNamed:@"icon_review_submit.png"] forState:UIControlStateNormal];
-	}
-	
-	return _submitButton;
 }
 
 @end

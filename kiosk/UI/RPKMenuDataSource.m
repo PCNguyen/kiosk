@@ -19,7 +19,7 @@
 	kioskItem.itemURL = [NSURL URLWithString:@"http://google.com"];
 	kioskItem.imageName = @"icon_reputation.png";
 	kioskItem.itemTitle = @"Kiosk Review";
-	kioskItem.itemDetail = @"Leave a review for this business on Reputation.com";
+	kioskItem.itemDetail = @"Leave a Review\nOn Reputation.com";
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
@@ -29,7 +29,7 @@
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google Review";
-	googlePlusItem.itemDetail = @"Leave a review for this business on Google Plus";
+	googlePlusItem.itemDetail = @"Leave a Review\nOn Google Plus Local";
 	[menuItems addObject:googlePlusItem];
 	
 	self.menuItems = menuItems;
