@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIWebView *webView;;
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic, assign) BOOL enableToolBar;
 
 - (instancetype)initWithURL:(NSURL *)url;
 

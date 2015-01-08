@@ -12,6 +12,7 @@
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
 #import "RPKExpirationView.h"
+#import "RPKMessageView.h"
 
 #define kGVCLogoutQuery				@"logout=1"
 
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) RPKExpirationView *expirationView;
+@property (nonatomic, strong) RPKMessageView *messageView;
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) SplittingTriangle *loadingView;
@@ -37,6 +39,15 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
 }
 
+- (instancetype)initWithURL:(NSURL *)url
+{
+	if (self = [super initWithURL:url]) {
+		self.enableToolBar = YES;
+	}
+	
+	return self;
+}
+
 - (void)loadView
 {
 	[super loadView];
@@ -45,6 +56,9 @@
 	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	
+	[self.view addSubview:self.messageView];
+	[self.messageView ul_fixedSize:CGSizeMake(0.0f, 80.0f) priority:UILayoutPriorityDefaultHigh];
+	[self.view addConstraints:[self.messageView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
 	[self.webView addSubview:self.expirationView];
 	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
 	
@@ -269,6 +283,23 @@
 {
 	self.loadingView.alpha = 0.0f;
 	self.loadingView.paused = YES;
+}
+
+#pragma mark - Message View
+
+- (RPKMessageView *)messageView
+{
+	if (!_messageView) {
+		_messageView = [[RPKMessageView alloc] init];
+		_messageView.backgroundColor = [UIColor whiteColor];
+		_messageView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+		_messageView.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
+		_messageView.layer.shadowRadius = 3.0f;
+		_messageView.layer.shadowOpacity = 0.8f;		
+		[_messageView ul_enableAutoLayout];
+	}
+	
+	return _messageView;
 }
 
 @end

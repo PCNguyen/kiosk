@@ -13,7 +13,8 @@
 - (instancetype)initWithURL:(NSURL *)url
 {
 	if (self = [super init]) {
-		self.url = url;
+		_url = url;
+		_enableToolBar = NO;
 	}
 	
 	return self;
@@ -24,7 +25,12 @@
 	[super loadView];
 	
 	[self.view addSubview:self.webView];
-	[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
+	
+	if (self.enableToolBar) {
+		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f)]];
+	} else {
+		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
+	}
 }
 
 - (void)viewDidLoad
