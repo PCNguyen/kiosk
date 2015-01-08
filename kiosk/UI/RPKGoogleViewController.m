@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
+#import <AppSDK/AppLibScheduler.h>
+
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
 #import "RPKExpirationView.h"
@@ -16,6 +18,8 @@
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) RPKExpirationView *expirationView;
+@property (nonatomic, assign) BOOL popupLoaded;
+@property (nonatomic, strong) ALScheduledTask *popupTask;
 
 @end
 
@@ -43,29 +47,19 @@
 	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	self.popupLoaded = NO;
+}
+
 #pragma mark - Override
 
 - (void)loadRequest
 {
 	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
 	[self.webView loadRequest:nonCacheRequest];
-}
-
-- (WKWebViewConfiguration *)webViewConfiguration
-{
-	NSString *cookiesScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
-																						withExtension:@"js"]
-													   encoding:NSUTF8StringEncoding
-														  error:NULL];
-	WKUserScript *userScript = [[WKUserScript alloc] initWithSource:cookiesScript
-													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-												   forMainFrameOnly:YES];
-	WKUserContentController *userContentController = [WKUserContentController new];
-	[userContentController addUserScript:userScript];
-	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
-	configuration.userContentController = userContentController;
-	
-	return configuration;
 }
 
 #pragma mark - Toolbar
@@ -110,78 +104,23 @@
 
 - (void)handleTestItemTapped:(id)sender
 {
-	if (self.expirationView.alpha == 0) {
-		self.expirationView.alpha = 0.5f;
-		[self.expirationView startCountDown];
-	} else {
-		self.expirationView.alpha = 0.0f;
-		[self.expirationView stopCountDown];
-		self.expirationView.timeRemaining = 20;
-	}
+	self.popupLoaded = NO;
+	[self.webView reload];
+	
+//	if (self.expirationView.alpha == 0) {
+//		self.expirationView.alpha = 0.5f;
+//		[self.expirationView startCountDown];
+//	} else {
+//		self.expirationView.alpha = 0.0f;
+//		[self.expirationView stopCountDown];
+//		self.expirationView.timeRemaining = 20;
+//	}
 }
 
 - (UIBarButtonItem *)flexibleItem
 {
 	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
 	return flexItem;
-}
-
-#pragma mark - Navigation Delegate
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
-{
-	if ([webView.URL isEqual:self.logoutURL]) {
-		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-														  encoding:NSUTF8StringEncoding
-															 error:NULL];
-		
-		__weak RPKGoogleViewController *selfPointer = self;
-		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
-			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
-		}];
-	}
-	
-	__block BOOL didCancel = NO;
-	
-	//--black list domain
-	NSArray *blackListDomain = @[@"accounts.youtube.com",
-								 @"talkgadget.google.com"];
-	if ([blackListDomain containsObject:navigationAction.request.URL.host]) {
-		decisionHandler(WKNavigationActionPolicyCancel);
-		didCancel = YES;
-	}
-	
-	//--black list segments
-	NSArray *blackListSegment = @[@"hangouts", @"blank", @"notifications"];
-	[blackListSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
-		if ([[navigationAction.request.URL pathComponents] containsObject:segment]) {
-			decisionHandler(WKNavigationActionPolicyCancel);
-			didCancel = YES;
-			*stop = YES;
-		}
-	}];
-	
-	//--black list about:blank
-	if (![navigationAction.request.URL host]) {
-		decisionHandler(WKNavigationActionPolicyCancel);
-		didCancel = YES;
-	}
-	
-	if (!didCancel) {
-		NSLog(@"%@", navigationAction.request.URL);
-		decisionHandler(WKNavigationActionPolicyAllow);
-	}
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
-{
-	//--load widget manually
-	NSString *mainPageSegment = @"about";
-	if ([[navigationResponse.response.URL pathComponents] containsObject:mainPageSegment]) {
-		
-	}
-	
-	decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 #pragma mark - UIWebview Delegate
@@ -211,6 +150,16 @@
 		shouldLoad = NO;
 	}
 	
+	NSString *widgetSegment = @"widget";
+	if ([[request.URL pathComponents] containsObject:widgetSegment]) {
+		[self.popupTask stop];
+		self.popupLoaded = YES;
+	}
+	
+	if (shouldLoad) {
+		NSLog(@"Prepare Load: %@", request.URL);
+	}
+	
 	return shouldLoad;
 }
 
@@ -222,12 +171,16 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
-		NSLog(@"Display Popup");
-		NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
-																						   withExtension:@"js"]
-													   encoding:NSUTF8StringEncoding
-														  error:NULL];
-		[webView stringByEvaluatingJavaScriptFromString:selectScript];
+		if (!self.popupLoaded) {
+			//--inject the function to be called
+			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
+																							   withExtension:@"js"]
+															  encoding:NSUTF8StringEncoding
+																 error:NULL];
+			[self.webView stringByEvaluatingJavaScriptFromString:selectScript];
+			
+			[self.popupTask start];
+		}
 	}
 }
 
@@ -251,6 +204,29 @@
 - (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView
 {
 	[self handleLogoutItemTapped:nil];
+}
+
+#pragma mark - Popup Task
+
+- (ALScheduledTask *)popupTask
+{
+	if (!_popupTask) {
+		__weak RPKGoogleViewController *selfPointer = self;
+		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:5 taskBlock:^{
+			if (!selfPointer.popupLoaded) {
+				[selfPointer executePopupScript];
+			}
+		}];
+		_popupTask.startImmediately = NO;
+	}
+	
+	return _popupTask;
+}
+
+- (void)executePopupScript
+{
+	NSLog(@"Attempt To Display Popup");
+	[self.webView stringByEvaluatingJavaScriptFromString:@"displayPopup();"];
 }
 
 @end

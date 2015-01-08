@@ -52,9 +52,4 @@
 	return _webView;
 }
 
-- (WKWebViewConfiguration *)webViewConfiguration
-{
-	return [WKWebViewConfiguration new];
-}
-
 @end

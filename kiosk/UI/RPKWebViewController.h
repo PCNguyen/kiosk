@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Reputation. All rights reserved.
 //
 
-#import <WebKit/WebKit.h>
-#import "RPKUIKit.h"
 #import "RPKViewController.h"
+#import "RPKUIKit.h"
 
 @interface RPKWebViewController : RPKViewController <UIWebViewDelegate>
 
@@ -24,13 +23,5 @@
  *	Override this to provide custom request
  */
 - (void)loadRequest;
-
-/**
- *  Provide the initial configuration for webview
- *	Override this to provide custom configuration
- *
- *  @return the custom configuration
- */
-- (WKWebViewConfiguration *)webViewConfiguration;
 
 @end
