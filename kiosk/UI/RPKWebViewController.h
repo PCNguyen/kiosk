@@ -6,12 +6,13 @@
 //  Copyright (c) 2015 Reputation. All rights reserved.
 //
 
+#import <WebKit/WebKit.h>
 #import "RPKViewController.h"
 #import "RPKUIKit.h"
 
-@interface RPKWebViewController : RPKViewController <UIWebViewDelegate>
+@interface RPKWebViewController : RPKViewController <WKNavigationDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;;
+@property (nonatomic, strong) WKWebView *webView;;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, assign) BOOL enableToolBar;
 
@@ -24,5 +25,7 @@
  *	Override this to provide custom request
  */
 - (void)loadRequest;
+
+- (WKWebViewConfiguration *)webConfiguration;
 
 @end

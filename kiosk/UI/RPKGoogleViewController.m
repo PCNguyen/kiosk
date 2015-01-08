@@ -95,6 +95,23 @@
 	[self.webView loadRequest:nonCacheRequest];
 }
 
+- (WKWebViewConfiguration *)webViewConfiguration
+{
+	NSString *cookiesScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
+																						withExtension:@"js"]
+													   encoding:NSUTF8StringEncoding
+														  error:NULL];
+	WKUserScript *userScript = [[WKUserScript alloc] initWithSource:cookiesScript
+													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+												   forMainFrameOnly:YES];
+	WKUserContentController *userContentController = [WKUserContentController new];
+	[userContentController addUserScript:userScript];
+	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+	configuration.userContentController = userContentController;
+	
+	return configuration;
+}
+
 #pragma mark - Toolbar
 
 - (UIToolbar *)toolBar
@@ -143,15 +160,6 @@
 	[RPKCookieHandler clearCookie];
 	self.popupLoaded = NO;
 	[self.webView reload];
-	
-//	if (self.expirationView.alpha == 0) {
-//		self.expirationView.alpha = 0.5f;
-//		[self.expirationView startCountDown];
-//	} else {
-//		self.expirationView.alpha = 0.0f;
-//		[self.expirationView stopCountDown];
-//		self.expirationView.timeRemaining = 20;
-//	}
 }
 
 - (UIBarButtonItem *)flexibleItem
@@ -160,71 +168,69 @@
 	return flexItem;
 }
 
-#pragma mark - UIWebview Delegate
+#pragma mark - WKWebview Delegate
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	//--black list domain
-	__block BOOL shouldLoad = YES;
+	if ([webView.URL isEqual:self.logoutURL]) {
+		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+														  encoding:NSUTF8StringEncoding
+															 error:NULL];
+		
+		__weak RPKGoogleViewController *selfPointer = self;
+		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
+		}];
+	}
 	
+	__block BOOL didCancel = NO;
+	
+	//--black list domain
 	NSArray *blackListDomain = @[@"accounts.youtube.com",
 								 @"talkgadget.google.com"];
-	if ([blackListDomain containsObject:request.URL.host]) {
-		shouldLoad = NO;
+	if ([blackListDomain containsObject:navigationAction.request.URL.host]) {
+		decisionHandler(WKNavigationActionPolicyCancel);
+		didCancel = YES;
 	}
 	
 	//--black list segments
 	NSArray *blackListSegment = @[@"hangouts", @"blank", @"notifications"];
 	[blackListSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
-		if ([[request.URL pathComponents] containsObject:segment]) {
-			shouldLoad = NO;
+		if ([[navigationAction.request.URL pathComponents] containsObject:segment]) {
+			decisionHandler(WKNavigationActionPolicyCancel);
+			didCancel = YES;
 			*stop = YES;
 		}
 	}];
 	
 	//--black list about:blank
-	if (![request.URL host]) {
-		shouldLoad = NO;
+	if (![navigationAction.request.URL host]) {
+		decisionHandler(WKNavigationActionPolicyCancel);
+		didCancel = YES;
 	}
 	
 	NSString *widgetSegment = @"widget";
-	if ([[request.URL pathComponents] containsObject:widgetSegment]) {
+	if ([[navigationAction.request.URL pathComponents] containsObject:widgetSegment]) {
 		[self.popupTask stop];
 		self.popupLoaded = YES;
 	}
 	
-	if (shouldLoad) {
-		NSLog(@"Prepare Load: %@", request.URL);
-	}
-	
-	return shouldLoad;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-	if ([webView.request.URL.host isEqualToString:@"accounts.google.com"]) {
-		[self showLoading];
-		[self hideMessageView];
-	} else if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
-		if (self.popupLoaded) {
-			[self hideLoading];
-		} else {
-			[self showLoading];
-			[self hideMessageView];
-		}
+	if (!didCancel) {
+		NSLog(@"%@", navigationAction.request.URL);
+		decisionHandler(WKNavigationActionPolicyAllow);
 	}
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-	if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
+	if ([webView.URL.host isEqualToString:@"plus.google.com"]) {
 		if (!self.popupLoaded) {
 			//--inject the function to be called
 			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
 																							   withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
-			[self.webView stringByEvaluatingJavaScriptFromString:selectScript];
+			[self.webView evaluateJavaScript:selectScript completionHandler:NULL];
 			
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
 		} else {
@@ -261,7 +267,7 @@
 {
 	if (!_popupTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
-		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:5 taskBlock:^{
+		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
 			if (!selfPointer.popupLoaded) {
 				[selfPointer executePopupScript];
 			}
@@ -275,7 +281,9 @@
 - (void)executePopupScript
 {
 	NSLog(@"Attempt To Display Popup");
-	[self.webView stringByEvaluatingJavaScriptFromString:@"displayPopup();"];
+	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:^(id result, NSError *error) {
+		NSLog(@"%@", error);
+	}];
 }
 
 #pragma mark - Loading

@@ -47,15 +47,19 @@
 
 #pragma mark - Web View
 
-- (UIWebView *)webView
+- (WKWebView *)webView
 {
 	if (!_webView) {
-		_webView = [[UIWebView alloc] init];
-		_webView.delegate = self;
+		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[self webConfiguration]];
+		_webView.navigationDelegate = self;
 		[_webView ul_enableAutoLayout];
 	}
 	
 	return _webView;
 }
 
+- (WKWebViewConfiguration *)webConfiguration
+{
+	return [WKWebViewConfiguration new];
+}
 @end
