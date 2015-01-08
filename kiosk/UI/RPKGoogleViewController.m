@@ -7,6 +7,7 @@
 //
 
 #import <AppSDK/AppLibScheduler.h>
+#import <SplittingTriangle/SplittingTriangle.h>
 
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) RPKExpirationView *expirationView;
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, strong) ALScheduledTask *popupTask;
+@property (nonatomic, strong) SplittingTriangle *loadingView;
 
 @end
 
@@ -45,6 +47,10 @@
 	
 	[self.webView addSubview:self.expirationView];
 	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
+	
+	[self.webView addSubview:self.loadingView];
+	[self.loadingView ul_fixedSize:CGSizeMake(200.0f, 200.0f)];
+	[self.webView addConstraints:[self.loadingView ul_centerAlignWithView:self.webView]];
 }
 
 - (void)viewDidLoad
@@ -165,7 +171,13 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-	NSLog(@"Start Load: %@",webView.request.URL);
+	if ([webView.request.URL.host isEqualToString:@"accounts.google.com"]) {
+		[self showLoading];
+	} else if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
+		if (self.popupLoaded) {
+			[self hideLoading];
+		}
+	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -227,6 +239,36 @@
 {
 	NSLog(@"Attempt To Display Popup");
 	[self.webView stringByEvaluatingJavaScriptFromString:@"displayPopup();"];
+}
+
+#pragma mark - Loading
+
+- (SplittingTriangle *)loadingView
+{
+	if (!_loadingView) {
+		_loadingView = [[SplittingTriangle alloc] init];
+		[_loadingView setForeColor:[UIColor ul_colorWithR:120.0f G:23.0f B:255.0f A:0.8f]
+					  andBackColor:[UIColor clearColor]];
+		[_loadingView setClockwise:YES];
+		[_loadingView setDuration:2.4f];
+		[_loadingView setRadius:25.0f];
+		[_loadingView setAlpha:0.0f];
+		[_loadingView ul_enableAutoLayout];
+	}
+	
+	return _loadingView;
+}
+
+- (void)showLoading
+{
+	self.loadingView.paused = NO;
+	self.loadingView.alpha = 1.0f;
+}
+
+- (void)hideLoading
+{
+	self.loadingView.alpha = 0.0f;
+	self.loadingView.paused = YES;
 }
 
 @end
