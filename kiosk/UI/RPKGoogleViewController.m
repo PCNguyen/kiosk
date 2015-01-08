@@ -226,7 +226,7 @@
 																 error:NULL];
 			[self.webView stringByEvaluatingJavaScriptFromString:selectScript];
 			
-			[self.popupTask start];
+			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
 		} else {
 			[self showMessageView];
 		}

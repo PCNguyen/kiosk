@@ -133,7 +133,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
-	self.view.backgroundColor = [UIColor lightGrayColor];
+	self.view.backgroundColor = [UIColor whiteColor];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 	
 	[self.view addSubview:self.collectionView];
@@ -196,7 +196,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		[_collectionView registerClass:[RPKMenuCell class] forCellWithReuseIdentifier:MVCCellID];
 		_collectionView.delegate = self;
 		_collectionView.dataSource = self;
-		_collectionView.backgroundColor = [UIColor ul_colorWithR:12.0f G:79.0f B:120.0f A:1.0f];
+		_collectionView.backgroundColor = [UIColor clearColor];
 	}
 	
 	return _collectionView;
