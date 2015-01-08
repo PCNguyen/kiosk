@@ -41,11 +41,11 @@
 
 #pragma mark - Web View
 
-- (WKWebView *)webView
+- (UIWebView *)webView
 {
 	if (!_webView) {
-		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[self webViewConfiguration]];
-		_webView.navigationDelegate = self;
+		_webView = [[UIWebView alloc] init];
+		_webView.delegate = self;
 		[_webView ul_enableAutoLayout];
 	}
 	

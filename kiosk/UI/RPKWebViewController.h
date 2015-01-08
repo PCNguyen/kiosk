@@ -10,9 +10,9 @@
 #import "RPKUIKit.h"
 #import "RPKViewController.h"
 
-@interface RPKWebViewController : RPKViewController <WKNavigationDelegate>
+@interface RPKWebViewController : RPKViewController <UIWebViewDelegate>
 
-@property (nonatomic, strong) WKWebView *webView;;
+@property (nonatomic, strong) UIWebView *webView;;
 @property (nonatomic, strong) NSURL *url;
 
 - (instancetype)initWithURL:(NSURL *)url;

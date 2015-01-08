@@ -24,7 +24,7 @@
 	
 	//--loading Google Plus
 	RPKGoogleItem *googlePlusItem = [[RPKGoogleItem alloc] init];
-	NSString *googleURL = @"https://plus.google.com/117430950571267154753/about?review=1";
+	NSString *googleURL = @"https://plus.google.com/117430950571267154753/about";
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";

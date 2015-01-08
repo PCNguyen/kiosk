@@ -185,6 +185,53 @@
 	decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
+#pragma mark - UIWebview Delegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+	//--black list domain
+	__block BOOL shouldLoad = YES;
+	
+	NSArray *blackListDomain = @[@"accounts.youtube.com",
+								 @"talkgadget.google.com"];
+	if ([blackListDomain containsObject:request.URL.host]) {
+		shouldLoad = NO;
+	}
+	
+	//--black list segments
+	NSArray *blackListSegment = @[@"hangouts", @"blank", @"notifications"];
+	[blackListSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
+		if ([[request.URL pathComponents] containsObject:segment]) {
+			shouldLoad = NO;
+			*stop = YES;
+		}
+	}];
+	
+	//--black list about:blank
+	if (![request.URL host]) {
+		shouldLoad = NO;
+	}
+	
+	return shouldLoad;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+	NSLog(@"Start Load: %@",webView.request.URL);
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+	if ([webView.request.URL.host isEqualToString:@"plus.google.com"]) {
+		NSLog(@"Display Popup");
+		NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
+																						   withExtension:@"js"]
+													   encoding:NSUTF8StringEncoding
+														  error:NULL];
+		[webView stringByEvaluatingJavaScriptFromString:selectScript];
+	}
+}
+
 #pragma mark - Expiration View
 
 - (RPKExpirationView *)expirationView
