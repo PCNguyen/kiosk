@@ -94,10 +94,9 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	NSMutableURLRequest *logoutRequest = [NSMutableURLRequest requestWithURL:self.logoutURL
-																 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-															 timeoutInterval:30.0f];
-	[self.webView loadRequest:logoutRequest];
+	[RPKCookieHandler clearCookie];
+	
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (UIBarButtonItem *)testItem
