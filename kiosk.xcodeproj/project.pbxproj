@@ -117,6 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F1932EC1A5E0EEA0083B96E /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
 		0F4987781A4A203F0083F850 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,13 +133,14 @@
 				0F78EEBE1A5305D4003B7718 /* deleteCookies.js */,
 				0F1932EA1A5E08DF0083B96E /* manualSelect.js */,
 			);
-			name = Utility;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		0FA0ABAA1A40ABE1007AA263 = {
 			isa = PBXGroup;
 			children = (
 				0FA0ABDE1A40AE8A007AA263 /* Podfile */,
+				0F1932EC1A5E0EEA0083B96E /* Third Party */,
 				0FA0ABB51A40ABE1007AA263 /* kiosk */,
 				0FA0ABCF1A40ABE1007AA263 /* kioskTests */,
 				0FA0ABB41A40ABE1007AA263 /* Products */,
