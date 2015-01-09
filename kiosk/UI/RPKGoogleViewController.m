@@ -95,17 +95,27 @@
 	[self.webView loadRequest:nonCacheRequest];
 }
 
-- (WKWebViewConfiguration *)webViewConfiguration
+- (WKWebViewConfiguration *)webConfiguration
 {
-	NSString *cookiesScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
+	NSString *cookiesScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
 																						withExtension:@"js"]
 													   encoding:NSUTF8StringEncoding
 														  error:NULL];
-	WKUserScript *userScript = [[WKUserScript alloc] initWithSource:cookiesScript
+	WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:cookiesScriptText
 													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
 												   forMainFrameOnly:YES];
 	WKUserContentController *userContentController = [WKUserContentController new];
-	[userContentController addUserScript:userScript];
+	[userContentController addUserScript:cookieScript];
+	
+	NSString *cssScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"customStyle"
+																						withExtension:@"js"]
+													   encoding:NSUTF8StringEncoding
+														  error:NULL];
+	WKUserScript *cssScript = [[WKUserScript alloc] initWithSource:cssScriptText
+													 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+												  forMainFrameOnly:NO];
+	[userContentController addUserScript:cssScript];
+	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;
 	
