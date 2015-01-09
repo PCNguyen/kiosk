@@ -151,9 +151,7 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	[RPKCookieHandler clearCookie];
-	
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[self.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
 }
 
 - (UIBarButtonItem *)testItem
@@ -182,17 +180,6 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	if ([webView.URL isEqual:self.logoutURL]) {
-		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-														  encoding:NSUTF8StringEncoding
-															 error:NULL];
-		
-		__weak RPKGoogleViewController *selfPointer = self;
-		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
-			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
-		}];
-	}
-	
 	__block BOOL didCancel = NO;
 	
 	//--black list domain
@@ -246,6 +233,18 @@
 		} else {
 			[self showMessageView];
 		}
+	}
+	
+	if ([webView.URL isEqual:self.logoutURL]) {
+		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+														  encoding:NSUTF8StringEncoding
+															 error:NULL];
+		
+		__weak RPKGoogleViewController *selfPointer = self;
+		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+			[RPKCookieHandler clearCookie];
+			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
+		}];
 	}
 }
 
