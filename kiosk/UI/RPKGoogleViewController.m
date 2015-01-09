@@ -7,12 +7,12 @@
 //
 
 #import <AppSDK/AppLibScheduler.h>
-#import <SplittingTriangle/SplittingTriangle.h>
 
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
 #import "RPKExpirationView.h"
 #import "RPKMessageView.h"
+#import "RPKLoadingView.h"
 
 #import "UIColor+RPK.h"
 
@@ -24,8 +24,9 @@
 @property (nonatomic, strong) RPKExpirationView *expirationView;
 @property (nonatomic, strong) RPKMessageView *messageView;
 @property (nonatomic, assign) BOOL popupLoaded;
+@property (nonatomic, assign) BOOL cookieCleared;
 @property (nonatomic, strong) ALScheduledTask *popupTask;
-@property (nonatomic, strong) SplittingTriangle *loadingView;
+@property (nonatomic, strong) RPKLoadingView *loadingView;
 
 @end
 
@@ -63,10 +64,6 @@
 	[self.view addConstraints:[self.messageView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
 	[self.webView addSubview:self.expirationView];
 	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
-	
-	[self.webView addSubview:self.loadingView];
-	[self.loadingView ul_fixedSize:CGSizeMake(200.0f, 200.0f)];
-	[self.webView addConstraints:[self.loadingView ul_centerAlignWithView:self.webView]];
 }
 
 - (void)viewDidLoad
@@ -85,6 +82,11 @@
 	 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],
 							  NSFontAttributeName:[UIFont systemFontOfSize:20.0f]}
 	 forState:UIControlStateDisabled];
+}
+
+- (void)viewWillLayoutSubviews
+{
+	self.loadingView.frame = self.webView.bounds;
 }
 
 #pragma mark - Override
@@ -181,6 +183,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
 	__block BOOL didCancel = NO;
+	NSArray *pathComponents = [navigationAction.request.URL pathComponents];
 	
 	//--black list domain
 	NSArray *blackListDomain = @[@"accounts.youtube.com",
@@ -193,7 +196,7 @@
 	//--black list segments
 	NSArray *blackListSegment = @[@"hangouts", @"blank", @"notifications"];
 	[blackListSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
-		if ([[navigationAction.request.URL pathComponents] containsObject:segment]) {
+		if ([pathComponents containsObject:segment]) {
 			decisionHandler(WKNavigationActionPolicyCancel);
 			didCancel = YES;
 			*stop = YES;
@@ -206,20 +209,28 @@
 		didCancel = YES;
 	}
 	
+	NSString *authSegment = @"ServiceLoginAuth";
+	if ([pathComponents containsObject:authSegment]) {
+		[self showLoading];
+	}
+	
 	NSString *widgetSegment = @"widget";
-	if ([[navigationAction.request.URL pathComponents] containsObject:widgetSegment]) {
+	if ([pathComponents containsObject:widgetSegment]) {
 		[self.popupTask stop];
 		self.popupLoaded = YES;
+		[self hideLoading];
+		[self showMessageView];
 	}
 	
 	if (!didCancel) {
-		NSLog(@"%@", navigationAction.request.URL);
 		decisionHandler(WKNavigationActionPolicyAllow);
 	}
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
+	NSLog(@"%@", webView.URL);
+	
 	if ([webView.URL.host isEqualToString:@"plus.google.com"]) {
 		if (!self.popupLoaded) {
 			//--inject the function to be called
@@ -230,21 +241,28 @@
 			[self.webView evaluateJavaScript:selectScript completionHandler:NULL];
 			
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
-		} else {
-			[self showMessageView];
 		}
 	}
 	
 	if ([webView.URL isEqual:self.logoutURL]) {
-		NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-														  encoding:NSUTF8StringEncoding
-															 error:NULL];
-		
-		__weak RPKGoogleViewController *selfPointer = self;
-		[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+		if (!self.cookieCleared) {
+			[self hideMessageView];
+			[self showLoading];
+			NSLog(@"clearing Cookies ...");
+			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+															  encoding:NSUTF8StringEncoding
+																 error:NULL];
+			
+			__weak RPKGoogleViewController *selfPointer = self;
+			[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
+				selfPointer.cookieCleared = YES;
+				[webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
+			}];
+		} else {
+			[self hideLoading];
 			[RPKCookieHandler clearCookie];
-			[selfPointer dismissViewControllerAnimated:YES completion:NULL];
-		}];
+//			[self dismissViewControllerAnimated:YES completion:NULL];
+		}
 	}
 }
 
@@ -297,17 +315,10 @@
 
 #pragma mark - Loading
 
-- (SplittingTriangle *)loadingView
+- (RPKLoadingView *)loadingView
 {
 	if (!_loadingView) {
-		_loadingView = [[SplittingTriangle alloc] init];
-		[_loadingView setForeColor:[UIColor rpk_defaultBlue]
-					  andBackColor:[UIColor clearColor]];
-		[_loadingView setClockwise:YES];
-		[_loadingView setDuration:2.4f];
-		[_loadingView setRadius:25.0f];
-		[_loadingView setAlpha:0.0f];
-		[_loadingView ul_enableAutoLayout];
+		_loadingView = [[RPKLoadingView alloc] initWithFrame:CGRectZero];
 	}
 	
 	return _loadingView;
@@ -315,14 +326,12 @@
 
 - (void)showLoading
 {
-	self.loadingView.paused = NO;
-	self.loadingView.alpha = 1.0f;
+	[self.loadingView showFromView:self.webView];
 }
 
 - (void)hideLoading
 {
-	self.loadingView.alpha = 0.0f;
-	self.loadingView.paused = YES;
+	[self.loadingView hide];
 }
 
 #pragma mark - Message View
@@ -359,6 +368,7 @@
 - (void)messagViewActionTapped:(RPKMessageView *)messageView
 {
 	self.popupLoaded = NO;
+	[self showLoading];
 	[self.webView reload];
 }
 
