@@ -76,7 +76,7 @@
 							 value:[UIFont systemFontOfSize:35.0f]
 							 range:[menuItem.itemTitle al_fullRange]];
 	[attributedString addAttribute:NSForegroundColorAttributeName
-							 value:[UIColor orangeColor]
+							 value:[UIColor yellowColor]
 							 range:[menuItem.itemTitle al_fullRange]];
 	self.detailLabel.attributedText = attributedString;
 }
@@ -149,6 +149,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIView *dividerView;
+@property (nonatomic, strong) UIImageView *blurBackground;
 
 @end
 
@@ -163,6 +164,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	self.view.backgroundColor = [UIColor ul_colorWithR:0 G:0 B:0 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 	
+	[self.view addSubview:self.blurBackground];
 	[self.view addSubview:self.collectionView];
 	[self.view addSubview:self.dividerView];
 }
@@ -178,6 +180,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super viewWillLayoutSubviews];
 	
+	self.blurBackground.frame = self.view.bounds;
 	self.collectionView.frame = self.view.bounds;
 	self.dividerView.frame = [self dividerViewFrame];
 }
@@ -294,6 +297,19 @@ NSString *const MVCCellID = @"kMVCCellID";
 	}
 	
 	return _dividerView;
+}
+
+#pragma mark - Background
+
+- (UIImageView *)blurBackground
+{
+	if (!_blurBackground) {
+		_blurBackground = [[UIImageView alloc] initWithImage:nil];
+		_blurBackground.contentMode = UIViewContentModeScaleAspectFill;
+		_blurBackground.image = [[UIImage rpk_bundleImageNamed:@"menuBackground.jpg"] applyTintEffectWithColor:[UIColor blackColor]];
+	}
+	
+	return _blurBackground;
 }
 
 @end
