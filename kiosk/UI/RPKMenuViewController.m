@@ -60,16 +60,24 @@
 {
 	RPKMenuItem *menuItem = (RPKMenuItem *)model;
 	
+	NSString *concateTitle = [NSString stringWithFormat:@"%@\n%@",menuItem.itemTitle, menuItem.itemDetail];
+	
 	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
-	NSMutableAttributedString *attributedString = [menuItem.itemDetail al_attributedStringWithFont:[UIFont systemFontOfSize:25.0f] textColor:[UIColor lightGrayColor]];
+	NSMutableAttributedString *attributedString = [concateTitle al_attributedStringWithFont:[UIFont systemFontOfSize:25.0f] textColor:[UIColor whiteColor]];
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	[paragraphStyle setLineSpacing:5];
 	[paragraphStyle setAlignment:NSTextAlignmentCenter];
 	
 	[attributedString addAttribute:NSParagraphStyleAttributeName
 							 value:paragraphStyle
-							 range:[menuItem.itemDetail al_fullRange]];
+							 range:[concateTitle al_fullRange]];
 	
+	[attributedString addAttribute:NSFontAttributeName
+							 value:[UIFont systemFontOfSize:35.0f]
+							 range:[menuItem.itemTitle al_fullRange]];
+	[attributedString addAttribute:NSForegroundColorAttributeName
+							 value:[UIColor orangeColor]
+							 range:[menuItem.itemTitle al_fullRange]];
 	self.detailLabel.attributedText = attributedString;
 }
 
@@ -122,6 +130,7 @@
 {
 	if (!_detailLabel) {
 		_detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_detailLabel.numberOfLines = 0;
 	}
 	
 	return _detailLabel;
@@ -139,6 +148,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 @interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UIView *dividerView;
 
 @end
 
@@ -150,10 +160,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
-	self.view.backgroundColor = [UIColor ul_colorWithR:246 G:168 B:56 A:1];
+	self.view.backgroundColor = [UIColor ul_colorWithR:0 G:0 B:0 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 	
 	[self.view addSubview:self.collectionView];
+	[self.view addSubview:self.dividerView];
 }
 
 - (void)viewDidLoad
@@ -167,7 +178,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super viewWillLayoutSubviews];
 	
-	self.collectionView.frame = self.view.bounds;	
+	self.collectionView.frame = self.view.bounds;
+	self.dividerView.frame = [self dividerViewFrame];
 }
 
 #pragma mark - ULViewDataBinding Protocol
@@ -260,6 +272,28 @@ NSString *const MVCCellID = @"kMVCCellID";
 	CGSize itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height / 2 - 20.0f);
 	
 	return itemSize;
+}
+
+#pragma mark - Divider View
+
+- (CGRect)dividerViewFrame
+{
+	CGFloat xOffset = 100.0f;
+	CGFloat width = self.view.bounds.size.width - 2*xOffset;
+	CGFloat height = 2.0f;
+	CGFloat yOffset = (self.view.bounds.size.height - height) / 2;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (UIView *)dividerView
+{
+	if (!_dividerView) {
+		_dividerView = [[UIView alloc] initWithFrame:CGRectZero];
+		_dividerView.backgroundColor = [UIColor whiteColor];
+	}
+	
+	return _dividerView;
 }
 
 @end

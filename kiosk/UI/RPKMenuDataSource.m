@@ -18,8 +18,8 @@
 	RPKMenuItem *kioskItem = [[RPKMenuItem alloc] init];
 	kioskItem.itemURL = [NSURL URLWithString:@"http://google.com"];
 	kioskItem.imageName = @"icon_reputation.png";
-	kioskItem.itemTitle = @"Kiosk Review";
-	kioskItem.itemDetail = @"Leave a Review\nOn Reputation.com";
+	kioskItem.itemTitle = @"Reputation.com";
+	kioskItem.itemDetail = @"Leave a review";
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
@@ -28,8 +28,8 @@
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
-	googlePlusItem.itemTitle = @"Google Review";
-	googlePlusItem.itemDetail = @"Leave a Review\nOn Google Plus Local";
+	googlePlusItem.itemTitle = @"Google Plus Local";
+	googlePlusItem.itemDetail = @"Leave a review";
 	[menuItems addObject:googlePlusItem];
 	
 	self.menuItems = menuItems;
