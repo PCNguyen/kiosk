@@ -15,7 +15,7 @@
 
 #import "UIImage+RPK.h"
 
-#define kMCLogoImageSize			CGSizeMake(100.0f, 100.0f)
+#define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
 #pragma mark -
 
@@ -25,6 +25,8 @@
 @interface RPKMenuCell : RPKCollectionViewCell
 
 @property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UIView *logoImageBorder;
+
 @property (nonatomic, strong) UILabel *detailLabel;
 
 @end
@@ -36,6 +38,7 @@
 	self.paddings = UIEdgeInsetsMake(0.0f, 40.0f, 0.0f, 40.0f);
 	self.spacings = CGSizeMake(0.0f, 30.0f);
 	
+	[self.contentView addSubview:self.logoImageBorder];
 	[self.contentView addSubview:self.logoImageView];
 	[self.contentView addSubview:self.detailLabel];
 }
@@ -46,8 +49,9 @@
 	
 	self.detailLabel.frame = [self detailLabelFrame];
 	self.logoImageView.frame = [self logoImageFrame:self.detailLabel.frame];
-	
+	self.logoImageBorder.frame = CGRectInset(self.logoImageView.frame, -5.0f, -5.0f);
 	[self.logoImageView ul_round];
+	[self.logoImageBorder ul_round];
 }
 
 #pragma mark - Override
@@ -57,7 +61,15 @@
 	RPKMenuItem *menuItem = (RPKMenuItem *)model;
 	
 	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
-	NSMutableAttributedString *attributedString = [menuItem.itemDetail al_attributedStringWithFont:[UIFont systemFontOfSize:40.0f] textColor:[UIColor lightGrayColor]];
+	NSMutableAttributedString *attributedString = [menuItem.itemDetail al_attributedStringWithFont:[UIFont systemFontOfSize:25.0f] textColor:[UIColor lightGrayColor]];
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setLineSpacing:5];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	
+	[attributedString addAttribute:NSParagraphStyleAttributeName
+							 value:paragraphStyle
+							 range:[menuItem.itemDetail al_fullRange]];
+	
 	self.detailLabel.attributedText = attributedString;
 }
 
@@ -83,6 +95,16 @@
 	return _logoImageView;
 }
 
+- (UIView *)logoImageBorder
+{
+	if (!_logoImageBorder) {
+		_logoImageBorder = [[UIView alloc] initWithFrame:CGRectZero];
+		_logoImageBorder.backgroundColor = [UIColor whiteColor];
+	}
+	
+	return _logoImageBorder;
+}
+
 #pragma mark - Detail Label
 
 - (CGRect)detailLabelFrame
@@ -100,11 +122,6 @@
 {
 	if (!_detailLabel) {
 		_detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_detailLabel.textAlignment = NSTextAlignmentCenter;
-		_detailLabel.font = [UIFont systemFontOfSize:30.0f];
-		_detailLabel.numberOfLines = 0;
-		_detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
-		_detailLabel.textColor = [UIColor ul_colorWithR:73 G:189 B:236 A:1.0f];
 	}
 	
 	return _detailLabel;
@@ -133,7 +150,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = [UIColor ul_colorWithR:246 G:168 B:56 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 	
 	[self.view addSubview:self.collectionView];
