@@ -18,7 +18,7 @@
 
 #define kGVCLogoutQuery				@"logout=1"
 
-@interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate>
+@interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate, WKScriptMessageHandler>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) RPKExpirationView *expirationView;
@@ -99,6 +99,7 @@
 
 - (WKWebViewConfiguration *)webConfiguration
 {
+	//--add script to handle cookies
 	NSString *cookiesScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
 																						withExtension:@"js"]
 													   encoding:NSUTF8StringEncoding
@@ -109,6 +110,7 @@
 	WKUserContentController *userContentController = [WKUserContentController new];
 	[userContentController addUserScript:cookieScript];
 	
+	//--add script to modify style of the dialog box
 	NSString *cssScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"customStyle"
 																						withExtension:@"js"]
 													   encoding:NSUTF8StringEncoding
@@ -117,6 +119,9 @@
 													 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
 												  forMainFrameOnly:NO];
 	[userContentController addUserScript:cssScript];
+	
+	//--add handler to handle clearing cookies
+	[userContentController addScriptMessageHandler:self name:@"CookieClearCompleted"];
 	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;
@@ -253,17 +258,23 @@
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
 			
-			__weak RPKGoogleViewController *selfPointer = self;
-			[webView evaluateJavaScript:logoutScript completionHandler:^(id result, NSError *error) {
-				selfPointer.cookieCleared = YES;
-				[webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
-			}];
+			[webView evaluateJavaScript:logoutScript completionHandler:NULL];
 		} else {
 			[self hideLoading];
-			[RPKCookieHandler clearCookie];
-//			[self dismissViewControllerAnimated:YES completion:NULL];
+			[self dismissViewControllerAnimated:YES completion:NULL];
 		}
 	}
+}
+
+#pragma mark - Message Handler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+	self.cookieCleared = YES;
+	[RPKCookieHandler clearCookie];
+	
+	//--to make sure we are clear
+	[message.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
 }
 
 #pragma mark - Expiration View
