@@ -24,7 +24,7 @@
 		[self addSubview:self.messageLabel];
 		[self addSubview:self.actionButton];
 		
-		[self addConstraints:[self.messageLabel ul_pinWithInset:UIEdgeInsetsMake(0.0f, kUIViewAquaDistance, 0.0f, kUIViewUnpinInset)]];
+		[self addConstraints:[self.messageLabel ul_pinWithInset:UIEdgeInsetsMake(0.0f, 30.0f, 0.0f, kUIViewUnpinInset)]];
 		[self addConstraints:[self.actionButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.messageLabel distance:kUIViewAquaDistance leftToRight:NO]];
 	}
 	
@@ -37,7 +37,6 @@
 		_messageLabel = [[UILabel alloc] init];
 		_messageLabel.font = [UIFont systemFontOfSize:20.0f];
 		_messageLabel.textColor = [UIColor lightGrayColor];
-		_messageLabel.text = @"Error viewing page ?";
 		[_messageLabel ul_enableAutoLayout];
 	}
 	
@@ -48,13 +47,6 @@
 {
 	if (!_actionButton) {
 		_actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		NSString *title = @"Reload";
-		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont systemFontOfSize:20.0f]
-																	   textColor:[UIColor blueColor]];
-		NSAttributedString *selAttributedTitle = [title al_attributedStringWithFont:[UIFont systemFontOfSize:20.0f]
-																		  textColor:[UIColor lightGrayColor]];
-		[_actionButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-		[_actionButton setAttributedTitle:selAttributedTitle forState:UIControlStateSelected];
 		[_actionButton addTarget:self action:@selector(handleActionButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_actionButton ul_enableAutoLayout];
 	}
@@ -67,6 +59,33 @@
 	if ([self.delegate respondsToSelector:@selector(messagViewActionTapped:)]) {
 		[self.delegate messagViewActionTapped:self];
 	}
+}
+
+- (void)setMessageType:(RPKMessageType)messageType
+{
+	_messageType = messageType;
+	
+	switch (messageType) {
+		case MessageSwitchAccount:
+			self.messageLabel.text = @"Not you?";
+			[self setActionButtonTitle:@"Switch Account"];
+			break;
+		case MessageReloadPage:
+			self.messageLabel.text = @"Error Viewing Page?";
+			[self setActionButtonTitle:@"Reload"];
+		default:
+			break;
+	}
+}
+
+- (void)setActionButtonTitle:(NSString *)title
+{
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont systemFontOfSize:20.0f]
+																   textColor:[UIColor blueColor]];
+	NSAttributedString *selAttributedTitle = [title al_attributedStringWithFont:[UIFont systemFontOfSize:20.0f]
+																	  textColor:[UIColor lightGrayColor]];
+	[self.actionButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+	[self.actionButton setAttributedTitle:selAttributedTitle forState:UIControlStateSelected];
 }
 
 @end

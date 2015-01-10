@@ -8,6 +8,11 @@
 
 #import "RPKView.h"
 
+typedef enum {
+	MessageSwitchAccount,
+	MessageReloadPage,
+} RPKMessageType;
+
 @class RPKMessageView;
 
 @protocol RPKMessageViewDelegate <NSObject>
@@ -20,5 +25,6 @@
 @interface RPKMessageView : RPKView
 
 @property (nonatomic, weak) id<RPKMessageViewDelegate>delegate;
+@property (nonatomic, assign) RPKMessageType messageType;
 
 @end

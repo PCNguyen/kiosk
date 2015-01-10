@@ -364,6 +364,7 @@
 
 - (void)showMessageView
 {
+	self.messageView.messageType = MessageReloadPage;
 	self.messageView.alpha = 1.0f;
 }
 
