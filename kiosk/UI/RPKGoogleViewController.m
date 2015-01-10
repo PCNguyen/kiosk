@@ -163,7 +163,7 @@
 
 - (UIBarButtonItem *)testItem
 {
-	UIBarButtonItem *testItem = [[UIBarButtonItem alloc] initWithTitle:@"Test"
+	UIBarButtonItem *testItem = [[UIBarButtonItem alloc] initWithTitle:@"Expire"
 																   style:UIBarButtonItemStylePlain
 																  target:self
 																  action:@selector(handleTestItemTapped:)];
@@ -172,9 +172,7 @@
 
 - (void)handleTestItemTapped:(id)sender
 {
-	[RPKCookieHandler clearCookie];
-	self.popupLoaded = NO;
-	[self.webView reload];
+
 }
 
 - (UIBarButtonItem *)flexibleItem
