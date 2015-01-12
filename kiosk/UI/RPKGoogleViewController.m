@@ -108,7 +108,10 @@
 	[super viewWillDisappear:animated];
 	
 	[self.idleTask stop];
-	[self.popupTask stop];
+	
+	if (_popupTask) {
+		[self.popupTask stop];
+	}	
 }
 
 #pragma mark - Override
