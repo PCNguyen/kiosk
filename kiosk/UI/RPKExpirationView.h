@@ -15,6 +15,7 @@
 
 @optional
 - (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView;
+- (void)expirationViewDidReceivedTap:(RPKExpirationView *)expirationView;
 
 @end
 
@@ -23,7 +24,7 @@
 /**
  *  The time remaining in second
  */
-@property (nonatomic, assign) NSTimeInterval timeRemaining;
+@property (atomic, assign) __block NSTimeInterval timeRemaining;
 
 /**
  *  delegate

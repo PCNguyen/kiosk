@@ -17,6 +17,8 @@
 #import "UIColor+RPK.h"
 
 #define kGVCLogoutQuery				@"logout=1"
+#define kGVCMaxIdleTime				5
+#define kGVCExpirationWaitTime		20
 
 @interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate, WKScriptMessageHandler>
 
@@ -26,6 +28,8 @@
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, assign) BOOL cookieCleared;
 @property (nonatomic, strong) ALScheduledTask *popupTask;
+@property (nonatomic, strong) ALScheduledTask *idleTask;
+@property (atomic, strong) NSDate *lastInteractionDate;
 @property (nonatomic, strong) RPKLoadingView *loadingView;
 
 @end
@@ -62,6 +66,7 @@
 	[self.view addSubview:self.messageView];
 	[self.messageView ul_fixedSize:CGSizeMake(0.0f, 80.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.messageView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
+	
 	[self.webView addSubview:self.expirationView];
 	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
 }
@@ -88,6 +93,22 @@
 {
 	[super viewWillLayoutSubviews];
 	self.loadingView.frame = self.webView.bounds;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	self.lastInteractionDate = [NSDate date];
+	[self.idleTask start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	[self.idleTask stop];
+	[self.popupTask stop];
 }
 
 #pragma mark - Override
@@ -281,13 +302,13 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - Expiration View
+#pragma mark - Expiration
 
 - (RPKExpirationView *)expirationView
 {
 	if (!_expirationView) {
 		_expirationView = [[RPKExpirationView alloc] init];
-		_expirationView.timeRemaining = 20;
+		_expirationView.timeRemaining = kGVCExpirationWaitTime;
 		_expirationView.alpha = 0.0f;
 		_expirationView.delegate = self;
 		[_expirationView ul_enableAutoLayout];
@@ -296,11 +317,34 @@
 	return _expirationView;
 }
 
+- (ALScheduledTask *)idleTask
+{
+	if (!_idleTask) {
+		__weak RPKGoogleViewController *selfPointer = self;
+		_idleTask = [[ALScheduledTask alloc] initWithTaskInterval:1 taskBlock:^{
+			NSTimeInterval idleTime = [selfPointer.lastInteractionDate timeIntervalSinceNow] * (-1);
+			if (idleTime > kGVCMaxIdleTime && selfPointer.expirationView.alpha == 0) {
+				selfPointer.expirationView.alpha = 1.0f;
+				selfPointer.expirationView.timeRemaining = kGVCExpirationWaitTime;
+				[selfPointer.expirationView startCountDown];
+			}
+		}];
+	}
+	
+	return _idleTask;
+}
+
 #pragma mark - Expiration View Delegate
 
 - (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView
 {
 	[self handleLogoutItemTapped:nil];
+}
+
+- (void)expirationViewDidReceivedTap:(RPKExpirationView *)expirationView
+{
+	self.lastInteractionDate = [NSDate date];
+	self.expirationView.alpha = 0.0f;
 }
 
 #pragma mark - Popup Task
@@ -387,5 +431,7 @@
 	[self showLoading];
 	[self.webView reload];
 }
+
+#pragma mark - Handle Idle Time
 
 @end

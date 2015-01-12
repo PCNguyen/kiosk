@@ -101,6 +101,7 @@ void drawSymetricGradient(CGContextRef context, CGRect rect, CGColorRef outerCol
 - (void)stopCountDown
 {
 	[self.countDownTask stop];
+	self.countDownTask = nil;
 }
 
 - (ALScheduledTask *)countDownTask
@@ -126,6 +127,15 @@ void drawSymetricGradient(CGContextRef context, CGRect rect, CGColorRef outerCol
 			[self.delegate expirationViewTimeExpired:self];
 		}
 	}
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+	if ([self.delegate respondsToSelector:@selector(expirationViewDidReceivedTap:)]) {
+		[self.delegate expirationViewDidReceivedTap:self];
+	}
+	
+	return nil;
 }
 
 @end
