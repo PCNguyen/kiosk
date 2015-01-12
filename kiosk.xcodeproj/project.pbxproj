@@ -12,6 +12,7 @@
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
 		0F1932F71A5F51620083B96E /* customStyle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932F61A5F51620083B96E /* customStyle.js */; };
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
+		0F7135CD1A645841003E4180 /* RPKAlphaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7135CC1A645841003E4180 /* RPKAlphaView.m */; };
 		0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
 		0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
@@ -61,6 +62,8 @@
 		0F1932F61A5F51620083B96E /* customStyle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = customStyle.js; sourceTree = "<group>"; };
 		0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCookieHandler.h; sourceTree = "<group>"; };
 		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
+		0F7135CB1A645841003E4180 /* RPKAlphaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKAlphaView.h; sourceTree = "<group>"; };
+		0F7135CC1A645841003E4180 /* RPKAlphaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAlphaView.m; sourceTree = "<group>"; };
 		0F78EEBC1A52FD9B003B7718 /* cookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cookies.js; sourceTree = "<group>"; };
 		0F78EEBE1A5305D4003B7718 /* deleteCookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deleteCookies.js; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -312,6 +315,8 @@
 		0FD805C81A5D974D00EE1AD6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F7135CB1A645841003E4180 /* RPKAlphaView.h */,
+				0F7135CC1A645841003E4180 /* RPKAlphaView.m */,
 				0FD805C91A5D977100EE1AD6 /* RPKExpirationView.h */,
 				0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */,
 				0F1932F01A5F2C430083B96E /* RPKMessageView.h */,
@@ -494,6 +499,7 @@
 				0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */,
 				0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */,
 				0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */,
+				0F7135CD1A645841003E4180 /* RPKAlphaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

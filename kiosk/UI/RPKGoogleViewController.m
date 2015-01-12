@@ -293,6 +293,7 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
 	self.cookieCleared = YES;
+	
 	[RPKCookieHandler clearCookie];
 	
 	//--avoid leaking
@@ -316,6 +317,7 @@
 		_expirationView = [[RPKExpirationView alloc] init];
 		_expirationView.timeRemaining = kGVCExpirationWaitTime;
 		_expirationView.alpha = 0.0f;
+		_expirationView.backgroundColor = [UIColor clearColor];
 		_expirationView.delegate = self;
 		[_expirationView ul_enableAutoLayout];
 	}

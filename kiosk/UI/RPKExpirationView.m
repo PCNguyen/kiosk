@@ -9,11 +9,15 @@
 #import <AppSDK/AppLibScheduler.h>
 
 #import "RPKExpirationView.h"
+#import "RPKAlphaView.h"
 
 @interface RPKExpirationView ()
 
 @property (nonatomic, strong) UILabel *countdownLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *infoLabel;
 @property (nonatomic, strong) ALScheduledTask *countDownTask;
+@property (nonatomic, strong) RPKAlphaView *alphaView;
 
 @end
 
@@ -24,52 +28,33 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
 	if (self = [super initWithFrame:frame]) {
+		[self addSubview:self.alphaView];
+		[self addConstraints:[self.alphaView ul_pinWithInset:UIEdgeInsetsZero]];
+		
 		[self addSubview:self.countdownLabel];
 		[self addConstraints:[self.countdownLabel ul_centerAlignWithView:self]];
+		
+		[self addSubview:self.messageLabel];
+		[self addConstraints:[self.messageLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.countdownLabel distance:50.0f topToBottom:YES]];
+		
+		[self addSubview:self.infoLabel];
+		[self addConstraints:[self.infoLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.countdownLabel distance:50.0f topToBottom:NO]];
 	}
 	
 	return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-	CGContextRef context = UIGraphicsGetCurrentContext();
- 
-	UIColor * lightColor = [UIColor ul_colorWithR:220 G:220 B:220 A:1.0f];
-	UIColor * darkColor = [UIColor ul_colorWithR:0 G:0 B:0 A:1.0f];
- 
-	drawSymetricGradient(context, self.bounds, darkColor.CGColor, lightColor.CGColor);
-}
+#pragma mark - Gradient
 
-void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor)
+- (RPKAlphaView *)alphaView
 {
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	CGFloat locations[] = { 0.0, 1.0 };
- 
-	NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
- 
-	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
- 
-	CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-	CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
- 
-	CGContextSaveGState(context);
-	CGContextAddRect(context, rect);
-	CGContextClip(context);
-	CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-	CGContextRestoreGState(context);
- 
-	CGGradientRelease(gradient);
-	CGColorSpaceRelease(colorSpace);
-}
-
-void drawSymetricGradient(CGContextRef context, CGRect rect, CGColorRef outerColor, CGColorRef innerColor)
-{
-	CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height / 2);
-	drawLinearGradient(context, topRect, outerColor, innerColor);
+	if (!_alphaView) {
+		_alphaView = [[RPKAlphaView alloc] init];
+		_alphaView.alpha = 0.8f;
+		[_alphaView ul_enableAutoLayout];
+	}
 	
-	CGRect bottomRect = CGRectMake(rect.origin.x, rect.size.height / 2, rect.size.width, rect.size.height / 2);
-	drawLinearGradient(context, bottomRect, innerColor, outerColor);
+	return _alphaView;
 }
 
 #pragma mark - Label
@@ -78,17 +63,46 @@ void drawSymetricGradient(CGContextRef context, CGRect rect, CGColorRef outerCol
 {
 	if (!_countdownLabel) {
 		_countdownLabel = [[UILabel alloc] init];
-		_countdownLabel.font = [UIFont boldSystemFontOfSize:40.0f];
+		_countdownLabel.font = [UIFont boldSystemFontOfSize:120.0f];
 		_countdownLabel.textColor = [UIColor redColor];
+		_countdownLabel.textAlignment = NSTextAlignmentCenter;
 		[_countdownLabel ul_enableAutoLayout];
 	}
 	
 	return _countdownLabel;
 }
 
+- (UILabel *)messageLabel
+{
+	if (!_messageLabel) {
+		_messageLabel = [[UILabel alloc] init];
+		_messageLabel.font = [UIFont systemFontOfSize:40.0f];
+		_messageLabel.textColor = [UIColor yellowColor];
+		_messageLabel.textAlignment = NSTextAlignmentCenter;
+		_messageLabel.text = @"Auto logout in";
+		[_messageLabel ul_enableAutoLayout];
+	}
+	
+	return _messageLabel;
+}
+
+- (UILabel *)infoLabel
+{
+	if (!_infoLabel) {
+		_infoLabel = [[UILabel alloc] init];
+		_infoLabel.font = [UIFont systemFontOfSize:40.0f];
+		_infoLabel.textColor = [UIColor yellowColor];
+		_infoLabel.textAlignment = NSTextAlignmentCenter;
+		_infoLabel.text = @"Tap anywhere to continue";
+		[_infoLabel ul_enableAutoLayout];
+	}
+	
+	return _infoLabel;
+}
+
 - (void)refreshLabel
 {
-	self.countdownLabel.text = [NSString stringWithFormat:@"Auto Logout In %.0f seconds", self.timeRemaining];
+	self.countdownLabel.text = [NSString stringWithFormat:@"%.0f", self.timeRemaining];
 }
 
 #pragma mark - Count Down
