@@ -295,6 +295,9 @@
 	self.cookieCleared = YES;
 	[RPKCookieHandler clearCookie];
 	
+	//--avoid leaking
+	[userContentController removeScriptMessageHandlerForName:message.name];
+	
 	//--to make sure we are clear
 	[message.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
 }
