@@ -23,14 +23,19 @@
 @interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate, WKScriptMessageHandler>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) UIBarButtonItem *logoutButton;
+
 @property (nonatomic, strong) RPKExpirationView *expirationView;
+@property (nonatomic, strong) RPKLoadingView *loadingView;
+
+@property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) RPKMessageView *messageView;
+
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, assign) BOOL cookieCleared;
-@property (nonatomic, strong) ALScheduledTask *popupTask;
+
 @property (nonatomic, strong) ALScheduledTask *idleTask;
 @property (atomic, strong) NSDate *lastInteractionDate;
-@property (nonatomic, strong) RPKLoadingView *loadingView;
 
 @end
 
@@ -84,7 +89,7 @@
 	 forState:UIControlStateNormal];
 	
 	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]
-	 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],
+	 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor],
 							  NSFontAttributeName:[UIFont systemFontOfSize:20.0f]}
 	 forState:UIControlStateDisabled];
 }
@@ -162,7 +167,7 @@
 		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
 		_toolBar.items = @[[self testItem],
 						   [self flexibleItem],
-						   [self logoutItem]];
+						   self.logoutButton];
 		[_toolBar setBackgroundColor:[UIColor rpk_defaultBlue]];
 		[_toolBar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
 		_toolBar.opaque = YES;
@@ -172,17 +177,24 @@
 	return _toolBar;
 }
 
-- (UIBarButtonItem *)logoutItem
+- (UIBarButtonItem *)logoutButton
 {
-	UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
-																   style:UIBarButtonItemStylePlain
-																  target:self
-																  action:@selector(handleLogoutItemTapped:)];
-	return logoutItem;
+	if (!_logoutButton) {
+		_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
+														 style:UIBarButtonItemStylePlain
+														target:self
+														action:@selector(handleLogoutItemTapped:)];
+	}
+	
+	return _logoutButton;
 }
 
 - (void)handleLogoutItemTapped:(id)sender
 {
+	//--in case a count down is in progress
+	[self hideExpirationMessage];
+	
+	//--load the logout request
 	[self.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
 }
 
@@ -406,11 +418,13 @@
 
 - (void)showLoading
 {
+	self.logoutButton.enabled = NO;
 	[self.loadingView showFromView:self.webView];
 }
 
 - (void)hideLoading
 {
+	self.logoutButton.enabled = YES;
 	[self.loadingView hide];
 }
 
