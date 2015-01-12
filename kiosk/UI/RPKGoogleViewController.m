@@ -17,7 +17,7 @@
 #import "UIColor+RPK.h"
 
 #define kGVCLogoutQuery				@"logout=1"
-#define kGVCMaxIdleTime				60
+#define kGVCMaxIdleTime				2*60
 #define kGVCExpirationWaitTime		20
 
 @interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate, WKScriptMessageHandler>
@@ -197,7 +197,7 @@
 
 - (void)handleTestItemTapped:(id)sender
 {
-
+	[self displayExpirationMessage];
 }
 
 - (UIBarButtonItem *)flexibleItem
