@@ -17,7 +17,7 @@
 #import "UIColor+RPK.h"
 
 #define kGVCLogoutQuery				@"logout=1"
-#define kGVCMaxIdleTime				5
+#define kGVCMaxIdleTime				60
 #define kGVCExpirationWaitTime		20
 
 @interface RPKGoogleViewController () <RPKExpirationViewDelegate, RPKMessageViewDelegate, WKScriptMessageHandler>
@@ -321,17 +321,31 @@
 {
 	if (!_idleTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
-		_idleTask = [[ALScheduledTask alloc] initWithTaskInterval:1 taskBlock:^{
+		_idleTask = [[ALScheduledTask alloc] initWithTaskInterval:kGVCMaxIdleTime taskBlock:^{
 			NSTimeInterval idleTime = [selfPointer.lastInteractionDate timeIntervalSinceNow] * (-1);
 			if (idleTime > kGVCMaxIdleTime && selfPointer.expirationView.alpha == 0) {
-				selfPointer.expirationView.alpha = 1.0f;
-				selfPointer.expirationView.timeRemaining = kGVCExpirationWaitTime;
-				[selfPointer.expirationView startCountDown];
+				[selfPointer displayExpirationMessage];
 			}
 		}];
 	}
 	
 	return _idleTask;
+}
+
+- (void)displayExpirationMessage
+{
+	[self.webView endEditing:YES];
+	[self.view bringSubviewToFront:self.expirationView];
+	self.expirationView.alpha = 1.0f;
+	self.expirationView.timeRemaining = kGVCExpirationWaitTime;
+	[self.expirationView startCountDown];
+}
+
+- (void)hideExpirationMessage
+{
+	self.lastInteractionDate = [NSDate date];
+	self.expirationView.alpha = 0.0f;
+	[self.expirationView stopCountDown];
 }
 
 #pragma mark - Expiration View Delegate
@@ -343,8 +357,7 @@
 
 - (void)expirationViewDidReceivedTap:(RPKExpirationView *)expirationView
 {
-	self.lastInteractionDate = [NSDate date];
-	self.expirationView.alpha = 0.0f;
+	[self hideExpirationMessage];
 }
 
 #pragma mark - Popup Task
@@ -431,7 +444,5 @@
 	[self showLoading];
 	[self.webView reload];
 }
-
-#pragma mark - Handle Idle Time
 
 @end

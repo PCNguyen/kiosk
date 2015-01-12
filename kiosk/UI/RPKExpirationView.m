@@ -101,7 +101,6 @@ void drawSymetricGradient(CGContextRef context, CGRect rect, CGColorRef outerCol
 - (void)stopCountDown
 {
 	[self.countDownTask stop];
-	self.countDownTask = nil;
 }
 
 - (ALScheduledTask *)countDownTask
