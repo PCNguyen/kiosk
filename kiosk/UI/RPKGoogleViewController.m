@@ -86,6 +86,7 @@
 
 - (void)viewWillLayoutSubviews
 {
+	[super viewWillLayoutSubviews];
 	self.loadingView.frame = self.webView.bounds;
 }
 
@@ -258,8 +259,7 @@
 			
 			[webView evaluateJavaScript:logoutScript completionHandler:NULL];
 		} else {
-			[self hideLoading];
-			[self dismissViewControllerAnimated:YES completion:NULL];
+			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:5.0f];
 		}
 	}
 }
@@ -273,6 +273,12 @@
 	
 	//--to make sure we are clear
 	[message.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
+}
+
+- (void)dismissWebView
+{
+	[self hideLoading];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Expiration View
