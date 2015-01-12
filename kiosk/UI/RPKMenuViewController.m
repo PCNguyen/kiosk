@@ -181,6 +181,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[super viewWillLayoutSubviews];
 	
 	self.blurBackground.frame = self.view.bounds;
+	[self.collectionView.collectionViewLayout invalidateLayout];
 	self.collectionView.frame = self.view.bounds;
 	self.dividerView.frame = [self dividerViewFrame];
 }
