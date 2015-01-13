@@ -24,6 +24,16 @@
 	return YES;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Enter Single App Mode");
+		}
+	});
+	return YES;
+}
+
 - (void)configureLayout
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -48,5 +48,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>Server URL</key>
+	<string>http://10.20.22.66:8080/users</string>
 </dict>
 </plist>

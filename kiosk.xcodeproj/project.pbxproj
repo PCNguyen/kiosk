@@ -32,6 +32,7 @@
 		0FA0AC061A411693007AA263 /* icon_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC051A411693007AA263 /* icon_reputation.png */; };
 		0FA0AC0C1A411AEC007AA263 /* icon_review_submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */; };
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
+		0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
 		0FA1E9491A60704E00DC4429 /* menuBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9481A60704E00DC4429 /* menuBackground.jpg */; };
 		0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */; };
@@ -97,6 +98,8 @@
 		0FA0AC051A411693007AA263 /* icon_reputation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_reputation.png; sourceTree = "<group>"; };
 		0FA0AC0B1A411AEC007AA263 /* icon_review_submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_review_submit.png; sourceTree = "<group>"; };
 		0FA0AC191A489300007AA263 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RPK.h"; sourceTree = "<group>"; };
+		0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RPK.m"; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0FA1E9481A60704E00DC4429 /* menuBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menuBackground.jpg; sourceTree = "<group>"; };
 		0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoadingView.h; sourceTree = "<group>"; };
@@ -145,12 +148,9 @@
 		0F4987781A4A203F0083F850 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */,
-				0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */,
-				0F78EEBC1A52FD9B003B7718 /* cookies.js */,
-				0F78EEBE1A5305D4003B7718 /* deleteCookies.js */,
-				0F1932EA1A5E08DF0083B96E /* manualSelect.js */,
-				0F1932F61A5F51620083B96E /* customStyle.js */,
+				0FA0E1021A65D0B80011EAC9 /* Controller */,
+				0FA0E1011A65D0A50011EAC9 /* Javascipts */,
+				0FA0E0FD1A65D07E0011EAC9 /* Extension */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -310,6 +310,35 @@
 				0F1932F41A5F38950083B96E /* UIColor+RPK.m */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		0FA0E0FD1A65D07E0011EAC9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */,
+				0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		0FA0E1011A65D0A50011EAC9 /* Javascipts */ = {
+			isa = PBXGroup;
+			children = (
+				0F78EEBC1A52FD9B003B7718 /* cookies.js */,
+				0F78EEBE1A5305D4003B7718 /* deleteCookies.js */,
+				0F1932EA1A5E08DF0083B96E /* manualSelect.js */,
+				0F1932F61A5F51620083B96E /* customStyle.js */,
+			);
+			name = Javascipts;
+			sourceTree = "<group>";
+		};
+		0FA0E1021A65D0B80011EAC9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */,
+				0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		0FD805C81A5D974D00EE1AD6 /* View */ = {
@@ -485,6 +514,7 @@
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
 				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
+				0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */,
 				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */,
@@ -606,10 +636,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = kiosk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a84620d5-1734-4207-bee2-55fd6342a7ca";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -619,10 +650,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = kiosk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a84620d5-1734-4207-bee2-55fd6342a7ca";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
