@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class AFHTTPRequestOperation;
+
 @interface NSError (RPK)
+
++ (NSError *)mx_errorFromResponse:(NSString *)responseError;
+
++ (NSError *)mx_errorFromNetworkOperation:(AFHTTPRequestOperation *)operation detailError:(NSError *)error;
 
 @end
