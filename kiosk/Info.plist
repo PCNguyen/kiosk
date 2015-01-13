@@ -37,5 +37,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.reputation.r4e.kiosk</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>r4eurl</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
