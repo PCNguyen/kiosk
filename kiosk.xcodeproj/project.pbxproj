@@ -34,6 +34,8 @@
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
 		0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
 		0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
+		0FA0E10B1A65D6ED0011EAC9 /* RPKServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */; };
+		0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
 		0FA1E9491A60704E00DC4429 /* menuBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9481A60704E00DC4429 /* menuBackground.jpg */; };
 		0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */; };
@@ -103,6 +105,10 @@
 		0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RPK.m"; sourceTree = "<group>"; };
 		0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKRequestManager.h; sourceTree = "<group>"; };
 		0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKRequestManager.m; sourceTree = "<group>"; };
+		0FA0E1091A65D6ED0011EAC9 /* RPKServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKServiceController.h; sourceTree = "<group>"; };
+		0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKServiceController.m; sourceTree = "<group>"; };
+		0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPK.h"; sourceTree = "<group>"; };
+		0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPK.m"; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0FA1E9481A60704E00DC4429 /* menuBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menuBackground.jpg; sourceTree = "<group>"; };
 		0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoadingView.h; sourceTree = "<group>"; };
@@ -153,7 +159,6 @@
 			children = (
 				0FA0E1021A65D0B80011EAC9 /* Controller */,
 				0FA0E1011A65D0A50011EAC9 /* Javascipts */,
-				0FA0E0FD1A65D07E0011EAC9 /* Extension */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			children = (
 				0FA0ABBA1A40ABE1007AA263 /* AppDelegate.h */,
 				0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */,
+				0FA0E10C1A65D7850011EAC9 /* Extension */,
 				0FA0E1051A65D3E00011EAC9 /* Network */,
 				0FA0ABDC1A40AE29007AA263 /* UI */,
 				0FA0E1031A65D39C0011EAC9 /* Modules */,
@@ -317,15 +323,6 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
-		0FA0E0FD1A65D07E0011EAC9 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */,
-				0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */,
-			);
-			name = Extension;
-			sourceTree = "<group>";
-		};
 		0FA0E1011A65D0A50011EAC9 /* Javascipts */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,8 +355,21 @@
 			children = (
 				0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */,
 				0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */,
+				0FA0E1091A65D6ED0011EAC9 /* RPKServiceController.h */,
+				0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0FA0E10C1A65D7850011EAC9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */,
+				0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */,
+				0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */,
+				0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		0FD805C81A5D974D00EE1AD6 /* View */ = {
@@ -536,10 +546,12 @@
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
 				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
 				0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */,
+				0FA0E10B1A65D6ED0011EAC9 /* RPKServiceController.m in Sources */,
 				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
+				0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
 				0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */,
 				0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */,
