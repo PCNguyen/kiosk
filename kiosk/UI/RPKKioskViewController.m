@@ -28,4 +28,17 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - WKWebView Delegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+	[self showLoading];
+	decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+	[self hideLoading];
+}
+
 @end
