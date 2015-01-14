@@ -11,6 +11,7 @@
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
 #import "RPKGoogleViewController.h"
+#import "RPKKioskViewController.h"
 #import "RPKNavigationController.h"
 
 #import "UIImage+RPK.h"
@@ -266,8 +267,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		googleWebVC.logoutURL = [(RPKGoogleItem *)menuItem logoutURL];
 		[self.navigationController presentViewController:googleWebVC animated:YES completion:NULL];
 	} else {
-		RPKWebViewController *webVC = [[RPKWebViewController alloc] initWithURL:menuItem.itemURL];
-		[self.navigationController presentViewController:webVC animated:YES completion:NULL];
+		RPKKioskViewController *kioskWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		[self.navigationController presentViewController:kioskWebVC animated:YES completion:NULL];
 	}
 }
 

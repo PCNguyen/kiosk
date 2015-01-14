@@ -36,6 +36,8 @@
 		0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
 		0FA0E10B1A65D6ED0011EAC9 /* RPKServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */; };
 		0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
+		0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
+		0FA0E1151A670A7B0011EAC9 /* RPKTimedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
 		0FA1E9491A60704E00DC4429 /* menuBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9481A60704E00DC4429 /* menuBackground.jpg */; };
 		0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */; };
@@ -109,6 +111,10 @@
 		0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKServiceController.m; sourceTree = "<group>"; };
 		0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPK.h"; sourceTree = "<group>"; };
 		0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPK.m"; sourceTree = "<group>"; };
+		0FA0E1101A67098E0011EAC9 /* RPKKioskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskViewController.h; sourceTree = "<group>"; };
+		0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskViewController.m; sourceTree = "<group>"; };
+		0FA0E1131A670A7B0011EAC9 /* RPKTimedWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKTimedWebViewController.h; sourceTree = "<group>"; };
+		0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKTimedWebViewController.m; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0FA1E9481A60704E00DC4429 /* menuBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menuBackground.jpg; sourceTree = "<group>"; };
 		0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoadingView.h; sourceTree = "<group>"; };
@@ -267,8 +273,12 @@
 				0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */,
 				0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */,
 				0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */,
+				0FA0E1131A670A7B0011EAC9 /* RPKTimedWebViewController.h */,
+				0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */,
 				0FA0ABED1A40C0E9007AA263 /* RPKGoogleViewController.h */,
 				0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */,
+				0FA0E1101A67098E0011EAC9 /* RPKKioskViewController.h */,
+				0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -447,7 +457,7 @@
 				TargetAttributes = {
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 83MUD7ANA9;
+						DevelopmentTeam = Z2EXNP9RZT;
 					};
 					0FA0ABCB1A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -541,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FA0ABEF1A40C0E9007AA263 /* RPKGoogleViewController.m in Sources */,
+				0FA0E1151A670A7B0011EAC9 /* RPKTimedWebViewController.m in Sources */,
 				0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */,
@@ -553,6 +564,7 @@
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
 				0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
+				0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */,
 				0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */,
 				0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,

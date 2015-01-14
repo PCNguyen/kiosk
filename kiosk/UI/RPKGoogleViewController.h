@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import "RPKWebViewController.h"
+#import "RPKTimedWebViewController.h"
 
-@interface RPKGoogleViewController : RPKWebViewController
+@interface RPKGoogleViewController : RPKTimedWebViewController
 
 @property (nonatomic, strong) NSURL *logoutURL;
 

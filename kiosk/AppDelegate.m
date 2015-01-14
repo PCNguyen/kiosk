@@ -18,9 +18,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Enter Single App Mode");
+		}
+	});
+	
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
 	[self.window makeKeyAndVisible];
+	
 	return YES;
 }
 
@@ -31,6 +38,7 @@
 			NSLog(@"Enter Single App Mode");
 		}
 	});
+	
 	return YES;
 }
 
