@@ -10,6 +10,19 @@
 
 @implementation RPKKioskViewController
 
+- (instancetype)initWithURL:(NSURL *)url
+{
+	if (self = [super initWithURL:url]) {
+		//--modify user agent
+		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+		[dictionary setObject:@"Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53"
+					   forKey:@"UserAgent"];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+	}
+	
+	return self;
+}
+
 - (void)logout
 {
 	[self dismissViewControllerAnimated:YES completion:NULL];

@@ -26,14 +26,17 @@
 
 @implementation RPKGoogleViewController
 
-/**
- *  Modify Agent
- */
-+ (void)initialize {
-	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-	[dictionary setObject:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
-				   forKey:@"UserAgent"];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+- (instancetype)initWithURL:(NSURL *)url
+{
+	if (self = [super initWithURL:url]) {
+		//--modify user agent
+		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+		[dictionary setObject:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
+					   forKey:@"UserAgent"];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+	}
+	
+	return self;
 }
 
 - (void)loadView
