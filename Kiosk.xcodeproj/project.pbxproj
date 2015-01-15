@@ -34,7 +34,7 @@
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
 		0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
 		0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
-		0FA0E10B1A65D6ED0011EAC9 /* RPKServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */; };
+		0FA0E10B1A65D6ED0011EAC9 /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
 		0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
 		0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
 		0FA0E1151A670A7B0011EAC9 /* RPKTimedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */; };
@@ -126,8 +126,8 @@
 		0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RPK.m"; sourceTree = "<group>"; };
 		0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKRequestManager.h; sourceTree = "<group>"; };
 		0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKRequestManager.m; sourceTree = "<group>"; };
-		0FA0E1091A65D6ED0011EAC9 /* RPKServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKServiceController.h; sourceTree = "<group>"; };
-		0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKServiceController.m; sourceTree = "<group>"; };
+		0FA0E1091A65D6ED0011EAC9 /* RPKRestServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKRestServiceController.h; sourceTree = "<group>"; };
+		0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKRestServiceController.m; sourceTree = "<group>"; };
 		0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPK.h"; sourceTree = "<group>"; };
 		0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPK.m"; sourceTree = "<group>"; };
 		0FA0E1101A67098E0011EAC9 /* RPKKioskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskViewController.h; sourceTree = "<group>"; };
@@ -420,10 +420,8 @@
 		0FA0E1051A65D3E00011EAC9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */,
-				0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */,
-				0FA0E1091A65D6ED0011EAC9 /* RPKServiceController.h */,
-				0FA0E10A1A65D6ED0011EAC9 /* RPKServiceController.m */,
+				0FA0E19C1A686DCD0011EAC9 /* THRIFT */,
+				0FA0E19B1A686DC20011EAC9 /* REST */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -529,6 +527,24 @@
 				0FA0E1971A686B350011EAC9 /* MobileCommon.m */,
 			);
 			path = "gen-cocoa";
+			sourceTree = "<group>";
+		};
+		0FA0E19B1A686DC20011EAC9 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */,
+				0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */,
+				0FA0E1091A65D6ED0011EAC9 /* RPKRestServiceController.h */,
+				0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */,
+			);
+			name = REST;
+			sourceTree = "<group>";
+		};
+		0FA0E19C1A686DCD0011EAC9 /* THRIFT */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = THRIFT;
 			sourceTree = "<group>";
 		};
 		0FD805C81A5D974D00EE1AD6 /* View */ = {
@@ -710,7 +726,7 @@
 				0FA0E1981A686B350011EAC9 /* Mobile.m in Sources */,
 				0FA0E18D1A686AC80011EAC9 /* TNSStreamTransport.m in Sources */,
 				0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */,
-				0FA0E10B1A65D6ED0011EAC9 /* RPKServiceController.m in Sources */,
+				0FA0E10B1A65D6ED0011EAC9 /* RPKRestServiceController.m in Sources */,
 				0FA0E1841A686AC80011EAC9 /* TSocketServer.m in Sources */,
 				0FA0E1871A686AC80011EAC9 /* Base64.m in Sources */,
 				0FA0E1861A686AC80011EAC9 /* TException.m in Sources */,

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Reputation. All rights reserved.
 //
 
-#import "RPKServiceController.h"
+#import "RPKRestServiceController.h"
 #import "NSError+RPK.h"
 
 #define kSCMethodPOST						@"POST"
 #define kSCMethodGET						@"GET"
 
-@implementation RPKServiceController
+@implementation RPKRestServiceController
 
 #pragma mark - Shared Manager
 
@@ -23,7 +23,7 @@
 
 #pragma mark - Convenient
 
-- (void)postWithParameters:(NSDictionary *)parameters headers:(NSDictionary *)headers completion:(RPKNetworkControllerCompletion)completion
+- (void)postWithParameters:(NSDictionary *)parameters headers:(NSDictionary *)headers completion:(RPKRestServiceCompletion)completion
 {
 	if ([self.serviceURLString length] > 0) {
 		[[[self class] serviceManager] POST:self.serviceURLString
@@ -39,17 +39,17 @@
 	}
 }
 
-- (void)postWithParameters:(NSDictionary *)parameters completion:(RPKNetworkControllerCompletion)completion
+- (void)postWithParameters:(NSDictionary *)parameters completion:(RPKRestServiceCompletion)completion
 {
 	[self postWithParameters:parameters headers:nil completion:completion];
 }
 
-- (void)postWithCompletion:(RPKNetworkControllerCompletion)completion
+- (void)postWithCompletion:(RPKRestServiceCompletion)completion
 {
 	[self postWithParameters:nil completion:completion];
 }
 
-- (void)sendRequest:(NSURLRequest *)request completion:(RPKNetworkControllerCompletion)completion
+- (void)sendRequest:(NSURLRequest *)request completion:(RPKRestServiceCompletion)completion
 {
 	NSOperation *operation = [[[self class] serviceManager] HTTPRequestOperationWithRequest:request
 																					success:^(AFHTTPRequestOperation *requestOperation, id responseObject) {

@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "RPKRequestManager.h"
 
-typedef void(^RPKNetworkControllerCompletion)(BOOL success, NSError *error, id response);
+typedef void(^RPKRestServiceCompletion)(BOOL success, NSError *error, id response);
 
-@interface RPKServiceController : NSObject
+@interface RPKRestServiceController : NSObject
 
 @property (nonatomic, copy) NSString *serviceURLString;
 
@@ -23,11 +23,11 @@ typedef void(^RPKNetworkControllerCompletion)(BOOL success, NSError *error, id r
 
 - (void)postWithParameters:(NSDictionary *)parameters
 				   headers:(NSDictionary *)headers
-				completion:(RPKNetworkControllerCompletion)completion;
+				completion:(RPKRestServiceCompletion)completion;
 - (void)postWithParameters:(NSDictionary *)parameters
-				completion:(RPKNetworkControllerCompletion)completion;
-- (void)postWithCompletion:(RPKNetworkControllerCompletion)completion;
+				completion:(RPKRestServiceCompletion)completion;
+- (void)postWithCompletion:(RPKRestServiceCompletion)completion;
 
-- (void)sendRequest:(NSURLRequest *)request completion:(RPKNetworkControllerCompletion)completion;
+- (void)sendRequest:(NSURLRequest *)request completion:(RPKRestServiceCompletion)completion;
 
 @end
