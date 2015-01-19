@@ -10,7 +10,7 @@
 
 @interface RPKViewController ()
 
-@property (nonatomic, strong) PQFBarsInCircle *loadingView;
+@property (nonatomic, strong) PQFCirclesInTriangle *loadingView;
 
 @end
 
@@ -35,11 +35,13 @@
     }
 }
 
-- (PQFBarsInCircle *)loadingView {
+- (PQFCirclesInTriangle *)loadingView {
     if (!_loadingView) {
-        _loadingView = [[PQFBarsInCircle alloc] initLoaderOnView:self.view];
+        _loadingView = [[PQFCirclesInTriangle alloc] initLoaderOnView:self.view];
+        _loadingView.maxDiam = 100.0f;
     }
 
     return _loadingView;
 }
+
 @end

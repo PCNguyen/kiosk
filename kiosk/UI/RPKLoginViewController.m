@@ -183,11 +183,11 @@
 
 - (void)handleAuthenticationCompleteNotification:(NSNotification *)notification
 {
-    [self toggleLoadingView:NO];
-
-    if ([[RPAccountManager sharedManager] isAuthenticated]) {
-        [self dismissViewControllerAnimated:YES completion:^{}];
-    }
+//    [self toggleLoadingView:NO];
+//
+//    if ([[RPAccountManager sharedManager] isAuthenticated]) {
+//        [self dismissViewControllerAnimated:YES completion:^{}];
+//    }
 }
 
 #pragma mark - Private
