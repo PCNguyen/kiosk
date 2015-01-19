@@ -33,6 +33,8 @@
 {
     [super loadView];
 
+    self.view.backgroundColor = [UIColor whiteColor];
+
     [self.view addSubview:self.userIDTextField];
     [self.view addSubview:self.passwordTextField];
     [self.view addSubview:self.loginButton];

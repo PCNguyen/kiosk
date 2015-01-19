@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "RPKLayoutManager.h"
 #import "RPKCookieHandler.h"
+#import "RPAccountManager.h"
+#import "RPNotificationCenter.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +28,11 @@
 	
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
-	[self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
+
+    if (![[RPAccountManager sharedManager] isAuthenticated]) {
+        [RPNotificationCenter postNotificationName:RPKLayoutManagerAuthenticationNeededNotification object:nil];
+    }
 	
 	return YES;
 }
