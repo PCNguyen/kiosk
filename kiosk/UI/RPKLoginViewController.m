@@ -18,8 +18,13 @@
 
 @implementation RPKLoginViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView
+{
+    [super loadView];
+
+    [self.view addSubview:self.userIDTextField];
+    [self.view addSubview:self.passwordTextField];
+    [self.view addSubview:self.loginButton];
 }
 
 @end
