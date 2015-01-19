@@ -12,7 +12,6 @@
 #import "RPKCollectionViewCell.h"
 #import "RPKGoogleViewController.h"
 #import "RPKKioskViewController.h"
-#import "RPKNavigationController.h"
 
 #import "UIImage+RPK.h"
 
