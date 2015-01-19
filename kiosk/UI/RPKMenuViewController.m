@@ -147,9 +147,9 @@ NSString *const MVCCellID = @"kMVCCellID";
  ********************************/
 @interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UIView *dividerView;
-@property (nonatomic, strong) UIImageView *blurBackground;
+@property (nonatomic, strong) UILabel *kioskLabel;
+@property (nonatomic, strong) UILabel *kioskSubtitle;
+@property (nonatomic, strong) UICollectionView *menuSelectionView;
 
 @end
 
@@ -163,10 +163,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 	
 	self.view.backgroundColor = [UIColor ul_colorWithR:0 G:0 B:0 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
-	
-	[self.view addSubview:self.blurBackground];
-	[self.view addSubview:self.collectionView];
-	[self.view addSubview:self.dividerView];
+
+    [self.view addSubview:self.menuSelectionView];
 }
 
 - (void)viewDidLoad
@@ -179,11 +177,9 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)viewWillLayoutSubviews
 {
 	[super viewWillLayoutSubviews];
-	
-	self.blurBackground.frame = self.view.bounds;
-	[self.collectionView.collectionViewLayout invalidateLayout];
-	self.collectionView.frame = self.view.bounds;
-	self.dividerView.frame = [self dividerViewFrame];
+
+	[self.menuSelectionView.collectionViewLayout invalidateLayout];
+	self.menuSelectionView.frame = self.view.bounds;
 }
 
 #pragma mark - ULViewDataBinding Protocol
@@ -205,7 +201,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleBinderSourceUpdated:(NSArray *)updatedItems
 {
-	[self.collectionView reloadData];
+	[self.menuSelectionView reloadData];
 }
 
 #pragma mark - Collection View
@@ -221,18 +217,18 @@ NSString *const MVCCellID = @"kMVCCellID";
 	return flowLayout;
 }
 
-- (UICollectionView *)collectionView
+- (UICollectionView *)menuSelectionView
 {
-	if (!_collectionView) {
-		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
+	if (!_menuSelectionView) {
+		_menuSelectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
 											 collectionViewLayout:[self defaultLayout]];
-		[_collectionView registerClass:[RPKMenuCell class] forCellWithReuseIdentifier:MVCCellID];
-		_collectionView.delegate = self;
-		_collectionView.dataSource = self;
-		_collectionView.backgroundColor = [UIColor clearColor];
+		[_menuSelectionView registerClass:[RPKMenuCell class] forCellWithReuseIdentifier:MVCCellID];
+		_menuSelectionView.delegate = self;
+		_menuSelectionView.dataSource = self;
+		_menuSelectionView.backgroundColor = [UIColor clearColor];
 	}
 	
-	return _collectionView;
+	return _menuSelectionView;
 }
 
 #pragma mark - Collection View Delegate / DataSource
@@ -276,41 +272,6 @@ NSString *const MVCCellID = @"kMVCCellID";
 	CGSize itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height / 2 - 20.0f);
 	
 	return itemSize;
-}
-
-#pragma mark - Divider View
-
-- (CGRect)dividerViewFrame
-{
-	CGFloat xOffset = 100.0f;
-	CGFloat width = self.view.bounds.size.width - 2*xOffset;
-	CGFloat height = 2.0f;
-	CGFloat yOffset = (self.view.bounds.size.height - height) / 2;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
-- (UIView *)dividerView
-{
-	if (!_dividerView) {
-		_dividerView = [[UIView alloc] initWithFrame:CGRectZero];
-		_dividerView.backgroundColor = [UIColor whiteColor];
-	}
-	
-	return _dividerView;
-}
-
-#pragma mark - Background
-
-- (UIImageView *)blurBackground
-{
-	if (!_blurBackground) {
-		_blurBackground = [[UIImageView alloc] initWithImage:nil];
-		_blurBackground.contentMode = UIViewContentModeScaleAspectFill;
-		_blurBackground.image = [[UIImage rpk_bundleImageNamed:@"menuBackground.jpg"] applyTintEffectWithColor:[UIColor blackColor]];
-	}
-	
-	return _blurBackground;
 }
 
 @end
