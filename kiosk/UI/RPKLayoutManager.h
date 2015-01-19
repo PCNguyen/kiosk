@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RPKMenuViewController.h"
 
-extern NSString *const RPKLayoutManagerAuthenticationNeededNotification;
-
 @interface RPKLayoutManager : NSObject
 
 @property (nonatomic, strong) RPKMenuViewController *menuViewController;

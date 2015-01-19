@@ -24,6 +24,7 @@
 NSString *const RPAuthenticationHandlerActivityBeginNotification = @" RPAuthenticationHandlerActivityBeginNotification";
 NSString *const RPAuthenticationHandlerActivityCompleteNotification = @"RPAuthenticationHandlerActivityCompleteNotification";
 NSString *const AuthenticationHandlerAuthenticatedNotification = @"AuthenticationHandlerAuthenticatedNotification";
+NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"AuthenticationHandlerAuthenticationRequiredNotification";
 
 @implementation RPAuthenticationHandler
 

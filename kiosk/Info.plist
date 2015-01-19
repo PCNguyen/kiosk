@@ -34,7 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>Server URL</key>
-	<string>http://10.20.22.66:8080/users</string>
+	<string>https://qa-r4e-mobile.reputation.com</string>
+    <key>Server Port</key>
+    <string>443</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

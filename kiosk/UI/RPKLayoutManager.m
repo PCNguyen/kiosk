@@ -11,10 +11,8 @@
 #import "RPKLayoutManager.h"
 #import "RPKNavigationController.h"
 #import "RPKLoginViewController.h"
-#import "Mobile.h"
 #import "RPNotificationCenter.h"
-
-NSString *const RPKLayoutManagerAuthenticationNeededNotification = @"RPKLayoutManagerAuthenticationNeededNotification";
+#import "RPAuthenticationHandler.h"
 
 @interface RPKLayoutManager ()
 
@@ -33,13 +31,13 @@ NSString *const RPKLayoutManagerAuthenticationNeededNotification = @"RPKLayoutMa
 
 - (void)dealloc
 {
-    [RPNotificationCenter removeObserver:self forKeyPath:RPKLayoutManagerAuthenticationNeededNotification];
+    [RPNotificationCenter unRegisterObject:self forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification parameter:nil];
 }
 
 - (instancetype)init {
     if (self = [super init]) {
         [RPNotificationCenter registerObject:self
-                         forNotificationName:RPKLayoutManagerAuthenticationNeededNotification
+                         forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification
                                      handler:@selector(handleAuthenticationNeededNotification:)
                                    parameter:nil];
     }

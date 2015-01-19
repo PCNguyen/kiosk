@@ -12,6 +12,7 @@ static BOOL logoutLock;
 static BOOL keyRefreshLock;
 
 extern NSString *const AuthenticationHandlerAuthenticatedNotification;
+extern NSString *const AuthenticationHandlerAuthenticationRequiredNotification;
 
 @interface RPAuthenticationHandler : RPNetworkHandler
 
