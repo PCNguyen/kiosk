@@ -92,6 +92,7 @@
 		0FA0E2031A6889C40011EAC9 /* RPPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2021A6889C40011EAC9 /* RPPreferenceService.m */; };
 		0FA0E2061A6889D70011EAC9 /* UserPreference+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2051A6889D70011EAC9 /* UserPreference+RP.m */; };
 		0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */; };
+		0FA0E2421A6D69690011EAC9 /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
 		0FA1E9491A60704E00DC4429 /* menuBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9481A60704E00DC4429 /* menuBackground.jpg */; };
 		0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */; };
@@ -285,6 +286,8 @@
 		0FA0E2071A688A0E0011EAC9 /* RPProtocolFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPProtocolFactory.h; sourceTree = "<group>"; };
 		0FA0E2081A688A910011EAC9 /* SearchFilter+RP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SearchFilter+RP.h"; sourceTree = "<group>"; };
 		0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SearchFilter+RP.m"; sourceTree = "<group>"; };
+		0FA0E2401A6D69690011EAC9 /* RPKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoginViewController.h; sourceTree = "<group>"; };
+		0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLoginViewController.m; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0FA1E9481A60704E00DC4429 /* menuBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menuBackground.jpg; sourceTree = "<group>"; };
 		0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoadingView.h; sourceTree = "<group>"; };
@@ -447,6 +450,8 @@
 				0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */,
 				0FA0E1101A67098E0011EAC9 /* RPKKioskViewController.h */,
 				0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */,
+				0FA0E2401A6D69690011EAC9 /* RPKLoginViewController.h */,
+				0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				0FA0E1881A686AC80011EAC9 /* MyExtentions.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0E1811A686AC80011EAC9 /* TBinaryProtocol.m in Sources */,
+				0FA0E2421A6D69690011EAC9 /* RPKLoginViewController.m in Sources */,
 				0FA0E1B31A68832E0011EAC9 /* RPLoginService.m in Sources */,
 				0FA0E1EE1A6888600011EAC9 /* UILabel+RP.m in Sources */,
 				0FA0E1FD1A6888E70011EAC9 /* UITextField+RP.m in Sources */,
