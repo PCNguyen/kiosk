@@ -183,7 +183,6 @@
     }
 }
 
-
 #pragma mark - Private
 
 - (NSAttributedString *)placeHolderForText:(NSString *)text
