@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const RPNotificationCenterAuthenticatedNotification;
-extern NSString *const RPNotificationCenterAuthenticationRequiredNotification;
-extern NSString *const RPNotificationCenterLogoutNotification;
-
 @interface RPNotificationCenter : NSObject
 
 #pragma mark - NSNotificationCenter Wrapper
@@ -25,15 +21,5 @@ extern NSString *const RPNotificationCenterLogoutNotification;
 + (void)unRegisterObject:(id)object forNotificationName:(NSString *)name parameter:(id)parameter;
 
 + (void)unRegisterAllNotificationForObject:(id)object;
-
-#pragma mark - App Notification
-
-+ (void)postAuthenticationRequiredNotification;
-
-+ (void)postAuthenticatedNotification;
-
-+ (void)postLogoutNotification;
-
-+ (void)postLogoutNotification:(id)object;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface RPKViewController ()
 
+@property (nonatomic, strong) PQFBarsInCircle *loadingView;
+
 @end
 
 @implementation RPKViewController
@@ -25,4 +27,19 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)toggleLoadingView:(BOOL)isVisible {
+    if (isVisible) {
+        [self.loadingView show];
+    } else {
+        [self.loadingView hide];
+    }
+}
+
+- (PQFBarsInCircle *)loadingView {
+    if (!_loadingView) {
+        _loadingView = [[PQFBarsInCircle alloc] initLoaderOnView:self.view];
+    }
+
+    return _loadingView;
+}
 @end

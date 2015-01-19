@@ -8,12 +8,6 @@
 
 #import "RPNotificationCenter.h"
 
-#pragma mark - Process Notification
-
-NSString *const RPNotificationCenterAuthenticatedNotification			= @"RPNotificationCenterAuthenticatedNotification";
-NSString *const RPNotificationCenterAuthenticationRequiredNotification	= @"RPNotificationCenterAuthenticationRequiredNotification";
-NSString *const RPNotificationCenterLogoutNotification					= @"RPNotificationCenterLogoutNotification";
-
 @implementation RPNotificationCenter
 
 #pragma mark - NSNotificationCenter Wrapper
@@ -42,28 +36,6 @@ NSString *const RPNotificationCenterLogoutNotification					= @"RPNotificationCen
 + (void)unRegisterAllNotificationForObject:(id)object
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:object];
-}
-
-#pragma mark - App Notification
-
-+ (void)postAuthenticationRequiredNotification
-{
-	[self postNotificationName:RPNotificationCenterAuthenticationRequiredNotification object:nil];
-}
-
-+ (void)postAuthenticatedNotification
-{
-	[self postNotificationName:RPNotificationCenterAuthenticatedNotification object:nil];
-}
-
-+ (void)postLogoutNotification
-{
-	[self postLogoutNotification:nil];
-}
-
-+ (void)postLogoutNotification:(id)object
-{
-	[self postNotificationName:RPNotificationCenterLogoutNotification object:object];
 }
 
 @end

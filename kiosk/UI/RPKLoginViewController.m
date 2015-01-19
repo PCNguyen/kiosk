@@ -33,6 +33,9 @@
 {
     [super loadView];
 
+    self.paddings = UIEdgeInsetsMake(100.0f, 50.0f, 50.0f, 50.0f);
+    self.spacings = CGSizeMake(0.0f, 50.0f);
+
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.userIDTextField];
@@ -175,11 +178,13 @@
 
 - (void)handleAuthenticationBeginNotification:(NSNotification *)notification
 {
-
+    [self toggleLoadingView:YES];
 }
 
 - (void)handleAuthenticationCompleteNotification:(NSNotification *)notification
 {
+    [self toggleLoadingView:NO];
+
     if ([[RPAccountManager sharedManager] isAuthenticated]) {
         [self dismissViewControllerAnimated:YES completion:^{}];
     }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RPKUIKit.h"
+#import <PQFCustomLoaders/PQFCustomLoaders.h>
 
 @interface RPKViewController : UIViewController
 
@@ -20,5 +21,7 @@
 *  Provide the spacings vertical and horizontal
 */
 @property (nonatomic, assign) CGSize spacings;
+
+- (void)toggleLoadingView:(BOOL)isVisible;
 
 @end

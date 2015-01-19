@@ -23,6 +23,7 @@
 
 NSString *const RPAuthenticationHandlerActivityBeginNotification = @" RPAuthenticationHandlerActivityBeginNotification";
 NSString *const RPAuthenticationHandlerActivityCompleteNotification = @"RPAuthenticationHandlerActivityCompleteNotification";
+NSString *const AuthenticationHandlerAuthenticatedNotification = @"AuthenticationHandlerAuthenticatedNotification";
 
 @implementation RPAuthenticationHandler
 
@@ -108,7 +109,7 @@ NSString *const RPAuthenticationHandlerActivityCompleteNotification = @"RPAuthen
 	
 	if (userAccount) {
 		
-		[RPNotificationCenter postAuthenticatedNotification];
+		[RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticatedNotification object:nil];
 		
 		//--analytic
 //		[RPAnalyticHandler registerSuperProperties];
