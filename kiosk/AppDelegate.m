@@ -11,6 +11,7 @@
 #import "RPKCookieHandler.h"
 #import "RPAccountManager.h"
 #import "RPNotificationCenter.h"
+#import "RPAuthenticationHandler.h"
 
 @interface AppDelegate ()
 
@@ -31,7 +32,7 @@
     [self.window makeKeyAndVisible];
 
     if (![[RPAccountManager sharedManager] isAuthenticated]) {
-        [RPNotificationCenter postNotificationName:RPKLayoutManagerAuthenticationNeededNotification object:nil];
+        [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
     }
 	
 	return YES;
