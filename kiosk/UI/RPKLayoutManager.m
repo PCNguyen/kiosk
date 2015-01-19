@@ -43,6 +43,8 @@ NSString *const RPKLayoutManagerAuthenticationNeededNotification = @"RPKLayoutMa
                                      handler:@selector(handleAuthenticationNeededNotification:)
                                    parameter:nil];
     }
+
+    return self;
 }
 
 - (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
