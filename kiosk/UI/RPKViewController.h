@@ -11,4 +11,14 @@
 
 @interface RPKViewController : UIViewController
 
+/**
+*  Provide a paddings surround element in the view
+*/
+@property (nonatomic, assign) UIEdgeInsets paddings;
+
+/**
+*  Provide the spacings vertical and horizontal
+*/
+@property (nonatomic, assign) CGSize spacings;
+
 @end
