@@ -12,8 +12,6 @@
 #import "UIViewController+Alert.h"
 #import "RPAccountManager.h"
 
-#import "UIColor+RPK.h"
-#import "UIFont+RPK.h"
 #import <AppSDK/NSString+AL.h>
 
 @interface RPKLoginViewController () <UITextFieldDelegate>

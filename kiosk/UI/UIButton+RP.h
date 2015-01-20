@@ -18,7 +18,4 @@ static CGFloat kUIButtonImageSpacing = 10.0f;
 
 + (instancetype)rp_blueButtonWithTitle:(NSString *)title;
 
-- (void)rp_setTitleLocations:(NSArray *)locations;
-- (void)rp_setTitleLocationCount:(NSInteger)count;
-
 @end

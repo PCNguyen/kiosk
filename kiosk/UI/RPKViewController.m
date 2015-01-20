@@ -38,7 +38,8 @@
 - (PQFCirclesInTriangle *)loadingView {
     if (!_loadingView) {
         _loadingView = [[PQFCirclesInTriangle alloc] initLoaderOnView:self.view];
-        _loadingView.maxDiam = 100.0f;
+        _loadingView.maxDiam = 150.0f;
+		_loadingView.loaderColor = [UIColor rpk_defaultBlue];
     }
 
     return _loadingView;

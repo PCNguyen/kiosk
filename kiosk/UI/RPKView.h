@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Reputation. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "RPKUIKit.h"
 
 @interface RPKView : UIView

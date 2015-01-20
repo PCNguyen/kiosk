@@ -8,8 +8,6 @@
 
 #import "RPKTimedWebViewController.h"
 
-#import "UIColor+RPK.h"
-
 #define kTWVCMaxIdleTime				2*60
 #define kTWVCExpirationWaitTime			20
 

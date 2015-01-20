@@ -8,11 +8,10 @@
 
 #import "RPAlertController.h"
 #import "UILabel+DynamicHeight.h"
-#import "UILabel+RP.h"
 #import "UIButton+RP.h"
 #import "UITextField+RP.h"
-#import "UIFont+RP.h"
-#import "UIColor+RP.h"
+#import "UIFont+RPK.h"
+#import "UIColor+RPK.h"
 
 #import "NSAttributedString+RP.h"
 
@@ -85,11 +84,11 @@
 - (UIButton *)defaultButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f] textColor:[UIColor whiteColor]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor whiteColor]];
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
-	[customButton setBackgroundColor:[UIColor rp_brightBlue]];
+	[customButton setBackgroundColor:[UIColor rpk_brightBlue]];
 	
 	customButton.layer.cornerRadius = kABButtonCornerRadius;
 	customButton.layer.masksToBounds = YES;
@@ -99,16 +98,16 @@
 - (UIButton *)cancelButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f]
-																   textColor:[UIColor rp_mediumGrey]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f]
-																		   textColor:[[UIColor rp_mediumGrey] colorWithAlphaComponent:0.5f]];
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+																   textColor:[UIColor rpk_mediumGray]];
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+																		   textColor:[[UIColor rpk_mediumGray] colorWithAlphaComponent:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
 	[customButton setBackgroundColor:[UIColor whiteColor]];
 	
 	customButton.layer.cornerRadius = kABButtonCornerRadius;
-	customButton.layer.borderColor = [[UIColor rp_borderColor] CGColor];
+	customButton.layer.borderColor = [[UIColor rpk_borderColor] CGColor];
 	customButton.layer.borderWidth = kABButtonBorderWidth;
 	customButton.layer.masksToBounds = YES;
 	return customButton;
@@ -117,16 +116,16 @@
 - (UIButton *)destructiveButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f]
-																   textColor:[UIColor rp_red]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f]
-																		   textColor:[[UIColor rp_mediumGrey] colorWithAlphaComponent:0.5f]];
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+																   textColor:[UIColor redColor]];
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+																		   textColor:[[UIColor rpk_mediumGray] colorWithAlphaComponent:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
 	[customButton setBackgroundColor:[UIColor whiteColor]];
 	
 	customButton.layer.cornerRadius = kABButtonCornerRadius;
-	customButton.layer.borderColor = [[UIColor rp_borderColor] CGColor];
+	customButton.layer.borderColor = [[UIColor rpk_borderColor] CGColor];
 	customButton.layer.borderWidth = kABButtonBorderWidth;
 	customButton.layer.masksToBounds = YES;
 	return customButton;
@@ -580,10 +579,10 @@
 	UILabel *label = nil;
 	
 	if ([title length] > 0) {
-		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f] textColor:nil];
+		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:nil];
 		[attributedTitle rp_addLineSpacing:3.0f];
 		
-		label = [UILabel rp_attributedLabel];
+		label = [[UILabel alloc] init];
 		label.attributedText = attributedTitle;
 		label.textAlignment = NSTextAlignmentCenter;
 	}
@@ -596,10 +595,10 @@
 	UILabel *label = nil;
 	
 	if ([message length] > 0) {
-		NSAttributedString *attributedMessage = [message al_attributedStringWithFont:[UIFont rp_boldFontWithSize:13.0f] textColor:[UIColor rp_lightGrey]];
+		NSAttributedString *attributedMessage = [message al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:13.0f] textColor:[UIColor rpk_lightGray]];
 		[attributedMessage rp_addLineSpacing:3.0f];
 		
-		label = [UILabel rp_attributedLabel];
+		label = [[UILabel alloc] init];
 		label.attributedText = attributedMessage;
 		label.textAlignment = NSTextAlignmentCenter;
 	}

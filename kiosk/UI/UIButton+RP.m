@@ -7,10 +7,8 @@
 //
 
 #import "UIButton+RP.h"
-#import "UIColor+RP.h"
-#import "UIFont+RP.h"
+#import "RPKUIKit.h"
 #import <AppSDK/AppLibExtension.h>
-#import <AppSDK/UILibExtension.h>
 
 @implementation UIButton (RP)
 
@@ -30,41 +28,13 @@
 + (instancetype)rp_blueButtonWithTitle:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f] textColor:[UIColor whiteColor]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:16.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor whiteColor]];
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
-	[customButton setBackgroundColor:[UIColor rp_brightBlue]];
+	[customButton setBackgroundColor:[UIColor rpk_brightBlue]];
 	
 	return customButton;
-}
-
-- (void)rp_setTitleLocations:(NSArray *)locations
-{
-	NSString *title = [locations al_objectAtIndex:0];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:12.0f]
-																   textColor:[UIColor rp_locationTextColor]];
-	if ([locations count] > 1) {
-		title = [NSString stringWithFormat:@"%d Locations", [locations count]];
-		attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:12.0f]
-												   textColor:[UIColor rp_linkTextColor]];
-	}
-	
-	[self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-}
-
-- (void)rp_setTitleLocationCount:(NSInteger)count
-{
-	NSString *title = [NSString stringWithFormat:@"%d Locations", count];
-	
-	if (count == 1) {
-		title =	[NSString stringWithFormat:@"%d Location", count];
-	}
-	
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rp_boldFontWithSize:12.0f]
-																   textColor:[UIColor rp_linkTextColor]];
-	
-	[self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 }
 
 @end

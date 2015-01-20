@@ -7,22 +7,21 @@
 //
 
 #import "NSAttributedString+RP.h"
-#import "UIFont+RP.h"
-#import "UIColor+RP.h"
+#import "RPKUIKit.h"
 #import <AppSDK/AppLibExtension.h>
 
 @implementation NSAttributedString (RP)
 
 + (NSMutableAttributedString *)rp_attributedDescriptionFromText:(NSString *)descriptionText
 {
-	return [descriptionText al_attributedStringWithFont:[UIFont rp_boldFontWithSize:14.0f]
+	return [descriptionText al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:14.0f]
 											  textColor:[UIColor blackColor]];
 }
 
 + (NSMutableAttributedString *)rp_attributedSubratingTitle:(NSString *)subRatingTitle
 {
-	return [subRatingTitle al_attributedStringWithFont:[UIFont rp_boldFontWithSize:14.0f]
-											 textColor:[UIColor rp_mediumGrey]];
+	return [subRatingTitle al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:14.0f]
+											 textColor:[UIColor rpk_mediumGray]];
 }
 
 - (void)rp_addLineSpacing:(CGFloat)lineHeight

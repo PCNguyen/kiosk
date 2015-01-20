@@ -6,9 +6,7 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "RPKUIKit.h"
-#import <PQFCustomLoaders/PQFCustomLoaders.h>
 
 @interface RPKViewController : UIViewController
 

@@ -11,5 +11,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AppSDK/UILib.h>
+#import <PQFCustomLoaders/PQFCustomLoaders.h>
+
+#import "UIColor+RPK.h"
+#import "UIFont+RPK.h"
 
 #endif

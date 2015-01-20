@@ -9,8 +9,6 @@
 #import <SplittingTriangle/SplittingTriangle.h>
 #import "RPKLoadingView.h"
 
-#import "UIColor+RPK.h"
-
 @interface RPKLoadingView ()
 
 @property (nonatomic, strong) SplittingTriangle *animationView;

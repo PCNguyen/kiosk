@@ -14,7 +14,6 @@
 #import "RPKKioskViewController.h"
 
 #import "UIImage+RPK.h"
-#import "UIFont+RP.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
@@ -213,7 +212,7 @@ NSString *const MVCCellID = @"kMVCCellID";
     if (!_kioskTitle) {
         _kioskTitle = [[UILabel alloc] init];
         _kioskTitle.textColor = [UIColor ul_colorWithR:29 G:123 B:162 A:1];
-        _kioskTitle.font = [UIFont rp_fontWithSize:80.0f];
+        _kioskTitle.font = [UIFont rpk_fontWithSize:80.0f];
         _kioskTitle.backgroundColor = [UIColor clearColor];
         _kioskTitle.textAlignment = NSTextAlignmentCenter;
         _kioskTitle.text = NSLocalizedString(@"Leave a Review", nil);
@@ -227,7 +226,7 @@ NSString *const MVCCellID = @"kMVCCellID";
         _kioskSubtitle = [[UILabel alloc] init];
         _kioskSubtitle.textColor = [UIColor ul_colorWithR:162 G:190 B:207 A:1.0];
         _kioskSubtitle.textAlignment = NSTextAlignmentCenter;
-        _kioskSubtitle.font = [UIFont rp_fontWithSize:30.0f];
+        _kioskSubtitle.font = [UIFont rpk_fontWithSize:30.0f];
         _kioskSubtitle.backgroundColor = [UIColor clearColor];
         _kioskSubtitle.text = NSLocalizedString(@"Please select a review source", nil);
     }
