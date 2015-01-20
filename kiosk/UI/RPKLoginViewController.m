@@ -17,6 +17,7 @@
 @interface RPKLoginViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UIView *divider;
 @property (nonatomic, strong) UILabel *kioskLabel;
 @property (nonatomic, strong) UITextField *userIDTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
@@ -38,6 +39,7 @@
 
 	//--add views
 	[self.view addSubview:self.logoImageView];
+	[self.view addSubview:self.divider];
 	[self.view addSubview:self.kioskLabel];
     [self.view addSubview:self.userIDTextField];
     [self.view addSubview:self.passwordTextField];
@@ -48,9 +50,11 @@
 	[self.view addConstraints:[self.logoImageView ul_pinWithInset:UIEdgeInsetsMake(120.0f, kUIViewUnpinInset, kUIViewUnpinInset, kUIViewUnpinInset)]];
 	[self.view addConstraint:[self.logoImageView ul_centerAlignWithView:self.view direction:@"V"]];
 	
-	[self.view addConstraints:[self.kioskLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.logoImageView distance:(3 * self.spacings.height) topToBottom:NO]];
+	[self.view addConstraints:[self.divider ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, kUIViewUnpinInset, self.paddings.right)]];
+	[self.view addConstraints:[self.divider ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.logoImageView distance:(2 *self.spacings.height) topToBottom:NO]];
 	
-	[self.userIDTextField ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
+	[self.view addConstraints:[self.kioskLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.divider distance:(2 * self.spacings.height) topToBottom:NO]];
+	
 	[self.view addConstraints:[self.userIDTextField ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, kUIViewUnpinInset, self.paddings.right)]];
 	[self.view addConstraints:[self.userIDTextField ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskLabel distance:(3 * self.spacings.height) topToBottom:NO]];
 	
@@ -69,13 +73,25 @@
 - (UIImageView *)logoImageView
 {
 	if (!_logoImageView) {
-		_logoImageView = [[UIImageView alloc] initWithImage:[UIImage ul_imageNamed:@"img_reputation_logo.png"]];
+		_logoImageView = [[UIImageView alloc] initWithImage:[UIImage ul_imageNamed:@"logo_reputation.png"]];
 		_logoImageView.contentMode = UIViewContentModeScaleAspectFit;
 		[_logoImageView ul_enableAutoLayout];
 		[_logoImageView ul_tightenContentWithPriority:UILayoutPriorityDefaultHigh];
 	}
 	
 	return _logoImageView;
+}
+
+- (UIView *)divider
+{
+	if (!_divider) {
+		_divider = [[UIView alloc] init];
+		_divider.backgroundColor = [UIColor rpk_borderColor];
+		[_divider ul_enableAutoLayout];
+		[_divider ul_fixedSize:CGSizeMake(0.0f, 0.5f) priority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _divider;
 }
 
 - (UILabel *)kioskLabel
@@ -122,6 +138,7 @@
         _userIDTextField.delegate = self;
         [_userIDTextField ul_addDismissAccessoryWithText:@"Done" barStyle:UIBarStyleDefault];
 		[_userIDTextField ul_enableAutoLayout];
+		[_userIDTextField ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
     }
 
     return _userIDTextField;
