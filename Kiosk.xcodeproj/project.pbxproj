@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F063AD31A6EE8790092F607 /* UIFont+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AD21A6EE8790092F607 /* UIFont+RPK.m */; };
 		0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
 		0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F11A5F2C430083B96E /* RPKMessageView.m */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
@@ -125,6 +126,8 @@
 		0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_700-museosans.ttf"; sourceTree = "<group>"; };
 		0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_900_italic-museosans.ttf"; sourceTree = "<group>"; };
 		0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_900-museosans.ttf"; sourceTree = "<group>"; };
+		0F063AD11A6EE8790092F607 /* UIFont+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+RPK.h"; sourceTree = "<group>"; };
+		0F063AD21A6EE8790092F607 /* UIFont+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+RPK.m"; sourceTree = "<group>"; };
 		0F1932EA1A5E08DF0083B96E /* manualSelect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = manualSelect.js; sourceTree = "<group>"; };
 		0F1932F01A5F2C430083B96E /* RPKMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMessageView.h; sourceTree = "<group>"; };
 		0F1932F11A5F2C430083B96E /* RPKMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMessageView.m; sourceTree = "<group>"; };
@@ -542,6 +545,8 @@
 				0FA0E1F91A6888DD0011EAC9 /* UIButton+DynamicHeight.m */,
 				0FA0E1F21A6888840011EAC9 /* UIFont+RP.h */,
 				0FA0E1F31A6888840011EAC9 /* UIFont+RP.m */,
+				0F063AD11A6EE8790092F607 /* UIFont+RPK.h */,
+				0F063AD21A6EE8790092F607 /* UIFont+RPK.m */,
 				0FA0E1EF1A6888750011EAC9 /* UIColor+RP.h */,
 				0FA0E1F01A6888750011EAC9 /* UIColor+RP.m */,
 				0F1932F31A5F38950083B96E /* UIColor+RPK.h */,
@@ -985,6 +990,7 @@
 				0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */,
 				0FA0E1F11A6888750011EAC9 /* UIColor+RP.m in Sources */,
 				0FA0E10B1A65D6ED0011EAC9 /* RPKRestServiceController.m in Sources */,
+				0F063AD31A6EE8790092F607 /* UIFont+RPK.m in Sources */,
 				0FA0E1841A686AC80011EAC9 /* TSocketServer.m in Sources */,
 				0FA0E1871A686AC80011EAC9 /* Base64.m in Sources */,
 				0FA0E1BC1A6883540011EAC9 /* RPReferenceStorage.m in Sources */,
