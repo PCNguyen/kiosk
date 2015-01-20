@@ -9,21 +9,21 @@
 #import "RPKLoginViewController.h"
 #import "UITextField+RP.h"
 #import "RPAuthenticationHandler.h"
-#import "UIFont+RP.h"
-#import "UIColor+RP.h"
 #import "UIViewController+Alert.h"
 #import "RPAccountManager.h"
 
+#import "UIColor+RPK.h"
+#import "UIFont+RPK.h"
 #import <AppSDK/NSString+AL.h>
-
-#define kRPLoginViewControllerTextFieldHeight				37.0f
-#define kRPLoginViewControllerLoginButtonHeight				47.0f
 
 @interface RPKLoginViewController () <UITextFieldDelegate>
 
+@property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UILabel *kioskLabel;
 @property (nonatomic, strong) UITextField *userIDTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, strong) UIButton *loginButton;
+@property (nonatomic, strong) UILabel *termConditionLabel;
 
 @end
 
@@ -33,36 +33,84 @@
 {
     [super loadView];
 
-    self.paddings = UIEdgeInsetsMake(100.0f, 50.0f, 50.0f, 50.0f);
-    self.spacings = CGSizeMake(0.0f, 50.0f);
+    self.paddings = UIEdgeInsetsMake(100.0f, 150.0f, 0.0f, 150.0f);
+    self.spacings = CGSizeMake(0.0f, 20.0f);
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor rpk_backgroundColor];
 
+	//--add views
+	[self.view addSubview:self.logoImageView];
+	[self.view addSubview:self.kioskLabel];
     [self.view addSubview:self.userIDTextField];
     [self.view addSubview:self.passwordTextField];
     [self.view addSubview:self.loginButton];
+	[self.view addSubview:self.termConditionLabel];
+	
+	//--layout views
+	[self.view addConstraints:[self.logoImageView ul_pinWithInset:UIEdgeInsetsMake(120.0f, kUIViewUnpinInset, kUIViewUnpinInset, kUIViewUnpinInset)]];
+	[self.view addConstraint:[self.logoImageView ul_centerAlignWithView:self.view direction:@"V"]];
+	
+	[self.view addConstraints:[self.kioskLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.logoImageView distance:(3 * self.spacings.height) topToBottom:NO]];
+	
+	[self.view addConstraints:[self.userIDTextField ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, kUIViewUnpinInset, self.paddings.right)]];
+	[self.view addConstraints:[self.userIDTextField ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskLabel distance:(3 * self.spacings.height) topToBottom:NO]];
+	
+	[self.view addConstraints:[self.passwordTextField ul_matchSizeOfView:self.userIDTextField ratio:CGSizeMake(1.0f, 1.0f)]];
+	[self.view addConstraints:[self.passwordTextField ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.userIDTextField distance:self.spacings.height topToBottom:NO]];
+	
+	[self.view addConstraints:[self.loginButton ul_matchSizeOfView:self.userIDTextField ratio:CGSizeMake(1.0f, 1.2f)]];
+	[self.view addConstraints:[self.loginButton ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.passwordTextField distance:self.spacings.height topToBottom:NO]];
+	
+	[self.view addConstraints:[self.termConditionLabel ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, kUIViewUnpinInset, self.paddings.right)]];
+	[self.view addConstraints:[self.termConditionLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.loginButton distance:self.spacings.height topToBottom:NO]];
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
+#pragma mark - Static UI
 
-    self.userIDTextField.frame = [self userIDFrame];
-    self.passwordTextField.frame = [self passwordFrame:self.userIDTextField.frame];
-    self.loginButton.frame = [self loginButtonFrame:self.passwordTextField.frame];
-}
-
-#pragma mark - User ID
-
-- (CGRect)userIDFrame
+- (UIImageView *)logoImageView
 {
-    CGFloat xOffset = self.paddings.left;
-    CGFloat yOffset = self.paddings.top;
-    CGFloat width = self.view.bounds.size.width - 2*xOffset;
-    CGFloat height = kRPLoginViewControllerTextFieldHeight;
-
-    CGRect frame = CGRectMake(xOffset, yOffset, width, height);
-    return frame;
+	if (!_logoImageView) {
+		_logoImageView = [[UIImageView alloc] initWithImage:[UIImage ul_imageNamed:@"img_reputation_logo.png"]];
+		_logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+		[_logoImageView ul_enableAutoLayout];
+		[_logoImageView ul_tightenContentWithPriority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _logoImageView;
 }
+
+- (UILabel *)kioskLabel
+{
+	if (!_kioskLabel) {
+		_kioskLabel = [[UILabel alloc] init];
+		_kioskLabel.backgroundColor = [UIColor clearColor];
+		_kioskLabel.textAlignment = NSTextAlignmentCenter;
+		_kioskLabel.text = NSLocalizedString(@"Kiosk Login", nil);
+		_kioskLabel.font = [UIFont rpk_boldFontWithSize:120.0f];
+		_kioskLabel.textColor = [UIColor rpk_defaultBlue];
+		[_kioskLabel ul_enableAutoLayout];
+		[_kioskLabel ul_tightenContentWithPriority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _kioskLabel;
+}
+
+- (UILabel *)termConditionLabel
+{
+	if (!_termConditionLabel) {
+		_termConditionLabel = [[UILabel alloc] init];
+		_termConditionLabel.backgroundColor = [UIColor clearColor];
+		_termConditionLabel.textAlignment = NSTextAlignmentLeft;
+		_termConditionLabel.text = NSLocalizedString(@"Term and Conditions", nil);
+		_termConditionLabel.font = [UIFont rpk_boldFontWithSize:20.0f];
+		_termConditionLabel.textColor = [UIColor rpk_lightGray];
+		[_termConditionLabel ul_enableAutoLayout];
+	}
+	
+	return _termConditionLabel;
+}
+
+#pragma mark - Text Fields
 
 - (UITextField *)userIDTextField
 {
@@ -74,22 +122,10 @@
         _userIDTextField.keyboardType = UIKeyboardTypeEmailAddress;
         _userIDTextField.delegate = self;
         [_userIDTextField ul_addDismissAccessoryWithText:@"Done" barStyle:UIBarStyleDefault];
+		[_userIDTextField ul_enableAutoLayout];
     }
 
     return _userIDTextField;
-}
-
-#pragma mark - Password
-
-- (CGRect)passwordFrame:(CGRect)userIDFrame
-{
-    CGFloat xOffset = self.paddings.left;
-    CGFloat yOffset = userIDFrame.origin.y + userIDFrame.size.height + self.spacings.height;
-    CGFloat width = self.view.bounds.size.width - 2*xOffset;
-    CGFloat height = kRPLoginViewControllerTextFieldHeight;
-
-    CGRect frame = CGRectMake(xOffset, yOffset, width, height);
-    return frame;
 }
 
 - (UITextField *)passwordTextField
@@ -100,6 +136,7 @@
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.delegate = self;
         [_passwordTextField ul_addDismissAccessoryWithText:@"Done" barStyle:UIBarStyleDefault];
+		[_passwordTextField ul_enableAutoLayout];
     }
 
     return _passwordTextField;
@@ -125,29 +162,19 @@
 
 #pragma mark - Login Button
 
-- (CGRect)loginButtonFrame:(CGRect)passwordFrame
-{
-    CGFloat xOffset = self.paddings.left;
-    CGFloat yOffset = passwordFrame.origin.y + passwordFrame.size.height + self.spacings.height + 3.0f;
-    CGFloat width = self.view.bounds.size.width - 2*xOffset;
-    CGFloat height = kRPLoginViewControllerLoginButtonHeight;
-
-    CGRect frame = CGRectMake(xOffset, yOffset, width, height);
-    return frame;
-}
-
 - (UIButton *)loginButton
 {
     if (!_loginButton) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loginButton.backgroundColor = [UIColor rp_brightBlue];
-        _loginButton.titleLabel.font = [UIFont rp_fontWithSize:18.0f];
+        _loginButton.backgroundColor = [UIColor rpk_brightBlue];
+        _loginButton.titleLabel.font = [UIFont rpk_fontWithSize:40.0f];
         [_loginButton setTitle:@"Log In" forState:UIControlStateNormal];
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginButton addTarget:self action:@selector(handleLoginButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
         _loginButton.layer.cornerRadius = 2.0f;
         _loginButton.layer.masksToBounds = YES;
+		[_loginButton ul_enableAutoLayout];
     }
 
     return _loginButton;
@@ -194,7 +221,7 @@
 
 - (NSAttributedString *)placeHolderForText:(NSString *)text
 {
-    return [text al_attributedStringWithFont:[UIFont rp_boldFontWithSize:14.0f] textColor:[UIColor rp_mediumGrey]];
+    return [text al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:14.0f] textColor:[UIColor rpk_mediumGray]];
 }
 
 - (BOOL)validEmail:(NSString *)email

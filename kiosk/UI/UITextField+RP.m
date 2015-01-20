@@ -16,12 +16,12 @@
 {
 	UITextField *textField = [[UITextField alloc] init];
 	textField.backgroundColor = [UIColor whiteColor];
-	textField.font = [UIFont rp_boldFontWithSize:14.0f];
+	textField.font = [UIFont rp_boldFontWithSize:24.0f];
 	textField.layer.cornerRadius = 2.0f;
 	textField.layer.borderWidth = 0.6;
 	textField.layer.borderColor = [[UIColor rp_borderColor] CGColor];
 	textField.layer.masksToBounds = YES;
-	textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
+	textField.layer.sublayerTransform = CATransform3DMakeTranslation(0, 0, 0);
 	
 	return textField;
 }
