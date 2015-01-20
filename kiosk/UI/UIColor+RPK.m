@@ -21,6 +21,11 @@
 	return [UIColor ul_colorWithHexString:@"#4ebfeb"];
 }
 
++ (UIColor *)rpk_darkGray
+{
+	return [UIColor ul_colorWithR:102 G:102 B:102 A:1.0f];
+}
+
 + (UIColor *)rpk_mediumGray
 {
 	return [UIColor ul_colorWithR:154 G:154 B:154 A:1.0f];

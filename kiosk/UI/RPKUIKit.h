@@ -15,5 +15,6 @@
 
 #import "UIColor+RPK.h"
 #import "UIFont+RPK.h"
+#import "UIImage+RPK.h"
 
 #endif

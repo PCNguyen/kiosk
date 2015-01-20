@@ -25,9 +25,8 @@
 @interface RPKMenuCell : RPKCollectionViewCell
 
 @property (nonatomic, strong) UIImageView *logoImageView;
-@property (nonatomic, strong) UIView *logoImageBorder;
-
-@property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UIImageView *buttonBackgroundView;
+@property (nonatomic, strong) UILabel *sourceLabel;
 
 @end
 
@@ -35,23 +34,22 @@
 
 - (void)commonInit
 {
-	self.paddings = UIEdgeInsetsMake(0.0f, 40.0f, 0.0f, 40.0f);
-	self.spacings = CGSizeMake(0.0f, 30.0f);
+	self.paddings = UIEdgeInsetsMake(28.0f, 10.0f, 28.0f, 0.0f);
+	self.spacings = CGSizeMake(20.0f, 0.0f);
 	
-	[self.contentView addSubview:self.logoImageBorder];
+	[self.contentView addSubview:self.buttonBackgroundView];
 	[self.contentView addSubview:self.logoImageView];
-	[self.contentView addSubview:self.detailLabel];
+	[self.contentView addSubview:self.sourceLabel];
+	
+	[self.contentView addConstraints:[self.buttonBackgroundView ul_pinWithInset:UIEdgeInsetsZero]];
+	[self.contentView addConstraints:[self.sourceLabel ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.logoImageView distance:self.spacings.width leftToRight:NO]];
 }
 
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
 	
-	self.detailLabel.frame = [self detailLabelFrame];
-	self.logoImageView.frame = [self logoImageFrame:self.detailLabel.frame];
-	self.logoImageBorder.frame = CGRectInset(self.logoImageView.frame, -5.0f, -5.0f);
-	[self.logoImageView ul_round];
-	[self.logoImageBorder ul_round];
+	self.logoImageView.frame = [self logoImageViewFrame];
 }
 
 #pragma mark - Override
@@ -59,36 +57,29 @@
 - (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
 {
 	RPKMenuItem *menuItem = (RPKMenuItem *)model;
-	
-	NSString *concateTitle = [NSString stringWithFormat:@"%@\n%@",menuItem.itemTitle, menuItem.itemDetail];
-	
 	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
-	NSMutableAttributedString *attributedString = [concateTitle al_attributedStringWithFont:[UIFont systemFontOfSize:25.0f] textColor:[UIColor whiteColor]];
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	[paragraphStyle setLineSpacing:5];
-	[paragraphStyle setAlignment:NSTextAlignmentCenter];
-	
-	[attributedString addAttribute:NSParagraphStyleAttributeName
-							 value:paragraphStyle
-							 range:[concateTitle al_fullRange]];
-	
-	[attributedString addAttribute:NSFontAttributeName
-							 value:[UIFont systemFontOfSize:35.0f]
-							 range:[menuItem.itemTitle al_fullRange]];
-	[attributedString addAttribute:NSForegroundColorAttributeName
-							 value:[UIColor yellowColor]
-							 range:[menuItem.itemTitle al_fullRange]];
-	self.detailLabel.attributedText = attributedString;
+	self.sourceLabel.text = menuItem.itemTitle;
 }
 
-#pragma mark - Logo Image
+#pragma mark - UI Elements
 
-- (CGRect)logoImageFrame:(CGRect)bottomFrame
+- (UIImageView *)buttonBackgroundView
 {
-	CGFloat width = kMCLogoImageSize.width;
-	CGFloat height = kMCLogoImageSize.height;
-	CGFloat xOffset = (self.bounds.size.width - width) / 2;
-	CGFloat yOffset = bottomFrame.origin.y - self.spacings.height - height;
+	if (!_buttonBackgroundView) {
+		_buttonBackgroundView = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"bg_source_button.png"]];
+		_buttonBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
+		[_buttonBackgroundView ul_enableAutoLayout];
+	}
+	
+	return _buttonBackgroundView;
+}
+
+- (CGRect)logoImageViewFrame
+{
+	CGFloat xOffset = self.paddings.left;
+	CGFloat yOffset = self.paddings.top;
+	CGFloat height = self.contentView.bounds.size.height - yOffset - self.paddings.bottom;
+	CGFloat width = height;
 	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
@@ -103,37 +94,17 @@
 	return _logoImageView;
 }
 
-- (UIView *)logoImageBorder
+- (UILabel *)sourceLabel
 {
-	if (!_logoImageBorder) {
-		_logoImageBorder = [[UIView alloc] initWithFrame:CGRectZero];
-		_logoImageBorder.backgroundColor = [UIColor whiteColor];
+	if (!_sourceLabel) {
+		_sourceLabel = [[UILabel alloc] init];
+		_sourceLabel.font = [UIFont rpk_boldFontWithSize:35.0f];
+		_sourceLabel.textColor = [UIColor rpk_darkGray];
+		_sourceLabel.backgroundColor = [UIColor clearColor];
+		[_sourceLabel ul_enableAutoLayout];
 	}
 	
-	return _logoImageBorder;
-}
-
-#pragma mark - Detail Label
-
-- (CGRect)detailLabelFrame
-{
-	CGFloat xOffset = self.paddings.left;
-	CGFloat width = self.bounds.size.width - xOffset - self.paddings.right;
-	CGFloat height = [self.detailLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
-	CGFloat totalHeight = height + kMCLogoImageSize.height + self.spacings.height;
-	CGFloat yOffset = (self.bounds.size.height - totalHeight) / 2 + kMCLogoImageSize.height + self.spacings.height;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
-- (UILabel *)detailLabel
-{
-	if (!_detailLabel) {
-		_detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_detailLabel.numberOfLines = 0;
-	}
-	
-	return _detailLabel;
+	return _sourceLabel;
 }
 
 @end
@@ -161,12 +132,20 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
+	self.paddings = UIEdgeInsetsMake(130.0f, 140.0f, 280.0f, 140.0f);
+	self.spacings = CGSizeMake(0.0f, 60.0f);
+	
 	self.view.backgroundColor = [UIColor ul_colorWithR:246 G:246 B:246 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 
     [self.view addSubview:self.kioskTitle];
     [self.view addSubview:self.kioskSubtitle];
     [self.view addSubview:self.menuSelectionView];
+	
+	[self.view addConstraints:[self.kioskTitle ul_pinWithInset:UIEdgeInsetsMake(self.paddings.top, 0.0f, kUIViewUnpinInset, 0.0f)]];
+	[self.view addConstraints:[self.kioskSubtitle ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskTitle distance:kUIViewAquaDistance topToBottom:NO]];
+	[self.view addConstraints:[self.menuSelectionView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, self.paddings.bottom, self.paddings.right)]];
+	[self.view addConstraints:[self.menuSelectionView ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskSubtitle distance:self.spacings.height topToBottom:NO]];
 }
 
 - (void)viewDidLoad
@@ -174,14 +153,6 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[super viewDidLoad];
 	
 	[[self dataSource] loadData];
-}
-
-- (void)viewWillLayoutSubviews
-{
-	[super viewWillLayoutSubviews];
-
-	[self.menuSelectionView.collectionViewLayout invalidateLayout];
-	self.menuSelectionView.frame = self.view.bounds;
 }
 
 #pragma mark - ULViewDataBinding Protocol
@@ -211,28 +182,31 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (UILabel *)kioskTitle {
     if (!_kioskTitle) {
         _kioskTitle = [[UILabel alloc] init];
-        _kioskTitle.textColor = [UIColor ul_colorWithR:29 G:123 B:162 A:1];
-        _kioskTitle.font = [UIFont rpk_fontWithSize:80.0f];
+        _kioskTitle.textColor = [UIColor rpk_defaultBlue];
+        _kioskTitle.font = [UIFont rpk_fontWithSize:70.0f];
         _kioskTitle.backgroundColor = [UIColor clearColor];
         _kioskTitle.textAlignment = NSTextAlignmentCenter;
         _kioskTitle.text = NSLocalizedString(@"Leave a Review", nil);
+		[_kioskTitle ul_enableAutoLayout];
     }
 
     return _kioskTitle;
 }
 
 - (UILabel *)kioskSubtitle {
-    if (_kioskSubtitle) {
+    if (!_kioskSubtitle) {
         _kioskSubtitle = [[UILabel alloc] init];
-        _kioskSubtitle.textColor = [UIColor ul_colorWithR:162 G:190 B:207 A:1.0];
+        _kioskSubtitle.textColor = [UIColor rpk_brightBlue];
         _kioskSubtitle.textAlignment = NSTextAlignmentCenter;
-        _kioskSubtitle.font = [UIFont rpk_fontWithSize:30.0f];
+        _kioskSubtitle.font = [UIFont rpk_fontWithSize:28.0f];
         _kioskSubtitle.backgroundColor = [UIColor clearColor];
         _kioskSubtitle.text = NSLocalizedString(@"Please select a review source", nil);
+		[_kioskSubtitle ul_enableAutoLayout];
     }
 
     return _kioskSubtitle;
 }
+
 #pragma mark - Collection View
 
 - (UICollectionViewFlowLayout *)defaultLayout
@@ -255,6 +229,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		_menuSelectionView.delegate = self;
 		_menuSelectionView.dataSource = self;
 		_menuSelectionView.backgroundColor = [UIColor clearColor];
+		[_menuSelectionView ul_enableAutoLayout];
 	}
 	
 	return _menuSelectionView;
@@ -298,7 +273,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGSize itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height / 2 - 20.0f);
+	CGSize itemSize = CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height / 2 - 20.0f);
 	
 	return itemSize;
 }

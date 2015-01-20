@@ -73,7 +73,7 @@
 - (UIImageView *)logoImageView
 {
 	if (!_logoImageView) {
-		_logoImageView = [[UIImageView alloc] initWithImage:[UIImage ul_imageNamed:@"logo_reputation.png"]];
+		_logoImageView = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"logo_reputation.png"]];
 		_logoImageView.contentMode = UIViewContentModeScaleAspectFit;
 		[_logoImageView ul_enableAutoLayout];
 		[_logoImageView ul_tightenContentWithPriority:UILayoutPriorityDefaultHigh];

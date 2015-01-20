@@ -18,7 +18,7 @@
 	RPKMenuItem *kioskItem = [[RPKMenuItem alloc] init];
 	kioskItem.itemURL = [NSURL URLWithString:@"http://qa.reputation.com/kiosk?key=a06326f3414"];
 	kioskItem.imageName = @"icon_reputation.png";
-	kioskItem.itemTitle = @"Reputation.com";
+	kioskItem.itemTitle = @"Quick Survey";
 	kioskItem.itemDetail = @"Leave a review";
 	[menuItems addObject:kioskItem];
 	
@@ -28,7 +28,7 @@
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
-	googlePlusItem.itemTitle = @"Google Plus Local";
+	googlePlusItem.itemTitle = @"Google+ Local";
 	googlePlusItem.itemDetail = @"Leave a review";
 	[menuItems addObject:googlePlusItem];
 	

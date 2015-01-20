@@ -14,6 +14,8 @@
 
 + (UIColor *)rpk_brightBlue;
 
++ (UIColor *)rpk_darkGray;
+
 + (UIColor *)rpk_mediumGray;
 
 + (UIColor *)rpk_lightGray;
