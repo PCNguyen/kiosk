@@ -115,6 +115,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_100_italic-museosans.ttf"; sourceTree = "<group>"; };
+		0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_100-museosans.ttf"; sourceTree = "<group>"; };
+		0F063AC91A6EE80B0092F607 /* museosans_300_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_300_italic-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACA1A6EE80B0092F607 /* museosans_300-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_300-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACB1A6EE80B0092F607 /* museosans_500_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_500_italic-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACC1A6EE80B0092F607 /* museosans_500-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_500-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACD1A6EE80B0092F607 /* museosans_700_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_700_italic-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_700-museosans.ttf"; sourceTree = "<group>"; };
+		0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_900_italic-museosans.ttf"; sourceTree = "<group>"; };
+		0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_900-museosans.ttf"; sourceTree = "<group>"; };
 		0F1932EA1A5E08DF0083B96E /* manualSelect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = manualSelect.js; sourceTree = "<group>"; };
 		0F1932F01A5F2C430083B96E /* RPKMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMessageView.h; sourceTree = "<group>"; };
 		0F1932F11A5F2C430083B96E /* RPKMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMessageView.m; sourceTree = "<group>"; };
@@ -326,6 +336,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F063AC51A6EE74F0092F607 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0F063AC61A6EE7CA0092F607 /* Font */,
+				0FA0ABF91A40F711007AA263 /* image */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		0F063AC61A6EE7CA0092F607 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */,
+				0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */,
+				0F063AC91A6EE80B0092F607 /* museosans_300_italic-museosans.ttf */,
+				0F063ACA1A6EE80B0092F607 /* museosans_300-museosans.ttf */,
+				0F063ACB1A6EE80B0092F607 /* museosans_500_italic-museosans.ttf */,
+				0F063ACC1A6EE80B0092F607 /* museosans_500-museosans.ttf */,
+				0F063ACD1A6EE80B0092F607 /* museosans_700_italic-museosans.ttf */,
+				0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */,
+				0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */,
+				0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		0F4987781A4A203F0083F850 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +442,7 @@
 		0FA0ABDC1A40AE29007AA263 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0F063AC51A6EE74F0092F607 /* Resources */,
 				0FA0AC041A4104FD007AA263 /* RPKUIKit.h */,
 				0FA0E1E31A6888090011EAC9 /* RPAlertController.h */,
 				0FA0E1E41A6888090011EAC9 /* RPAlertController.m */,
@@ -429,7 +466,6 @@
 		0FA0ABE41A40B19E007AA263 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				0FA0ABF91A40F711007AA263 /* image */,
 				0FA0ABF31A40C835007AA263 /* Model */,
 				0FD805C81A5D974D00EE1AD6 /* View */,
 				0FA0ABE51A40B1AB007AA263 /* Controllers */,
@@ -508,14 +544,14 @@
 				0FA0E1F31A6888840011EAC9 /* UIFont+RP.m */,
 				0FA0E1EF1A6888750011EAC9 /* UIColor+RP.h */,
 				0FA0E1F01A6888750011EAC9 /* UIColor+RP.m */,
+				0F1932F31A5F38950083B96E /* UIColor+RPK.h */,
+				0F1932F41A5F38950083B96E /* UIColor+RPK.m */,
 				0FA0E1EC1A6888600011EAC9 /* UILabel+RP.h */,
 				0FA0E1ED1A6888600011EAC9 /* UILabel+RP.m */,
 				0FA0E1E91A6888500011EAC9 /* UILabel+DynamicHeight.h */,
 				0FA0E1EA1A6888500011EAC9 /* UILabel+DynamicHeight.m */,
 				0FA0AC001A4103FA007AA263 /* UIImage+RPK.h */,
 				0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */,
-				0F1932F31A5F38950083B96E /* UIColor+RPK.h */,
-				0F1932F41A5F38950083B96E /* UIColor+RPK.m */,
 				0FA0E1E01A6887DB0011EAC9 /* UIViewController+Alert.h */,
 				0FA0E1E11A6887DB0011EAC9 /* UIViewController+Alert.m */,
 				0FA0E1E61A6888270011EAC9 /* UIView+LayoutFrame.h */,
