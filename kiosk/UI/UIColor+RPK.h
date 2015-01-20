@@ -14,6 +14,12 @@
 
 + (UIColor *)rpk_brightBlue;
 
++ (UIColor *)rpk_mediumGray;
+
++ (UIColor *)rpk_lightGray;
+
 + (UIColor *)rpk_backgroundColor;
+
++ (UIColor *)rpk_borderColor;
 
 @end

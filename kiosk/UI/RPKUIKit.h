@@ -9,6 +9,7 @@
 #ifndef kiosk_RPKUIKit_h
 #define kiosk_RPKUIKit_h
 
+#import <UIKit/UIKit.h>
 #import <AppSDK/UILib.h>
 
 #endif

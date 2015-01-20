@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Reputation. All rights reserved.
 //
 
-#import "UIColor+RPK.h"
 #import "RPKUIKit.h"
+#import "UIColor+RPK.h"
 
 @implementation UIColor (RPK)
 
@@ -21,9 +21,24 @@
 	return [UIColor ul_colorWithHexString:@"#4ebfeb"];
 }
 
++ (UIColor *)rpk_mediumGray
+{
+	return [UIColor ul_colorWithR:154 G:154 B:154 A:1.0f];
+}
+
++ (UIColor *)rpk_lightGray
+{
+	return [UIColor ul_colorWithR:173 G:174 B:174 A:1.0f];
+}
+
 + (UIColor *)rpk_backgroundColor
 {
 	return [UIColor ul_colorWithR:246 G:246 B:246 A:1.0f];
+}
+
++ (UIColor *)rpk_borderColor
+{
+	return [UIColor ul_colorWithR:216 G:216 B:216 A:1.0f];
 }
 
 @end
