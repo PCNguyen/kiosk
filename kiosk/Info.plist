@@ -35,8 +35,21 @@
 	<true/>
 	<key>Server URL</key>
 	<string>https://qa-r4e-mobile.reputation.com</string>
-    <key>Server Port</key>
-    <string>443</string>
+	<key>Server Port</key>
+	<string>443</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>museosans_100-museosans.ttf</string>
+		<string>museosans_100_italic-museosans.ttf</string>
+		<string>museosans_300-museosans.ttf</string>
+		<string>museosans_300_italic-museosans.ttf</string>
+		<string>museosans_500-museosans.ttf</string>
+		<string>museosans_500_italic-museosans.ttf</string>
+		<string>museosans_700-museosans.ttf</string>
+		<string>museosans_700_italic-museosans.ttf</string>
+		<string>museosans_900-museosans.ttf</string>
+		<string>museosans_900_italic-museosans.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -34,7 +34,7 @@
     [super loadView];
 
     self.paddings = UIEdgeInsetsMake(100.0f, 150.0f, 0.0f, 150.0f);
-    self.spacings = CGSizeMake(0.0f, 20.0f);
+    self.spacings = CGSizeMake(0.0f, 15.0f);
 
     self.view.backgroundColor = [UIColor rpk_backgroundColor];
 
@@ -52,6 +52,7 @@
 	
 	[self.view addConstraints:[self.kioskLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.logoImageView distance:(3 * self.spacings.height) topToBottom:NO]];
 	
+	[self.userIDTextField ul_fixedSize:CGSizeMake(0.0f, 60.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.userIDTextField ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, kUIViewUnpinInset, self.paddings.right)]];
 	[self.view addConstraints:[self.userIDTextField ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskLabel distance:(3 * self.spacings.height) topToBottom:NO]];
 	
@@ -86,7 +87,7 @@
 		_kioskLabel.backgroundColor = [UIColor clearColor];
 		_kioskLabel.textAlignment = NSTextAlignmentCenter;
 		_kioskLabel.text = NSLocalizedString(@"Kiosk Login", nil);
-		_kioskLabel.font = [UIFont rpk_boldFontWithSize:120.0f];
+		_kioskLabel.font = [UIFont rpk_boldFontWithSize:50.0f];
 		_kioskLabel.textColor = [UIColor rpk_defaultBlue];
 		[_kioskLabel ul_enableAutoLayout];
 		[_kioskLabel ul_tightenContentWithPriority:UILayoutPriorityDefaultHigh];
@@ -102,7 +103,7 @@
 		_termConditionLabel.backgroundColor = [UIColor clearColor];
 		_termConditionLabel.textAlignment = NSTextAlignmentLeft;
 		_termConditionLabel.text = NSLocalizedString(@"Term and Conditions", nil);
-		_termConditionLabel.font = [UIFont rpk_boldFontWithSize:20.0f];
+		_termConditionLabel.font = [UIFont rpk_boldFontWithSize:16.0f];
 		_termConditionLabel.textColor = [UIColor rpk_lightGray];
 		[_termConditionLabel ul_enableAutoLayout];
 	}
@@ -167,7 +168,7 @@
     if (!_loginButton) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginButton.backgroundColor = [UIColor rpk_brightBlue];
-        _loginButton.titleLabel.font = [UIFont rpk_fontWithSize:40.0f];
+        _loginButton.titleLabel.font = [UIFont rpk_fontWithSize:25.0f];
         [_loginButton setTitle:@"Log In" forState:UIControlStateNormal];
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginButton addTarget:self action:@selector(handleLoginButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -221,7 +222,7 @@
 
 - (NSAttributedString *)placeHolderForText:(NSString *)text
 {
-    return [text al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:14.0f] textColor:[UIColor rpk_mediumGray]];
+    return [text al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f] textColor:[UIColor rpk_mediumGray]];
 }
 
 - (BOOL)validEmail:(NSString *)email

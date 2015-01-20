@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0F063AD31A6EE8790092F607 /* UIFont+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AD21A6EE8790092F607 /* UIFont+RPK.m */; };
+		0F063AD41A6EF5970092F607 /* museosans_100_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */; };
+		0F063AD51A6EF5970092F607 /* museosans_100-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */; };
+		0F063AD61A6EF5970092F607 /* museosans_300_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC91A6EE80B0092F607 /* museosans_300_italic-museosans.ttf */; };
+		0F063AD71A6EF5970092F607 /* museosans_300-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACA1A6EE80B0092F607 /* museosans_300-museosans.ttf */; };
+		0F063AD81A6EF5970092F607 /* museosans_500_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACB1A6EE80B0092F607 /* museosans_500_italic-museosans.ttf */; };
+		0F063AD91A6EF5970092F607 /* museosans_500-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACC1A6EE80B0092F607 /* museosans_500-museosans.ttf */; };
+		0F063ADA1A6EF5970092F607 /* museosans_700_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACD1A6EE80B0092F607 /* museosans_700_italic-museosans.ttf */; };
+		0F063ADB1A6EF5970092F607 /* museosans_700-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */; };
+		0F063ADC1A6EF5970092F607 /* museosans_900_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */; };
+		0F063ADD1A6EF5970092F607 /* museosans_900-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */; };
 		0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
 		0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F11A5F2C430083B96E /* RPKMessageView.m */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
@@ -909,6 +919,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F063AD41A6EF5970092F607 /* museosans_100_italic-museosans.ttf in Resources */,
+				0F063AD51A6EF5970092F607 /* museosans_100-museosans.ttf in Resources */,
+				0F063AD61A6EF5970092F607 /* museosans_300_italic-museosans.ttf in Resources */,
+				0F063AD71A6EF5970092F607 /* museosans_300-museosans.ttf in Resources */,
+				0F063AD81A6EF5970092F607 /* museosans_500_italic-museosans.ttf in Resources */,
+				0F063AD91A6EF5970092F607 /* museosans_500-museosans.ttf in Resources */,
+				0F063ADA1A6EF5970092F607 /* museosans_700_italic-museosans.ttf in Resources */,
+				0F063ADB1A6EF5970092F607 /* museosans_700-museosans.ttf in Resources */,
+				0F063ADC1A6EF5970092F607 /* museosans_900_italic-museosans.ttf in Resources */,
+				0F063ADD1A6EF5970092F607 /* museosans_900-museosans.ttf in Resources */,
 				0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */,
 				0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */,
 				0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */,
