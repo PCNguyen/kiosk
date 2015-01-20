@@ -14,4 +14,6 @@
 
 + (UIColor *)rpk_brightBlue;
 
++ (UIColor *)rpk_backgroundColor;
+
 @end

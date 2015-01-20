@@ -21,4 +21,9 @@
 	return [UIColor ul_colorWithHexString:@"#4ebfeb"];
 }
 
++ (UIColor *)rpk_backgroundColor
+{
+	return [UIColor ul_colorWithR:246 G:246 B:246 A:1.0f];
+}
+
 @end
