@@ -14,6 +14,7 @@
 #import "RPKKioskViewController.h"
 
 #import "UIImage+RPK.h"
+#import "UIFont+RP.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
@@ -147,7 +148,7 @@ NSString *const MVCCellID = @"kMVCCellID";
  ********************************/
 @interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UILabel *kioskLabel;
+@property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UILabel *kioskSubtitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
 
@@ -161,9 +162,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
-	self.view.backgroundColor = [UIColor ul_colorWithR:0 G:0 B:0 A:1];
+	self.view.backgroundColor = [UIColor ul_colorWithR:246 G:246 B:246 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 
+    [self.view addSubview:self.kioskTitle];
+    [self.view addSubview:self.kioskSubtitle];
     [self.view addSubview:self.menuSelectionView];
 }
 
@@ -204,6 +207,33 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[self.menuSelectionView reloadData];
 }
 
+#pragma mark - Title
+
+- (UILabel *)kioskTitle {
+    if (!_kioskTitle) {
+        _kioskTitle = [[UILabel alloc] init];
+        _kioskTitle.textColor = [UIColor ul_colorWithR:29 G:123 B:162 A:1];
+        _kioskTitle.font = [UIFont rp_fontWithSize:80.0f];
+        _kioskTitle.backgroundColor = [UIColor clearColor];
+        _kioskTitle.textAlignment = NSTextAlignmentCenter;
+        _kioskTitle.text = NSLocalizedString(@"Leave a Review", nil);
+    }
+
+    return _kioskTitle;
+}
+
+- (UILabel *)kioskSubtitle {
+    if (_kioskSubtitle) {
+        _kioskSubtitle = [[UILabel alloc] init];
+        _kioskSubtitle.textColor = [UIColor ul_colorWithR:162 G:190 B:207 A:1.0];
+        _kioskSubtitle.textAlignment = NSTextAlignmentCenter;
+        _kioskSubtitle.font = [UIFont rp_fontWithSize:30.0f];
+        _kioskSubtitle.backgroundColor = [UIColor clearColor];
+        _kioskSubtitle.text = NSLocalizedString(@"Please select a review source", nil);
+    }
+
+    return _kioskSubtitle;
+}
 #pragma mark - Collection View
 
 - (UICollectionViewFlowLayout *)defaultLayout
