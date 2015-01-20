@@ -34,7 +34,7 @@
 
 - (void)commonInit
 {
-	self.paddings = UIEdgeInsetsMake(28.0f, 10.0f, 28.0f, 0.0f);
+	self.paddings = UIEdgeInsetsMake(25.0f, 10.0f, 25.0f, 0.0f);
 	self.spacings = CGSizeMake(20.0f, 0.0f);
 	
 	[self.contentView addSubview:self.buttonBackgroundView];
@@ -183,7 +183,7 @@ NSString *const MVCCellID = @"kMVCCellID";
     if (!_kioskTitle) {
         _kioskTitle = [[UILabel alloc] init];
         _kioskTitle.textColor = [UIColor rpk_defaultBlue];
-        _kioskTitle.font = [UIFont rpk_fontWithSize:70.0f];
+        _kioskTitle.font = [UIFont rpk_fontWithSize:72.0f];
         _kioskTitle.backgroundColor = [UIColor clearColor];
         _kioskTitle.textAlignment = NSTextAlignmentCenter;
         _kioskTitle.text = NSLocalizedString(@"Leave a Review", nil);
@@ -196,9 +196,9 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (UILabel *)kioskSubtitle {
     if (!_kioskSubtitle) {
         _kioskSubtitle = [[UILabel alloc] init];
-        _kioskSubtitle.textColor = [UIColor rpk_brightBlue];
+        _kioskSubtitle.textColor = [UIColor ul_colorWithR:190 G:162 B:207 A:1.0f];
         _kioskSubtitle.textAlignment = NSTextAlignmentCenter;
-        _kioskSubtitle.font = [UIFont rpk_fontWithSize:28.0f];
+        _kioskSubtitle.font = [UIFont rpk_fontWithSize:27.0f];
         _kioskSubtitle.backgroundColor = [UIColor clearColor];
         _kioskSubtitle.text = NSLocalizedString(@"Please select a review source", nil);
 		[_kioskSubtitle ul_enableAutoLayout];
