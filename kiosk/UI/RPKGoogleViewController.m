@@ -12,6 +12,7 @@
 #import "RPKReloadView.h"
 #import "RPKGoogleMessage.h"
 #import "RPKMaskButton.h"
+#import "RPNotificationCenter.h"
 
 #import <AppSDK/AppLibExtension.h>
 
@@ -34,6 +35,11 @@
 
 @implementation RPKGoogleViewController
 
+- (void)dealloc
+{
+	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardWillShowNotification parameter:nil];
+}
+
 - (instancetype)initWithURL:(NSURL *)url
 {
 	if (self = [super initWithURL:url]) {
@@ -51,6 +57,8 @@
 {
 	[super loadView];
 
+	self.webView.scrollView.scrollEnabled = NO;
+	
 	[self.webView addSubview:self.coverView];
 	[self.webView addConstraints:[self.coverView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
 	
@@ -72,6 +80,8 @@
 	[super viewDidLoad];
 	
 	self.popupLoaded = NO;
+	
+	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardWillShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -373,6 +383,18 @@
 	}
 	
 	return _submitButton;
+}
+
+#pragma mark - Notification
+
+- (void)handleKeyboardShowNotification:(NSNotification *)notification
+{
+	[self performSelector:@selector(readjustWebviewScroller) withObject:nil afterDelay:0];
+}
+
+- (void)readjustWebviewScroller
+{
+	self.webView.scrollView.bounds = self.webView.bounds;
 }
 
 @end
