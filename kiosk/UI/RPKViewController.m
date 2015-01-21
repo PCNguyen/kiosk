@@ -29,7 +29,10 @@
 
 - (void)toggleLoadingView:(BOOL)isVisible {
     if (isVisible) {
-        [self.loadingView show];
+		//--check if loading view not already visible
+		if (self.loadingView.alpha == 0.0f) {
+			[self.loadingView show];
+		}
     } else {
         [self.loadingView hide];
     }
