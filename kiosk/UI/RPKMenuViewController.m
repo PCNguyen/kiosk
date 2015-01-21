@@ -290,6 +290,12 @@ NSString *const MVCCellID = @"kMVCCellID";
 		[_securedView setLockBackgroundColor:[UIColor rpk_backgroundColor]];
 		[_securedView ul_enableAutoLayout];
 		[_securedView ul_fixedSize:CGSizeMake(0.0f, 110.0f) priority:UILayoutPriorityDefaultHigh];
+		
+		NSString *securedMessage = NSLocalizedString(@"We never save or share your personal information.", nil);
+		NSString *boldText = NSLocalizedString(@"never", nil);
+		NSMutableAttributedString *attributedMessage = [securedMessage al_attributedStringWithFont:[UIFont rpk_fontWithSize:20.0f] textColor:[UIColor rpk_mediumGray]];
+		[attributedMessage addAttribute:NSFontAttributeName value:[UIFont rpk_extraBoldFontWithSize:20.0f] range:[securedMessage rangeOfString:boldText]];
+		[_securedView setSecuredMessage:attributedMessage];
 	}
 	
 	return _securedView;

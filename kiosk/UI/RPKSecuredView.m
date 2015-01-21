@@ -37,7 +37,7 @@
 
 @property (nonatomic, strong) RPKBorderView *borderView;
 @property (nonatomic, strong) UIImageView *lockImageView;
-@property (nonatomic, strong) UILabel *securedMessage;
+@property (nonatomic, strong) UILabel *securedMessageLabel;
 
 @end
 
@@ -47,7 +47,7 @@
 {
 	[self addSubview:self.borderView];
 	[self addSubview:self.lockImageView];
-	[self addSubview:self.securedMessage];
+	[self addSubview:self.securedMessageLabel];
 }
 
 - (void)layoutSubviews
@@ -56,6 +56,7 @@
 	
 	self.lockImageView.frame = [self lockImageViewFrame];
 	self.borderView.frame = [self borderFrame:self.lockImageView.frame];
+	self.securedMessageLabel.frame = self.borderView.frame;
 }
 
 #pragma mark - Lock Image View
@@ -105,6 +106,24 @@
 	}
 	
 	return _borderView;
+}
+
+#pragma mark - Message View
+
+- (UILabel *)securedMessageLabel
+{
+	if (!_securedMessageLabel) {
+		_securedMessageLabel = [[UILabel alloc] init];
+		_securedMessageLabel.textAlignment = NSTextAlignmentCenter;
+		_securedMessageLabel.numberOfLines = 1;
+	}
+	
+	return _securedMessageLabel;
+}
+
+- (void)setSecuredMessage:(NSAttributedString *)securedMessage
+{
+	self.securedMessageLabel.attributedText = securedMessage;
 }
 
 @end
