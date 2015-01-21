@@ -28,6 +28,13 @@
 @property (nonatomic, strong) UIImageView *buttonBackgroundView;
 @property (nonatomic, strong) UILabel *sourceLabel;
 
+/**
+ *  Whether or not to display the secured lock next to icon
+ *
+ *  @param isSecured if YES then the lock is visible
+ */
+- (void)setSecuredItem:(BOOL)isSecured;
+
 @end
 
 @implementation RPKMenuCell
@@ -61,6 +68,7 @@
 	RPKMenuItem *menuItem = (RPKMenuItem *)model;
 	self.logoImageView.image = [UIImage rpk_bundleImageNamed:menuItem.imageName];
 	self.sourceLabel.text = menuItem.itemTitle;
+	[self setSecuredItem:menuItem.isSecured];
 }
 
 #pragma mark - UI Elements
@@ -114,6 +122,11 @@
 	}
 	
 	return _lockImageView;
+}
+
+- (void)setSecuredItem:(BOOL)isSecured
+{
+	self.lockImageView.alpha = isSecured;
 }
 
 - (UILabel *)sourceLabel

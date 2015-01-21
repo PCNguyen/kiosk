@@ -19,7 +19,7 @@
 	kioskItem.itemURL = [NSURL URLWithString:@"http://qa.reputation.com/kiosk?key=a06326f3414"];
 	kioskItem.imageName = @"icon_quicksurvey.png";
 	kioskItem.itemTitle = @"Quick Survey";
-	kioskItem.itemDetail = @"Leave a review";
+	kioskItem.isSecured = NO;
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
@@ -29,7 +29,7 @@
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google+ Local";
-	googlePlusItem.itemDetail = @"Leave a review";
+	googlePlusItem.isSecured = YES;
 	[menuItems addObject:googlePlusItem];
 	
 	self.menuItems = menuItems;

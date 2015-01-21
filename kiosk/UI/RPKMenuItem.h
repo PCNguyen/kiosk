@@ -28,7 +28,7 @@
 /**
  *  A brief description
  */
-@property (nonatomic, strong) NSString *itemDetail;
+@property (nonatomic, assign) BOOL isSecured;
 
 @end
 
