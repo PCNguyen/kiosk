@@ -36,6 +36,7 @@
 		0F79DC231A705A3900A4EF9A /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC201A705A3900A4EF9A /* icon_back.png */; };
 		0F79DC241A705A3900A4EF9A /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC211A705A3900A4EF9A /* icon_refresh.png */; };
 		0F79DC251A705A3900A4EF9A /* icon_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC221A705A3900A4EF9A /* icon_x.png */; };
+		0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -164,6 +165,8 @@
 		0F79DC201A705A3900A4EF9A /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
 		0F79DC211A705A3900A4EF9A /* icon_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_refresh.png; sourceTree = "<group>"; };
 		0F79DC221A705A3900A4EF9A /* icon_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_x.png; sourceTree = "<group>"; };
+		0F79DC261A705FB900A4EF9A /* RPKGoogleMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleMessage.h; sourceTree = "<group>"; };
+		0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleMessage.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -826,6 +829,8 @@
 				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
 				0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */,
 				0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */,
+				0F79DC261A705FB900A4EF9A /* RPKGoogleMessage.h */,
+				0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1011,6 +1016,7 @@
 				0FA0E1A91A686EF30011EAC9 /* RPKHMACHTTPClient.m in Sources */,
 				0FA0E2061A6889D70011EAC9 /* UserPreference+RP.m in Sources */,
 				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
+				0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */,
 				0FA0E1CF1A6885670011EAC9 /* RPAccountManager.m in Sources */,
 				0FA0E1D81A68862A0011EAC9 /* UIApplication+RP.m in Sources */,
 				0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */,

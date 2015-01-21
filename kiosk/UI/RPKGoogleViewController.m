@@ -10,6 +10,7 @@
 #import "RPKCookieHandler.h"
 #import "RPKSecuredView.h"
 #import "RPKReloadView.h"
+#import "RPKGoogleMessage.h"
 
 #import <AppSDK/AppLibExtension.h>
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) RPKSecuredView *securedView;
 @property (nonatomic, strong) RPKReloadView *reloadView;
+@property (nonatomic, strong) RPKGoogleMessage *googleMessage;
 
 @property (nonatomic, strong) UIView *coverView;
 
@@ -55,6 +57,9 @@
 	
 	[self.webView addSubview:self.reloadView];
 	[self.webView addConstraints:[self.reloadView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 20.0f, kUIViewAquaDistance, kUIViewAquaDistance)]];
+	
+	[self.webView addSubview:self.googleMessage];
+	[self.webView addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 }
 
 - (void)viewDidLoad
@@ -262,6 +267,7 @@
 - (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
 	self.reloadView.alpha = visible;
+	self.googleMessage.alpha = visible;
 }
 
 - (void)handleReloadViewTapped:(id)sender
@@ -328,6 +334,21 @@
 	}
 	
 	return _reloadView;
+}
+
+#pragma mark - Google Message
+
+- (RPKGoogleMessage *)googleMessage
+{
+	if (!_googleMessage) {
+		_googleMessage = [[RPKGoogleMessage alloc] init];
+		_googleMessage.backgroundColor = [UIColor clearColor];
+		_googleMessage.alpha = 0.0f;
+		[_googleMessage ul_enableAutoLayout];
+		[_googleMessage ul_fixedSize:CGSizeMake(0.0f, 100.0f) priority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _googleMessage;
 }
 
 @end
