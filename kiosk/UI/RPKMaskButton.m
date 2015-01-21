@@ -12,7 +12,7 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-	if (self.actionBlock) {
+	if (self.actionBlock && self.isActive) {
 		self.actionBlock();
 	}
 	

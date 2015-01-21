@@ -13,5 +13,6 @@ typedef void(^RPKMaskButtonAction)();
 @interface RPKMaskButton : RPKView
 
 @property (copy, readwrite) RPKMaskButtonAction actionBlock;
+@property (nonatomic, assign) BOOL isActive;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RPKWebViewController.h"
+#import "RPNotificationCenter.h"
 
 @implementation RPKWebViewController
 
@@ -20,6 +21,11 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardWillShowNotification parameter:nil];
+}
+
 - (void)loadView
 {
 	[super loadView];
@@ -31,6 +37,8 @@
 	} else {
 		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
 	}
+	
+	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardWillShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
 }
 
 - (void)viewDidLoad
@@ -61,5 +69,17 @@
 - (WKWebViewConfiguration *)webConfiguration
 {
 	return [WKWebViewConfiguration new];
+}
+
+#pragma mark - Notification
+
+- (void)handleKeyboardShowNotification:(NSNotification *)notification
+{
+	[self performSelector:@selector(readjustWebviewScroller) withObject:nil afterDelay:0];
+}
+
+- (void)readjustWebviewScroller
+{
+	self.webView.scrollView.bounds = self.webView.bounds;
 }
 @end

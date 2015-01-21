@@ -11,6 +11,7 @@
 #import "RPKSecuredView.h"
 #import "RPKReloadView.h"
 #import "RPKGoogleMessage.h"
+#import "RPKMaskButton.h"
 
 #import <AppSDK/AppLibExtension.h>
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) RPKSecuredView *securedView;
 @property (nonatomic, strong) RPKReloadView *reloadView;
 @property (nonatomic, strong) RPKGoogleMessage *googleMessage;
+@property (nonatomic, strong) RPKMaskButton *submitButton;
 
 @property (nonatomic, strong) UIView *coverView;
 
@@ -60,6 +62,9 @@
 	
 	[self.webView addSubview:self.googleMessage];
 	[self.webView addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
+	
+	[self.webView addSubview:self.submitButton];
+	[self.webView addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(520.0f, 50.0f, kUIViewUnpinInset, kUIViewUnpinInset)]];
 }
 
 - (void)viewDidLoad
@@ -349,6 +354,25 @@
 	}
 	
 	return _googleMessage;
+}
+
+#pragma mark - Submit Button
+
+- (RPKMaskButton *)submitButton
+{
+	if (!_submitButton) {
+		_submitButton = [[RPKMaskButton alloc] init];
+		_submitButton.alpha = 0.0f;
+		_submitButton.actionBlock = ^{
+			NSLog(@"Submit");
+		};
+		
+		_submitButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+		[_submitButton ul_enableAutoLayout];
+		[_submitButton ul_fixedSize:CGSizeMake(100.0f, 50.0f)];
+	}
+	
+	return _submitButton;
 }
 
 @end
