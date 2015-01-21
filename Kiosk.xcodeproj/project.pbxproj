@@ -32,6 +32,7 @@
 		0F7135CD1A645841003E4180 /* RPKAlphaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7135CC1A645841003E4180 /* RPKAlphaView.m */; };
 		0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
 		0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
+		0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -155,6 +156,8 @@
 		0F7135CC1A645841003E4180 /* RPKAlphaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAlphaView.m; sourceTree = "<group>"; };
 		0F78EEBC1A52FD9B003B7718 /* cookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cookies.js; sourceTree = "<group>"; };
 		0F78EEBE1A5305D4003B7718 /* deleteCookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deleteCookies.js; sourceTree = "<group>"; };
+		0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKReloadView.h; sourceTree = "<group>"; };
+		0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKReloadView.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -812,6 +815,8 @@
 				0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */,
 				0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */,
 				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
+				0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */,
+				0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1015,6 +1020,7 @@
 				0FA0E1AA1A686EF30011EAC9 /* RPKServiceController.m in Sources */,
 				0FA0E1C61A68847E0011EAC9 /* DLAppStorage+RP.m in Sources */,
 				0FA0E18E1A686AC80011EAC9 /* TSocketClient.m in Sources */,
+				0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */,
 				0FA0E1991A686B350011EAC9 /* MobileAuth.m in Sources */,
 				0FA0ABF61A40C859007AA263 /* RPKMenuDataSource.m in Sources */,
 				0FA0E1C01A6883A40011EAC9 /* User+RP.m in Sources */,
