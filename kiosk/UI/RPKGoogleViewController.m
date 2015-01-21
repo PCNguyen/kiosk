@@ -20,6 +20,7 @@
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) RPKMessageView *messageView;
 @property (nonatomic, strong) RPKSecuredView *securedView;
+@property (nonatomic, strong) UIView *coverView;
 
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, assign) BOOL cookieCleared;
@@ -44,6 +45,9 @@
 - (void)loadView
 {
 	[super loadView];
+
+	[self.webView addSubview:self.coverView];
+	[self.webView addConstraints:[self.coverView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
 	
 	[self.webView addSubview:self.securedView];
 	[self.webView addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 100.0f, 80.0f)]];
@@ -307,6 +311,22 @@
 - (void)toggleCustomViewForLoginScreen:(BOOL)visible
 {
 	self.securedView.alpha = visible;
+	self.coverView.alpha = visible;
+}
+
+#pragma mark - Cover View
+
+- (UIView *)coverView
+{
+	if (!_coverView) {
+		_coverView = [[UIView alloc] init];
+		_coverView.backgroundColor = [UIColor whiteColor];
+		_coverView.alpha = 0.0f;
+		[_coverView ul_enableAutoLayout];
+		[_coverView ul_fixedSize:CGSizeMake(0.0f, 400.0f) priority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _coverView;
 }
 
 @end
