@@ -9,8 +9,9 @@
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
 #import "RPKMessageView.h"
+#import "RPKSecuredView.h"
 
-#import "UIColor+RPK.h"
+#import <AppSDK/AppLibExtension.h>
 
 #define kGVCLogoutQuery				@"logout=1"
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) RPKMessageView *messageView;
+@property (nonatomic, strong) RPKSecuredView *securedView;
 
 @property (nonatomic, assign) BOOL popupLoaded;
 @property (nonatomic, assign) BOOL cookieCleared;
@@ -43,9 +45,8 @@
 {
 	[super loadView];
 	
-	[self.webView addSubview:self.messageView];
-	[self.messageView ul_fixedSize:CGSizeMake(0.0f, 80.0f) priority:UILayoutPriorityDefaultHigh];
-	[self.webView addConstraints:[self.messageView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, 0.0f, 0.0f)]];
+	[self.webView addSubview:self.securedView];
+	[self.webView addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 100.0f, 80.0f)]];
 }
 
 - (void)viewDidLoad
@@ -153,12 +154,17 @@
 		}
 	}];
 	
+	if ([navigationAction.request.URL.host isEqualToString:@"plus.google.com"]) {
+		[self toggleCustomViewForLoginScreen:NO];
+	}
+	
 	NSString *widgetSegment = @"widget";
 	if ([pathComponents containsObject:widgetSegment]) {
 		[self.popupTask stop];
 		self.popupLoaded = YES;
+		
 		[self hideLoading];
-		[self showMessageView];
+		[self toggleCustomViewForGooglePage:YES];
 	}
 	
 	if (!didCancel) {
@@ -168,8 +174,6 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-	NSLog(@"%@", webView.URL);
-	
 	if ([webView.URL.host isEqualToString:@"plus.google.com"]) {
 		if (!self.popupLoaded) {
 			//--inject the function to be called
@@ -185,8 +189,8 @@
 	
 	if ([webView.URL isEqual:self.logoutURL]) {
 		if (!self.cookieCleared) {
-			[self hideMessageView];
-			NSLog(@"clearing Cookies ...");
+			[self toggleCustomViewForGooglePage:NO];
+			[self toggleCustomViewForLoginScreen:YES];
 			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
@@ -198,6 +202,7 @@
 		
 	} else if ([[webView.URL pathComponents] containsObject:@"ServiceLogin"]) {
 		[self hideLoading];
+		[self toggleCustomViewForLoginScreen:YES];
 	}
 }
 
@@ -241,10 +246,7 @@
 
 - (void)executePopupScript
 {
-	NSLog(@"Attempt To Display Popup");
-	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:^(id result, NSError *error) {
-		NSLog(@"%@", error);
-	}];
+	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
 }
 
 #pragma mark - Message View
@@ -266,15 +268,9 @@
 	return _messageView;
 }
 
-- (void)showMessageView
+- (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
-	self.messageView.messageType = MessageReloadPage;
-	self.messageView.alpha = 1.0f;
-}
 
-- (void)hideMessageView
-{
-	self.messageView.alpha = 0.0f;
 }
 
 #pragma mark - Message View Delegate
@@ -284,6 +280,33 @@
 	self.popupLoaded = NO;
 	[self showLoading];
 	[self.webView reload];
+}
+
+#pragma mark - Secured View
+
+- (RPKSecuredView *)securedView
+{
+	if (!_securedView) {
+		_securedView = [[RPKSecuredView alloc] init];
+		_securedView.backgroundColor = [UIColor clearColor];
+		[_securedView setLockBackgroundColor:[UIColor whiteColor]];
+		[_securedView ul_enableAutoLayout];
+		[_securedView ul_fixedSize:CGSizeMake(0.0f, 110.0f) priority:UILayoutPriorityDefaultHigh];
+		
+		NSString *securedMessage = NSLocalizedString(@"We never save or share your personal information.", nil);
+		NSString *boldText = NSLocalizedString(@"never", nil);
+		NSMutableAttributedString *attributedMessage = [securedMessage al_attributedStringWithFont:[UIFont rpk_fontWithSize:20.0f] textColor:[UIColor rpk_mediumGray]];
+		[attributedMessage addAttribute:NSFontAttributeName value:[UIFont rpk_extraBoldFontWithSize:20.0f] range:[securedMessage rangeOfString:boldText]];
+		[_securedView setSecuredMessage:attributedMessage];
+		_securedView.alpha = 0.0f;
+	}
+	
+	return _securedView;
+}
+
+- (void)toggleCustomViewForLoginScreen:(BOOL)visible
+{
+	self.securedView.alpha = visible;
 }
 
 @end
