@@ -25,6 +25,7 @@
 		0F063AE91A6EFE940092F607 /* icon_lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE21A6EFE940092F607 /* icon_lock_small.png */; };
 		0F063AEA1A6EFE940092F607 /* icon_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE31A6EFE940092F607 /* icon_reputation.png */; };
 		0F063AEB1A6EFE940092F607 /* logo_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE41A6EFE940092F607 /* logo_reputation.png */; };
+		0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
 		0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
 		0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F11A5F2C430083B96E /* RPKMessageView.m */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
@@ -145,6 +146,8 @@
 		0F063AE21A6EFE940092F607 /* icon_lock_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_lock_small.png; sourceTree = "<group>"; };
 		0F063AE31A6EFE940092F607 /* icon_reputation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_reputation.png; sourceTree = "<group>"; };
 		0F063AE41A6EFE940092F607 /* logo_reputation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_reputation.png; sourceTree = "<group>"; };
+		0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKSecuredView.h; sourceTree = "<group>"; };
+		0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKSecuredView.m; sourceTree = "<group>"; };
 		0F1932EA1A5E08DF0083B96E /* manualSelect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = manualSelect.js; sourceTree = "<group>"; };
 		0F1932F01A5F2C430083B96E /* RPKMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMessageView.h; sourceTree = "<group>"; };
 		0F1932F11A5F2C430083B96E /* RPKMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMessageView.m; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 				0F1932F11A5F2C430083B96E /* RPKMessageView.m */,
 				0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */,
 				0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */,
+				0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */,
+				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1001,6 +1006,7 @@
 				0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */,
 				0FA0E1CF1A6885670011EAC9 /* RPAccountManager.m in Sources */,
 				0FA0E1D81A68862A0011EAC9 /* UIApplication+RP.m in Sources */,
+				0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */,
 				0FA0E1981A686B350011EAC9 /* Mobile.m in Sources */,
 				0FA0E18D1A686AC80011EAC9 /* TNSStreamTransport.m in Sources */,
 				0FA0E1DB1A6886540011EAC9 /* RPScheduleHandler.m in Sources */,
@@ -1122,7 +1128,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1158,7 +1164,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

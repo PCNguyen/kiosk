@@ -12,8 +12,7 @@
 #import "RPKCollectionViewCell.h"
 #import "RPKGoogleViewController.h"
 #import "RPKKioskViewController.h"
-
-#import "UIImage+RPK.h"
+#import "RPKSecuredView.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
@@ -121,6 +120,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UILabel *kioskSubtitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
+@property (nonatomic, strong) RPKSecuredView *securedView;
 
 @end
 
@@ -141,11 +141,13 @@ NSString *const MVCCellID = @"kMVCCellID";
     [self.view addSubview:self.kioskTitle];
     [self.view addSubview:self.kioskSubtitle];
     [self.view addSubview:self.menuSelectionView];
+	[self.view addSubview:self.securedView];
 	
 	[self.view addConstraints:[self.kioskTitle ul_pinWithInset:UIEdgeInsetsMake(self.paddings.top, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	[self.view addConstraints:[self.kioskSubtitle ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskTitle distance:kUIViewAquaDistance topToBottom:NO]];
 	[self.view addConstraints:[self.menuSelectionView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, self.paddings.bottom, self.paddings.right)]];
 	[self.view addConstraints:[self.menuSelectionView ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskSubtitle distance:self.spacings.height topToBottom:NO]];
+	[self.view addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 100.0f, 80.0f)]];
 }
 
 - (void)viewDidLoad
@@ -276,6 +278,20 @@ NSString *const MVCCellID = @"kMVCCellID";
 	CGSize itemSize = CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height / 2 - 20.0f);
 	
 	return itemSize;
+}
+
+#pragma mark - Secured View
+
+- (RPKSecuredView *)securedView
+{
+	if (!_securedView) {
+		_securedView = [[RPKSecuredView alloc] init];
+		_securedView.backgroundColor = [UIColor clearColor];
+		[_securedView ul_enableAutoLayout];
+		[_securedView ul_fixedSize:CGSizeMake(0.0f, 110.0f) priority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _securedView;
 }
 
 @end
