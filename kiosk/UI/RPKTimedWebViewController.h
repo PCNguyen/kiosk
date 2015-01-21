@@ -8,7 +8,6 @@
 
 #import "RPKWebViewController.h"
 #import "RPKExpirationView.h"
-#import "RPKLoadingView.h"
 
 #import <AppSDK/AppLibScheduler.h>
 

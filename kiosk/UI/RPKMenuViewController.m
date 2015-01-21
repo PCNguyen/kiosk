@@ -24,6 +24,7 @@
 @interface RPKMenuCell : RPKCollectionViewCell
 
 @property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UIImageView *lockImageView;
 @property (nonatomic, strong) UIImageView *buttonBackgroundView;
 @property (nonatomic, strong) UILabel *sourceLabel;
 
@@ -38,6 +39,7 @@
 	
 	[self.contentView addSubview:self.buttonBackgroundView];
 	[self.contentView addSubview:self.logoImageView];
+	[self.contentView addSubview:self.lockImageView];
 	[self.contentView addSubview:self.sourceLabel];
 	
 	[self.contentView addConstraints:[self.buttonBackgroundView ul_pinWithInset:UIEdgeInsetsZero]];
@@ -49,6 +51,7 @@
 	[super layoutSubviews];
 	
 	self.logoImageView.frame = [self logoImageViewFrame];
+	self.lockImageView.frame = [self lockImageViewFrame:self.logoImageView.frame];
 }
 
 #pragma mark - Override
@@ -91,6 +94,26 @@
 	}
 	
 	return _logoImageView;
+}
+
+- (CGRect)lockImageViewFrame:(CGRect)logoImageViewFrame
+{
+	CGFloat width = logoImageViewFrame.size.width / 4;
+	CGFloat height = logoImageViewFrame.size.height / 4;
+	CGFloat xOffset = logoImageViewFrame.origin.x + logoImageViewFrame.size.width - width;
+	CGFloat yOffset = logoImageViewFrame.origin.y + logoImageViewFrame.size.height - height;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (UIImageView *)lockImageView
+{
+	if (!_lockImageView) {
+		_lockImageView = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_lock_small.png"]];
+		_lockImageView.contentMode = UIViewContentModeScaleAspectFit;
+	}
+	
+	return _lockImageView;
 }
 
 - (UILabel *)sourceLabel
