@@ -8,17 +8,15 @@
 
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
-#import "RPKMessageView.h"
 #import "RPKSecuredView.h"
 
 #import <AppSDK/AppLibExtension.h>
 
 #define kGVCLogoutQuery				@"logout=1"
 
-@interface RPKGoogleViewController () <RPKMessageViewDelegate, WKScriptMessageHandler>
+@interface RPKGoogleViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
-@property (nonatomic, strong) RPKMessageView *messageView;
 @property (nonatomic, strong) RPKSecuredView *securedView;
 @property (nonatomic, strong) UIView *coverView;
 
@@ -253,33 +251,14 @@
 	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
 }
 
-#pragma mark - Message View
-
-- (RPKMessageView *)messageView
-{
-	if (!_messageView) {
-		_messageView = [[RPKMessageView alloc] init];
-		_messageView.backgroundColor = [UIColor whiteColor];
-		_messageView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-		_messageView.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
-		_messageView.layer.shadowRadius = 3.0f;
-		_messageView.layer.shadowOpacity = 0.8f;
-		_messageView.delegate = self;
-		_messageView.alpha = 0.0f;
-		[_messageView ul_enableAutoLayout];
-	}
-	
-	return _messageView;
-}
+#pragma mark - Reload View
 
 - (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
 
 }
 
-#pragma mark - Message View Delegate
-
-- (void)messagViewActionTapped:(RPKMessageView *)messageView
+- (void)reloadViewTapped:(id)sender
 {
 	self.popupLoaded = NO;
 	[self showLoading];

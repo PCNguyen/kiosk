@@ -26,7 +26,6 @@
 		0F063AEB1A6EFE940092F607 /* logo_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE41A6EFE940092F607 /* logo_reputation.png */; };
 		0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
 		0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
-		0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F11A5F2C430083B96E /* RPKMessageView.m */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
 		0F1932F71A5F51620083B96E /* customStyle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932F61A5F51620083B96E /* customStyle.js */; };
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
@@ -147,8 +146,6 @@
 		0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKSecuredView.h; sourceTree = "<group>"; };
 		0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKSecuredView.m; sourceTree = "<group>"; };
 		0F1932EA1A5E08DF0083B96E /* manualSelect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = manualSelect.js; sourceTree = "<group>"; };
-		0F1932F01A5F2C430083B96E /* RPKMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMessageView.h; sourceTree = "<group>"; };
-		0F1932F11A5F2C430083B96E /* RPKMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMessageView.m; sourceTree = "<group>"; };
 		0F1932F31A5F38950083B96E /* UIColor+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RPK.h"; sourceTree = "<group>"; };
 		0F1932F41A5F38950083B96E /* UIColor+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RPK.m"; sourceTree = "<group>"; };
 		0F1932F61A5F51620083B96E /* customStyle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = customStyle.js; sourceTree = "<group>"; };
@@ -813,8 +810,6 @@
 				0F7135CC1A645841003E4180 /* RPKAlphaView.m */,
 				0FD805C91A5D977100EE1AD6 /* RPKExpirationView.h */,
 				0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */,
-				0F1932F01A5F2C430083B96E /* RPKMessageView.h */,
-				0F1932F11A5F2C430083B96E /* RPKMessageView.m */,
 				0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */,
 				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
 			);
@@ -1039,7 +1034,6 @@
 				0FA0E18B1A686AC80011EAC9 /* TMemoryBuffer.m in Sources */,
 				0FA0E1E51A6888090011EAC9 /* RPAlertController.m in Sources */,
 				0FA0E1C31A6883D70011EAC9 /* NSBundle+Extension.m in Sources */,
-				0F1932F21A5F2C430083B96E /* RPKMessageView.m in Sources */,
 				0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FD805CB1A5D977100EE1AD6 /* RPKExpirationView.m in Sources */,
