@@ -10,4 +10,6 @@
 
 @interface RPKSecuredView : RPKView
 
+- (void)setLockBackgroundColor:(UIColor *)color;
+
 @end

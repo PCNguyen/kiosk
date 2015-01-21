@@ -80,6 +80,11 @@
 	return _lockImageView;
 }
 
+- (void)setLockBackgroundColor:(UIColor *)color
+{
+	self.lockImageView.backgroundColor = color;
+}
+
 #pragma mark - Border View
 
 - (CGRect)borderFrame:(CGRect)topFrame

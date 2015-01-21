@@ -287,6 +287,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	if (!_securedView) {
 		_securedView = [[RPKSecuredView alloc] init];
 		_securedView.backgroundColor = [UIColor clearColor];
+		[_securedView setLockBackgroundColor:[UIColor rpk_backgroundColor]];
 		[_securedView ul_enableAutoLayout];
 		[_securedView ul_fixedSize:CGSizeMake(0.0f, 110.0f) priority:UILayoutPriorityDefaultHigh];
 	}
