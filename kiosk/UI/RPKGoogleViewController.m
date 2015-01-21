@@ -144,10 +144,14 @@
 		didCancel = YES;
 	}
 	
-	NSString *authSegment = @"ServiceLoginAuth";
-	if ([pathComponents containsObject:authSegment]) {
-		[self showLoading];
-	}
+	//--show loading hosts
+	NSArray *loadingSegment = @[@"ServiceLogin", @"ServiceLoginAuth"];
+	[loadingSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
+		if ([pathComponents containsObject:segment]) {
+			[self showLoading];
+			*stop = YES;
+		}
+	}];
 	
 	NSString *widgetSegment = @"widget";
 	if ([pathComponents containsObject:widgetSegment]) {
@@ -182,7 +186,6 @@
 	if ([webView.URL isEqual:self.logoutURL]) {
 		if (!self.cookieCleared) {
 			[self hideMessageView];
-			[self showLoading];
 			NSLog(@"clearing Cookies ...");
 			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
@@ -192,6 +195,9 @@
 		} else {
 			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:5.0f];
 		}
+		
+	} else if ([[webView.URL pathComponents] containsObject:@"ServiceLogin"]) {
+		[self hideLoading];
 	}
 }
 
