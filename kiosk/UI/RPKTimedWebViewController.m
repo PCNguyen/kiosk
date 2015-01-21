@@ -50,12 +50,6 @@
 	 forState:UIControlStateDisabled];
 }
 
-- (void)viewWillLayoutSubviews
-{
-	[super viewWillLayoutSubviews];
-	self.loadingView.frame = self.webView.bounds;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -192,25 +186,16 @@
 
 #pragma mark - Loading
 
-- (RPKLoadingView *)loadingView
-{
-	if (!_loadingView) {
-		_loadingView = [[RPKLoadingView alloc] initWithFrame:CGRectZero];
-	}
-	
-	return _loadingView;
-}
-
 - (void)showLoading
 {
 	self.logoutButton.enabled = NO;
-	[self.loadingView showFromView:self.webView];
+	[self toggleLoadingView:YES];
 }
 
 - (void)hideLoading
 {
 	self.logoutButton.enabled = YES;
-	[self.loadingView hide];
+	[self toggleLoadingView:NO];
 }
 
 @end

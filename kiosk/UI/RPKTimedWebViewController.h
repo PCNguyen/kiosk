@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 
 @property (nonatomic, strong) RPKExpirationView *expirationView;
-@property (nonatomic, strong) RPKLoadingView *loadingView;
 
 @property (nonatomic, strong) ALScheduledTask *idleTask;
 @property (atomic, strong) NSDate *lastInteractionDate;
