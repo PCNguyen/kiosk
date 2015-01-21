@@ -106,7 +106,6 @@
 		0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */; };
 		0FA0E2421A6D69690011EAC9 /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
-		0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */; };
 		0FBDF8591A702C4900488874 /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBDF8581A702C4900488874 /* icon_quicksurvey.png */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
@@ -312,8 +311,6 @@
 		0FA0E2401A6D69690011EAC9 /* RPKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoginViewController.h; sourceTree = "<group>"; };
 		0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLoginViewController.m; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoadingView.h; sourceTree = "<group>"; };
-		0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLoadingView.m; sourceTree = "<group>"; };
 		0FBDF8581A702C4900488874 /* icon_quicksurvey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_quicksurvey.png; sourceTree = "<group>"; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
@@ -818,8 +815,6 @@
 				0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */,
 				0F1932F01A5F2C430083B96E /* RPKMessageView.h */,
 				0F1932F11A5F2C430083B96E /* RPKMessageView.m */,
-				0FA1E94A1A6095A800DC4429 /* RPKLoadingView.h */,
-				0FA1E94B1A6095A800DC4429 /* RPKLoadingView.m */,
 				0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */,
 				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
 			);
@@ -1057,7 +1052,6 @@
 				0FA0E1FD1A6888E70011EAC9 /* UITextField+RP.m in Sources */,
 				0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */,
 				0FA0ABB91A40ABE1007AA263 /* main.m in Sources */,
-				0FA1E94C1A6095A800DC4429 /* RPKLoadingView.m in Sources */,
 				0FA0E1821A686AC80011EAC9 /* TProtocolException.m in Sources */,
 				0FA0E1901A686AC80011EAC9 /* TSharedProcessorFactory.m in Sources */,
 				0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */,
