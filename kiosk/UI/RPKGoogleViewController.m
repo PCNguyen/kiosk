@@ -9,6 +9,7 @@
 #import "RPKGoogleViewController.h"
 #import "RPKCookieHandler.h"
 #import "RPKSecuredView.h"
+#import "RPKReloadView.h"
 
 #import <AppSDK/AppLibExtension.h>
 
@@ -18,6 +19,8 @@
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) RPKSecuredView *securedView;
+@property (nonatomic, strong) RPKReloadView *reloadView;
+
 @property (nonatomic, strong) UIView *coverView;
 
 @property (nonatomic, assign) BOOL popupLoaded;
@@ -49,6 +52,9 @@
 	
 	[self.webView addSubview:self.securedView];
 	[self.webView addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 100.0f, 80.0f)]];
+	
+	[self.webView addSubview:self.reloadView];
+	[self.webView addConstraints:[self.reloadView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 20.0f, kUIViewAquaDistance, kUIViewAquaDistance)]];
 }
 
 - (void)viewDidLoad
@@ -255,10 +261,10 @@
 
 - (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
-
+	self.reloadView.alpha = visible;
 }
 
-- (void)reloadViewTapped:(id)sender
+- (void)handleReloadViewTapped:(id)sender
 {
 	self.popupLoaded = NO;
 	[self showLoading];
@@ -306,6 +312,22 @@
 	}
 	
 	return _coverView;
+}
+
+#pragma mark - Reload View
+
+- (RPKReloadView *)reloadView
+{
+	if (!_reloadView) {
+		_reloadView = [[RPKReloadView alloc] init];
+		_reloadView.backgroundColor = [UIColor clearColor];
+		_reloadView.alpha = 0.0f;
+		[_reloadView ul_enableAutoLayout];
+		[_reloadView ul_fixedSize:CGSizeMake(0.0f, 40.0f) priority:UILayoutPriorityDefaultHigh];
+		[_reloadView ul_addTapGestureWithTarget:self action:@selector(handleReloadViewTapped:)];
+	}
+	
+	return _reloadView;
 }
 
 @end
