@@ -8,11 +8,33 @@
 
 #import "RPKMaskButton.h"
 
+@interface RPKMaskButton ()
+
+/**
+ *  To guard against double tap
+ */
+@property (nonatomic, strong) NSDate *lastHit;
+
+@end
+
 @implementation RPKMaskButton
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	if (self = [super initWithFrame:frame]) {
+		self.lastHit = [NSDate date];
+	}
+	
+	return self;
+}
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-	if (self.actionBlock && self.isActive) {
+	BOOL inBound = CGRectContainsPoint(self.bounds, point);
+	BOOL doubleTapGuarded = ABS([self.lastHit timeIntervalSinceNow]) > 1;
+	self.lastHit = [NSDate date];
+	
+	if (self.actionBlock && self.isActive && inBound && doubleTapGuarded) {
 		self.actionBlock();
 	}
 	

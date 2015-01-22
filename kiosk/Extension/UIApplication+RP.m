@@ -52,6 +52,13 @@
 	return appID;
 }
 
+- (void)rp_addSubviewOnFrontWindow:(UIView *)view
+{
+	UIWindow *window = self.windows.lastObject;
+	[window addSubview:view];
+	[window bringSubviewToFront:view];
+}
+
 #pragma mark - Private
 
 + (NSString *)serverURLString

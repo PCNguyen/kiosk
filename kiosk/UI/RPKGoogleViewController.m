@@ -13,6 +13,7 @@
 #import "RPKGoogleMessage.h"
 #import "RPKMaskButton.h"
 #import "RPNotificationCenter.h"
+#import "UIApplication+RP.h"
 
 #import <AppSDK/AppLibExtension.h>
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) RPKReloadView *reloadView;
 @property (nonatomic, strong) RPKGoogleMessage *googleMessage;
 @property (nonatomic, strong) RPKMaskButton *submitButton;
+@property (nonatomic, strong) RPKMaskButton *cancelButton;
 
 @property (nonatomic, strong) UIView *coverView;
 
@@ -37,7 +39,7 @@
 
 - (void)dealloc
 {
-	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardWillShowNotification parameter:nil];
+	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardDidShowNotification parameter:nil];
 }
 
 - (instancetype)initWithURL:(NSURL *)url
@@ -72,7 +74,8 @@
 	[self.webView addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	
 	[self.webView addSubview:self.submitButton];
-	[self.webView addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(520.0f, 50.0f, kUIViewUnpinInset, kUIViewUnpinInset)]];
+	[self.webView addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]];
+
 }
 
 - (void)viewDidLoad
@@ -81,7 +84,7 @@
 	
 	self.popupLoaded = NO;
 	
-	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardWillShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
+	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardDidShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -190,6 +193,7 @@
 	if ([pathComponents containsObject:widgetSegment]) {
 		[self.popupTask stop];
 		self.popupLoaded = YES;
+		self.submitButton.isActive = YES;
 		
 		[self hideLoading];
 		[self toggleCustomViewForGooglePage:YES];
@@ -379,7 +383,7 @@
 		
 		_submitButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
 		[_submitButton ul_enableAutoLayout];
-		[_submitButton ul_fixedSize:CGSizeMake(100.0f, 50.0f)];
+		[_submitButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
 	}
 	
 	return _submitButton;
@@ -389,7 +393,9 @@
 
 - (void)handleKeyboardShowNotification:(NSNotification *)notification
 {
-	[self performSelector:@selector(readjustWebviewScroller) withObject:nil afterDelay:0];
+//	UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(450, 800.0f, 100.0f, 100.0f)];
+//	coverView.backgroundColor = [UIColor redColor];
+//	[[UIApplication sharedApplication] rp_addSubviewOnFrontWindow:coverView];
 }
 
 - (void)readjustWebviewScroller

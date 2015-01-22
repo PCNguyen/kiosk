@@ -22,4 +22,6 @@
 
 + (NSString *)rp_itunesAppID;
 
+- (void)rp_addSubviewOnFrontWindow:(UIView *)view;
+
 @end
