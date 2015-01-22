@@ -491,6 +491,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	if (!_cancelButton) {
 		_cancelButton = [[RPKMaskButton alloc] init];
+		_cancelButton.alpha = 0.0f;
 		
 		__weak RPKGoogleViewController *selfPointer = self;
 		_cancelButton.actionBlock = ^{
@@ -498,7 +499,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[selfPointer removeKeyboardMask];
 		};
 		
-		_cancelButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
 		[_cancelButton ul_enableAutoLayout];
 		[_cancelButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
 	}
