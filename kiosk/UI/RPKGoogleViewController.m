@@ -20,7 +20,7 @@
 #define kGVCLogoutURL				@"https://accounts.google.com/ServiceLogin?logout=1"
 #define kGVCVerifiedLogoutURL		@"https://accounts.google.com/ServiceLogin?logout=2"
 
-#define kGVCKeyboardHideLockSize		CGSizeMake(57.0f, 57.0f)
+#define kGVCKeyboardHideLockSize		CGSizeMake(58.0f, 58.0f)
 #define kGVCKeyboardGoButtonSize		CGSizeMake(100.0f, 57.0f)
 
 typedef NS_ENUM(NSInteger, RPKGooglePage) {
@@ -47,12 +47,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
  */
 @property (nonatomic, strong) RPKReloadView *reloadView;
 @property (nonatomic, strong) RPKGoogleMessage *googleMessage;
+@property (nonatomic, strong) NSLayoutConstraint *googleTop;
 
 /**
  *  Mask buttons for widget page
  */
 @property (nonatomic, strong) RPKMaskButton *submitButton;
-@property (nonatomic, strong) RPKMaskButton *cancelButton;
+@property (nonatomic, strong) NSLayoutConstraint *submitTop;
+@property (nonatomic, strong) UIButton *cancelButton;
 
 /**
  *  view to mask the keyboard
@@ -103,10 +105,28 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	[self.webView addConstraints:[self.reloadView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 20.0f, kUIViewAquaDistance, kUIViewAquaDistance)]];
 	
 	[self.webView addSubview:self.googleMessage];
-	[self.webView addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
+	self.googleTop = [NSLayoutConstraint constraintWithItem:self.googleMessage
+												  attribute:NSLayoutAttributeTop
+												  relatedBy:NSLayoutRelationEqual
+													 toItem:self.webView
+												  attribute:NSLayoutAttributeTop
+												 multiplier:1.0f
+												   constant:50.0f];
+	[self.webView addConstraint:self.googleTop];
+	[self.webView ul_addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]
+						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.submitButton];
-	[self.webView addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]];
+	self.submitTop = [NSLayoutConstraint constraintWithItem:self.submitButton
+												  attribute:NSLayoutAttributeTop
+												  relatedBy:NSLayoutRelationEqual
+													 toItem:self.webView
+												  attribute:NSLayoutAttributeTop
+												 multiplier:1.0f
+												   constant:665.0f];
+	[self.webView addConstraint:self.submitTop];
+	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
 	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:10.0f leftToRight:NO]];
@@ -293,7 +313,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			
 			//--enable mask button
 			self.submitButton.active = YES;
-			self.cancelButton.active = YES;
 			
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
@@ -304,7 +323,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		case GooglePageLogout:
 			//--disable mask button
 			self.submitButton.active = NO;
-			self.cancelButton.active = NO;
 			[self showLoading];
 			break;
 			
@@ -433,6 +451,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	self.reloadView.alpha = visible;
 	self.googleMessage.alpha = visible;
+	self.cancelButton.alpha = visible;
 }
 
 - (void)handleReloadViewTapped:(id)sender
@@ -487,23 +506,24 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _submitButton;
 }
 
-- (RPKMaskButton *)cancelButton
+- (UIButton *)cancelButton
 {
 	if (!_cancelButton) {
-		_cancelButton = [[RPKMaskButton alloc] init];
+		_cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_cancelButton.alpha = 0.0f;
-		
-		__weak RPKGoogleViewController *selfPointer = self;
-		_cancelButton.actionBlock = ^{
-			NSLog(@"Cancel");
-			[selfPointer removeKeyboardMask];
-		};
-		
+		[_cancelButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+		[_cancelButton addTarget:self action:@selector(handleCancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_cancelButton ul_enableAutoLayout];
 		[_cancelButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
 	}
 	
 	return _cancelButton;
+}
+
+- (void)handleCancelButtonTapped:(id)sender
+{
+	[self removeKeyboardMask];
+	[self logout];
 }
 
 #pragma mark - Keyboard Cover View
@@ -512,8 +532,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	CGFloat width = kGVCKeyboardHideLockSize.width;
 	CGFloat height = kGVCKeyboardHideLockSize.height;
-	CGFloat xOffset = self.view.window.bounds.size.width - width - 6.0f;
-	CGFloat yOffset = self.view.window.bounds.size.height - height - 7.0f;
+	CGFloat xOffset = self.view.window.bounds.size.width - width - 5.0f;
+	CGFloat yOffset = self.view.window.bounds.size.height - height - 6.0f;
 	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
@@ -549,18 +569,34 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[RPNotificationCenter registerObject:self
 					 forNotificationName:UIKeyboardDidShowNotification
-								 handler:@selector(handleKeyboardShowNotification:)
+								 handler:@selector(handleKeyboardDidShowNotification:)
+							   parameter:nil];
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:UIKeyboardWillShowNotification
+								 handler:@selector(handleKeyboardWillShowNotification:)
 							   parameter:nil];
 }
 
 - (void)unRegisterNotification
 {
 	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardDidShowNotification parameter:nil];
+	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardWillShowNotification parameter:nil];
 }
 
-- (void)handleKeyboardShowNotification:(NSNotification *)notification
+- (void)handleKeyboardDidShowNotification:(NSNotification *)notification
 {
 	[self addKeyboardMask];
+	
+	
+}
+
+- (void)handleKeyboardWillShowNotification:(NSNotification *)notification
+{
+	self.googleTop.constant = -100.0f;
+	self.submitTop.constant = 490.0f;
+	[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+		[self.view layoutIfNeeded];
+	}];
 }
 
 @end
