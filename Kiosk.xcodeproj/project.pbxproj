@@ -114,7 +114,6 @@
 		0FBDF8591A702C4900488874 /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBDF8581A702C4900488874 /* icon_quicksurvey.png */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
-		0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */; };
 		0FD805CB1A5D977100EE1AD6 /* RPKExpirationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
 		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
@@ -328,8 +327,6 @@
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
 		0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuItem.m; sourceTree = "<group>"; };
-		0FD805C51A5D20B200EE1AD6 /* RPKGoogleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleItem.h; sourceTree = "<group>"; };
-		0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleItem.m; sourceTree = "<group>"; };
 		0FD805C91A5D977100EE1AD6 /* RPKExpirationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKExpirationView.h; sourceTree = "<group>"; };
 		0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKExpirationView.m; sourceTree = "<group>"; };
 		0FD805CC1A5D979500EE1AD6 /* RPKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKView.h; sourceTree = "<group>"; };
@@ -536,8 +533,6 @@
 				0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */,
 				0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */,
 				0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */,
-				0FD805C51A5D20B200EE1AD6 /* RPKGoogleItem.h */,
-				0FD805C61A5D20B200EE1AD6 /* RPKGoogleItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1012,7 +1007,6 @@
 				0FA0ABEF1A40C0E9007AA263 /* RPKGoogleViewController.m in Sources */,
 				0FA0E1851A686AC80011EAC9 /* TApplicationException.m in Sources */,
 				0FA0E1151A670A7B0011EAC9 /* RPKTimedWebViewController.m in Sources */,
-				0FD805C71A5D20B200EE1AD6 /* RPKGoogleItem.m in Sources */,
 				0FA0ABEC1A40C0AF007AA263 /* RPKMenuViewController.m in Sources */,
 				0FA0E1CC1A6885220011EAC9 /* RPService.m in Sources */,
 				0FA0E18F1A686AC80011EAC9 /* TTransportException.m in Sources */,

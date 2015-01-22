@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, MenuItemType) {
+	MenuTypeGeneric,
+	MenuTypeGoogle,
+};
+
 @interface RPKMenuItem : NSObject
 
 /**
@@ -26,9 +31,14 @@
 @property (nonatomic, strong) NSString *itemTitle;
 
 /**
- *  A brief description
+ *  whether to display secured logo or not
  */
 @property (nonatomic, assign) BOOL isSecured;
+
+/**
+ *  any specific item to be used
+ */
+@property (nonatomic, assign) MenuItemType itemType;
 
 @end
 

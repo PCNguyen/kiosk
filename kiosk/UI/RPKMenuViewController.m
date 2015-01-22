@@ -287,9 +287,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 	
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
 	
-	if ([menuItem isKindOfClass:[RPKGoogleItem class]]) {
+	if (menuItem.itemType == MenuTypeGoogle) {
 		RPKGoogleViewController *googleWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
-		googleWebVC.logoutURL = [(RPKGoogleItem *)menuItem logoutURL];
 		[self.navigationController presentViewController:googleWebVC animated:YES completion:NULL];
 	} else {
 		RPKKioskViewController *kioskWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];

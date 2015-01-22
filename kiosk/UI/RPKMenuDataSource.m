@@ -20,16 +20,19 @@
 	kioskItem.imageName = @"icon_quicksurvey.png";
 	kioskItem.itemTitle = @"Quick Survey";
 	kioskItem.isSecured = NO;
+	kioskItem.itemType = MenuTypeGeneric;
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
-	RPKGoogleItem *googlePlusItem = [[RPKGoogleItem alloc] init];
+	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
 	NSString *googleURL = @"https://plus.google.com/117430950571267154753/about?review=1";
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
 	googlePlusItem.itemTitle = @"Google+ Local";
 	googlePlusItem.isSecured = YES;
+	googlePlusItem.itemType = MenuTypeGoogle;
+	
 	[menuItems addObject:googlePlusItem];
 	
 	self.menuItems = menuItems;

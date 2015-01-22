@@ -7,7 +7,7 @@
 //
 
 #import "ULViewDataSource.h"
-#import "RPKGoogleItem.h"
+#import "RPKMenuItem.h"
 
 @interface RPKMenuDataSource : ULViewDataSource
 
