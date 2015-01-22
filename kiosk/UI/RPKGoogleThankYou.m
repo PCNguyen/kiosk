@@ -8,7 +8,7 @@
 
 #import "RPKGoogleThankYou.h"
 
-#define kGTYLogoImageSize		CGSizeMake(50.0f, 50.0f)
+#define kGTYLogoImageSize		CGSizeMake(100.0f, 100.0f)
 
 @interface RPKGoogleThankYou ()
 
