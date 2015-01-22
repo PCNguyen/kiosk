@@ -12,6 +12,8 @@
 #import "RPKReloadView.h"
 #import "RPKGoogleMessage.h"
 #import "RPKMaskButton.h"
+#import "RPKGoogleThankYou.h"
+
 #import "RPNotificationCenter.h"
 #import "UIApplication+RP.h"
 
@@ -48,6 +50,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 @property (nonatomic, strong) RPKReloadView *reloadView;
 @property (nonatomic, strong) RPKGoogleMessage *googleMessage;
 @property (nonatomic, strong) NSLayoutConstraint *googleTop;
+@property (nonatomic, strong) RPKGoogleThankYou *googleThankyou;
 
 /**
  *  Mask buttons for widget page
@@ -130,6 +133,9 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	
 	[self.webView addSubview:self.cancelButton];
 	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:10.0f leftToRight:NO]];
+	
+	[self.webView addSubview:self.googleThankyou];
+	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
 
 }
 
@@ -495,8 +501,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
-			NSLog(@"Submit");
 			[selfPointer removeKeyboardMask];
+			[selfPointer displayThankyouPage];
 		};
 		
 		[_submitButton ul_enableAutoLayout];
@@ -520,10 +526,27 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _cancelButton;
 }
 
+- (RPKGoogleThankYou *)googleThankyou
+{
+	if (!_googleThankyou) {
+		_googleThankyou = [[RPKGoogleThankYou alloc] init];
+		_googleThankyou.alpha = 0.0f;
+		[_googleThankyou ul_enableAutoLayout];
+	}
+	
+	return _googleThankyou;
+}
+
 - (void)handleCancelButtonTapped:(id)sender
 {
 	[self removeKeyboardMask];
 	[self logout];
+}
+
+- (void)displayThankyouPage
+{
+	self.googleThankyou.alpha = 1.0f;
+	[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
 }
 
 #pragma mark - Keyboard Cover View

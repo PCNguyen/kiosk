@@ -34,6 +34,7 @@
 
 	[self addSubview:self.messageSubtitle];
 	[self addConstraints:[self.messageSubtitle ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.messageTitle distance:self.spacings.height topToBottom:NO]];
+	[self addConstraints:[self.messageSubtitle ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 100.0f, kUIViewUnpinInset, 100.0f)]];
 }
 
 #pragma mark - UI Element
@@ -72,6 +73,7 @@
 		_messageSubtitle.text = NSLocalizedString(@"Your review has been submitted and you are now being logged out...", nil);
 		_messageSubtitle.font = [UIFont rpk_fontWithSize:30.0f];
 		_messageSubtitle.textColor = [UIColor rpk_darkGray];
+		_messageSubtitle.numberOfLines = 0;
 		[_messageSubtitle ul_enableAutoLayout];
 	}
 	
