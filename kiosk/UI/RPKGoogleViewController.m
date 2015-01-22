@@ -163,6 +163,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlText]
 																		cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
 																	timeoutInterval:30.0f];
+	nonCacheRequest.HTTPShouldHandleCookies = NO;
 	[self.webView loadRequest:nonCacheRequest];
 }
 
@@ -202,6 +203,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	//--in case a count down is in progress
 	[self hideExpirationMessage];
+	[self hideThankyouPage];
 	[self unRegisterNotification];
 	[self removeKeyboardMask];
 	
@@ -502,7 +504,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
 			[selfPointer removeKeyboardMask];
-			[selfPointer displayThankyouPage];
+			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:3.0f];
+			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:10.0f];
 		};
 		
 		[_submitButton ul_enableAutoLayout];
@@ -545,8 +548,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)displayThankyouPage
 {
-	self.googleThankyou.alpha = 1.0f;
-	[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
+	[UIView animateWithDuration:0.5f animations:^{
+		self.googleThankyou.alpha = 1.0f;
+	}];
+}
+
+- (void)hideThankyouPage
+{
+	self.googleThankyou.alpha = 0.0f;
 }
 
 #pragma mark - Keyboard Cover View
