@@ -112,6 +112,7 @@
 		0FA0E2421A6D69690011EAC9 /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
 		0FBDF8591A702C4900488874 /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBDF8581A702C4900488874 /* icon_quicksurvey.png */; };
+		0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CB1A5D977100EE1AD6 /* RPKExpirationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CA1A5D977100EE1AD6 /* RPKExpirationView.m */; };
@@ -323,6 +324,8 @@
 		0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLoginViewController.m; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0FBDF8581A702C4900488874 /* icon_quicksurvey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_quicksurvey.png; sourceTree = "<group>"; };
+		0FBF99DC1A71ACCA00C25788 /* RPKGoogleThankYou.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleThankYou.h; sourceTree = "<group>"; };
+		0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleThankYou.m; sourceTree = "<group>"; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
@@ -831,6 +834,8 @@
 				0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */,
 				0F79DC291A7063F200A4EF9A /* RPKMaskButton.h */,
 				0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */,
+				0FBF99DC1A71ACCA00C25788 /* RPKGoogleThankYou.h */,
+				0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1054,6 +1059,7 @@
 				0FA0E1831A686AC80011EAC9 /* TProtocolUtil.m in Sources */,
 				0FA0E1B61A68833B0011EAC9 /* RPAuthenticationHandler.m in Sources */,
 				0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */,
+				0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */,
 				0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */,
 				0FA0E18B1A686AC80011EAC9 /* TMemoryBuffer.m in Sources */,
 				0FA0E1E51A6888090011EAC9 /* RPAlertController.m in Sources */,
