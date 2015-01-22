@@ -20,7 +20,8 @@
 #define kGVCLogoutURL				@"https://accounts.google.com/ServiceLogin?logout=1"
 #define kGVCVerifiedLogoutURL		@"https://accounts.google.com/ServiceLogin?logout=2"
 
-#define kGVKeyboardHideLockSize		CGSizeMake(57.0f, 57.0f)
+#define kGVCKeyboardHideLockSize		CGSizeMake(57.0f, 57.0f)
+#define kGVCKeyboardGoButtonSize		CGSizeMake(100.0f, 57.0f)
 
 typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageUnknown,
@@ -54,6 +55,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 @property (nonatomic, strong) RPKMaskButton *cancelButton;
 
 /**
+ *  view to mask the keyboard
+ */
+@property (nonatomic, strong) UIImageView *hideKeyboardLock;
+
+/**
  *  Cover the bottom half of the login screen
  */
 @property (nonatomic, strong) UIView *coverView;
@@ -67,11 +73,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 @end
 
 @implementation RPKGoogleViewController
-
-- (void)dealloc
-{
-	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardDidShowNotification parameter:nil];
-}
 
 - (instancetype)initWithURL:(NSURL *)url
 {
@@ -106,19 +107,17 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	
 	[self.webView addSubview:self.submitButton];
 	[self.webView addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]];
-
-}
-
-- (void)viewDidLoad
-{
-	[super viewDidLoad];
 	
-	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardDidShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
+	[self.webView addSubview:self.cancelButton];
+	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:10.0f leftToRight:NO]];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+	
+	[self removeKeyboardMask];
 	
 	if (_popupTask) {
 		[self.popupTask stop];
@@ -177,9 +176,24 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	//--in case a count down is in progress
 	[self hideExpirationMessage];
+	[self unRegisterNotification];
+	[self removeKeyboardMask];
 	
 	//--load the logout request
 	[self loadURLString:kGVCLogoutURL];
+}
+
+#pragma mark - Message Handler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+	[RPKCookieHandler clearCookie];
+	
+	//--avoid leaking
+	[userContentController removeScriptMessageHandlerForName:message.name];
+	
+	//--to make sure we are clear
+	[self loadURLString:kGVCVerifiedLogoutURL];
 }
 
 #pragma mark - WKWebview Delegate
@@ -224,6 +238,42 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	self.pageDidLoad = [self googlePageForURL:webView.URL];
 }
 
+#pragma mark - WebView Helper
+
+- (RPKGooglePage)googlePageForURL:(NSURL *)url
+{
+	if (url) {
+		NSArray *pathComponents = [url pathComponents];
+		
+		if ([[url host] isEqualToString:@"accounts.google.com"]) {
+			
+			if ([pathComponents containsObject:@"ServiceLogin"]) {
+				
+				if ([[url absoluteString] isEqualToString:kGVCLogoutURL]) {
+					return GooglePageLogout;
+				} else if ([[url absoluteString] isEqualToString:kGVCVerifiedLogoutURL]) {
+					return GooglePageVerifyLogout;
+				} else {
+					return GooglePageLogin;
+				}
+				
+			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
+				return GooglePageAuthentication;
+			}
+		}
+		
+		if ([[url host] isEqualToString:@"plus.google.com"]) {
+			if ([pathComponents containsObject:@"about"]) {
+				return GooglePageAbout;
+			} else if ([pathComponents containsObject:@"widget"]) {
+				return GooglePageReviewWidget;
+			}
+		}
+	}
+	
+	return GooglePageUnknown;
+}
+
 - (void)setPageWillLoad:(RPKGooglePage)pageWillLoad
 {
 	_pageWillLoad = pageWillLoad;
@@ -247,6 +297,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
+			[self registerNotification];
+			
 			break;
 		
 		case GooglePageLogout:
@@ -306,19 +358,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	}
 }
 
-#pragma mark - Message Handler
-
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
-{
-	[RPKCookieHandler clearCookie];
-	
-	//--avoid leaking
-	[userContentController removeScriptMessageHandlerForName:message.name];
-	
-	//--to make sure we are clear
-	[self loadURLString:kGVCVerifiedLogoutURL];
-}
-
 - (void)dismissWebView
 {
 	[self hideLoading];
@@ -347,21 +386,20 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
 }
 
-#pragma mark - Reload View
+#pragma mark - Login Page Custom Views
 
-- (void)toggleCustomViewForGooglePage:(BOOL)visible
+- (UIView *)coverView
 {
-	self.reloadView.alpha = visible;
-	self.googleMessage.alpha = visible;
+	if (!_coverView) {
+		_coverView = [[UIView alloc] init];
+		_coverView.backgroundColor = [UIColor whiteColor];
+		_coverView.alpha = 0.0f;
+		[_coverView ul_enableAutoLayout];
+		[_coverView ul_fixedSize:CGSizeMake(0.0f, 400.0f) priority:UILayoutPriorityDefaultHigh];
+	}
+	
+	return _coverView;
 }
-
-- (void)handleReloadViewTapped:(id)sender
-{
-	[self showLoading];
-	[self.webView reload];
-}
-
-#pragma mark - Secured View
 
 - (RPKSecuredView *)securedView
 {
@@ -389,22 +427,19 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	self.coverView.alpha = visible;
 }
 
-#pragma mark - Cover View
+#pragma mark - Google Page Custom View
 
-- (UIView *)coverView
+- (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
-	if (!_coverView) {
-		_coverView = [[UIView alloc] init];
-		_coverView.backgroundColor = [UIColor whiteColor];
-		_coverView.alpha = 0.0f;
-		[_coverView ul_enableAutoLayout];
-		[_coverView ul_fixedSize:CGSizeMake(0.0f, 400.0f) priority:UILayoutPriorityDefaultHigh];
-	}
-	
-	return _coverView;
+	self.reloadView.alpha = visible;
+	self.googleMessage.alpha = visible;
 }
 
-#pragma mark - Reload View
+- (void)handleReloadViewTapped:(id)sender
+{
+	[self showLoading];
+	[self.webView reload];
+}
 
 - (RPKReloadView *)reloadView
 {
@@ -420,8 +455,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _reloadView;
 }
 
-#pragma mark - Google Message
-
 - (RPKGoogleMessage *)googleMessage
 {
 	if (!_googleMessage) {
@@ -435,18 +468,18 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _googleMessage;
 }
 
-#pragma mark - Submit Button
-
 - (RPKMaskButton *)submitButton
 {
 	if (!_submitButton) {
 		_submitButton = [[RPKMaskButton alloc] init];
 		_submitButton.alpha = 0.0f;
+		
+		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
 			NSLog(@"Submit");
+			[selfPointer removeKeyboardMask];
 		};
 		
-		_submitButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
 		[_submitButton ul_enableAutoLayout];
 		[_submitButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
 	}
@@ -454,67 +487,80 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _submitButton;
 }
 
-#pragma mark - Notification
-
-- (void)handleKeyboardShowNotification:(NSNotification *)notification
+- (RPKMaskButton *)cancelButton
 {
-	UIImageView *hideKeyboardLock = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_lock_small.png"]];
-	hideKeyboardLock.contentMode = UIViewContentModeScaleAspectFit;
-	hideKeyboardLock.frame = [self hideKeyboardButtonCoverFrame];
-	hideKeyboardLock.backgroundColor = [UIColor whiteColor];
-	hideKeyboardLock.userInteractionEnabled = YES;
-	hideKeyboardLock.layer.cornerRadius = 4.0f;
-	hideKeyboardLock.layer.masksToBounds = YES;
+	if (!_cancelButton) {
+		_cancelButton = [[RPKMaskButton alloc] init];
+		
+		__weak RPKGoogleViewController *selfPointer = self;
+		_cancelButton.actionBlock = ^{
+			NSLog(@"Cancel");
+			[selfPointer removeKeyboardMask];
+		};
+		
+		_cancelButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+		[_cancelButton ul_enableAutoLayout];
+		[_cancelButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
+	}
 	
-	[[UIApplication sharedApplication] rp_addSubviewOnFrontWindow:hideKeyboardLock];
+	return _cancelButton;
 }
 
-#pragma mark - Keyboard Cover
+#pragma mark - Keyboard Cover View
 
-- (CGRect)hideKeyboardButtonCoverFrame
+- (CGRect)hideKeyboardLockFrame
 {
-	CGFloat width = kGVKeyboardHideLockSize.width;
-	CGFloat height = kGVKeyboardHideLockSize.height;
+	CGFloat width = kGVCKeyboardHideLockSize.width;
+	CGFloat height = kGVCKeyboardHideLockSize.height;
 	CGFloat xOffset = self.view.window.bounds.size.width - width - 6.0f;
 	CGFloat yOffset = self.view.window.bounds.size.height - height - 7.0f;
 	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
 
-#pragma mark - URL Parser
-
-- (RPKGooglePage)googlePageForURL:(NSURL *)url
+- (UIImageView *)hideKeyboardLock
 {
-	if (url) {
-		NSArray *pathComponents = [url pathComponents];
-		
-		if ([[url host] isEqualToString:@"accounts.google.com"]) {
-			
-			if ([pathComponents containsObject:@"ServiceLogin"]) {
-				
-				if ([[url absoluteString] isEqualToString:kGVCLogoutURL]) {
-					return GooglePageLogout;
-				} else if ([[url absoluteString] isEqualToString:kGVCVerifiedLogoutURL]) {
-					return GooglePageVerifyLogout;
-				} else {
-					return GooglePageLogin;
-				}
-				
-			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
-				return GooglePageAuthentication;
-			}
-		}
-		
-		if ([[url host] isEqualToString:@"plus.google.com"]) {
-			if ([pathComponents containsObject:@"about"]) {
-				return GooglePageAbout;
-			} else if ([pathComponents containsObject:@"widget"]) {
-				return GooglePageReviewWidget;
-			}
-		}
+	if (!_hideKeyboardLock) {
+		_hideKeyboardLock = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_lock_small.png"]];
+		_hideKeyboardLock.contentMode = UIViewContentModeScaleAspectFit;
+		_hideKeyboardLock.backgroundColor = [UIColor whiteColor];
+		_hideKeyboardLock.userInteractionEnabled = YES;
+		_hideKeyboardLock.layer.cornerRadius = 4.0f;
+		_hideKeyboardLock.layer.masksToBounds = YES;
 	}
 	
-	return GooglePageUnknown;
+	return _hideKeyboardLock;
+}
+
+- (void)addKeyboardMask
+{
+	self.hideKeyboardLock.frame = [self hideKeyboardLockFrame];
+	[[UIApplication sharedApplication] rp_addSubviewOnFrontWindow:self.hideKeyboardLock];
+}
+
+- (void)removeKeyboardMask
+{
+	[self.hideKeyboardLock removeFromSuperview];
+}
+
+#pragma mark - Notification
+
+- (void)registerNotification
+{
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:UIKeyboardDidShowNotification
+								 handler:@selector(handleKeyboardShowNotification:)
+							   parameter:nil];
+}
+
+- (void)unRegisterNotification
+{
+	[RPNotificationCenter unRegisterObject:self forNotificationName:UIKeyboardDidShowNotification parameter:nil];
+}
+
+- (void)handleKeyboardShowNotification:(NSNotification *)notification
+{
+	[self addKeyboardMask];
 }
 
 @end
