@@ -369,7 +369,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		} break;
 			
 		case GooglePageVerifyLogout:
-			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:3.0f];
+			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:5.0f];
 			break;
 		default:
 			break;
