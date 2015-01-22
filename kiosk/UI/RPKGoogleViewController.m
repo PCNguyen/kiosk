@@ -18,7 +18,8 @@
 #import <AppSDK/AppLibExtension.h>
 
 #define kGVCLogoutQuery				@"logout=1"
-#define kGV
+#define kGVKeyboardHideLockSize		CGSizeMake(57.0f, 57.0f)
+
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
@@ -393,14 +394,27 @@
 
 - (void)handleKeyboardShowNotification:(NSNotification *)notification
 {
-//	UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(450, 800.0f, 100.0f, 100.0f)];
-//	coverView.backgroundColor = [UIColor redColor];
-//	[[UIApplication sharedApplication] rp_addSubviewOnFrontWindow:coverView];
+	UIImageView *hideKeyboardLock = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_lock_small.png"]];
+	hideKeyboardLock.contentMode = UIViewContentModeScaleAspectFit;
+	hideKeyboardLock.frame = [self hideKeyboardButtonCoverFrame];
+	hideKeyboardLock.backgroundColor = [UIColor whiteColor];
+	hideKeyboardLock.userInteractionEnabled = YES;
+	hideKeyboardLock.layer.cornerRadius = 4.0f;
+	hideKeyboardLock.layer.masksToBounds = YES;
+	
+	[[UIApplication sharedApplication] rp_addSubviewOnFrontWindow:hideKeyboardLock];
 }
 
-- (void)readjustWebviewScroller
+#pragma mark - Keyboard Cover
+
+- (CGRect)hideKeyboardButtonCoverFrame
 {
-	self.webView.scrollView.bounds = self.webView.bounds;
+	CGFloat width = kGVKeyboardHideLockSize.width;
+	CGFloat height = kGVKeyboardHideLockSize.height;
+	CGFloat xOffset = self.view.window.bounds.size.width - width - 6.0f;
+	CGFloat yOffset = self.view.window.bounds.size.height - height - 7.0f;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
 }
 
 @end
