@@ -17,22 +17,52 @@
 
 #import <AppSDK/AppLibExtension.h>
 
-#define kGVCLogoutQuery				@"logout=1"
+#define kGVCLogoutURL				@"https://accounts.google.com/ServiceLogin?logout=1"
+#define kGVCVerifiedLogoutURL		@"https://accounts.google.com/ServiceLogin?logout=2"
+
 #define kGVKeyboardHideLockSize		CGSizeMake(57.0f, 57.0f)
+
+typedef NS_ENUM(NSInteger, RPKGooglePage) {
+	GooglePageUnknown,
+	GooglePageLogin,
+	GooglePageAuthentication,
+	GooglePageAbout,
+	GooglePageReviewWidget,
+	GooglePageLogout,
+	GooglePageVerifyLogout,
+};
 
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
+
+/**
+ *  Background view for login page
+ */
 @property (nonatomic, strong) RPKSecuredView *securedView;
+
+/**
+ *  Background view for widget page
+ */
 @property (nonatomic, strong) RPKReloadView *reloadView;
 @property (nonatomic, strong) RPKGoogleMessage *googleMessage;
+
+/**
+ *  Mask buttons for widget page
+ */
 @property (nonatomic, strong) RPKMaskButton *submitButton;
 @property (nonatomic, strong) RPKMaskButton *cancelButton;
 
+/**
+ *  Cover the bottom half of the login screen
+ */
 @property (nonatomic, strong) UIView *coverView;
 
-@property (nonatomic, assign) BOOL popupLoaded;
-@property (nonatomic, assign) BOOL cookieCleared;
+/**
+ *  Page Identification
+ */
+@property (nonatomic, assign) RPKGooglePage pageWillLoad;
+@property (nonatomic, assign) RPKGooglePage pageDidLoad;
 
 @end
 
@@ -83,8 +113,6 @@
 {
 	[super viewDidLoad];
 	
-	self.popupLoaded = NO;
-	
 	[RPNotificationCenter registerObject:self forNotificationName:UIKeyboardDidShowNotification handler:@selector(handleKeyboardShowNotification:) parameter:nil];
 }
 
@@ -102,6 +130,14 @@
 - (void)loadRequest
 {
 	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	[self.webView loadRequest:nonCacheRequest];
+}
+
+- (void)loadURLString:(NSString *)urlText
+{
+	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlText]
+																		cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+																	timeoutInterval:30.0f];
 	[self.webView loadRequest:nonCacheRequest];
 }
 
@@ -143,7 +179,7 @@
 	[self hideExpirationMessage];
 	
 	//--load the logout request
-	[self.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
+	[self loadURLString:kGVCLogoutURL];
 }
 
 #pragma mark - WKWebview Delegate
@@ -177,65 +213,96 @@
 		didCancel = YES;
 	}
 	
-	//--show loading hosts
-	NSArray *loadingSegment = @[@"ServiceLogin", @"ServiceLoginAuth"];
-	[loadingSegment enumerateObjectsUsingBlock:^(NSString *segment, NSUInteger index, BOOL *stop) {
-		if ([pathComponents containsObject:segment]) {
-			[self showLoading];
-			*stop = YES;
-		}
-	}];
-	
-	if ([navigationAction.request.URL.host isEqualToString:@"plus.google.com"]) {
-		[self toggleCustomViewForLoginScreen:NO];
-	}
-	
-	NSString *widgetSegment = @"widget";
-	if ([pathComponents containsObject:widgetSegment]) {
-		[self.popupTask stop];
-		self.popupLoaded = YES;
-		self.submitButton.active = YES;
-		
-		[self hideLoading];
-		[self toggleCustomViewForGooglePage:YES];
-	}
-	
 	if (!didCancel) {
+		self.pageWillLoad = [self googlePageForURL:navigationAction.request.URL];
 		decisionHandler(WKNavigationActionPolicyAllow);
 	}
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-	if ([webView.URL.host isEqualToString:@"plus.google.com"]) {
-		if (!self.popupLoaded) {
+	self.pageDidLoad = [self googlePageForURL:webView.URL];
+}
+
+- (void)setPageWillLoad:(RPKGooglePage)pageWillLoad
+{
+	_pageWillLoad = pageWillLoad;
+	
+	switch (pageWillLoad) {
+		case GooglePageLogin:
+			[self showLoading];
+			break;
+			
+		case GooglePageAuthentication:
+			[self toggleCustomViewForLoginScreen:NO];
+			[self showLoading];
+			break;
+			
+		case GooglePageReviewWidget: //--we don't have widget page for did load event
+			[self.popupTask stop];
+			
+			//--enable mask button
+			self.submitButton.active = YES;
+			self.cancelButton.active = YES;
+			
+			[self hideLoading];
+			[self toggleCustomViewForGooglePage:YES];
+			break;
+		
+		case GooglePageLogout:
+			//--disable mask button
+			self.submitButton.active = NO;
+			self.cancelButton.active = NO;
+			[self showLoading];
+			break;
+			
+		default:
+			break;
+	}
+}
+
+- (void)setPageDidLoad:(RPKGooglePage)pageDidLoad
+{
+	_pageDidLoad = pageDidLoad;
+	
+	switch (pageDidLoad) {
+		case GooglePageLogin:
+			[self hideLoading];
+			[self toggleCustomViewForLoginScreen:YES];
+			break;
+			
+		case GooglePageAuthentication:
+			if (self.pageWillLoad == GooglePageAuthentication) { //--we fail login
+				[self toggleCustomViewForLoginScreen:YES];
+			}
+			
+			[self hideLoading];
+			break;
+			
+		case GooglePageAbout: {
 			//--inject the function to be called
-			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
-																							   withExtension:@"js"]
+			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
 			[self.webView evaluateJavaScript:selectScript completionHandler:NULL];
-			
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
-		}
-	}
-	
-	if ([webView.URL isEqual:self.logoutURL]) {
-		if (!self.cookieCleared) {
-			[self toggleCustomViewForGooglePage:NO];
-			[self toggleCustomViewForLoginScreen:YES];
+		} break;
+			
+		case GooglePageLogout: {
 			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
 			
-			[webView evaluateJavaScript:logoutScript completionHandler:NULL];
-		} else {
-			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:5.0f];
-		}
-		
-	} else if ([[webView.URL pathComponents] containsObject:@"ServiceLogin"]) {
-		[self hideLoading];
-		[self toggleCustomViewForLoginScreen:YES];
+			[self.webView evaluateJavaScript:logoutScript completionHandler:NULL];
+			[self toggleCustomViewForGooglePage:NO];
+			[self toggleCustomViewForLoginScreen:YES];
+		} break;
+			
+		case GooglePageVerifyLogout:
+			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:3.0f];
+			break;
+		default:
+			break;
 	}
 }
 
@@ -243,15 +310,13 @@
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-	self.cookieCleared = YES;
-	
 	[RPKCookieHandler clearCookie];
 	
 	//--avoid leaking
 	[userContentController removeScriptMessageHandlerForName:message.name];
 	
 	//--to make sure we are clear
-	[message.webView loadRequest:[NSURLRequest requestWithURL:self.logoutURL]];
+	[self loadURLString:kGVCVerifiedLogoutURL];
 }
 
 - (void)dismissWebView
@@ -267,7 +332,7 @@
 	if (!_popupTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
-			if (!selfPointer.popupLoaded) {
+			if (selfPointer.pageWillLoad != GooglePageReviewWidget) {
 				[selfPointer executePopupScript];
 			}
 		}];
@@ -292,7 +357,6 @@
 
 - (void)handleReloadViewTapped:(id)sender
 {
-	self.popupLoaded = NO;
 	[self showLoading];
 	[self.webView reload];
 }
@@ -415,6 +479,42 @@
 	CGFloat yOffset = self.view.window.bounds.size.height - height - 7.0f;
 	
 	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+#pragma mark - URL Parser
+
+- (RPKGooglePage)googlePageForURL:(NSURL *)url
+{
+	if (url) {
+		NSArray *pathComponents = [url pathComponents];
+		
+		if ([[url host] isEqualToString:@"accounts.google.com"]) {
+			
+			if ([pathComponents containsObject:@"ServiceLogin"]) {
+				
+				if ([[url absoluteString] isEqualToString:kGVCLogoutURL]) {
+					return GooglePageLogout;
+				} else if ([[url absoluteString] isEqualToString:kGVCVerifiedLogoutURL]) {
+					return GooglePageVerifyLogout;
+				} else {
+					return GooglePageLogin;
+				}
+				
+			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
+				return GooglePageAuthentication;
+			}
+		}
+		
+		if ([[url host] isEqualToString:@"plus.google.com"]) {
+			if ([pathComponents containsObject:@"about"]) {
+				return GooglePageAbout;
+			} else if ([pathComponents containsObject:@"widget"]) {
+				return GooglePageReviewWidget;
+			}
+		}
+	}
+	
+	return GooglePageUnknown;
 }
 
 @end
