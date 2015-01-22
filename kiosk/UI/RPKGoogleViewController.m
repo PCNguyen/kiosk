@@ -193,7 +193,7 @@
 	if ([pathComponents containsObject:widgetSegment]) {
 		[self.popupTask stop];
 		self.popupLoaded = YES;
-		self.submitButton.isActive = YES;
+		self.submitButton.active = YES;
 		
 		[self hideLoading];
 		[self toggleCustomViewForGooglePage:YES];
