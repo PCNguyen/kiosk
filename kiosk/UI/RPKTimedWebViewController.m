@@ -159,7 +159,7 @@
 - (void)displayExpirationMessage
 {
 	[self.webView endEditing:YES];
-	[self.view bringSubviewToFront:self.expirationView];
+	[self.webView bringSubviewToFront:self.expirationView];
 	self.expirationView.alpha = 1.0f;
 	self.expirationView.timeRemaining = kTWVCExpirationWaitTime;
 	[self.expirationView startCountDown];
@@ -176,6 +176,7 @@
 
 - (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView
 {
+	[self hideExpirationMessage];
 	[self logout];
 }
 
