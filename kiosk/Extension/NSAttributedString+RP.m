@@ -34,6 +34,7 @@
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	[paragraphStyle setLineSpacing:lineHeight];
 	[paragraphStyle setLineBreakMode:lineBreakMode];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
 	
 	if ([self isKindOfClass:[NSMutableAttributedString class]]) {
 		[(NSMutableAttributedString *)self addAttribute:NSParagraphStyleAttributeName

@@ -18,7 +18,7 @@
 #import <AppSDK/AppLibExtension.h>
 
 #define kGVCLogoutQuery				@"logout=1"
-
+#define kGV
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
