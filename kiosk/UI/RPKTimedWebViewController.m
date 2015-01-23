@@ -7,9 +7,16 @@
 //
 
 #import "RPKTimedWebViewController.h"
+#import "RPKMaskButton.h"
 
 #define kTWVCMaxIdleTime				2*60
 #define kTWVCExpirationWaitTime			20
+
+@interface RPKTimedWebViewController ()
+
+@property (nonatomic, strong) RPKMaskButton *maskButton;
+
+@end
 
 @implementation RPKTimedWebViewController
 
@@ -30,8 +37,8 @@
 	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 70.0f) priority:UILayoutPriorityDefaultHigh];
 	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	
-	[self.webView addSubview:self.expirationView];
-	[self.webView addConstraints:[self.expirationView ul_pinWithInset:UIEdgeInsetsZero]];
+	[self.webView addSubview:self.maskButton];
+	[self.webView addConstraints:[self.maskButton ul_pinWithInset:UIEdgeInsetsZero]];
 }
 
 - (void)viewDidLoad
@@ -127,18 +134,14 @@
 
 #pragma mark - Expiration
 
-- (RPKExpirationView *)expirationView
+- (RPKExpirationViewController *)expirationViewController
 {
-	if (!_expirationView) {
-		_expirationView = [[RPKExpirationView alloc] init];
-		_expirationView.timeRemaining = kTWVCExpirationWaitTime;
-		_expirationView.alpha = 0.0f;
-		_expirationView.backgroundColor = [UIColor clearColor];
-		_expirationView.delegate = self;
-		[_expirationView ul_enableAutoLayout];
+	if (!_expirationViewController) {
+		_expirationViewController = [[RPKExpirationViewController alloc] init];
+		_expirationViewController.delegate = self;
 	}
 	
-	return _expirationView;
+	return _expirationViewController;
 }
 
 - (ALScheduledTask *)idleTask
@@ -147,7 +150,7 @@
 		__weak RPKTimedWebViewController *selfPointer = self;
 		_idleTask = [[ALScheduledTask alloc] initWithTaskInterval:kTWVCMaxIdleTime taskBlock:^{
 			NSTimeInterval idleTime = [selfPointer.lastInteractionDate timeIntervalSinceNow] * (-1);
-			if (idleTime > kTWVCMaxIdleTime && selfPointer.expirationView.alpha == 0) {
+			if (idleTime > kTWVCMaxIdleTime && !selfPointer.presentedViewController) {
 				[selfPointer displayExpirationMessage];
 			}
 		}];
@@ -159,30 +162,39 @@
 - (void)displayExpirationMessage
 {
 	[self.webView endEditing:YES];
-	[self.webView bringSubviewToFront:self.expirationView];
-	self.expirationView.alpha = 1.0f;
-	self.expirationView.timeRemaining = kTWVCExpirationWaitTime;
-	[self.expirationView startCountDown];
+	[self.expirationViewController startCountDown:kTWVCExpirationWaitTime fromViewController:self];
 }
 
 - (void)hideExpirationMessage
 {
 	self.lastInteractionDate = [NSDate date];
-	self.expirationView.alpha = 0.0f;
-	[self.expirationView stopCountDown];
+	[self.expirationViewController stopCountDown];
+}
+
+- (RPKMaskButton *)maskButton
+{
+	if (!_maskButton) {
+		_maskButton = [[RPKMaskButton alloc] init];
+		_maskButton.alpha = 0.0f;
+		
+		__weak RPKTimedWebViewController *selfPointer = self;
+		_maskButton.actionBlock = ^{
+			selfPointer.lastInteractionDate = [NSDate date];
+		};
+		
+		_maskButton.active = YES;
+		[_maskButton ul_enableAutoLayout];
+	}
+	
+	return _maskButton;
 }
 
 #pragma mark - Expiration View Delegate
 
-- (void)expirationViewTimeExpired:(RPKExpirationView *)expirationView
+- (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
 	[self hideExpirationMessage];
 	[self logout];
-}
-
-- (void)expirationViewDidReceivedTap:(RPKExpirationView *)expirationView
-{
-	[self hideExpirationMessage];
 }
 
 #pragma mark - Loading

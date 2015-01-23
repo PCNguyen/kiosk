@@ -7,16 +7,16 @@
 //
 
 #import "RPKWebViewController.h"
-#import "RPKExpirationView.h"
+#import "RPKExpirationViewController.h"
 
 #import <AppSDK/AppLibScheduler.h>
 
-@interface RPKTimedWebViewController : RPKWebViewController <RPKExpirationViewDelegate>
+@interface RPKTimedWebViewController : RPKWebViewController <RPKExpirationViewControllerDelegate>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 
-@property (nonatomic, strong) RPKExpirationView *expirationView;
+@property (nonatomic, strong) RPKExpirationViewController *expirationViewController;
 
 @property (nonatomic, strong) ALScheduledTask *idleTask;
 @property (atomic, strong) NSDate *lastInteractionDate;
