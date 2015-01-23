@@ -176,10 +176,13 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	}
 	
 	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
-	
+	locationCell.textLabel.textColor = [UIColor blackColor];
 	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
 	locationCell.textLabel.text = selection.selectionLabel;
 	locationCell.accessoryType = (selection.isSelected ?  UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+	if (!selection.enabled) {
+		locationCell.textLabel.textColor = [UIColor rpk_lightGray];
+	}
 	
 	return locationCell;
 }
@@ -202,6 +205,7 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	[alertController addButtonTitle:@"OK" style:AlertButtonStyleDefault action:^(RPAlertButton *alertButton) {
 		[selfPointer dismissViewController];
 	}];
+	
 	[self presentViewController:alertController animated:YES completion:NULL];
 }
 
