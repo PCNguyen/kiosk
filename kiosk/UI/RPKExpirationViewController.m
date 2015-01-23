@@ -12,7 +12,7 @@
 #import "RPKExpirationViewController.h"
 
 #define kEVCTimerSize				CGSizeMake(450.0f, 450.0f)
-#define kEVCButtonSize				CGSizeMake(150.0f, 44.0f)
+#define kEVCButtonSize				CGSizeMake(160.0f, 60.0f)
 
 #define kEVCTransitionDuration		0.25f
 
@@ -22,7 +22,6 @@
 @property (nonatomic, strong) JWGCircleCounter *circleCounter;
 @property (nonatomic, strong) UILabel *unitLabel;
 @property (nonatomic, strong) UIButton *continueButton;
-@property (nonatomic, strong) UIButton *logoutButton;
 
 @end
 
@@ -45,15 +44,12 @@
 	[self.circleCounter addSubview:self.messageLabel];
 	[self.circleCounter addConstraints:[self.messageLabel ul_pinWithInset:UIEdgeInsetsMake(80.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
 	
-	[self.circleCounter addSubview:self.logoutButton];
-	[self.circleCounter addConstraints:[self.logoutButton ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, kUIViewUnpinInset, 40.0f, kUIViewUnpinInset)]];
-	[self.circleCounter addConstraint:[self.logoutButton ul_centerAlignWithView:self.circleCounter direction:@"V"]];
-	
 	[self.circleCounter addSubview:self.continueButton];
-	[self.circleCounter addConstraints:[self.continueButton ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.logoutButton distance:kUIViewAquaDistance topToBottom:YES]];
+	[self.circleCounter addConstraints:[self.continueButton ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, kUIViewUnpinInset, 60.0f, kUIViewUnpinInset)]];
+	[self.circleCounter addConstraint:[self.continueButton ul_centerAlignWithView:self.circleCounter direction:@"V"]];
 	
 	[self.circleCounter addSubview:self.unitLabel];
-	[self.circleCounter addConstraints:[self.unitLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.continueButton distance:20.0f topToBottom:YES]];
+	[self.circleCounter addConstraints:[self.unitLabel ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.continueButton distance:40.0f topToBottom:YES]];
 	
 	[self.view addSubview:self.circleCounter];
 	[self.view addConstraints:[self.circleCounter ul_centerAlignWithView:self.view]];
@@ -121,7 +117,7 @@
 {
 	if (!_unitLabel) {
 		_unitLabel = [[UILabel alloc] init];
-		_unitLabel.font = [UIFont rpk_thinFontWithSize:22.0f];
+		_unitLabel.font = [UIFont rpk_thinFontWithSize:24.0f];
 		_unitLabel.textAlignment = NSTextAlignmentCenter;
 		_unitLabel.textColor = [UIColor rpk_mediumGray];
 		_unitLabel.text = NSLocalizedString(@"seconds", nil);
@@ -137,9 +133,8 @@
 		_continueButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		
 		NSString *title = NSLocalizedString(@"Continue Review", nil);
-		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:16.0f] textColor:[UIColor whiteColor]];
-		NSAttributedString *highLightTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:16.0f] textColor:[UIColor rpk_lightGray]];
-		_continueButton.backgroundColor = [UIColor rpk_defaultBlue];
+		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:18.0f] textColor:[UIColor rpk_defaultBlue]];
+		NSAttributedString *highLightTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:18.0f] textColor:[UIColor rpk_lightGray]];
 		[_continueButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 		[_continueButton setAttributedTitle:highLightTitle forState:UIControlStateHighlighted];
 		[_continueButton addTarget:self action:@selector(handleContinueButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,6 +142,8 @@
 		[_continueButton ul_fixedSize:kEVCButtonSize];
 		
 		_continueButton.layer.cornerRadius = 2.0f;
+		_continueButton.layer.borderWidth = 1.0f;
+		_continueButton.layer.borderColor = [[UIColor rpk_defaultBlue] CGColor];
 		_continueButton.layer.masksToBounds = YES;
 	}
 	
@@ -156,36 +153,6 @@
 - (void)handleContinueButtonTapped:(id)sender
 {
 	[self stopCountDown];
-}
-
-- (UIButton *)logoutButton
-{
-	if (!_logoutButton) {
-		_logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		
-		NSString *title = NSLocalizedString(@"End Now", nil);
-		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:16.0f] textColor:[UIColor rpk_defaultBlue]];
-		NSAttributedString *highLightTitle = [title al_attributedStringWithFont:[UIFont rpk_fontWithSize:16.0f] textColor:[UIColor rpk_lightGray]];
-		[_logoutButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-		[_logoutButton setAttributedTitle:highLightTitle forState:UIControlStateHighlighted];
-		[_logoutButton addTarget:self action:@selector(handleLogoutButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-		[_logoutButton ul_enableAutoLayout];
-		[_logoutButton ul_fixedSize:kEVCButtonSize];
-		
-		_logoutButton.layer.cornerRadius = 2.0f;
-		_logoutButton.layer.borderColor = [[UIColor rpk_defaultBlue] CGColor];
-		_logoutButton.layer.borderWidth = 1.0f;
-		_logoutButton.layer.masksToBounds = YES;
-	}
-	
-	return _logoutButton;
-}
-
-- (void)handleLogoutButtonTapped:(id)sender
-{
-	if ([self.delegate respondsToSelector:@selector(expirationViewControllerTimeExpired:)]) {
-		[self.delegate expirationViewControllerTimeExpired:self];
-	}
 }
 
 #pragma mark - Transition
