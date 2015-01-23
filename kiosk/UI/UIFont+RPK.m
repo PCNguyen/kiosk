@@ -10,6 +10,11 @@
 
 @implementation UIFont (RPK)
 
++ (UIFont *)rpk_thinFontWithSize:(CGFloat)size
+{
+	return [UIFont fontWithName:@"MuseoSans-100" size:size];
+}
+
 + (UIFont *)rpk_fontWithSize:(CGFloat)size
 {
 	return [UIFont fontWithName:@"MuseoSans-300" size:size];

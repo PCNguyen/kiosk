@@ -57,7 +57,7 @@
 		_messageTitle = [[UILabel alloc] init];
 		_messageTitle.textAlignment = NSTextAlignmentCenter;
 		_messageTitle.text = NSLocalizedString(@"Thank you!", nil);
-		_messageTitle.font = [UIFont rpk_fontWithSize:80.0f];
+		_messageTitle.font = [UIFont rpk_thinFontWithSize:80.0f];
 		_messageTitle.textColor = [UIColor rpk_darkGray];
 		[_messageTitle ul_enableAutoLayout];
 	}

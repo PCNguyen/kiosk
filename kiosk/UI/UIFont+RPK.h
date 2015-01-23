@@ -10,6 +10,7 @@
 
 @interface UIFont (RPK)
 
++ (UIFont *)rpk_thinFontWithSize:(CGFloat)size;
 + (UIFont *)rpk_fontWithSize:(CGFloat)size;
 + (UIFont *)rpk_boldFontWithSize:(CGFloat)size;
 + (UIFont *)rpk_extraBoldFontWithSize:(CGFloat)size;
