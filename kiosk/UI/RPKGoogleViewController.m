@@ -43,6 +43,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
  *  Background view for login page
  */
 @property (nonatomic, strong) RPKSecuredView *securedView;
+@property (nonatomic, strong) UIBarButtonItem *backButton;
+
 
 /**
  *  Background view for widget page
@@ -96,6 +98,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[super loadView];
 
+	self.title = @"Leave a Review";	
 	self.webView.scrollView.scrollEnabled = NO;
 	
 	[self.webView addSubview:self.coverView];
@@ -447,10 +450,37 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return _securedView;
 }
 
+- (UIBarButtonItem *)backButton
+{
+	if (!_backButton) {
+		UIImageView *backImageView = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_back.png"]];
+		backImageView.contentMode = UIViewContentModeScaleAspectFit;
+		backImageView.userInteractionEnabled = YES;
+		[backImageView ul_addTapGestureWithTarget:self action:@selector(handleBackButtonTapped:)];
+		CGRect frame = backImageView.frame;
+		frame.size = CGSizeMake(20.0f, 25.0f);
+		backImageView.frame = frame;
+		_backButton = [[UIBarButtonItem alloc] initWithCustomView:backImageView];
+	}
+	
+	return _backButton;
+}
+
+- (void)handleBackButtonTapped:(id)sender
+{
+	[self dismissWebView];
+}
+
 - (void)toggleCustomViewForLoginScreen:(BOOL)visible
 {
 	self.securedView.alpha = visible;
 	self.coverView.alpha = visible;
+	
+	if (visible) {
+		self.navigationItem.leftBarButtonItem = self.backButton;
+	} else {
+		self.navigationItem.leftBarButtonItem = nil;
+	}
 }
 
 #pragma mark - Google Page Custom View

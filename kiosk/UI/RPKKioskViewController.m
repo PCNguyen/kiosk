@@ -28,6 +28,13 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (void)loadView
+{
+	[super loadView];
+	
+	self.title = @"Leave a Review";
+}
+
 #pragma mark - WKWebView Delegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler

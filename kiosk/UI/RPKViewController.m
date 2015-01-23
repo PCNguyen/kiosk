@@ -23,8 +23,11 @@
 	[self ul_adjustIOS7Boundaries];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[self tintNavigationItems];
 }
 
 - (void)toggleLoadingView:(BOOL)isVisible {
@@ -45,6 +48,23 @@
     }
 
     return _loadingView;
+}
+
+#pragma mark - Tinting
+
+- (void)tintNavigationItems
+{
+	[self tintNavigationItemsWithColor:[UIColor whiteColor]];
+}
+
+- (void)tintNavigationItemsWithColor:(UIColor *)color
+{
+	//--set color for custom button
+	self.navigationItem.leftBarButtonItem.tintColor = color;
+	self.navigationItem.rightBarButtonItem.tintColor = color;
+	
+	//--set color for system button
+	self.navigationController.navigationBar.tintColor = color;
 }
 
 @end
