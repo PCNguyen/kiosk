@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import "ULViewDataSource.h"
+#import "RPPreferenceDataSource.h"
 #import "RPKMenuItem.h"
 
-@interface RPKMenuDataSource : ULViewDataSource
+@interface RPKMenuDataSource : RPPreferenceDataSource
 
 /**
  *  An array of RPKMenuItem

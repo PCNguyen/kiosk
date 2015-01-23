@@ -7,16 +7,33 @@
 //
 
 #import "RPKMenuDataSource.h"
+#import <AppSDK/AppLibExtension.h>
 
 @implementation RPKMenuDataSource
 
 - (void)loadData
 {
+	//--grabing the selected location
+	NSArray *locations = [[self preferenceStorage] allLocations];
+	NSString *selectedLocationID = [[self preferenceStorage] loadSelectedLocation];
+	Location *selectedLocation = [[locations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"code == %@", selectedLocationID]] firstObject];
+	
+	NSString *kioskURLString = @"";
+	NSString *googleURLString = @"";
+	
+	if (selectedLocation) {
+		kioskURLString = selectedLocation.kioskUrl;
+		if ([selectedLocation.sourceUrls count] > 0) {
+			SourceUrl *sourceURL = [selectedLocation.sourceUrls firstObject];
+			googleURLString = sourceURL.sourceUrl;
+		}
+	}
+	
 	NSMutableArray *menuItems = [NSMutableArray array];
 	
 	//--loading Kiosk
 	RPKMenuItem *kioskItem = [[RPKMenuItem alloc] init];
-	kioskItem.itemURL = [NSURL URLWithString:@"http://qa.reputation.com/kiosk?key=a06326f3414"];
+	kioskItem.itemURL = [NSURL URLWithString:kioskURLString];
 	kioskItem.imageName = @"icon_quicksurvey.png";
 	kioskItem.itemTitle = @"Quick Survey";
 	kioskItem.isSecured = NO;
@@ -25,7 +42,7 @@
 	
 	//--loading Google Plus
 	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
-	NSString *googleURL = @"https://plus.google.com/117430950571267154753/about?review=1";
+	NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", googleURLString];
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";

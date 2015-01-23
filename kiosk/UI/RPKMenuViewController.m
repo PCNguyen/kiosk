@@ -14,6 +14,7 @@
 #import "RPKKioskViewController.h"
 #import "RPKSecuredView.h"
 #import "RPKNavigationController.h"
+#import "RPService.h"
 
 #import "NSAttributedString+RP.h"
 
@@ -165,6 +166,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 @implementation RPKMenuViewController
 
+- (void)dealloc
+{
+	[self ul_unRegisterAllManagedServices];
+}
+
 #pragma mark - View Life Cycle
 
 - (void)loadView
@@ -191,6 +197,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super viewDidLoad];
 	
+	[self ul_registerManagedService:[RPService serviceNameFromType:ServiceUpdateSelectedLocation]];
 	[[self dataSource] loadData];
 }
 
