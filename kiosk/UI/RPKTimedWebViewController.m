@@ -85,26 +85,6 @@
 	/*Subclass Override this*/
 }
 
-- (UIBarButtonItem *)testItem
-{
-	UIBarButtonItem *testItem = [[UIBarButtonItem alloc] initWithTitle:@"Expire"
-																 style:UIBarButtonItemStylePlain
-																target:self
-																action:@selector(handleTestItemTapped:)];
-	return testItem;
-}
-
-- (void)handleTestItemTapped:(id)sender
-{
-	[self displayExpirationMessage];
-}
-
-- (UIBarButtonItem *)flexibleItem
-{
-	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-	return flexItem;
-}
-
 #pragma mark - Expiration
 
 - (RPKExpirationViewController *)expirationViewController
