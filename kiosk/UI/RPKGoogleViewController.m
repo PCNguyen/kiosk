@@ -534,6 +534,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
 			[selfPointer removeKeyboardMask];
+			selfPointer.logoutButton.enabled = NO;
 			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:3.0f];
 			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:10.0f];
 		};
