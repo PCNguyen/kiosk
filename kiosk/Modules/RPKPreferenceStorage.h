@@ -36,4 +36,18 @@
  */
 - (NSMutableArray *)allLocations;
 
+/**
+ *  save the current location for kiosk
+ *
+ *  @param locationID the location code of the current location
+ */
+- (void)saveSelectedLocation:(NSString *)locationID;
+
+/**
+ *  Load the current location for kiosk
+ *
+ *  @return the location code of the current location
+ */
+- (NSString *)loadSelectedLocation;
+
 @end

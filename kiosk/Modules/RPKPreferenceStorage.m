@@ -43,4 +43,16 @@
 	return [self loadUserConfig].authLocations;
 }
 
+- (void)saveSelectedLocation:(NSString *)locationID
+{
+	[self saveValue:locationID forKey:kRSSelectedLocationKey];
+}
+
+- (NSString *)loadSelectedLocation
+{
+	NSString *locationCode = [self loadValueForKey:kRSSelectedLocationKey];
+	
+	return locationCode;
+}
+
 @end
