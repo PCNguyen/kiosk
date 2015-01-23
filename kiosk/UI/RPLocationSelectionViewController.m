@@ -10,6 +10,7 @@
 #import "RPFixedHeaderTableView.h"
 
 #import "RPNotificationCenter.h"
+#import "UIViewController+Alert.h"
 
 #define kLSVCSearchBarHeight				50.0f
 #define kLSVCSectionAll						0
@@ -188,8 +189,20 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	[[self selectionDataSource] toggleSelectAll:NO];
 	[[self selectionDataSource] toggleSelectionAtIndexPath:indexPath];
 	
-	[self.locationTableView.tableView reloadData];
-	[self refreshNavigation];
+	//--confirmation
+	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
+	RPAlertController *alertController = [[RPAlertController alloc] initWithTitle:NSLocalizedString(@"Confirm Location", nil)
+																		  message:[NSString stringWithFormat:NSLocalizedString(@"Open Kiosk for %@?", nil), selection.selectionLabel]];
+	__weak RPLocationSelectionViewController *selfPointer = self;
+	[alertController addButtonTitle:@"Cancel" style:AlertButtonStyleCancel action:^(RPAlertButton *alertButton) {
+		[selfPointer.locationTableView.tableView reloadData];
+		[selfPointer refreshNavigation];
+	}];
+	
+	[alertController addButtonTitle:@"OK" style:AlertButtonStyleDefault action:^(RPAlertButton *alertButton) {
+		[selfPointer dismissViewController];
+	}];
+	[self presentViewController:alertController animated:YES completion:NULL];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView

@@ -391,7 +391,7 @@
 @end
 
 #pragma mark -
-#define kACMaxAlertRatio					CGSizeMake(0.8, 0.8)
+#define kACMaxAlertRatio					CGSizeMake(0.4, 0.8)
 #define kACMinAlertHeight					135.0f
 #define kACTransitionDuration				0.25f
 
