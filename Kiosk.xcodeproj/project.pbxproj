@@ -116,6 +116,8 @@
 		0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
 		0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
 		0FBF99EA1A71E73F00C25788 /* RPSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPSelection.m */; };
+		0FBF99ED1A71E84000C25788 /* RPLocationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */; };
+		0FBF99F01A71E86C00C25788 /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
@@ -334,6 +336,10 @@
 		0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLocationSelectionDataSource.m; sourceTree = "<group>"; };
 		0FBF99E81A71E73F00C25788 /* RPSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSelection.h; sourceTree = "<group>"; };
 		0FBF99E91A71E73F00C25788 /* RPSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSelection.m; sourceTree = "<group>"; };
+		0FBF99EB1A71E84000C25788 /* RPLocationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLocationSelectionViewController.h; sourceTree = "<group>"; };
+		0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLocationSelectionViewController.m; sourceTree = "<group>"; };
+		0FBF99EE1A71E86C00C25788 /* RPFixedHeaderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPFixedHeaderTableView.h; sourceTree = "<group>"; };
+		0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFixedHeaderTableView.m; sourceTree = "<group>"; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
@@ -518,6 +524,8 @@
 				0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */,
 				0FBF99DF1A71C9E400C25788 /* RPKExpirationViewController.h */,
 				0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */,
+				0FBF99EB1A71E84000C25788 /* RPLocationSelectionViewController.h */,
+				0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -846,6 +854,8 @@
 				0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */,
 				0FBF99DC1A71ACCA00C25788 /* RPKGoogleThankYou.h */,
 				0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */,
+				0FBF99EE1A71E86C00C25788 /* RPFixedHeaderTableView.h */,
+				0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1073,6 +1083,7 @@
 				0FA0E1831A686AC80011EAC9 /* TProtocolUtil.m in Sources */,
 				0FA0E1B61A68833B0011EAC9 /* RPAuthenticationHandler.m in Sources */,
 				0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */,
+				0FBF99F01A71E86C00C25788 /* RPFixedHeaderTableView.m in Sources */,
 				0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */,
 				0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */,
 				0FA0E18B1A686AC80011EAC9 /* TMemoryBuffer.m in Sources */,
@@ -1081,6 +1092,7 @@
 				0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FA0E1E21A6887DB0011EAC9 /* UIViewController+Alert.m in Sources */,
+				0FBF99ED1A71E84000C25788 /* RPLocationSelectionViewController.m in Sources */,
 				0FA0E1881A686AC80011EAC9 /* MyExtentions.m in Sources */,
 				0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */,
 				0FA0E1811A686AC80011EAC9 /* TBinaryProtocol.m in Sources */,
