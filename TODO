@@ -8,3 +8,4 @@ Add Scheduler to refresh UserConfig
 Adding User Feedback for location Selection
 Disable Google+ button when it is not available
 Error Handling
+Externalize all js and stylesheet file
