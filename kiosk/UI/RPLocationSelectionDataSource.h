@@ -26,13 +26,6 @@
  */
 @property (nonatomic, assign) BOOL hasSocialSitesEnable;
 
-/**
- *  Wheter or not we want to parse saved selection from user settings
- *	This has to be set to YES in order to persist selection back to location settings
- *	Default is NO
- */
-@property (nonatomic, assign) BOOL applyUserSettings;
-
 #pragma mark - UI Helper
 
 /**

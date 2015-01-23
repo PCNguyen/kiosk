@@ -193,33 +193,4 @@
 	}
 }
 
-#pragma mark - Persistence
-
-- (void)setApplyUserSettings:(BOOL)applyUserSettings
-{
-	_applyUserSettings = applyUserSettings;
-	
-	if (applyUserSettings) {
-		UserPreference *locationSettings = [self.preferenceStorage loadUserSettingForID:[MobileCommonConstants PREFERENCE_GENERAL_LOCATION]];
-		
-		if ([locationSettings.selectedValues containsObject:[MobileCommonConstants LOCATIONS_ALL]]
-			|| [locationSettings.selectedValues count] == 0) {
-			
-			//--if all or none selected, grab the selected value from the authLocations
-			NSMutableArray *locationCodes = [NSMutableArray array];
-			NSArray *locations = [self userConfig].authLocations;
-			[locations enumerateObjectsUsingBlock:^(Location *location, NSUInteger index, BOOL *stop) {
-				[locationCodes addObject:location.code];
-			}];
-			
-			self.selectedLocations = locationCodes;
-		} else {
-			
-			//--grab the selected values from userSetting
-			self.selectedLocations = [NSMutableArray arrayWithArray:locationSettings.selectedValues];
-		}
-		
-	}
-}
-
 @end
