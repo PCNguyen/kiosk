@@ -13,7 +13,6 @@
 
 @interface RPKTimedWebViewController : RPKWebViewController <RPKExpirationViewControllerDelegate>
 
-@property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 
 @property (nonatomic, strong) RPKExpirationViewController *expirationViewController;

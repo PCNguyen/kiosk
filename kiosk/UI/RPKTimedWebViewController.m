@@ -20,25 +20,14 @@
 
 @implementation RPKTimedWebViewController
 
-- (instancetype)initWithURL:(NSURL *)url
-{
-	if (self = [super initWithURL:url]) {
-		self.enableToolBar = YES;
-	}
-	
-	return self;
-}
-
 - (void)loadView
 {
 	[super loadView];
 	
-	[self.view addSubview:self.toolBar];
-	[self.toolBar ul_fixedSize:CGSizeMake(0.0f, 70.0f) priority:UILayoutPriorityDefaultHigh];
-	[self.view addConstraints:[self.toolBar ul_pinWithInset:UIEdgeInsetsMake(0.0f, 0.0f, kUIViewUnpinInset, 0.0f)]];
-	
 	[self.webView addSubview:self.maskButton];
 	[self.webView addConstraints:[self.maskButton ul_pinWithInset:UIEdgeInsetsZero]];
+	
+	self.navigationItem.rightBarButtonItem = [self logoutButton];
 }
 
 - (void)viewDidLoad
@@ -73,22 +62,6 @@
 }
 
 #pragma mark - Toolbar
-
-- (UIToolbar *)toolBar
-{
-	if (!_toolBar) {
-		_toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-		_toolBar.items = @[[self testItem],
-						   [self flexibleItem],
-						   self.logoutButton];
-		[_toolBar setBackgroundColor:[UIColor rpk_defaultBlue]];
-		[_toolBar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
-		_toolBar.opaque = YES;
-		[_toolBar ul_enableAutoLayout];
-	}
-	
-	return _toolBar;
-}
 
 - (UIBarButtonItem *)logoutButton
 {

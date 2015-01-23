@@ -13,6 +13,7 @@
 #import "RPKGoogleViewController.h"
 #import "RPKKioskViewController.h"
 #import "RPKSecuredView.h"
+#import "RPKNavigationController.h"
 
 #import "NSAttributedString+RP.h"
 
@@ -286,14 +287,17 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
+	RPKTimedWebViewController *timeWebVC = nil;
 	
 	if (menuItem.itemType == MenuTypeGoogle) {
-		RPKGoogleViewController *googleWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
-		[self.navigationController presentViewController:googleWebVC animated:YES completion:NULL];
+		timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
 	} else {
-		RPKKioskViewController *kioskWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
-		[self.navigationController presentViewController:kioskWebVC animated:YES completion:NULL];
+		timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
 	}
+	
+	RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
+	[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
