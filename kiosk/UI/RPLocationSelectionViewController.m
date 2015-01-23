@@ -10,7 +10,6 @@
 #import "RPFixedHeaderTableView.h"
 
 #import "RPNotificationCenter.h"
-#import "RPReferenceHandler.h"
 
 #define kLSVCSearchBarHeight				50.0f
 #define kLSVCSectionAll						0
@@ -31,12 +30,17 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	[self ul_unRegisterAllManagedServices];
 }
 
+- (void)loadView
+{
+	[super loadView];
+	
+	self.view.backgroundColor = [UIColor whiteColor];
+	self.title = @"Select Locations";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	self.view.backgroundColor = [UIColor whiteColor];
-	self.title = @"Select Locations";
 
 	NSString *configService = [RPService serviceNameFromType:ServiceGetUserConfig];
 	[self ul_registerManagedService:configService];
@@ -89,10 +93,6 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 - (void)handleDoneButtonTapped:(id)sender
 {
 	NSMutableArray *selectedLocations = [[self selectionDataSource] selectedLocations];
-	
-	if ([[self selectionDataSource] applyUserSettings]) {
-		[RPReferenceHandler sendLocationSettings:selectedLocations];
-	}
 	
 	if ([self.delegate respondsToSelector:@selector(locationSelectionViewController:selectLocations:)]) {
 		[self.delegate locationSelectionViewController:self selectLocations:selectedLocations];
@@ -174,7 +174,7 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 		locationCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
-	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:14.0f];
+	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
 	
 	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
 	locationCell.textLabel.text = selection.selectionLabel;
@@ -195,6 +195,11 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
 	return [[self selectionDataSource] indexTitles];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 60.0f;
 }
 
 #pragma mark - Search Bar
