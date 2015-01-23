@@ -7,11 +7,11 @@
 //
 
 #import "ULManagedDataSource.h"
-#import "RPReferenceStorage.h"
+#import "RPKPreferenceStorage.h"
 
 @interface RPPreferenceDataSource : ULManagedDataSource
 
-@property (nonatomic, strong) RPReferenceStorage *preferenceStorage;
+@property (nonatomic, strong) RPKPreferenceStorage *preferenceStorage;
 
 /**
  *  provide a convenient entry point to loadUserConfig from preferenceStorage

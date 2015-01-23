@@ -85,7 +85,7 @@
 		0FA0E1B31A68832E0011EAC9 /* RPLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B21A68832E0011EAC9 /* RPLoginService.m */; };
 		0FA0E1B61A68833B0011EAC9 /* RPAuthenticationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B51A68833B0011EAC9 /* RPAuthenticationHandler.m */; };
 		0FA0E1BB1A6883540011EAC9 /* RPAccountStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B81A6883540011EAC9 /* RPAccountStorage.m */; };
-		0FA0E1BC1A6883540011EAC9 /* RPReferenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BA1A6883540011EAC9 /* RPReferenceStorage.m */; };
+		0FA0E1BC1A6883540011EAC9 /* RPKPreferenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BA1A6883540011EAC9 /* RPKPreferenceStorage.m */; };
 		0FA0E1C01A6883A40011EAC9 /* User+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BF1A6883A40011EAC9 /* User+RP.m */; };
 		0FA0E1C31A6883D70011EAC9 /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */; };
 		0FA0E1C61A68847E0011EAC9 /* DLAppStorage+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C51A68847E0011EAC9 /* DLAppStorage+RP.m */; };
@@ -275,8 +275,8 @@
 		0FA0E1B51A68833B0011EAC9 /* RPAuthenticationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPAuthenticationHandler.m; sourceTree = "<group>"; };
 		0FA0E1B71A6883540011EAC9 /* RPAccountStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPAccountStorage.h; sourceTree = "<group>"; };
 		0FA0E1B81A6883540011EAC9 /* RPAccountStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPAccountStorage.m; sourceTree = "<group>"; };
-		0FA0E1B91A6883540011EAC9 /* RPReferenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPReferenceStorage.h; sourceTree = "<group>"; };
-		0FA0E1BA1A6883540011EAC9 /* RPReferenceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPReferenceStorage.m; sourceTree = "<group>"; };
+		0FA0E1B91A6883540011EAC9 /* RPKPreferenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKPreferenceStorage.h; sourceTree = "<group>"; };
+		0FA0E1BA1A6883540011EAC9 /* RPKPreferenceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKPreferenceStorage.m; sourceTree = "<group>"; };
 		0FA0E1BE1A6883A40011EAC9 /* User+RP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+RP.h"; sourceTree = "<group>"; };
 		0FA0E1BF1A6883A40011EAC9 /* User+RP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+RP.m"; sourceTree = "<group>"; };
 		0FA0E1C11A6883D70011EAC9 /* NSBundle+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Extension.h"; sourceTree = "<group>"; };
@@ -837,8 +837,8 @@
 				0FA0E2021A6889C40011EAC9 /* RPPreferenceService.m */,
 				0FA0E1DD1A68869B0011EAC9 /* RPReferenceHandler.h */,
 				0FA0E1DE1A68869B0011EAC9 /* RPReferenceHandler.m */,
-				0FA0E1B91A6883540011EAC9 /* RPReferenceStorage.h */,
-				0FA0E1BA1A6883540011EAC9 /* RPReferenceStorage.m */,
+				0FA0E1B91A6883540011EAC9 /* RPKPreferenceStorage.h */,
+				0FA0E1BA1A6883540011EAC9 /* RPKPreferenceStorage.m */,
 			);
 			name = References;
 			sourceTree = "<group>";
@@ -1057,7 +1057,7 @@
 				0FA0E1841A686AC80011EAC9 /* TSocketServer.m in Sources */,
 				0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */,
 				0FA0E1871A686AC80011EAC9 /* Base64.m in Sources */,
-				0FA0E1BC1A6883540011EAC9 /* RPReferenceStorage.m in Sources */,
+				0FA0E1BC1A6883540011EAC9 /* RPKPreferenceStorage.m in Sources */,
 				0FA0E1BB1A6883540011EAC9 /* RPAccountStorage.m in Sources */,
 				0FA0E1861A686AC80011EAC9 /* TException.m in Sources */,
 				0FA0E1D21A6885810011EAC9 /* RPNetworkManager.m in Sources */,

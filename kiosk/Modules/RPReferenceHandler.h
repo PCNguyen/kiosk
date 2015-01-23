@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RPNetworkHandler.h"
-#import "RPReferenceStorage.h"
+#import "RPKPreferenceStorage.h"
 
 @interface RPReferenceHandler : RPNetworkHandler
 

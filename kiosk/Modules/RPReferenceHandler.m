@@ -52,13 +52,13 @@ NSString *const RPReferenceHandlerNetworkActivityCompleteNotification = @"RPRefe
 
 + (void)saveUserConfig:(UserConfig *)userConfig
 {
-	RPReferenceStorage *referenceStorage = [RPReferenceStorage sharedCacheAppStorage];
+	RPKPreferenceStorage *referenceStorage = [RPKPreferenceStorage sharedCacheAppStorage];
 	[referenceStorage saveUserConfig:userConfig];
 }
 
 + (void)wipePreferenceData
 {
-	RPReferenceStorage *referenceStorage = [RPReferenceStorage sharedCacheAppStorage];
+	RPKPreferenceStorage *referenceStorage = [RPKPreferenceStorage sharedCacheAppStorage];
 	[referenceStorage wipe];
 }
 
@@ -77,7 +77,7 @@ NSString *const RPReferenceHandlerNetworkActivityCompleteNotification = @"RPRefe
 
 + (NSMutableArray *)authenticatedLocations
 {
-	RPReferenceStorage *preferenceStorage = [RPReferenceStorage sharedCacheAppStorage];
+	RPKPreferenceStorage *preferenceStorage = [RPKPreferenceStorage sharedCacheAppStorage];
 	NSMutableArray *authLocations = [preferenceStorage allLocations];
 	
 	return authLocations;
@@ -125,7 +125,7 @@ NSString *const RPReferenceHandlerNetworkActivityCompleteNotification = @"RPRefe
 
 + (BOOL)hasPermission:(NSString *)permission
 {
-	RPReferenceStorage *storage = [RPReferenceStorage sharedCacheAppStorage];
+	RPKPreferenceStorage *storage = [RPKPreferenceStorage sharedCacheAppStorage];
 	NSArray *permissions = [storage loadUserConfig].featuresEnabled;
 	BOOL enable = [permissions containsObject:permission];
 	

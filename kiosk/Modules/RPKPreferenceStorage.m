@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 www. All rights reserved.
 //
 
-#import "RPReferenceStorage.h"
+#import "RPKPreferenceStorage.h"
 
 #import <AppSDK/AppLibExtension.h>
 
 #define kRSUserConfigKey					@"UserConfig"
 #define kRSSelectedLocationKey				@"SelectedLocation"
 
-@implementation RPReferenceStorage
+@implementation RPKPreferenceStorage
 
 #pragma mark - Override
 

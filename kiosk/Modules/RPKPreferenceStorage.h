@@ -9,7 +9,7 @@
 #import "DLAppStorage+RP.h"
 #import "Mobile.h"
 
-@interface RPReferenceStorage : DLAppStorage
+@interface RPKPreferenceStorage : DLAppStorage
 
 #pragma mark - Preference
 

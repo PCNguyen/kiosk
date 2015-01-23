@@ -17,10 +17,10 @@
 	[self ignoreUpdateProperty:@selector(preferenceStorage)];
 }
 
-- (RPReferenceStorage *)preferenceStorage
+- (RPKPreferenceStorage *)preferenceStorage
 {
 	if (!_preferenceStorage) {
-		_preferenceStorage = [RPReferenceStorage sharedCacheAppStorage];
+		_preferenceStorage = [RPKPreferenceStorage sharedCacheAppStorage];
 	}
 	
 	return _preferenceStorage;
