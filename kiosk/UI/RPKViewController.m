@@ -30,6 +30,14 @@
 	[self tintNavigationItems];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	[self.loadingView hide];
+	[self.loadingView remove];
+}
+
 - (void)toggleLoadingView:(BOOL)isVisible {
     if (isVisible) {
         [self.loadingView show];
@@ -40,7 +48,7 @@
 
 - (PQFCirclesInTriangle *)loadingView {
     if (!_loadingView) {
-        _loadingView = [[PQFCirclesInTriangle alloc] initLoaderOnView:self.view];
+        _loadingView = [[PQFCirclesInTriangle alloc] initLoaderOnView:self.view.window];
 		_loadingView.loaderColor = [UIColor rpk_defaultBlue];
 		_loadingView.delay = 0.0f;
 		_loadingView.duration = 1.2f;
