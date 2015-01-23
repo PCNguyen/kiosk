@@ -1,11 +1,12 @@
 Analytic Tracking
 Change Wording on Menu
-Seed Location URL from data source
 Adding term and condition for Login Screen
 Hook up event for Reputation Kiosk.
-Adding RSS screen while wait for Google Page Load
 Add Scheduler to refresh UserConfig
 Adding User Feedback for location Selection
 Disable Google+ button when it is not available
-Error Handling
 Externalize all js and stylesheet file
+Connectivity handling
+AppIcon
+Error Handling
+Adding RSS screen while wait for Google Page Load
