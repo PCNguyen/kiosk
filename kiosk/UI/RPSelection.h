@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *selectionID;
 @property (nonatomic, strong) NSString *selectionLabel;
 @property (nonatomic, assign) BOOL isSelected;
+@property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 @end

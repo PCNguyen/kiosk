@@ -60,7 +60,8 @@
 			selection.selectionID = location.code;
 			selection.selectionLabel = location.name;
 			selection.isSelected = [self.selectedLocations containsObject:selection.selectionID];
-			
+			selection.enabled = [location.sourceUrls count] > 0;
+
 			//--retrieve the section this location belong to, if not, create new
 			NSString *indexKey = [self indexLabelForName:location.name];
 			NSMutableArray *indexSelections = [selectionDictionary valueForKey:indexKey];
