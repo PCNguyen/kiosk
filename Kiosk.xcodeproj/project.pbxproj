@@ -113,6 +113,9 @@
 		0FBDF8591A702C4900488874 /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBDF8581A702C4900488874 /* icon_quicksurvey.png */; };
 		0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
 		0FBF99E11A71C9E400C25788 /* RPKExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */; };
+		0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
+		0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
+		0FBF99EA1A71E73F00C25788 /* RPSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPSelection.m */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
@@ -325,6 +328,12 @@
 		0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleThankYou.m; sourceTree = "<group>"; };
 		0FBF99DF1A71C9E400C25788 /* RPKExpirationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKExpirationViewController.h; sourceTree = "<group>"; };
 		0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKExpirationViewController.m; sourceTree = "<group>"; };
+		0FBF99E21A71E72500C25788 /* RPPreferenceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPPreferenceDataSource.h; sourceTree = "<group>"; };
+		0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPPreferenceDataSource.m; sourceTree = "<group>"; };
+		0FBF99E41A71E72500C25788 /* RPLocationSelectionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLocationSelectionDataSource.h; sourceTree = "<group>"; };
+		0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLocationSelectionDataSource.m; sourceTree = "<group>"; };
+		0FBF99E81A71E73F00C25788 /* RPSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSelection.h; sourceTree = "<group>"; };
+		0FBF99E91A71E73F00C25788 /* RPSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSelection.m; sourceTree = "<group>"; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
@@ -535,6 +544,12 @@
 				0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */,
 				0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */,
 				0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */,
+				0FBF99E21A71E72500C25788 /* RPPreferenceDataSource.h */,
+				0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */,
+				0FBF99E41A71E72500C25788 /* RPLocationSelectionDataSource.h */,
+				0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */,
+				0FBF99E81A71E73F00C25788 /* RPSelection.h */,
+				0FBF99E91A71E73F00C25788 /* RPSelection.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1021,12 +1036,14 @@
 				0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */,
 				0FA0E1981A686B350011EAC9 /* Mobile.m in Sources */,
 				0FBF99E11A71C9E400C25788 /* RPKExpirationViewController.m in Sources */,
+				0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */,
 				0FA0E18D1A686AC80011EAC9 /* TNSStreamTransport.m in Sources */,
 				0FA0E1DB1A6886540011EAC9 /* RPScheduleHandler.m in Sources */,
 				0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */,
 				0FA0E10B1A65D6ED0011EAC9 /* RPKRestServiceController.m in Sources */,
 				0F063AD31A6EE8790092F607 /* UIFont+RPK.m in Sources */,
 				0FA0E1841A686AC80011EAC9 /* TSocketServer.m in Sources */,
+				0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */,
 				0FA0E1871A686AC80011EAC9 /* Base64.m in Sources */,
 				0FA0E1BC1A6883540011EAC9 /* RPReferenceStorage.m in Sources */,
 				0FA0E1BB1A6883540011EAC9 /* RPAccountStorage.m in Sources */,
@@ -1035,6 +1052,7 @@
 				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0E19A1A686B350011EAC9 /* MobileCommon.m in Sources */,
 				0FA0E2001A6889460011EAC9 /* NSAttributedString+RP.m in Sources */,
+				0FBF99EA1A71E73F00C25788 /* RPSelection.m in Sources */,
 				0FA0E1AA1A686EF30011EAC9 /* RPKServiceController.m in Sources */,
 				0FA0E1C61A68847E0011EAC9 /* DLAppStorage+RP.m in Sources */,
 				0FA0E18E1A686AC80011EAC9 /* TSocketClient.m in Sources */,
