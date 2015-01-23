@@ -17,4 +17,6 @@
 
 + (UIViewController *)rootViewController;
 
+- (void)loginViewControllerDidDismissed;
+
 @end

@@ -33,7 +33,8 @@
 }
 
 - (void)layoutSubviews {
-    
+	[super layoutSubviews];
+	
     CGRect viewBounds = self.bounds;
     
     CGRect frame = CGRectMake(0.0f,

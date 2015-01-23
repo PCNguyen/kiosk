@@ -52,6 +52,13 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	[self.view addSubview:self.locationTableView];
 }
 
+- (void)viewWillLayoutSubviews
+{
+	[super viewWillLayoutSubviews];
+	
+	self.locationTableView.frame = [self tableViewFrame];
+}
+
 #pragma mark - Navigation
 
 - (void)configureNavigation
@@ -148,24 +155,14 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	NSInteger count = [[self selectionDataSource] sectionCount];
-	
-	if (![self inSearchMode]) {
-		count++; //--include the all button;
-	}
-	
 	return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0 && ![self inSearchMode]) {
-		return 1;
-	} else {
-		NSInteger adjustedSection = [self inSearchMode] ? section : (section - 1);
-		NSInteger rowCount = [[self selectionDataSource] locationCountInSection:adjustedSection];
-		
-		return rowCount;
-	}
+	NSInteger rowCount = [[self selectionDataSource] locationCountInSection:section];
+	
+	return rowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -179,29 +176,17 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	
 	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:14.0f];
 	
-	if (indexPath.section == kLSVCSectionAll && ![self inSearchMode]) {
-		locationCell.textLabel.text = @"All";
-		locationCell.accessoryType = ([self isAllSelected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-	} else {
-		NSInteger adjustedSection = ([self inSearchMode] ? indexPath.section : (indexPath.section - 1));
-		NSIndexPath *adjustedIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:adjustedSection];
-		RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:adjustedIndexPath];
-		locationCell.textLabel.text = selection.selectionLabel;
-		locationCell.accessoryType = (selection.isSelected ?  UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-	}
+	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
+	locationCell.textLabel.text = selection.selectionLabel;
+	locationCell.accessoryType = (selection.isSelected ?  UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	
 	return locationCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == kLSVCSectionAll && ![self inSearchMode]) {
-		[[self selectionDataSource] toggleSelectAll:![self isAllSelected]];
-	} else {
-		NSInteger adjustedSection = ([self inSearchMode] ? indexPath.section : (indexPath.section - 1));
-		NSIndexPath *adjustedIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:adjustedSection];
-		[[self selectionDataSource] toggleSelectionAtIndexPath:adjustedIndexPath];
-	}
+	[[self selectionDataSource] toggleSelectAll:NO];
+	[[self selectionDataSource] toggleSelectionAtIndexPath:indexPath];
 	
 	[self.locationTableView.tableView reloadData];
 	[self refreshNavigation];
