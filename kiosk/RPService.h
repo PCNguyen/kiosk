@@ -16,9 +16,7 @@ typedef enum {
 	ServiceRefreshKey,
 
 	ServiceGetUserConfig,
-	ServiceUpdateLocationSetting,
-	ServiceUpdateNotificationSetting,
-	ServiceUpdateDashboardSetting,
+	ServiceUpdateSelectedLocation,
 } RPServiceType;
 
 @interface RPService : NSObject

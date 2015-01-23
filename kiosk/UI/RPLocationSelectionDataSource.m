@@ -31,11 +31,15 @@
 	[self ignoreUpdateProperty:@selector(filter)];
 	[self ignoreUpdateProperty:@selector(selectedLocations)];
 	[self ignoreUpdateProperty:@selector(hasSocialSitesEnable)];
-	[self ignoreUpdateProperty:@selector(applyUserSettings)];
 }
 
 - (void)loadData
 {
+	NSString *selectedLocation = [self.preferenceStorage loadSelectedLocation];
+	if ([selectedLocation length] > 0) {
+		[self applyPreselections:@[selectedLocation]];
+	}
+	
 	self.locations = [self parseLocationSelections];
 }
 
@@ -191,6 +195,12 @@
 	} else {
 		[self.selectedLocations removeObject:selection.selectionID];
 	}
+}
+
+- (void)persistSelectedLocation
+{
+	[self.preferenceStorage saveSelectedLocation:[self.selectedLocations al_objectAtIndex:0]];
+	[[ULDataSourceManager sharedManager] notifyDataSourcesOfService:[RPService serviceNameFromType:ServiceUpdateSelectedLocation] error:nil];
 }
 
 @end

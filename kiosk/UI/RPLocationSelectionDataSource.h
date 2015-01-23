@@ -109,4 +109,9 @@
  */
 - (void)applyPreselections:(NSArray *)selectedIDs;
 
+/**
+ *  Actual save the selected location to disk
+ */
+- (void)persistSelectedLocation;
+
 @end

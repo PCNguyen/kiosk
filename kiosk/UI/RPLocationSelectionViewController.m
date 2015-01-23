@@ -203,6 +203,7 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 	}];
 	
 	[alertController addButtonTitle:@"OK" style:AlertButtonStyleDefault action:^(RPAlertButton *alertButton) {
+		[[selfPointer selectionDataSource] persistSelectedLocation];
 		[selfPointer dismissViewController];
 	}];
 	
