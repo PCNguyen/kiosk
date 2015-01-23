@@ -13,8 +13,10 @@
 #import "RPKLoginViewController.h"
 #import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
+#import "RPLocationSelectionViewController.h"
+#import "RPReferenceHandler.h"
 
-@interface RPKLayoutManager ()
+@interface RPKLayoutManager () <RPKLoginViewControllerDelegate>
 
 @property (nonatomic, strong) RPKNavigationController *mainNavigationController;
 
@@ -47,6 +49,7 @@
 
 - (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
     RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
+	loginViewController.delegate = self;
     [[RPKLayoutManager rootViewController] presentViewController:loginViewController animated:YES completion:NULL];
 }
 
@@ -71,6 +74,17 @@
 	}
 	
 	return _mainNavigationController;
+}
+
+#pragma mark - Login View Controller Delegate
+
+- (void)loginViewControllerDidDismissed
+{
+	if ([RPReferenceHandler hasMultiLocation]) {
+		RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
+		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
+		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
+	}
 }
 
 @end

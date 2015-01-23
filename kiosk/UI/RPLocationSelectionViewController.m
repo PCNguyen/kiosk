@@ -56,9 +56,6 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 
 - (void)configureNavigation
 {
-	self.navigationItem.hidesBackButton = YES;
-	self.navigationItem.leftBarButtonItem = [self backButtonItem];
-	
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 																				target:self
 																				action:@selector(handleDoneButtonTapped:)];
@@ -80,18 +77,6 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 	}
 
-}
-
-- (UIBarButtonItem *)backButtonItem
-{
-	UIImage *backButtonImage = [UIImage rpk_bundleImageNamed:@"icon_back.png"];
-	UIBarButtonItem *backButton = [UIBarButtonItem ul_barButtonItemWithImage:backButtonImage target:self action:@selector(handleBackButtonItemTapped:)];
-	return backButton;
-}
-
-- (void)handleBackButtonItemTapped:(id)sender
-{
-	[self dismissViewController];
 }
 
 - (void)handleDoneButtonTapped:(id)sender
