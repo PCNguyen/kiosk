@@ -157,8 +157,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)loadRequest
 {
-	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
-	[self.webView loadRequest:nonCacheRequest];
+	[self loadURLString:kGVCLogoutURL];
 }
 
 - (void)loadURLString:(NSString *)urlText
@@ -206,24 +205,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	//--in case a count down is in progress
 	[self hideExpirationMessage];
-	[self hideThankyouPage];
 	[self unRegisterNotification];
 	[self removeKeyboardMask];
 	
 	//--load the logout request
-	[self loadURLString:kGVCLogoutURL];
-}
-
-#pragma mark - Message Handler
-
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
-{
-	[RPKCookieHandler clearCookie];
-	
-	//--avoid leaking
-	[userContentController removeScriptMessageHandlerForName:message.name];
-	
-	//--to make sure we are clear
 	[self loadURLString:kGVCVerifiedLogoutURL];
 }
 
@@ -310,7 +295,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	_pageWillLoad = pageWillLoad;
 	
 	switch (pageWillLoad) {
-		case GooglePageLogin:
+		case GooglePageLogout:
 			[self showLoading];
 			break;
 			
@@ -330,13 +315,12 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self registerNotification];
 			
 			break;
-		
-		case GooglePageLogout:
+
+		case GooglePageVerifyLogout:
 			//--disable mask button
 			self.submitButton.active = NO;
 			[self showLoading];
 			break;
-			
 		default:
 			break;
 	}
@@ -347,9 +331,17 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	_pageDidLoad = pageDidLoad;
 	
 	switch (pageDidLoad) {
+		case GooglePageLogout: {
+			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
+															  encoding:NSUTF8StringEncoding
+																 error:NULL];
+			
+			[self.webView evaluateJavaScript:logoutScript completionHandler:NULL];
+			[self toggleCustomViewForLoginScreen:YES];
+		} break;
+			
 		case GooglePageLogin:
 			[self hideLoading];
-			[self toggleCustomViewForLoginScreen:YES];
 			break;
 			
 		case GooglePageAuthentication:
@@ -369,18 +361,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
 		} break;
 			
-		case GooglePageLogout: {
-			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-															  encoding:NSUTF8StringEncoding
-																 error:NULL];
-			
-			[self.webView evaluateJavaScript:logoutScript completionHandler:NULL];
+		case GooglePageVerifyLogout:
 			[self toggleCustomViewForGooglePage:NO];
 			[self toggleCustomViewForLoginScreen:YES];
-		} break;
-			
-		case GooglePageVerifyLogout:
-			[self performSelector:@selector(dismissWebView) withObject:self afterDelay:5.0f];
+			[self dismissWebView];
 			break;
 		default:
 			break;
@@ -391,6 +375,20 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[self hideLoading];
 	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Message Handler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+	[RPKCookieHandler clearCookie];
+	
+	//--avoid leaking
+	[userContentController removeScriptMessageHandlerForName:message.name];
+	
+	//--load the actual request after cookie clearing
+	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+	[self.webView loadRequest:nonCacheRequest];
 }
 
 #pragma mark - Popup Task
@@ -535,8 +533,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		_submitButton.actionBlock = ^{
 			[selfPointer removeKeyboardMask];
 			selfPointer.logoutButton.enabled = NO;
-			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:3.0f];
-			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:10.0f];
+			[selfPointer displayThankyouPage];
+			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:3.0f];
 		};
 		
 		[_submitButton ul_enableAutoLayout];
