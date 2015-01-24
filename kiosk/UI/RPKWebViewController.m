@@ -24,6 +24,10 @@
 {
 	[super loadView];
 	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+																						   target:self
+																						   action:@selector(handleDoneButtonTapped:)];
+	
 	[self.view addSubview:self.webView];
 	
 	if (self.enableToolBar) {
@@ -61,6 +65,22 @@
 - (WKWebViewConfiguration *)webConfiguration
 {
 	return [WKWebViewConfiguration new];
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+	[self toggleLoadingView:YES];
+	decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+	[self toggleLoadingView:NO];
+}
+
+- (void)handleDoneButtonTapped:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

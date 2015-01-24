@@ -12,6 +12,8 @@
 #import "UIViewController+Alert.h"
 #import "RPAccountManager.h"
 #import "RPAttributedLabel.h"
+#import "RPKWebViewController.h"
+#import "RPKNavigationController.h"
 
 #import "NSAttributedString+RP.h"
 
@@ -125,8 +127,17 @@
 		[attributedText rp_addLineSpacing:4.0f lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft];
 		_termConditionLabel.attributedText = attributedText;
 		
+		__weak RPKLoginViewController *selfPointer = self;
 		RPLink *tocLink = [[RPLink alloc] initWithLink:[NSURL URLWithString:@"http://www.reputation.com/user-agreement"] range:[tocText rangeOfString:NSLocalizedString(@"Terms and Conditions", nil)]];
+		tocLink.linkAction = ^(NSURL *link) {
+			[selfPointer handleLinkURL:link];
+		};
+		
 		RPLink *privacyLink = [[RPLink alloc] initWithLink:[NSURL URLWithString:@"http://www.reputation.com/privacy-policy"] range:[tocText rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+		privacyLink.linkAction = ^(NSURL *link) {
+			[selfPointer handleLinkURL:link];
+		};
+
 		[_termConditionLabel addTextLink:tocLink];
 		[_termConditionLabel addTextLink:privacyLink];
 		
@@ -134,6 +145,13 @@
 	}
 	
 	return _termConditionLabel;
+}
+
+- (void)handleLinkURL:(NSURL *)url
+{
+	RPKWebViewController *kioskViewController = [[RPKWebViewController alloc] initWithURL:url];
+	RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:kioskViewController];
+	[self presentViewController:navigationHolder animated:YES completion:NULL];
 }
 
 #pragma mark - Text Fields

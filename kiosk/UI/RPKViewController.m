@@ -36,6 +36,7 @@
 	
 	[self.loadingView hide];
 	[self.loadingView remove];
+	self.loadingView = nil;
 }
 
 - (void)toggleLoadingView:(BOOL)isVisible {
