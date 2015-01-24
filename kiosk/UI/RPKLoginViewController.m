@@ -11,6 +11,9 @@
 #import "RPAuthenticationHandler.h"
 #import "UIViewController+Alert.h"
 #import "RPAccountManager.h"
+#import "RPAttributedLabel.h"
+
+#import "NSAttributedString+RP.h"
 
 #import <AppSDK/NSString+AL.h>
 
@@ -22,7 +25,7 @@
 @property (nonatomic, strong) UITextField *userIDTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, strong) UIButton *loginButton;
-@property (nonatomic, strong) UILabel *termConditionLabel;
+@property (nonatomic, strong) RPAttributedLabel *termConditionLabel;
 
 @end
 
@@ -110,15 +113,23 @@
 	return _kioskLabel;
 }
 
-- (UILabel *)termConditionLabel
+- (RPAttributedLabel *)termConditionLabel
 {
 	if (!_termConditionLabel) {
-		_termConditionLabel = [[UILabel alloc] init];
+		_termConditionLabel = [[RPAttributedLabel alloc] init];
 		_termConditionLabel.backgroundColor = [UIColor clearColor];
-		_termConditionLabel.textAlignment = NSTextAlignmentLeft;
-		_termConditionLabel.text = NSLocalizedString(@"Term and Conditions", nil);
-		_termConditionLabel.font = [UIFont rpk_boldFontWithSize:16.0f];
-		_termConditionLabel.textColor = [UIColor rpk_lightGray];
+		_termConditionLabel.numberOfLines = 0;
+		
+		NSString *tocText = NSLocalizedString(@"By signing into this mobile app, you agree to be bound by Reputation.com's Terms and Conditions and Privacy Policy", nil);
+		NSMutableAttributedString *attributedText = [tocText al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor rpk_lightGray]];
+		[attributedText rp_addLineSpacing:4.0f lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft];
+		_termConditionLabel.attributedText = attributedText;
+		
+		RPLink *tocLink = [[RPLink alloc] initWithLink:[NSURL URLWithString:@"http://www.reputation.com/user-agreement"] range:[tocText rangeOfString:NSLocalizedString(@"Terms and Conditions", nil)]];
+		RPLink *privacyLink = [[RPLink alloc] initWithLink:[NSURL URLWithString:@"http://www.reputation.com/privacy-policy"] range:[tocText rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+		[_termConditionLabel addTextLink:tocLink];
+		[_termConditionLabel addTextLink:privacyLink];
+		
 		[_termConditionLabel ul_enableAutoLayout];
 	}
 	

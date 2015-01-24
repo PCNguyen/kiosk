@@ -31,10 +31,15 @@
 
 - (void)rp_addLineSpacing:(CGFloat)lineHeight lineBreakMode:(NSLineBreakMode)lineBreakMode
 {
+	[self rp_addLineSpacing:lineHeight lineBreakMode:lineBreakMode alignment:NSTextAlignmentCenter];
+}
+
+- (void)rp_addLineSpacing:(CGFloat)lineHeight lineBreakMode:(NSLineBreakMode)lineBreakMode alignment:(NSTextAlignment)alignment
+{
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	[paragraphStyle setLineSpacing:lineHeight];
 	[paragraphStyle setLineBreakMode:lineBreakMode];
-	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[paragraphStyle setAlignment:alignment];
 	
 	if ([self isKindOfClass:[NSMutableAttributedString class]]) {
 		[(NSMutableAttributedString *)self addAttribute:NSParagraphStyleAttributeName

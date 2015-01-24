@@ -16,5 +16,5 @@
 
 - (void)rp_addLineSpacing:(CGFloat)lineHeight;
 - (void)rp_addLineSpacing:(CGFloat)lineHeight lineBreakMode:(NSLineBreakMode)lineBreakMode;
-
+- (void)rp_addLineSpacing:(CGFloat)lineHeight lineBreakMode:(NSLineBreakMode)lineBreakMode alignment:(NSTextAlignment)alignment;
 @end

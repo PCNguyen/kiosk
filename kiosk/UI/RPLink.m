@@ -40,7 +40,7 @@
 {
 	if (!_formatAttributes) {
 		_formatAttributes = @{NSForegroundColorAttributeName: [UIColor rpk_defaultBlue],
-							  NSFontAttributeName: [UIFont rpk_extraBoldFontWithSize:14.0f]};
+							  NSFontAttributeName: [UIFont rpk_extraBoldFontWithSize:16.0f]};
 	}
 	
 	return _formatAttributes;
