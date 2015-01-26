@@ -16,6 +16,7 @@
 #import "RPKNavigationController.h"
 #import "RPService.h"
 
+#import "RPKLayoutManager.h"
 #import "NSAttributedString+RP.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
@@ -236,9 +237,21 @@ NSString *const MVCCellID = @"kMVCCellID";
 		_kioskTitle.attributedText = attributedText;
 		_kioskTitle.numberOfLines = 0;
 		[_kioskTitle ul_enableAutoLayout];
+		
+		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleFingerTapped:)];
+		tapGesture.numberOfTapsRequired = 1;
+		tapGesture.numberOfTouchesRequired = 2;
+		_kioskTitle.userInteractionEnabled = YES;
+		[_kioskTitle addGestureRecognizer:tapGesture];
     }
 
     return _kioskTitle;
+}
+
+- (void)handleTripleFingerTapped:(id)sender
+{
+	//--show location selector
+	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
 }
 
 #pragma mark - Collection View
