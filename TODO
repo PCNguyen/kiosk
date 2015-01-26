@@ -1,11 +1,12 @@
-Analytic Tracking
-Change Wording on Menu
-Hook up event for Reputation Kiosk.
+Add double finger tap to pull up location selector
 Add Scheduler to refresh UserConfig
-Adding User Feedback for location Selection
-Disable Google+ button when it is not available
-Externalize all js and stylesheet file
 Connectivity handling
+Change Wording on Menu - UI matching mock
+Adding User Feedback for location Selection
 AppIcon
+Disable Google+ button when it is not available
+Analytic Tracking
+Hook up event for Reputation Kiosk.
+Externalize all js and stylesheet file
 Error Handling
 Adding RSS screen while wait for Google Page Load
