@@ -9,6 +9,8 @@ Hook up event for Reputation Kiosk.
 Externalize all js and stylesheet file
 Error Handling
 Adding RSS screen while wait for Google Page Load
+Handling unusual URL:
+https://plus.google.com/107145284950519673466/about
 
 Clean up before deploy:
 - Change Scheduler back to 4 hours
