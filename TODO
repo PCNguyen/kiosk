@@ -1,4 +1,3 @@
-Add Scheduler to refresh UserConfig
 Connectivity handling
 Change Wording on Menu - UI matching mock
 Handle extra query in about link
@@ -10,3 +9,8 @@ Hook up event for Reputation Kiosk.
 Externalize all js and stylesheet file
 Error Handling
 Adding RSS screen while wait for Google Page Load
+
+Clean up before deploy:
+- Change Scheduler back to 4 hours
+- Remove doubleclick to change location
+- Remove logs
