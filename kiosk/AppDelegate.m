@@ -13,6 +13,8 @@
 #import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
 
+#import <Reachability/Reachability.h>
+
 @interface AppDelegate ()
 
 @end
@@ -37,6 +39,8 @@
 		[RPAuthenticationHandler handleAuthenticatedAccount];
 	}
 	
+	[self configureReachability];
+	
 	return YES;
 }
 
@@ -55,6 +59,23 @@
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[self.window setRootViewController:[RPKLayoutManager rootViewController]];
+}
+
+- (void)configureReachability
+{
+	Reachability *connectivityMonitor = [Reachability reachabilityWithHostName:@"www.google.com"];
+	connectivityMonitor.reachableBlock = ^(Reachability *monitor) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSLog(@"Have connectivity");
+		});
+	};
+	
+	connectivityMonitor.unreachableBlock = ^(Reachability *monitor){
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSLog(@"Don't have connectivity");
+		});
+	};	
+	[connectivityMonitor startNotifier];
 }
 
 @end
