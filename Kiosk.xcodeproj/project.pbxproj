@@ -1252,7 +1252,7 @@
 				INFOPLIST_FILE = kiosk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "40ef0ea7-4860-427d-81cd-cf0a214b30af";
 			};
 			name = Release;
 		};
