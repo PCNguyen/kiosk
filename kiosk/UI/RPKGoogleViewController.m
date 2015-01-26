@@ -533,8 +533,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		_submitButton.actionBlock = ^{
 			[selfPointer removeKeyboardMask];
 			selfPointer.logoutButton.enabled = NO;
-			[selfPointer displayThankyouPage];
-			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:3.0f];
+			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:1.0f];
+			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:7.0f];
 		};
 		
 		[_submitButton ul_enableAutoLayout];
@@ -577,7 +577,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)displayThankyouPage
 {
-	[UIView animateWithDuration:0.5f animations:^{
+	[self.webView resignFirstResponder];
+	[UIView animateWithDuration:1.0f animations:^{
 		self.googleThankyou.alpha = 1.0f;
 	}];
 }
