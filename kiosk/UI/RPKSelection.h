@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RPSelection : NSObject
+@interface RPKSelection : NSObject
 
 @property (nonatomic, strong) NSString *selectionID;
 @property (nonatomic, strong) NSString *selectionLabel;
-@property (nonatomic, assign) BOOL isSelected;
+@property (nonatomic, assign, getter=isSelected) BOOL selected;
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 @end

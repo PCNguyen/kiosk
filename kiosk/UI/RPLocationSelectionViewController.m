@@ -197,7 +197,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	
 	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
 	locationCell.textLabel.textColor = [UIColor blackColor];
-	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
+	RPKSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
 	locationCell.textLabel.text = selection.selectionLabel;
 	locationCell.accessoryType = (selection.isSelected ?  UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	if (!selection.enabled) {
@@ -213,7 +213,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	[[self selectionDataSource] toggleSelectionAtIndexPath:indexPath];
 	
 	//--confirmation
-	RPSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
+	RPKSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
 	RPAlertController *alertController = [[RPAlertController alloc] initWithTitle:NSLocalizedString(@"Confirm Location", nil)
 																		  message:[NSString stringWithFormat:NSLocalizedString(@"Open Kiosk for %@?", nil), selection.selectionLabel]];
 	__weak RPLocationSelectionViewController *selfPointer = self;

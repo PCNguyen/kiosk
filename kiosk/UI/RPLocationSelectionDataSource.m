@@ -60,10 +60,10 @@
 	for (Location *location in locations) {
 		
 		if ([self shouldParseLocation:location]) {
-			RPSelection *selection = [RPSelection new];
+			RPKSelection *selection = [RPKSelection new];
 			selection.selectionID = location.code;
 			selection.selectionLabel = location.name;
-			selection.isSelected = [self.selectedLocations containsObject:selection.selectionID];
+			selection.selected = [self.selectedLocations containsObject:selection.selectionID];
 			selection.enabled = [location.sourceUrls count] > 0;
 
 			//--retrieve the section this location belong to, if not, create new
@@ -111,10 +111,10 @@
 	return count;
 }
 
-- (RPSelection *)locationAtIndexPath:(NSIndexPath *)indexPath
+- (RPKSelection *)locationAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *indexLocations = [self.locations valueForKey:[self indexLabelForSection:indexPath.section]];
-	RPSelection *location = [indexLocations al_objectAtIndex:indexPath.row];
+	RPKSelection *location = [indexLocations al_objectAtIndex:indexPath.row];
 	return location;
 }
 
@@ -158,7 +158,7 @@
 }
 
 - (NSMutableArray *)selectedLocations
-{
+{ 
 	if (!_selectedLocations) {
 		_selectedLocations = [NSMutableArray array];
 	}
@@ -168,16 +168,16 @@
 
 - (void)toggleSelectAll:(BOOL)isSelected
 {
-	[[self allLocations] enumerateObjectsUsingBlock:^(RPSelection *selection, NSUInteger index, BOOL *stop) {
-		selection.isSelected = isSelected;
+	[[self allLocations] enumerateObjectsUsingBlock:^(RPKSelection *selection, NSUInteger index, BOOL *stop) {
+		selection.selected = isSelected;
 		[self updateSelectedLocations:selection];
 	}];
 }
 
 - (void)toggleSelectionAtIndexPath:(NSIndexPath *)indexPath
 {
-	RPSelection *selection = [self locationAtIndexPath:indexPath];
-	selection.isSelected = !selection.isSelected;
+	RPKSelection *selection = [self locationAtIndexPath:indexPath];
+	selection.selected = !selection.isSelected;
 	[self updateSelectedLocations:selection];
 }
 
@@ -186,7 +186,7 @@
 	self.selectedLocations = [NSMutableArray arrayWithArray:selectedIDs];
 }
 
-- (void)updateSelectedLocations:(RPSelection *)selection
+- (void)updateSelectedLocations:(RPKSelection *)selection
 {
 	if (selection.isSelected) {
 		if (![self.selectedLocations containsObject:selection.selectionID]) {

@@ -113,7 +113,7 @@
 		0FBF99E11A71C9E400C25788 /* RPKExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */; };
 		0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
 		0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
-		0FBF99EA1A71E73F00C25788 /* RPSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPSelection.m */; };
+		0FBF99EA1A71E73F00C25788 /* RPKSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPKSelection.m */; };
 		0FBF99ED1A71E84000C25788 /* RPLocationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */; };
 		0FBF99F01A71E86C00C25788 /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
 		0FBF99F41A73155900C25788 /* RPAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99F31A73155900C25788 /* RPAttributedLabel.m */; };
@@ -337,8 +337,8 @@
 		0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPPreferenceDataSource.m; sourceTree = "<group>"; };
 		0FBF99E41A71E72500C25788 /* RPLocationSelectionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLocationSelectionDataSource.h; sourceTree = "<group>"; };
 		0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLocationSelectionDataSource.m; sourceTree = "<group>"; };
-		0FBF99E81A71E73F00C25788 /* RPSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSelection.h; sourceTree = "<group>"; };
-		0FBF99E91A71E73F00C25788 /* RPSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSelection.m; sourceTree = "<group>"; };
+		0FBF99E81A71E73F00C25788 /* RPKSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKSelection.h; sourceTree = "<group>"; };
+		0FBF99E91A71E73F00C25788 /* RPKSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKSelection.m; sourceTree = "<group>"; };
 		0FBF99EB1A71E84000C25788 /* RPLocationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLocationSelectionViewController.h; sourceTree = "<group>"; };
 		0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLocationSelectionViewController.m; sourceTree = "<group>"; };
 		0FBF99EE1A71E86C00C25788 /* RPFixedHeaderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPFixedHeaderTableView.h; sourceTree = "<group>"; };
@@ -573,8 +573,8 @@
 				0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */,
 				0FBF99E41A71E72500C25788 /* RPLocationSelectionDataSource.h */,
 				0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */,
-				0FBF99E81A71E73F00C25788 /* RPSelection.h */,
-				0FBF99E91A71E73F00C25788 /* RPSelection.m */,
+				0FBF99E81A71E73F00C25788 /* RPKSelection.h */,
+				0FBF99E91A71E73F00C25788 /* RPKSelection.m */,
 				0FBF99F51A73158000C25788 /* RPLink.h */,
 				0FBF99F61A73158000C25788 /* RPLink.m */,
 			);
@@ -1088,7 +1088,7 @@
 				0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */,
 				0FA0E19A1A686B350011EAC9 /* MobileCommon.m in Sources */,
 				0FA0E2001A6889460011EAC9 /* NSAttributedString+RP.m in Sources */,
-				0FBF99EA1A71E73F00C25788 /* RPSelection.m in Sources */,
+				0FBF99EA1A71E73F00C25788 /* RPKSelection.m in Sources */,
 				0FA0E1AA1A686EF30011EAC9 /* RPKServiceController.m in Sources */,
 				0FA0E1C61A68847E0011EAC9 /* DLAppStorage+RP.m in Sources */,
 				0FA0E18E1A686AC80011EAC9 /* TSocketClient.m in Sources */,

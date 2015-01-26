@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 www. All rights reserved.
 //
 
-#import "RPSelection.h"
+#import "RPKSelection.h"
 
-@implementation RPSelection
+@implementation RPKSelection
 
 - (NSString *)description
 {
