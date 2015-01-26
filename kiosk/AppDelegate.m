@@ -33,7 +33,9 @@
 
     if (![[RPAccountManager sharedManager] isAuthenticated]) {
         [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
-    }
+	} else {
+		[RPAuthenticationHandler handleAuthenticatedAccount];
+	}
 	
 	return YES;
 }

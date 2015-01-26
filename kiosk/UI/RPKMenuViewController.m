@@ -198,7 +198,9 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super viewDidLoad];
 	
-	[self ul_registerManagedService:[RPService serviceNameFromType:ServiceUpdateSelectedLocation]];
+	NSArray *services = @[[RPService serviceNameFromType:ServiceUpdateSelectedLocation],
+						  [RPService serviceNameFromType:ServiceGetUserConfig]];
+	[self ul_registerManagedServices:services];
 	[[self dataSource] loadData];
 }
 
