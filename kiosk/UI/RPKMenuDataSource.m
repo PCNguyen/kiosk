@@ -35,7 +35,7 @@
 	RPKMenuItem *kioskItem = [[RPKMenuItem alloc] init];
 	kioskItem.itemURL = [NSURL URLWithString:kioskURLString];
 	kioskItem.imageName = @"icon_quicksurvey.png";
-	kioskItem.itemTitle = @"Quick Survey";
+	kioskItem.itemTitle = NSLocalizedString(@"Take a\nQuick Survey", nil);
 	kioskItem.isSecured = NO;
 	kioskItem.itemType = MenuTypeGeneric;
 	[menuItems addObject:kioskItem];
@@ -46,7 +46,7 @@
 	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
 	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 	googlePlusItem.imageName = @"icon_gplus.png";
-	googlePlusItem.itemTitle = @"Google+ Local";
+	googlePlusItem.itemTitle = NSLocalizedString(@"Leave a review on Google", nil);
 	googlePlusItem.isSecured = YES;
 	googlePlusItem.itemType = MenuTypeGoogle;
 	

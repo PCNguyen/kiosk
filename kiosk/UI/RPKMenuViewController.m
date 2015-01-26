@@ -56,6 +56,9 @@
 	
 	[self.contentView addConstraints:[self.buttonBackgroundView ul_pinWithInset:UIEdgeInsetsZero]];
 	[self.contentView addConstraints:[self.sourceLabel ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.logoImageView distance:self.spacings.width leftToRight:NO]];
+	
+	//--allow room for arrow indicator
+	[self.contentView addConstraints:[self.sourceLabel ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, kUIViewUnpinInset, kUIViewUnpinInset, 80.0f)]];
 }
 
 - (void)layoutSubviews
@@ -138,7 +141,7 @@
 {
 	if (!_sourceLabel) {
 		_sourceLabel = [[UILabel alloc] init];
-		_sourceLabel.font = [UIFont rpk_boldFontWithSize:35.0f];
+		_sourceLabel.font = [UIFont rpk_boldFontWithSize:33.0f];
 		_sourceLabel.textColor = [UIColor rpk_darkGray];
 		_sourceLabel.backgroundColor = [UIColor clearColor];
 		_sourceLabel.numberOfLines = 0;
