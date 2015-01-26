@@ -123,6 +123,7 @@
 		0FBF99FE1A76EEFC00C25788 /* icon_small_google_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FA1A76EEFC00C25788 /* icon_small_google_disabled.png */; };
 		0FBF99FF1A76EEFC00C25788 /* icon_small_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FB1A76EEFC00C25788 /* icon_small_google.png */; };
 		0FBF9A021A7705C600C25788 /* RPKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A011A7705C600C25788 /* RPKTableViewCell.m */; };
+		0FBF9A051A7708D900C25788 /* RPKLocationSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A041A7708D900C25788 /* RPKLocationSelection.m */; };
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
@@ -354,6 +355,8 @@
 		0FBF99FB1A76EEFC00C25788 /* icon_small_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small_google.png; sourceTree = "<group>"; };
 		0FBF9A001A7705C600C25788 /* RPKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKTableViewCell.h; sourceTree = "<group>"; };
 		0FBF9A011A7705C600C25788 /* RPKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKTableViewCell.m; sourceTree = "<group>"; };
+		0FBF9A031A7708D900C25788 /* RPKLocationSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLocationSelection.h; sourceTree = "<group>"; };
+		0FBF9A041A7708D900C25788 /* RPKLocationSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLocationSelection.m; sourceTree = "<group>"; };
 		0FD805BF1A5D18A900EE1AD6 /* RPKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKWebViewController.h; sourceTree = "<group>"; };
 		0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKWebViewController.m; sourceTree = "<group>"; };
 		0FD805C21A5D207E00EE1AD6 /* RPKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMenuItem.h; sourceTree = "<group>"; };
@@ -575,6 +578,8 @@
 				0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */,
 				0FBF99E81A71E73F00C25788 /* RPKSelection.h */,
 				0FBF99E91A71E73F00C25788 /* RPKSelection.m */,
+				0FBF9A031A7708D900C25788 /* RPKLocationSelection.h */,
+				0FBF9A041A7708D900C25788 /* RPKLocationSelection.m */,
 				0FBF99F51A73158000C25788 /* RPLink.h */,
 				0FBF99F61A73158000C25788 /* RPLink.m */,
 			);
@@ -1091,6 +1096,7 @@
 				0FBF99EA1A71E73F00C25788 /* RPKSelection.m in Sources */,
 				0FA0E1AA1A686EF30011EAC9 /* RPKServiceController.m in Sources */,
 				0FA0E1C61A68847E0011EAC9 /* DLAppStorage+RP.m in Sources */,
+				0FBF9A051A7708D900C25788 /* RPKLocationSelection.m in Sources */,
 				0FA0E18E1A686AC80011EAC9 /* TSocketClient.m in Sources */,
 				0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */,
 				0FA0E1991A686B350011EAC9 /* MobileAuth.m in Sources */,

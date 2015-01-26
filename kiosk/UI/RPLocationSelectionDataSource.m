@@ -158,7 +158,7 @@
 }
 
 - (NSMutableArray *)selectedLocations
-{ 
+{
 	if (!_selectedLocations) {
 		_selectedLocations = [NSMutableArray array];
 	}
