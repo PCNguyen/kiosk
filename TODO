@@ -1,6 +1,7 @@
 Add Scheduler to refresh UserConfig
 Connectivity handling
 Change Wording on Menu - UI matching mock
+Handle extra query in about link
 Adding User Feedback for location Selection
 AppIcon
 Disable Google+ button when it is not available
