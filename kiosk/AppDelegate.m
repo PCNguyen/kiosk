@@ -35,8 +35,6 @@
         [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
     }
 	
-	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
-	
 	return YES;
 }
 
