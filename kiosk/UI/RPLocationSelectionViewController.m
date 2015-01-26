@@ -8,14 +8,34 @@
 
 #import "RPLocationSelectionViewController.h"
 #import "RPFixedHeaderTableView.h"
-
 #import "RPNotificationCenter.h"
 #import "UIViewController+Alert.h"
+#import "RPKTableViewCell.h"
 
 #define kLSVCSearchBarHeight				50.0f
 #define kLSVCSectionAll						0
 
-NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSelectionViewControllerCellIdentifier";
+NSString *const LSVCCellID = @"LSVCCellID";
+
+@interface RPKLocationCell : RPKTableViewCell
+
+@property (nonatomic, strong) UIImageView *sourceIndicator;
+
+@end
+
+@implementation RPKLocationCell
+
+- (void)commonInit
+{
+	[self.contentView addSubview:self.sourceIndicator];
+}
+
+- (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
+@end
 
 @interface RPLocationSelectionViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -168,10 +188,10 @@ NSString *const RPLocationSelectionViewControllerCellIdentifier = @"RPLocationSe
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *locationCell = [tableView dequeueReusableCellWithIdentifier:RPLocationSelectionViewControllerCellIdentifier];
+	RPKLocationCell *locationCell = [tableView dequeueReusableCellWithIdentifier:LSVCCellID];
 	
 	if (!locationCell) {
-		locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RPLocationSelectionViewControllerCellIdentifier];
+		locationCell = [[RPKLocationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSVCCellID];
 		locationCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
