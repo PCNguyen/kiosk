@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -33,10 +33,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>Server URL</key>
-	<string>https://qa-r4e-mobile.reputation.com</string>
 	<key>Server Port</key>
 	<string>443</string>
+	<key>Server URL</key>
+	<string>https://qa-r4e-mobile.reputation.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>
