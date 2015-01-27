@@ -321,6 +321,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			self.submitButton.active = NO;
 			[self showLoading];
 			break;
+		
+		case GooglePageUnknown:
+			[self showLoading];
+			break;
 		default:
 			break;
 	}
@@ -365,6 +369,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self toggleCustomViewForGooglePage:NO];
 			[self toggleCustomViewForLoginScreen:YES];
 			[self dismissWebView];
+			break;
+		
+		case GooglePageUnknown:
+			[self hideLoading];
 			break;
 		default:
 			break;
