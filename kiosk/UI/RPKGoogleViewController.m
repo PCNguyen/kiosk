@@ -140,6 +140,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
 
+	[self registerNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -312,7 +313,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
-			[self registerNotification];
 			
 			break;
 
@@ -646,17 +646,28 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)handleKeyboardDidShowNotification:(NSNotification *)notification
 {
-	[self addKeyboardMask];
-	
-	
+	if (self.pageWillLoad == GooglePageReviewWidget) {
+		[self addKeyboardMask];
+	}
 }
 
 - (void)handleKeyboardWillShowNotification:(NSNotification *)notification
 {
-	self.googleTop.constant = -100.0f;
-	self.submitTop.constant = 490.0f;
-	[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
-		[self.view layoutIfNeeded];
+	if (self.pageWillLoad == GooglePageReviewWidget) {
+		self.googleTop.constant = -100.0f;
+		self.submitTop.constant = 490.0f;
+		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+			[self.view layoutIfNeeded];
+		}];
+	} else {
+		[self performSelector:@selector(adjustWebViewBounds:) withObject:notification afterDelay:0];
+	}
+}
+
+- (void)adjustWebViewBounds:(NSNotification *)notification
+{
+	[UIView animateWithDuration:0.5 animations:^{
+		self.webView.scrollView.bounds = self.webView.bounds;
 	}];
 }
 

@@ -154,13 +154,11 @@
 
 - (void)showLoading
 {
-	self.logoutButton.enabled = NO;
 	[self toggleLoadingView:YES];
 }
 
 - (void)hideLoading
 {
-	self.logoutButton.enabled = YES;
 	[self toggleLoadingView:NO];
 }
 

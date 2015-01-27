@@ -1,13 +1,13 @@
-Connectivity handling
-Handle extra query in about link
-Disable Google+ button when it is not available
-Analytic Tracking
+Fixing some UX issues with keyboard focus, loading animation, ...
+Handling 2 factor authentication and no google plus account
+Connectivity UI handling - pending on Owen
+Go straigth to Kiosk screen when location don't have google+
 Hook up event for Reputation Kiosk.
+Analytic Tracking
+Handle extra query in about link
 Externalize all js and stylesheet file
 Error Handling
 Adding RSS screen while wait for Google Page Load
-Handling unusual URL:
-https://plus.google.com/107145284950519673466/about
 Not assume the source only have google. Generalization using the SourceUrl.Source object
 
 Clean up before deploy:
