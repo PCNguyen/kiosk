@@ -6,3 +6,11 @@ function displayPopup() {
 	
 	return cancelled;
 }
+
+function detectNoGplus() {
+	var signupDialog=document.getElementsByClassName('Ea-q')[0];
+	
+	if (signupDialog) {
+		webkit.messageHandlers.SignupDetect.postMessage('true');
+	}
+}

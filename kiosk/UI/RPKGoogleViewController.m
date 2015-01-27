@@ -25,6 +25,9 @@
 #define kGVCKeyboardHideLockSize		CGSizeMake(58.0f, 58.0f)
 #define kGVCKeyboardGoButtonSize		CGSizeMake(100.0f, 57.0f)
 
+#define kGVCClearCookieMessage			@"CookieClearCompleted"
+#define kGVCSignupDetectMessage			@"SignupDetect"
+
 typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageUnknown,
 	GooglePageLogin,
@@ -33,6 +36,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageReviewWidget,
 	GooglePageLogout,
 	GooglePageVerifyLogout,
+	GooglePageGplusSignup,
 };
 
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
@@ -194,7 +198,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	[userContentController addUserScript:cssScript];
 	
 	//--add handler to handle clearing cookies
-	[userContentController addScriptMessageHandler:self name:@"CookieClearCompleted"];
+	[userContentController addScriptMessageHandler:self name:kGVCClearCookieMessage];
+	
+	//--add handler to handle no gplus account
+	[userContentController addScriptMessageHandler:self name:kGVCSignupDetectMessage];
 	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;
@@ -280,7 +287,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		}
 		
 		if ([[url host] isEqualToString:@"plus.google.com"]) {
-			if ([pathComponents containsObject:@"about"]) {
+			if ([pathComponents containsObject:@"about"] || [[url query] rangeOfString:@"review=1"].location != NSNotFound) {
 				return GooglePageAbout;
 			} else if ([pathComponents containsObject:@"widget"]) {
 				return GooglePageReviewWidget;
@@ -371,6 +378,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self dismissWebView];
 			break;
 		
+		case GooglePageGplusSignup:
+			[self.popupTask stop];
+			[self hideLoading];
+			break;
+			
 		case GooglePageUnknown:
 			[self hideLoading];
 			break;
@@ -382,6 +394,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 - (void)dismissWebView
 {
 	[self hideLoading];
+	
+	//--remove message handler to avoid leaking
+	[self.webView.configuration.userContentController removeScriptMessageHandlerForName:kGVCClearCookieMessage];
+	[self.webView.configuration.userContentController removeScriptMessageHandlerForName:kGVCSignupDetectMessage];
+
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -389,14 +406,18 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-	[RPKCookieHandler clearCookie];
-	
 	//--avoid leaking
 	[userContentController removeScriptMessageHandlerForName:message.name];
 	
-	//--load the actual request after cookie clearing
-	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
-	[self.webView loadRequest:nonCacheRequest];
+	if ([message.name isEqualToString:kGVCClearCookieMessage]) {
+		[RPKCookieHandler clearCookie];
+
+		//--load the actual request after cookie clearing
+		NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+		[self.webView loadRequest:nonCacheRequest];
+	} else if ([message.name isEqualToString:kGVCSignupDetectMessage]) {
+		self.pageDidLoad = GooglePageGplusSignup;
+	}
 }
 
 #pragma mark - Popup Task
@@ -419,6 +440,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 - (void)executePopupScript
 {
 	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
+	[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
 }
 
 #pragma mark - Login Page Custom Views
