@@ -28,6 +28,8 @@
 #define kGVCClearCookieMessage			@"CookieClearCompleted"
 #define kGVCSignupDetectMessage			@"SignupDetect"
 
+#define kGVCMaxPopupTry					10
+
 typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageUnknown,
 	GooglePageLogin,
@@ -37,6 +39,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageLogout,
 	GooglePageVerifyLogout,
 	GooglePageGplusSignup,
+	GooglePageError,
 };
 
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
@@ -64,6 +67,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 @property (nonatomic, strong) RPKMaskButton *submitButton;
 @property (nonatomic, strong) NSLayoutConstraint *submitTop;
 @property (nonatomic, strong) UIButton *cancelButton;
+
+@property (nonatomic, assign) NSInteger popupTryCount;
 
 /**
  *  view to mask the keyboard
@@ -143,7 +148,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
+}
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	self.popupTryCount = 0;
+	
 	[self registerNotification];
 }
 
@@ -328,10 +340,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			self.submitButton.active = NO;
 			[self showLoading];
 			break;
-		
-		case GooglePageUnknown:
-			[self showLoading];
-			break;
+
 		default:
 			break;
 	}
@@ -379,6 +388,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			break;
 		
 		case GooglePageGplusSignup:
+			[self.popupTask stop];
+			[self hideLoading];
+			break;
+		
+		case GooglePageError:
 			[self.popupTask stop];
 			[self hideLoading];
 			break;
@@ -439,8 +453,13 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)executePopupScript
 {
-	[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
-	[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
+	self.popupTryCount++;
+	if (self.popupTryCount > kGVCMaxPopupTry) {
+		self.pageDidLoad = GooglePageError;
+	} else {
+		[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
+		[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
+	}
 }
 
 #pragma mark - Login Page Custom Views
@@ -523,6 +542,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 - (void)handleReloadViewTapped:(id)sender
 {
 	[self showLoading];
+	
+	self.popupTryCount = 0;
 	[self.webView reload];
 }
 
