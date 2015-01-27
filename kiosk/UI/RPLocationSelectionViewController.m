@@ -27,12 +27,63 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 - (void)commonInit
 {
+	self.paddings = UIEdgeInsetsMake(12.0f, 0.0f, 12.0f, 35.0f);
+	self.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
 	[self.contentView addSubview:self.sourceIndicator];
+}
+
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	self.textLabel.textColor = [UIColor blackColor];
+	self.sourceIndicator.highlighted = NO;
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	
+	self.sourceIndicator.frame = [self sourceIndicatorFrame];
 }
 
 - (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
 {
+	RPKLocationSelection *selection = (RPKLocationSelection *)model;
+	self.textLabel.text = selection.selectionLabel;
+	if (selection.isSelected) {
+		self.textLabel.textColor = [UIColor rpk_defaultBlue];
+	}
+	
+	if (!(selection.enabledSources & LocationSourceKiosk)) {
+		self.textLabel.textColor = [UIColor rpk_lightGray];
+	}
 
+	if (selection.enabledSources & LocationSourceGoogle) {
+		self.sourceIndicator.highlighted = YES;
+	}
+}
+
+#pragma mark - UI Elements
+
+- (CGRect)sourceIndicatorFrame
+{
+	CGFloat yOffset = self.paddings.top;
+	CGFloat height = self.bounds.size.height - yOffset - self.paddings.bottom;
+	CGFloat width = height;
+	CGFloat xOffset = self.bounds.size.width - self.paddings.right - width;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (UIImageView *)sourceIndicator
+{
+	if (!_sourceIndicator) {
+		_sourceIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_small_google_disabled.png"]
+											 highlightedImage:[UIImage rpk_bundleImageNamed:@"icon_small_google.png"]];
+		_sourceIndicator.contentMode = UIViewContentModeScaleAspectFit;
+	}
+	
+	return _sourceIndicator;
 }
 
 @end
@@ -194,16 +245,10 @@ NSString *const LSVCCellID = @"LSVCCellID";
 		locationCell = [[RPKLocationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSVCCellID];
 		locationCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
-	
-	locationCell.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
-	locationCell.textLabel.textColor = [UIColor blackColor];
-	RPKSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
-	locationCell.textLabel.text = selection.selectionLabel;
-	locationCell.accessoryType = (selection.isSelected ?  UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-	if (!selection.enabled) {
-		locationCell.textLabel.textColor = [UIColor rpk_lightGray];
-	}
-	
+
+	RPKLocationSelection *selection = [[self selectionDataSource] locationAtIndexPath:indexPath];
+	[locationCell assignModel:selection forIndexPath:indexPath];
+
 	return locationCell;
 }
 

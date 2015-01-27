@@ -1,6 +1,5 @@
 Connectivity handling
 Handle extra query in about link
-Adding User Feedback for location Selection
 Disable Google+ button when it is not available
 Analytic Tracking
 Hook up event for Reputation Kiosk.
@@ -9,6 +8,7 @@ Error Handling
 Adding RSS screen while wait for Google Page Load
 Handling unusual URL:
 https://plus.google.com/107145284950519673466/about
+Not assume the source only have google. Generalization using the SourceUrl.Source object
 
 Clean up before deploy:
 - Change Scheduler back to 4 hours

@@ -9,8 +9,9 @@
 #import "RPKSelection.h"
 
 typedef NS_OPTIONS(NSInteger, RPKLocationSourceOptions) {
-	LocationSourceKiosk = 1 << 0,
-	LocationSourceGoogle = 1 << 1,
+	LocationSourceNone = 1 << 0,
+	LocationSourceKiosk = 1 << 1,
+	LocationSourceGoogle = 1 << 2,
 };
 
 @interface RPKLocationSelection : RPKSelection

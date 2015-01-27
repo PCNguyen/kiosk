@@ -60,12 +60,20 @@
 	for (Location *location in locations) {
 		
 		if ([self shouldParseLocation:location]) {
-			RPKSelection *selection = [RPKSelection new];
+			RPKLocationSelection *selection = [RPKLocationSelection new];
 			selection.selectionID = location.code;
 			selection.selectionLabel = location.name;
 			selection.selected = [self.selectedLocations containsObject:selection.selectionID];
-			selection.enabled = [location.sourceUrls count] > 0;
-
+			selection.enabledSources = LocationSourceNone;
+			
+			if ([location.kioskUrl length] > 0) {
+				selection.enabledSources |= LocationSourceKiosk;
+			}
+			
+			if ([location.sourceUrls count] > 0) {
+				selection.enabledSources |= LocationSourceGoogle;
+			}
+		
 			//--retrieve the section this location belong to, if not, create new
 			NSString *indexKey = [self indexLabelForName:location.name];
 			NSMutableArray *indexSelections = [selectionDictionary valueForKey:indexKey];
@@ -111,10 +119,10 @@
 	return count;
 }
 
-- (RPKSelection *)locationAtIndexPath:(NSIndexPath *)indexPath
+- (RPKLocationSelection *)locationAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *indexLocations = [self.locations valueForKey:[self indexLabelForSection:indexPath.section]];
-	RPKSelection *location = [indexLocations al_objectAtIndex:indexPath.row];
+	RPKLocationSelection *location = [indexLocations al_objectAtIndex:indexPath.row];
 	return location;
 }
 

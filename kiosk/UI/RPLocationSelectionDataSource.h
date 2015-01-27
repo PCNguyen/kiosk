@@ -8,7 +8,7 @@
 
 #import "RPPreferenceDataSource.h"
 #import "RPService.h"
-#import "RPKSelection.h"
+#import "RPKLocationSelection.h"
 
 @interface RPLocationSelectionDataSource : RPPreferenceDataSource
 
@@ -51,7 +51,7 @@
  *
  *  @return an RPSelection object
  */
-- (RPKSelection *)locationAtIndexPath:(NSIndexPath *)indexPath;
+- (RPKLocationSelection *)locationAtIndexPath:(NSIndexPath *)indexPath;
 
 #pragma mark - Index
 
