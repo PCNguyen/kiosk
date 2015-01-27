@@ -15,6 +15,7 @@
 @interface RPKTimedWebViewController ()
 
 @property (nonatomic, strong) RPKMaskButton *maskButton;
+@property (nonatomic, assign) BOOL loadingShow;
 
 @end
 
@@ -154,11 +155,15 @@
 
 - (void)showLoading
 {
-	[self toggleLoadingView:YES];
+	if (!self.loadingShow) {
+		self.loadingShow = YES;
+		[self toggleLoadingView:YES];
+	}
 }
 
 - (void)hideLoading
 {
+	self.loadingShow = NO;
 	[self toggleLoadingView:NO];
 }
 
