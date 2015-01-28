@@ -20,7 +20,6 @@
 #import <AppSDK/AppLibExtension.h>
 
 #define kGVCLogoutURL				@"https://accounts.google.com/ServiceLogin?logout=1"
-#define kGVCVerifiedLogoutURL		@"https://accounts.google.com/ServiceLogin?logout=2"
 
 #define kGVCKeyboardHideLockSize		CGSizeMake(58.0f, 58.0f)
 #define kGVCKeyboardGoButtonSize		CGSizeMake(100.0f, 57.0f)
@@ -37,7 +36,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageAbout,
 	GooglePageReviewWidget,
 	GooglePageLogout,
-	GooglePageVerifyLogout,
 	GooglePageGplusSignup,
 	GooglePageError,
 };
@@ -225,11 +223,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	//--in case a count down is in progress
 	[self hideExpirationMessage];
-	[self unRegisterNotification];
-	[self removeKeyboardMask];
 	
-	//--load the logout request
-	[self loadURLString:kGVCVerifiedLogoutURL];
+	//--disable mask button
+	self.submitButton.active = NO;
+	
+	[self removeKeyboardMask];
+	[self unRegisterNotification];
+	
+	[self dismissWebView];
 }
 
 #pragma mark - WKWebview Delegate
@@ -287,8 +288,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 				
 				if ([[url absoluteString] isEqualToString:kGVCLogoutURL]) {
 					return GooglePageLogout;
-				} else if ([[url absoluteString] isEqualToString:kGVCVerifiedLogoutURL]) {
-					return GooglePageVerifyLogout;
 				} else {
 					return GooglePageLogin;
 				}
@@ -332,13 +331,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
-			
-			break;
-
-		case GooglePageVerifyLogout:
-			//--disable mask button
-			self.submitButton.active = NO;
-			[self showLoading];
 			break;
 
 		default:
@@ -380,12 +372,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self.webView evaluateJavaScript:selectScript completionHandler:NULL];
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
 		} break;
-			
-		case GooglePageVerifyLogout:
-			[self toggleCustomViewForGooglePage:NO];
-			[self toggleCustomViewForLoginScreen:YES];
-			[self dismissWebView];
-			break;
 		
 		case GooglePageGplusSignup:
 			[self.popupTask stop];
