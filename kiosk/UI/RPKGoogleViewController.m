@@ -390,6 +390,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		case GooglePageGplusSignup:
 			[self.popupTask stop];
 			[self hideLoading];
+			[self zoomContent];
 			break;
 		
 		case GooglePageError:
@@ -717,9 +718,12 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)adjustWebViewBounds:(NSNotification *)notification
 {
-	[UIView animateWithDuration:0.5 animations:^{
-		self.webView.scrollView.bounds = self.webView.bounds;
-	}];
+	self.webView.scrollView.bounds = self.webView.bounds;
+}
+
+- (void)zoomContent
+{
+	[self.webView.scrollView zoomToRect:CGRectMake(0.0f, 0.0f, 500.0f, 500.0f) animated:YES];
 }
 
 @end

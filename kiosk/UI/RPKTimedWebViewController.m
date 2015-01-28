@@ -163,8 +163,8 @@
 
 - (void)hideLoading
 {
-	self.loadingShow = NO;
 	[self toggleLoadingView:NO];
+	self.loadingShow = NO;
 }
 
 @end
