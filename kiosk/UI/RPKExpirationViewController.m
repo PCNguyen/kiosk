@@ -83,15 +83,16 @@
 
 - (void)startCountDown:(NSTimeInterval)timeRemain fromViewController:(UIViewController *)viewController
 {
+	__weak RPKExpirationViewController *selfPointer = self;
 	[viewController presentViewController:self animated:YES completion:^{
-		[self.circleCounter startWithSeconds:timeRemain];
+		[selfPointer.circleCounter startWithSeconds:timeRemain];
 	}];
 }
 
 - (void)stopCountDown
 {
 	if (_circleCounter) {
-		[self.circleCounter stop];
+		[self.circleCounter reset];
 	}
 	
 	[self dismissViewControllerAnimated:YES completion:^{}];

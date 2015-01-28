@@ -9,7 +9,7 @@
 #import "RPKTimedWebViewController.h"
 #import "RPKMaskButton.h"
 
-#define kTWVCMaxIdleTime				60
+#define kTWVCMaxIdleTime				20
 #define kTWVCExpirationWaitTime			20
 
 @interface RPKTimedWebViewController ()
