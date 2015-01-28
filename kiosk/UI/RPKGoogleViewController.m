@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageReviewWidget,
 	GooglePageLogout,
 	GooglePageGplusSignup,
+	GooglePageTwoFactor,
 	GooglePageError,
 };
 
@@ -300,6 +301,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 				
 			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
 				return GooglePageAuthentication;
+			} else if ([pathComponents containsObject:@"SecondFactor"]) {
+				return GooglePageTwoFactor;
 			}
 		}
 		
@@ -338,7 +341,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
 			break;
-
+		
+		case GooglePageTwoFactor:
+			[self showLoading];
+			break;
+	
 		default:
 			break;
 	}
@@ -390,6 +397,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self hideLoading];
 			break;
 			
+		case GooglePageTwoFactor:
 		case GooglePageUnknown:
 			[self hideLoading];
 			break;
