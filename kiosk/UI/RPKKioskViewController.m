@@ -7,6 +7,13 @@
 //
 
 #import "RPKKioskViewController.h"
+#import "RPKMaskButton.h"
+
+@interface RPKKioskViewController ()
+
+@property (nonatomic, strong) RPKMaskButton *submitButton;
+
+@end
 
 @implementation RPKKioskViewController
 
