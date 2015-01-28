@@ -282,7 +282,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-	NSLog(@"%@", error);
 	self.pageDidLoad = [self googlePageForURL:webView.URL];
 }
 
@@ -305,7 +304,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 				
 			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
 				return GooglePageAccountAuthentication;
-			} else {
+			} else if (![pathComponents containsObject:@"oauth2"]) { //--prevent loading show in background
 				return GooglePageAccount;
 			}
 		}
