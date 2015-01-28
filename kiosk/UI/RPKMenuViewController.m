@@ -229,6 +229,17 @@ NSString *const MVCCellID = @"kMVCCellID";
 	[self.menuSelectionView reloadData];
 }
 
+- (void)validateSources
+{
+	if ([[self dataSource].menuItems count] == 1) {
+		//--we only have kiosk
+		RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:0];
+		RPKKioskViewController *timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
+		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
+	}
+}
+
 #pragma mark - Title
 
 - (UILabel *)kioskTitle {
@@ -245,7 +256,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		
 		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleFingerTapped:)];
 		tapGesture.numberOfTapsRequired = 1;
-		tapGesture.numberOfTouchesRequired = 2;
+		tapGesture.numberOfTouchesRequired = 1;
 		_kioskTitle.userInteractionEnabled = YES;
 		[_kioskTitle addGestureRecognizer:tapGesture];
     }

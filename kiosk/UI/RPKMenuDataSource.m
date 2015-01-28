@@ -41,16 +41,18 @@
 	[menuItems addObject:kioskItem];
 	
 	//--loading Google Plus
-	RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
-	NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", googleURLString];
-	NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
-	googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
-	googlePlusItem.imageName = @"icon_gplus.png";
-	googlePlusItem.itemTitle = NSLocalizedString(@"Leave a review on Google", nil);
-	googlePlusItem.isSecured = YES;
-	googlePlusItem.itemType = MenuTypeGoogle;
-	
-	[menuItems addObject:googlePlusItem];
+	if ([googleURLString length] > 0) {
+		RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
+		NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", googleURLString];
+		NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
+		googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
+		googlePlusItem.imageName = @"icon_gplus.png";
+		googlePlusItem.itemTitle = NSLocalizedString(@"Leave a review on Google", nil);
+		googlePlusItem.isSecured = YES;
+		googlePlusItem.itemType = MenuTypeGoogle;
+		
+		[menuItems addObject:googlePlusItem];
+	}
 	
 	self.menuItems = menuItems;
 }

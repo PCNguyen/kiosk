@@ -175,7 +175,11 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 - (void)dismissViewController
 {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[self dismissViewControllerAnimated:YES completion:^{
+		if ([self.delegate respondsToSelector:@selector(locationSelectionViewControllerDidDismiss)]) {
+			[self.delegate locationSelectionViewControllerDidDismiss];
+		}
+	}];
 }
 
 #pragma mark - Data Binding

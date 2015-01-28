@@ -16,7 +16,7 @@
 #import "RPLocationSelectionViewController.h"
 #import "RPReferenceHandler.h"
 
-@interface RPKLayoutManager () <RPKLoginViewControllerDelegate>
+@interface RPKLayoutManager () <RPKLoginViewControllerDelegate, RPLocationSelectionViewControllerDelegate>
 
 @property (nonatomic, strong) RPKNavigationController *mainNavigationController;
 
@@ -82,9 +82,17 @@
 {
 	if ([RPReferenceHandler hasMultiLocation]) {
 		RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
+		locationSelectionVC.delegate = self;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
 		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
 	}
+}
+
+#pragma mark - LocationSelectionView Delegate
+
+- (void)locationSelectionViewControllerDidDismiss
+{
+	[self.menuViewController validateSources];
 }
 
 @end

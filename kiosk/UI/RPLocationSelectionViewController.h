@@ -16,6 +16,7 @@
 @optional
 - (void)locationSelectionViewController:(RPLocationSelectionViewController *)locationSelectionVC
 						selectLocations:(NSArray *)locationIDs;
+- (void)locationSelectionViewControllerDidDismiss;
 
 @end
 

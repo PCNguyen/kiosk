@@ -1,5 +1,4 @@
 Connectivity UI handling - pending on Owen
-Go straigth to Kiosk screen when location don't have google+
 Hook up event for Reputation Kiosk.
 Analytic Tracking
 Handle extra query in about link
@@ -11,3 +10,4 @@ Clean up before deploy:
 - Change Scheduler back to 4 hours
 - Remove doubleclick to change location
 - Remove logs
+- Remove done button on kiosk if Google not available
