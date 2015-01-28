@@ -110,7 +110,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[super loadView];
 
-	self.title = @"Leave a Review";	
+	self.title = @"Leave a Review";
+	
 	self.webView.scrollView.scrollEnabled = NO;
 	
 	[self.webView addSubview:self.coverView];
@@ -141,9 +142,9 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 													 toItem:self.webView
 												  attribute:NSLayoutAttributeTop
 												 multiplier:1.0f
-												   constant:665.0f];
+												   constant:670.0f];
 	[self.webView addConstraint:self.submitTop];
-	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(670.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
@@ -323,11 +324,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)setPageWillLoad:(RPKGooglePage)pageWillLoad
 {
-	_pageWillLoad = pageWillLoad;
+	if (pageWillLoad != GooglePageUnknown) {
+		_pageWillLoad = pageWillLoad;
+	}
 	
 	switch (pageWillLoad) {
-		case GooglePageUnknown:
-			break; //--do nothing for background validation
 			
 		case GooglePageAccount: //--show hide loading for generic account pages
 			[self showLoading];
@@ -361,6 +362,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self.submitButton setActive:YES];
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
+			NSLog(@"yOffset: %f, height: %f", self.webView.scrollView.bounds.origin.y, self.webView.scrollView.bounds.size.height);
 			break;
 	
 		case GooglePageCustomError: //--javascript, we don't have will load event for this
@@ -373,13 +375,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)setPageDidLoad:(RPKGooglePage)pageDidLoad
 {
-	_pageDidLoad = pageDidLoad;
+	if (pageDidLoad != GooglePageUnknown) {
+		_pageDidLoad = pageDidLoad;
+	}
 	
 	switch (pageDidLoad) {
-		case GooglePageUnknown:
-			break;
 			
 		case GooglePageAccount:
+			[self toggleCustomViewForLoginScreen:NO];
 			[self hideLoading];
 			break;
 			
@@ -495,7 +498,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		_coverView.backgroundColor = [UIColor whiteColor];
 		_coverView.alpha = 0.0f;
 		[_coverView ul_enableAutoLayout];
-		[_coverView ul_fixedSize:CGSizeMake(0.0f, 400.0f) priority:UILayoutPriorityDefaultHigh];
+		[_coverView ul_fixedSize:CGSizeMake(0.0f, 380.0f) priority:UILayoutPriorityDefaultHigh];
 	}
 	
 	return _coverView;
@@ -711,6 +714,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 					 forNotificationName:UIKeyboardWillShowNotification
 								 handler:@selector(handleKeyboardWillShowNotification:)
 							   parameter:nil];
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:UIKeyboardWillHideNotification
+								 handler:@selector(handleKeyboardWillHideNotification:)
+							   parameter:nil];
 }
 
 - (void)unRegisterNotification
@@ -730,13 +737,28 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	if (self.pageWillLoad == GooglePageGplusWidget) {
 		self.googleTop.constant = -100.0f;
-		self.submitTop.constant = 490.0f;
+		self.submitTop.constant = 495.0f;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
+		} completion:^(BOOL finished) {
+			[self.webView.scrollView setContentOffset:CGPointMake(0.0f, 174.0f) animated:YES];
 		}];
 		
-	} if (self.pageDidLoad == GooglePageAccountLogin) {
+	} if (self.pageDidLoad == GooglePageAccountLogin || self.pageDidLoad == GooglePageAccountAuthentication) {
 		[self performSelector:@selector(adjustWebViewBounds:) withObject:notification afterDelay:0];
+	}
+}
+
+- (void)handleKeyboardWillHideNotification:(NSNotification *)notification
+{
+	if (self.pageWillLoad == GooglePageGplusWidget) {
+		self.submitTop.constant = 840;
+		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+			[self.view layoutIfNeeded];
+		} completion:^(BOOL finished) {
+			[self removeKeyboardMask];
+			[self.reloadView setAlpha:0.0f]; //--hide the reload page only
+		}];
 	}
 }
 
