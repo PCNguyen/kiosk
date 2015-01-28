@@ -742,7 +742,9 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)adjustWebViewBounds:(NSNotification *)notification
 {
-	self.webView.scrollView.bounds = self.webView.bounds;
+	[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+		self.webView.scrollView.bounds = self.webView.bounds;
+	}];
 }
 
 - (void)zoomContent
