@@ -256,7 +256,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		
 		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleFingerTapped:)];
 		tapGesture.numberOfTapsRequired = 1;
-		tapGesture.numberOfTouchesRequired = 1;
+		tapGesture.numberOfTouchesRequired = 2;
 		_kioskTitle.userInteractionEnabled = YES;
 		[_kioskTitle addGestureRecognizer:tapGesture];
     }
