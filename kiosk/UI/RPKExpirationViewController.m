@@ -27,6 +27,11 @@
 
 @implementation RPKExpirationViewController
 
+- (void)dealloc
+{
+
+}
+
 - (instancetype)init
 {
 	if (self = [super init]) {
@@ -85,7 +90,10 @@
 
 - (void)stopCountDown
 {
-	[self.circleCounter stop];
+	if (_circleCounter) {
+		[self.circleCounter stop];
+	}
+	
 	[self dismissViewControllerAnimated:YES completion:^{}];
 }
 
