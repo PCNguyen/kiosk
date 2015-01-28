@@ -10,7 +10,7 @@
 #import "RPKMaskButton.h"
 
 #define kTWVCMaxIdleTime				20
-#define kTWVCExpirationWaitTime			20
+#define kTWVCExpirationWaitTime			3
 
 @interface RPKTimedWebViewController ()
 
@@ -116,7 +116,11 @@
 - (void)displayExpirationMessage
 {
 	[self.webView endEditing:YES];
-	[self.expirationViewController startCountDown:kTWVCExpirationWaitTime fromViewController:self];
+
+	__weak RPKTimedWebViewController *selfPointer = self;
+	[self presentViewController:self.expirationViewController animated:YES completion:^{
+		[selfPointer.expirationViewController startCountDown:kTWVCExpirationWaitTime];
+	}];
 }
 
 - (void)hideExpirationMessage
