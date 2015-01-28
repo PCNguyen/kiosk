@@ -31,14 +31,18 @@
 
 typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	GooglePageUnknown,
-	GooglePageLogin,
-	GooglePageAuthentication,
-	GooglePageAbout,
-	GooglePageReviewWidget,
-	GooglePageLogout,
+	
+	GooglePageAccount,
+	GooglePageAccountClearCookie,
+	GooglePageAccountLogin,
+	GooglePageAccountAuthentication,
+
+	GooglePageGplus,
 	GooglePageGplusSignup,
-	GooglePageTwoFactor,
-	GooglePageError,
+	GooglePageGplusAbout,
+	GooglePageGplusWidget,
+	
+	GooglePageCustomError,
 };
 
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
@@ -294,23 +298,23 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			if ([pathComponents containsObject:@"ServiceLogin"]) {
 				
 				if ([[url absoluteString] isEqualToString:kGVCLogoutURL]) {
-					return GooglePageLogout;
+					return GooglePageAccountClearCookie;
 				} else {
-					return GooglePageLogin;
+					return GooglePageAccountLogin;
 				}
 				
 			} else if ([pathComponents containsObject:@"ServiceLoginAuth"]) {
-				return GooglePageAuthentication;
-			} else if ([pathComponents containsObject:@"SecondFactor"]) {
-				return GooglePageTwoFactor;
+				return GooglePageAccountAuthentication;
+			} else {
+				return GooglePageAccount;
 			}
 		}
 		
 		if ([[url host] isEqualToString:@"plus.google.com"]) {
 			if ([pathComponents containsObject:@"about"] || [[url query] rangeOfString:@"review=1"].location != NSNotFound) {
-				return GooglePageAbout;
+				return GooglePageGplusAbout;
 			} else if ([pathComponents containsObject:@"widget"]) {
-				return GooglePageReviewWidget;
+				return GooglePageGplusWidget;
 			}
 		}
 	}
@@ -323,29 +327,46 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	_pageWillLoad = pageWillLoad;
 	
 	switch (pageWillLoad) {
-		case GooglePageLogout:
+		case GooglePageUnknown:
+			break; //--do nothing for background validation
+			
+		case GooglePageAccount: //--show hide loading for generic account pages
 			[self showLoading];
 			break;
+		
+		case GooglePageAccountClearCookie:
+			[self showLoading];
+			break;
+		
+		case GooglePageAccountLogin: //--same cycle with clear cookie, so do nothing
+			break;
 			
-		case GooglePageAuthentication:
+		case GooglePageAccountAuthentication:
 			[self toggleCustomViewForLoginScreen:NO];
 			[self showLoading];
 			break;
 			
-		case GooglePageReviewWidget: //--we don't have widget page for did load event
+		case GooglePageGplus:
+			[self showLoading];
+			break;
+		
+		case GooglePageGplusSignup: //--javascript, we don't have will load event for this
+			break;
+			
+		case GooglePageGplusAbout:
+			[self showLoading];
+			break;
+		
+		case GooglePageGplusWidget:
 			[self.popupTask stop];
-			
-			//--enable mask button
-			self.submitButton.active = YES;
-			
+			[self.submitButton setActive:YES];
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
 			break;
-		
-		case GooglePageTwoFactor:
-			[self showLoading];
-			break;
 	
+		case GooglePageCustomError: //--javascript, we don't have will load event for this
+			break;
+			
 		default:
 			break;
 	}
@@ -356,7 +377,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	_pageDidLoad = pageDidLoad;
 	
 	switch (pageDidLoad) {
-		case GooglePageLogout: {
+		case GooglePageUnknown:
+			break;
+			
+		case GooglePageAccount:
+			[self hideLoading];
+			break;
+			
+		case GooglePageAccountClearCookie: {
 			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
 																 error:NULL];
@@ -365,19 +393,19 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self toggleCustomViewForLoginScreen:YES];
 		} break;
 			
-		case GooglePageLogin:
+		case GooglePageAccountLogin:
 			[self hideLoading];
 			break;
 			
-		case GooglePageAuthentication:
-			if (self.pageWillLoad == GooglePageAuthentication) { //--we fail login
-				[self toggleCustomViewForLoginScreen:YES];
-			}
-			
+		case GooglePageAccountAuthentication: //--if we land here mean login fail
+			[self toggleCustomViewForLoginScreen:YES];
 			[self hideLoading];
 			break;
+		
+		case GooglePageGplus:
+			break;
 			
-		case GooglePageAbout: {
+		case GooglePageGplusAbout: {
 			//--inject the function to be called
 			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect" withExtension:@"js"]
 															  encoding:NSUTF8StringEncoding
@@ -392,15 +420,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self zoomContent];
 			break;
 		
-		case GooglePageError:
+		case GooglePageGplusWidget: //--we don't have widget did load hook
+			break;
+			
+		case GooglePageCustomError:
 			[self.popupTask stop];
 			[self hideLoading];
 			break;
 			
-		case GooglePageTwoFactor:
-		case GooglePageUnknown:
-			[self hideLoading];
-			break;
 		default:
 			break;
 	}
@@ -439,7 +466,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	if (!_popupTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
-			if (selfPointer.pageWillLoad != GooglePageReviewWidget) {
+			if (selfPointer.pageWillLoad != GooglePageGplusWidget) {
 				[selfPointer executePopupScript];
 			}
 		}];
@@ -453,7 +480,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	self.popupTryCount++;
 	if (self.popupTryCount > kGVCMaxPopupTry) {
-		self.pageDidLoad = GooglePageError;
+		self.pageDidLoad = GooglePageCustomError;
 	} else {
 		[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
 		[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
@@ -539,8 +566,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)handleReloadViewTapped:(id)sender
 {
-	[self showLoading];
-	
 	self.popupTryCount = 0;
 	[self.webView reload];
 }
@@ -628,6 +653,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[UIView animateWithDuration:1.0f animations:^{
 		self.googleThankyou.alpha = 1.0f;
+	} completion:^(BOOL finished) {
+		[self showLoading];
 	}];
 }
 
@@ -695,20 +722,21 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)handleKeyboardDidShowNotification:(NSNotification *)notification
 {
-	if (self.pageWillLoad == GooglePageReviewWidget) {
+	if (self.pageWillLoad == GooglePageGplusWidget) {
 		[self addKeyboardMask];
 	}
 }
 
 - (void)handleKeyboardWillShowNotification:(NSNotification *)notification
 {
-	if (self.pageWillLoad == GooglePageReviewWidget) {
+	if (self.pageWillLoad == GooglePageGplusWidget) {
 		self.googleTop.constant = -100.0f;
 		self.submitTop.constant = 490.0f;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		}];
-	} if (self.pageDidLoad == GooglePageLogin) {
+		
+	} if (self.pageDidLoad == GooglePageAccountLogin) {
 		[self performSelector:@selector(adjustWebViewBounds:) withObject:notification afterDelay:0];
 	}
 }
