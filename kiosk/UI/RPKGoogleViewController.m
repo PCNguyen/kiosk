@@ -275,6 +275,12 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	self.pageDidLoad = [self googlePageForURL:webView.URL];
 }
 
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+	NSLog(@"%@", error);
+	self.pageDidLoad = [self googlePageForURL:webView.URL];
+}
+
 #pragma mark - WebView Helper
 
 - (RPKGooglePage)googlePageForURL:(NSURL *)url
@@ -407,9 +413,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-	//--avoid leaking
-	[userContentController removeScriptMessageHandlerForName:message.name];
-	
 	if ([message.name isEqualToString:kGVCClearCookieMessage]) {
 		[RPKCookieHandler clearCookie];
 
@@ -697,7 +700,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		}];
-	} else {
+	} if (self.pageDidLoad == GooglePageLogin) {
 		[self performSelector:@selector(adjustWebViewBounds:) withObject:notification afterDelay:0];
 	}
 }
@@ -709,7 +712,8 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)zoomContent
 {
-	[self.webView.scrollView zoomToRect:CGRectMake(0.0f, 0.0f, 500.0f, 500.0f) animated:YES];
+	[self.webView.scrollView zoomToRect:CGRectMake(0.0f, 0.0f, 0.0f, 880.0f) animated:YES];
+	[self.webView.scrollView setContentOffset:CGPointMake(0.0f, -300.0f) animated:YES];
 }
 
 @end
