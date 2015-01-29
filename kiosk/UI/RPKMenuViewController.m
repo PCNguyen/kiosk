@@ -160,7 +160,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 /********************************
  *  RPKMenuViewController
  ********************************/
-@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
@@ -327,6 +327,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	
 	if (menuItem.itemType == MenuTypeGoogle) {
 		timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
+		[(RPKGoogleViewController *)timeWebVC setDelegate:self];
 	} else {
 		timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
 	}
@@ -341,6 +342,18 @@ NSString *const MVCCellID = @"kMVCCellID";
 	CGSize itemSize = CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height / 2 - 20.0f);
 	
 	return itemSize;
+}
+
+#pragma mark - RPKGoogleViewController Delegate
+
+- (void)googleViewControllerShouldSignUp:(RPKGoogleViewController *)googleViewController
+{
+	[self dismissViewControllerAnimated:YES completion:^{
+		RPKMenuItem *kioskItem = [[self dataSource] menuItemAtIndex:0];
+		RPKKioskViewController *kioskViewController = [[RPKKioskViewController alloc] initWithURL:kioskItem.itemURL];
+		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:kioskViewController];
+		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
+	}];
 }
 
 #pragma mark - Secured View

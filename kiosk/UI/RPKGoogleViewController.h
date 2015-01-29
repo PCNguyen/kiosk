@@ -8,6 +8,16 @@
 
 #import "RPKTimedWebViewController.h"
 
+@class RPKGoogleViewController;
+
+@protocol RPKGoogleViewControllerDelegate <NSObject>
+
+- (void)googleViewControllerShouldSignUp:(RPKGoogleViewController *)googleViewController;
+
+@end
+
 @interface RPKGoogleViewController : RPKTimedWebViewController
+
+@property (nonatomic, weak) id<RPKGoogleViewControllerDelegate> delegate;
 
 @end

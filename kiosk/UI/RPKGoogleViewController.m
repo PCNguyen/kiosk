@@ -419,7 +419,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		case GooglePageGplusSignup:
 			[self.popupTask stop];
 			[self hideLoading];
-			[self zoomContent];
+			[self handleGoogleSignUp];
 			break;
 		
 		case GooglePageGplusWidget: //--we don't have widget did load hook
@@ -773,6 +773,13 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[self.webView.scrollView zoomToRect:CGRectMake(0.0f, 0.0f, 0.0f, 880.0f) animated:YES];
 	[self.webView.scrollView setContentOffset:CGPointMake(0.0f, -300.0f) animated:YES];
+}
+
+- (void)handleGoogleSignUp
+{
+	if ([self.delegate respondsToSelector:@selector(googleViewControllerShouldSignUp:)]) {
+		[self.delegate googleViewControllerShouldSignUp:self];
+	}
 }
 
 @end
