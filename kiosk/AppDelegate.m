@@ -41,6 +41,12 @@
 	
 	[self configureReachability];
 	
+	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Enter Single App Mode");
+		}
+	});
+
 	return YES;
 }
 

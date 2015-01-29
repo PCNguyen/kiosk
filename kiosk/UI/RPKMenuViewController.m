@@ -268,6 +268,12 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	//--show location selector
 	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
+	
+	UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Enter Single App Mode");
+		}
+	});
 }
 
 #pragma mark - Collection View
