@@ -23,12 +23,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
-		if (success) {
-			NSLog(@"Enter Single App Mode");
-		}
-	});
-	
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
     [self.window makeKeyAndVisible];
@@ -47,17 +41,6 @@
 		}
 	});
 
-	return YES;
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
-		if (success) {
-			NSLog(@"Enter Single App Mode");
-		}
-	});
-	
 	return YES;
 }
 
