@@ -1,6 +1,6 @@
 function displayPopup() {
-	var l=document.getElementsByClassName('bua b-c-W')[0];
-	var e=document.createEvent('MouseEvents');
+	var l = document.getElementsByClassName('bua b-c-W')[0];
+	var e = document.createEvent('MouseEvents');
 	e.initEvent('click',true,true);
 	var cancelled = !l.dispatchEvent(e);
 	
@@ -8,9 +8,27 @@ function displayPopup() {
 }
 
 function detectNoGplus() {
-	var signupDialog=document.getElementsByClassName('Ea-q')[0];
+	var signupDialog = document.getElementsByClassName('Ea-q')[0];
 	
 	if (signupDialog) {
 		webkit.messageHandlers.SignupDetect.postMessage('true');
 	}
+}
+
+function addEventHandler(elem,eventType,handler) {
+	if (elem.addEventListener)
+		elem.addEventListener (eventType,handler,false);
+	else if (elem.attachEvent)
+		elem.attachEvent ('on'+eventType,handler);
+}
+
+function listenToKioskSubmit() {
+	var sEventType = 'click';
+	var submitButton = document.getElementsByClassName('submit button')[0];
+	
+	addEventHandler(submitButton,sEventType,submitKiosk);
+}
+
+function submitKiosk() {
+	webkit.messageHandlers.KioskSubmitDetect.postMessage('true');
 }
