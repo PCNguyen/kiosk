@@ -14,7 +14,7 @@
 
 
 #define kSHDataInterval						24*60*60
-#define kSHConfigInterval					60
+#define kSHConfigInterval					4*60
 
 @implementation RPScheduleHandler
 
