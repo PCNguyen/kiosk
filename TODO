@@ -3,8 +3,11 @@ Handle extra query in about link
 Externalize all js and stylesheet file
 Adding RSS screen while wait for Google Page Load
 Not assume the source only have google. Generalization using the SourceUrl.Source object
+Fix Memory Leak
+Change font size for Alert View
 
 Clean up before deploy:
+- Clean up warning for 64 bits
 - Remove doubleclick to change location
 - Change URL to production server
 - Change Analytic project
