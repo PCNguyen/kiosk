@@ -225,6 +225,15 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	return configuration;
 }
 
+- (void)handleLogoutItemTapped:(id)sender
+{
+	RPKAnalyticEvent *logoutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout];
+	[logoutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+	[logoutEvent send];
+	
+	[self logout];
+}
+
 - (void)logout
 {
 	//--in case a count down is in progress
@@ -237,6 +246,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	[self unRegisterNotification];
 	
 	[self dismissWebView];
+}
+
+#pragma mark - ExpirationView Delegate
+
+- (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
+{
+	[super expirationViewControllerTimeExpired:expirationViewController];
+	[self logout];
 }
 
 #pragma mark - WKWebview Delegate

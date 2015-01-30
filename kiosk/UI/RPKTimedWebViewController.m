@@ -78,12 +78,7 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	[self logout];
-}
-
-- (void)logout
-{
-	/*Subclass Override this*/
+	//--override by sublcass
 }
 
 #pragma mark - Expiration
@@ -152,7 +147,6 @@
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
 	[self hideExpirationMessage];
-	[self logout];
 }
 
 #pragma mark - Loading

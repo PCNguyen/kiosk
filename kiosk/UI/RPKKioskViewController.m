@@ -32,6 +32,15 @@
 	return self;
 }
 
+- (void)handleLogoutItemTapped:(id)sender
+{
+	RPKAnalyticEvent *event = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout];
+	[event addProperty:PropertySourceName value:kAnalyticSourceKiosk];
+	[event send];
+
+	[self logout];
+}
+
 - (void)logout
 {
 	[self dismissViewControllerAnimated:YES completion:NULL];
@@ -91,6 +100,14 @@
 	}
 	
 	return _submitButton;
+}
+
+#pragma mark - Expiration View Delegate
+
+- (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
+{
+	[super expirationViewControllerTimeExpired:expirationViewController];	
+	[self logout];
 }
 
 #pragma mark - WKWebView Delegate

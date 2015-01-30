@@ -22,11 +22,7 @@
 
 #pragma mark - Subclass Hook
 
-/**
- *  implement the logout mechanism when time expired
- *	or when user explicitly logout
- */
-- (void)logout;
+- (void)handleLogoutItemTapped:(id)sender;
 
 #pragma mark - Expiration
 
