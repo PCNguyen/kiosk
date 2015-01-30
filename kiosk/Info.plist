@@ -30,15 +30,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MixPanel API Token</key>
+	<string>0f4f0084eb962358524d818899790ddf</string>
 	<key>Server Port</key>
 	<string>443</string>
 	<key>Server URL</key>
 	<string>https://qa-r4e-mobile.reputation.com</string>
-	<key>MixPanel API Token</key>
-	<string>0f4f0084eb962358524d818899790ddf</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>
