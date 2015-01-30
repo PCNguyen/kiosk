@@ -32,18 +32,20 @@
 {
 	[super loadView];
 	
+	self.view.backgroundColor = [[UIColor rpk_backgroundColor] colorWithAlphaComponent:0.6f];
+	
 	[self.view addSubview:self.messageLabel];
-	[self.view addConstraints:[self.messageLabel ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 40.0f, kUIViewUnpinInset, 40.0f)]];
-	[self.view addConstraint:[self.messageLabel ul_centerAlignWithView:self.view direction:@"V"]];
+	[self.view ul_addConstraints:[self.messageLabel ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 40.0f, kUIViewUnpinInset, 40.0f)] priority:UILayoutPriorityDefaultHigh];
+	[self.view addConstraints:[self.messageLabel ul_centerAlignWithView:self.view]];
 }
 
 - (UILabel *)messageLabel
 {
 	if (!_messageLabel) {
 		_messageLabel = [[UILabel alloc] init];
-		_messageLabel.font = [UIFont rpk_thinFontWithSize:26.0f];
+		_messageLabel.font = [UIFont rpk_thinFontWithSize:40.0f];
 		_messageLabel.textAlignment = NSTextAlignmentCenter;
-		_messageLabel.textColor = [UIColor rpk_mediumGray];
+		_messageLabel.textColor = [UIColor rpk_darkGray];
 		_messageLabel.text = NSLocalizedString(@"No Connectivity!\nPlease Contact Reputation.com Support", nil);
 		_messageLabel.numberOfLines = 0;
 		[_messageLabel ul_enableAutoLayout];

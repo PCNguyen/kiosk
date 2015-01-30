@@ -15,6 +15,9 @@
 #import "RPAuthenticationHandler.h"
 #import "RPLocationSelectionViewController.h"
 #import "RPReferenceHandler.h"
+#import "RPKNoConnectivityController.h"
+
+#import <Reachability/Reachability.h>
 
 @interface RPKLayoutManager () <RPKLoginViewControllerDelegate, RPLocationSelectionViewControllerDelegate>
 
@@ -93,6 +96,38 @@
 - (void)locationSelectionViewControllerDidDismiss
 {
 	[self.menuViewController validateSources];
+}
+
+- (void)configureReachability
+{
+	__weak RPKLayoutManager *selfPointer = self;
+	
+	Reachability *connectivityMonitor = [Reachability reachabilityWithHostName:@"www.google.com"];
+	connectivityMonitor.reachableBlock = ^(Reachability *monitor) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			UIViewController *presentingViewController = [selfPointer mainNavigationController];
+			while ([presentingViewController presentedViewController]) {
+				presentingViewController = [presentingViewController presentedViewController];
+				if ([presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
+					[presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+				}
+			}
+		});
+	};
+	
+	connectivityMonitor.unreachableBlock = ^(Reachability *monitor){
+		dispatch_async(dispatch_get_main_queue(), ^{
+			RPKNoConnectivityController *noConnectivity = [[RPKNoConnectivityController alloc] init];
+			UIViewController *presentingViewController = [selfPointer mainNavigationController];
+			while ([presentingViewController presentedViewController]) {
+				presentingViewController = [presentingViewController presentedViewController];
+			}
+			
+			[presentingViewController presentViewController:noConnectivity animated:YES completion:NULL];
+		});
+	};
+	
+	[connectivityMonitor startNotifier];
 }
 
 @end
