@@ -1,4 +1,5 @@
 Connectivity UI handling - pending on Owen
+Adding Message in between
 Analytic Tracking
 Handle extra query in about link
 Externalize all js and stylesheet file
@@ -10,3 +11,5 @@ Clean up before deploy:
 - Remove doubleclick to change location
 - Remove logs
 - Remove done button on kiosk if Google not available
+- Change URL to production server
+- Change Analytic project
