@@ -13,12 +13,13 @@
 #import "UIApplication+RP.h"
 #import "NSBundle+Extension.h"
 #import "MobileCommon.h"
+#import "NSError+RP.h"
 
 #import <AppSDK/AppLibExtension.h>
 
-#define kAnalyticSuperDeviceName			@"Device Name"
-#define kAnalyticSuperLocationName			@"Location Name"
-#define kAnalyticSuperSourcesEnabled		@"Source Enabled"
+#define kAnalyticSuperDeviceName			@"device name"
+#define kAnalyticSuperLocationName			@"location name"
+#define kAnalyticSuperSourcesEnabled		@"source enabled"
 
 @interface RPKAnalyticEvent ()
 
@@ -130,6 +131,15 @@
 	[self.eventProperties setValue:value forKey:[[self class] eventProperty:property]];
 }
 
+- (void)addPropertyForError:(NSError *)error
+{
+	NSDictionary *userInfo = error.userInfo;
+	NSString *serverMessage = [userInfo valueForKey:NSErrorServerDescriptionKey];
+	NSString *errorCode = [NSString stringWithFormat:@"%d", (int)error.code];
+	[self addProperty:PropertyErrorDescription value:serverMessage];
+	[self addProperty:PropertyErrorCode value:errorCode];
+}
+
 - (void)send
 {
 	NSString *eventName = [[self class] eventName:self.eventName];
@@ -149,12 +159,71 @@
 
 + (NSString *)eventName:(RPAnalyticEventName)eventName
 {
-	return @"";
+	switch (eventName) {
+		case AnalyticEventAppLaunch:
+			return @"App Launch";
+		case AnalyticEventGoogleWidgetFailed:
+			return @"Google Widget Failed";
+		case AnalyticEventLogin:
+			return @"Login";
+		case AnalyticEventSourceCancel:
+			return @"Source Cancel";
+		case AnalyticEventSourceContinue:
+			return @"Source Continue";
+		case AnalyticEventSourceIdle:
+			return @"Source Idle";
+		case AnalyticEventSourceLoaded:
+			return @"Source Loaded";
+		case AnalyticEventSourceLogout:
+			return @"Source Logout";
+		case AnalyticEventSourceSelect:
+			return @"Source Select";
+		case AnalyticEventSourceSignin:
+			return @"Source Signin";
+		case AnalyticEventSourceSubmit:
+			return @"Source Submit";
+		case AnalyticEventSourceTimeOut:
+			return @"Source Timeout";
+		case AnalyticEventWebPageLoad:
+			return @"Web Page Load";
+		case AnalyticEventWebPageReload:
+			return @"Web Page Reload";
+		default:
+			break;
+	};
+	
+	return @"Unknown Event";
 }
 
 + (NSString *)eventProperty:(RPAnalyticEventProperty)eventProperty
 {
-	return @"";
+	switch (eventProperty) {
+		case PropertyAppLaunchIsAuthenticated:
+			return @"is authenticated";
+		case PropertyErrorCode:
+			return @"error code";
+		case PropertyErrorDescription:
+			return @"error description";
+		case PropertyWebPageHost:
+			return @"web host";
+		case PropertyLoginSuccess:
+		case PropertySourceSigninSucess:
+			return @"login success";
+		case PropertySourceName:
+			return @"source name";
+		case PropertySourcePageDidLoad:
+			return @"page did load";
+		case PropertySourcePageWillLoad:
+			return @"page will load";
+		case PropertySourceTimeLoad:
+			return @"source time load";
+		case PropertyWebPageName:
+			return @"web page name";
+		default:
+			break;
+	};
+	
+	return @"unknown property";
 }
 
 @end

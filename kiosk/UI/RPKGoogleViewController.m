@@ -452,13 +452,12 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
 		} break;
 		
-		case GooglePageGplusSignup:
-		{
+		case GooglePageGplusSignup: {
 			[self.popupTask stop];
 			[self hideLoading];
 			RPKAnalyticEvent *signUpEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventWebPageLoad];
 			[signUpEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
-			[signUpEvent addProperty:PropertyGooglePageName value:kAnalyticWebPageSignUp];
+			[signUpEvent addProperty:PropertyWebPageName value:kAnalyticWebPageSignUp];
 			[signUpEvent send];
 			[self handleGoogleSignUp];
 		} break;
@@ -466,8 +465,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		case GooglePageGplusWidget: //--we don't have widget did load hook
 			break;
 			
-		case GooglePageCustomError:
-		{
+		case GooglePageCustomError: {
 			[self.popupTask stop];
 			[self hideLoading];
 			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];

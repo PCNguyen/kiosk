@@ -45,8 +45,8 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
 	PropertySourceSigninSucess,
 	PropertySourcePageWillLoad,
 	PropertySourcePageDidLoad,
-	PropertyGooglePageName,
-	PropertyGooglePageHost,
+	PropertyWebPageName,
+	PropertyWebPageHost,
 };
 
 @interface RPKAnalyticEvent : NSObject
@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
  *  @param property the property enum
  *  @param value    the value
  */
-- (void)addProperty:(RPAnalyticEventProperty)property value:(id)value;
+- (void)addProperty:(RPAnalyticEventProperty)property value:(NSString *)value;
 
 /**
  *  Preconfigured template to report error
