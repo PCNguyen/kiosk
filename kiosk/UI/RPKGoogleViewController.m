@@ -459,7 +459,8 @@ typedef enum {
 			[signUpEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signUpEvent addProperty:PropertyWebPageName value:kAnalyticWebPageSignUp];
 			[signUpEvent send];
-			[self handleGoogleSignUp];
+			[self displayRedirectPage];
+			[self performSelector:@selector(handleGoogleSignUp) withObject:nil afterDelay:10.0f];
 		} break;
 		
 		case GooglePageGplusWidget: //--we don't have widget did load hook
@@ -699,6 +700,13 @@ typedef enum {
 	
 	[self removeKeyboardMask];
 	[self logout];
+}
+
+- (void)displayRedirectPage
+{
+	[self.googleThankyou setTitleMessage:NSLocalizedString(@"Redirecting...", nil)];
+	[self.googleThankyou setSubtitleMessage:NSLocalizedString(@"Your Google account won't support leaving a review at this time. You have been logged out of Google and are being redirected to our quick survey. Thank you.", nil)];
+	[self displayThankyouPage];
 }
 
 - (void)displayThankyouPage
