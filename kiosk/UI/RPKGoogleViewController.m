@@ -254,7 +254,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 {
 	[super expirationViewControllerTimeExpired:expirationViewController];
 	
-	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];
+	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle];
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[expiredEvent send];
 	

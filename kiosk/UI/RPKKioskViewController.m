@@ -108,7 +108,7 @@
 {
 	[super expirationViewControllerTimeExpired:expirationViewController];
 	
-	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];
+	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle];
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[expiredEvent send];
 	

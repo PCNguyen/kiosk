@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventSourceCancel,
 	AnalyticEventSourceLogout,
 	AnalyticEventSourceTimeOut,
+	AnalyticEventSourceIdle,
 	AnalyticEventSourceContinue,
 	AnalyticEventGooglePage,
 	AnalyticEventPageReload,
