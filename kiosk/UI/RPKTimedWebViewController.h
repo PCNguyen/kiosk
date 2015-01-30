@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) ALScheduledTask *idleTask;
 @property (atomic, strong) NSDate *lastInteractionDate;
+@property (nonatomic, assign) BOOL shouldTimedOut;
 
 #pragma mark - Subclass Hook
 

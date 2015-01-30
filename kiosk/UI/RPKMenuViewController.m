@@ -235,6 +235,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		//--we only have kiosk
 		RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:0];
 		RPKKioskViewController *timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		timeWebVC.shouldTimedOut = NO;
+		timeWebVC.kioskOnly = YES;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
 	}

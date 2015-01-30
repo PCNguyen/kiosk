@@ -21,6 +21,15 @@
 
 @implementation RPKTimedWebViewController
 
+- (instancetype)init
+{
+	if (self = [super init]) {
+		_shouldTimedOut = YES;
+	}
+	
+	return self;
+}
+
 - (void)loadView
 {
 	[super loadView];
@@ -52,14 +61,20 @@
 	[super viewDidAppear:animated];
 	
 	self.lastInteractionDate = [NSDate date];
-	[self.idleTask start];
+	
+	if (self.shouldTimedOut) {
+		[self.idleTask start];
+	}
+	
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 	
-	[self.idleTask stop];
+	if (_idleTask) {
+		[self.idleTask stop];
+	}
 }
 
 #pragma mark - Toolbar

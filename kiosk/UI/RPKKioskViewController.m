@@ -53,27 +53,38 @@
 	self.title = @"Leave a Review";
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	if (self.kioskOnly) {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+}
+
 - (WKWebViewConfiguration *)webConfiguration
 {
 	WKUserContentController *userContentController = [WKUserContentController new];
 	
-	//--add script to attach handler to submit button
-	NSString *eventListenScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
-																						withExtension:@"js"]
-													   encoding:NSUTF8StringEncoding
-														  error:NULL];
-	WKUserScript *eventListenScript = [[WKUserScript alloc] initWithSource:eventListenScriptText
-														injectionTime:WKUserScriptInjectionTimeAtDocumentStart
-													forMainFrameOnly:YES];
-	[userContentController addUserScript:eventListenScript];
-	
-	WKUserScript *eventScript = [[WKUserScript alloc] initWithSource:@"listenToKioskSubmit();"
-													   injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-													forMainFrameOnly:YES];
-	[userContentController addUserScript:eventScript];
-	
-	//--add handler to handle clearing cookies
-	[userContentController addScriptMessageHandler:self name:kKVCSubmitDetectMessage];
+	if (!self.kioskOnly) {
+		//--add script to attach handler to submit button
+		NSString *eventListenScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
+																									withExtension:@"js"]
+																   encoding:NSUTF8StringEncoding
+																	  error:NULL];
+		WKUserScript *eventListenScript = [[WKUserScript alloc] initWithSource:eventListenScriptText
+																 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+															  forMainFrameOnly:YES];
+		[userContentController addUserScript:eventListenScript];
+		
+		WKUserScript *eventScript = [[WKUserScript alloc] initWithSource:@"listenToKioskSubmit();"
+														   injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+														forMainFrameOnly:YES];
+		[userContentController addUserScript:eventScript];
+		
+		//--add handler to handle clearing cookies
+		[userContentController addScriptMessageHandler:self name:kKVCSubmitDetectMessage];
+	}
 	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;

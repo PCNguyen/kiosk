@@ -10,4 +10,6 @@
 
 @interface RPKKioskViewController : RPKTimedWebViewController
 
+@property (nonatomic, assign) BOOL kioskOnly;
+
 @end
