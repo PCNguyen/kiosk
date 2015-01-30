@@ -28,6 +28,7 @@
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
 		0F1932F71A5F51620083B96E /* customStyle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932F61A5F51620083B96E /* customStyle.js */; };
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
+		0F6F7C691A7C4A0F0084755D /* RPKNoConnectivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */; };
 		0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
 		0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
 		0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
@@ -167,6 +168,8 @@
 		0F1932F61A5F51620083B96E /* customStyle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = customStyle.js; sourceTree = "<group>"; };
 		0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCookieHandler.h; sourceTree = "<group>"; };
 		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
+		0F6F7C671A7C4A0F0084755D /* RPKNoConnectivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNoConnectivityController.h; sourceTree = "<group>"; };
+		0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNoConnectivityController.m; sourceTree = "<group>"; };
 		0F78EEBC1A52FD9B003B7718 /* cookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cookies.js; sourceTree = "<group>"; };
 		0F78EEBE1A5305D4003B7718 /* deleteCookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deleteCookies.js; sourceTree = "<group>"; };
 		0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKReloadView.h; sourceTree = "<group>"; };
@@ -547,6 +550,8 @@
 				0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */,
 				0FBF99EB1A71E84000C25788 /* RPLocationSelectionViewController.h */,
 				0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */,
+				0F6F7C671A7C4A0F0084755D /* RPKNoConnectivityController.h */,
+				0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1090,6 +1095,7 @@
 				0F063AD31A6EE8790092F607 /* UIFont+RPK.m in Sources */,
 				0FA0E1841A686AC80011EAC9 /* TSocketServer.m in Sources */,
 				0FBF99E71A71E72500C25788 /* RPLocationSelectionDataSource.m in Sources */,
+				0F6F7C691A7C4A0F0084755D /* RPKNoConnectivityController.m in Sources */,
 				0FA0E1871A686AC80011EAC9 /* Base64.m in Sources */,
 				0FA0E1BC1A6883540011EAC9 /* RPKPreferenceStorage.m in Sources */,
 				0FA0E1BB1A6883540011EAC9 /* RPAccountStorage.m in Sources */,
