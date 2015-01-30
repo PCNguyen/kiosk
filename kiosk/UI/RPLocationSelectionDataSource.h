@@ -114,4 +114,13 @@
  */
 - (void)persistSelectedLocation;
 
+/**
+ *  return a location for code
+ *
+ *  @param code the code id for the location
+ *
+ *  @return the Location object
+ */
+- (Location *)locationForCode:(NSString *)code;
+
 @end

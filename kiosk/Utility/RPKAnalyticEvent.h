@@ -74,9 +74,9 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
  *  register super property when we have both account and selected location
  *
  *  @param user     the user that is set
- *  @param location the location code that is set
+ *  @param location the location that is set
  */
-+ (void)registerSuperPropertiesForUser:(User *)user location:(NSString *)location;
++ (void)registerSuperPropertiesForUser:(User *)user location:(Location *)location;
 
 #pragma mark - Event Handling
 

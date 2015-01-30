@@ -211,4 +211,17 @@
 	[[ULDataSourceManager sharedManager] notifyDataSourcesOfService:[RPService serviceNameFromType:ServiceUpdateSelectedLocation] error:nil];
 }
 
+- (Location *)locationForCode:(NSString *)code
+{
+	NSMutableArray *authLocations = [self userConfig].authLocations;
+	
+	for (Location *location in authLocations) {
+		if ([location.code isEqualToString:code]) {
+			return location;
+		}
+	}
+	
+	return nil;
+}
+
 @end
