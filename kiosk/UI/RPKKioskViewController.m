@@ -153,7 +153,7 @@
 		
 		[userContentController removeScriptMessageHandlerForName:kKVCSubmitDetectMessage];
 		[self showLoading];
-		[self performSelector:@selector(logout) withObject:nil afterDelay:7];
+		[self performSelector:@selector(logout) withObject:nil afterDelay:10.0f];
 	}
 }
 
