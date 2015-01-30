@@ -106,7 +106,12 @@
 
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
-	[super expirationViewControllerTimeExpired:expirationViewController];	
+	[super expirationViewControllerTimeExpired:expirationViewController];
+	
+	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];
+	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
+	[expiredEvent send];
+	
 	[self logout];
 }
 
