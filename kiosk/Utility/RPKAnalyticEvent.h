@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Mobile.h"
 
+#define kAnalyticSourceGoogle			@"GOOGLE+ LOCAL"
+#define kAnalyticSourceKiosk			@"KIOSK"
+
 typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventAppLaunch,
 	AnalyticEventLogin,

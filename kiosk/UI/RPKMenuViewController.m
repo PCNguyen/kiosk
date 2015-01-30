@@ -331,13 +331,18 @@ NSString *const MVCCellID = @"kMVCCellID";
 	RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:indexPath.item];
 	RPKTimedWebViewController *timeWebVC = nil;
 	
+	RPKAnalyticEvent *sourceSelectEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSelect];
+	
 	if (menuItem.itemType == MenuTypeGoogle) {
 		timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
 		[(RPKGoogleViewController *)timeWebVC setDelegate:self];
+		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	} else {
 		timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	}
 	
+	[sourceSelectEvent send];
 	RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 	[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
 
