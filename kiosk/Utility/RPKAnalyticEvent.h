@@ -15,6 +15,8 @@
 #define kAnalyticWebPageTwoFactor			@"TWO FACTOR"
 #define kAnalyticSignInSuccess				@"SUCCESS"
 #define kAnalyticSignInFailed				@"FAILED"
+#define kAnalyticValueYES					@"YES"
+#define kAnalyticValueNO					@"NO"
 
 typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventAppLaunch,
