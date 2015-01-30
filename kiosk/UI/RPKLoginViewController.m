@@ -16,6 +16,8 @@
 #import "RPKNavigationController.h"
 
 #import "NSAttributedString+RP.h"
+#import "UIViewController+Alert.h"
+#import "NSError+RP.h"
 
 #import <AppSDK/NSString+AL.h>
 
@@ -257,6 +259,13 @@
 {
     [self toggleLoadingView:NO];
 
+	NSError *error = [RPService serviceErrorFromUserInfo:notification.userInfo];
+	if (error) {
+		NSString *userMessage = [error.userInfo valueForKey:NSErrorUserDescriptionKey];
+		[self rp_showAlertViewWithTitle:NSLocalizedString(@"Error", nil) message:userMessage];
+	}
+	
+	
     if ([[RPAccountManager sharedManager] isAuthenticated]) {
         [self dismissViewControllerAnimated:YES completion:^{
 			if ([self.delegate respondsToSelector:@selector(loginViewControllerDidDismissed)]) {
