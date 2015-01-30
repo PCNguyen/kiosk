@@ -104,6 +104,9 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
 	[self hideLoading];
+	RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
+	[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
+	[sourceLoadedEvent send];
 }
 
 #pragma mark - Message Handler

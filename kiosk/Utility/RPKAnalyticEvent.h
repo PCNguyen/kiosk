@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventAppLaunch,
 	AnalyticEventLogin,
 	AnalyticEventSourceSelect,
+	AnalyticEventSourceLoaded,
 	AnalyticEventSourceSignin,
 	AnalyticEventSourceSubmit,
 	AnalyticEventSourceCancel,

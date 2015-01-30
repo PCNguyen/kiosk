@@ -396,8 +396,12 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		} break;
 			
 		case GooglePageAccountLogin:
+		{
 			[self hideLoading];
-			break;
+			RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
+			[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[sourceLoadedEvent send];
+		} break;
 			
 		case GooglePageAccountAuthentication: //--if we land here mean login fail
 			[self toggleCustomViewForLoginScreen:YES];
