@@ -23,6 +23,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	application.idleTimerDisabled = YES;
+	
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
     [self.window makeKeyAndVisible];

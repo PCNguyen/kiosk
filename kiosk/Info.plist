@@ -37,6 +37,8 @@
 	<string>443</string>
 	<key>Server URL</key>
 	<string>https://qa-r4e-mobile.reputation.com</string>
+	<key>MixPanel API Token</key>
+	<string>55535c1eaaff5f8013df6081a5a4f3bd</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>
