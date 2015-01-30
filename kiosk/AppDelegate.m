@@ -12,6 +12,7 @@
 #import "RPAccountManager.h"
 #import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
+#import "RPKAnalyticEvent.h"
 
 #import <Reachability/Reachability.h>
 
@@ -30,8 +31,10 @@
     [self.window makeKeyAndVisible];
 
     if (![[RPAccountManager sharedManager] isAuthenticated]) {
+		[RPKAnalyticEvent registerSuperProperties];
         [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
 	} else {
+		[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount]];
 		[RPAuthenticationHandler handleAuthenticatedAccount];
 	}
 	

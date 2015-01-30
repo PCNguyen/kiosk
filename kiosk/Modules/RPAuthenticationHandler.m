@@ -16,6 +16,7 @@
 #import "RPNotificationCenter.h"
 
 #import "RPReferenceHandler.h"
+#import "RPKAnalyticEvent.h"
 
 #import "NSError+RP.h"
 
@@ -49,6 +50,9 @@ NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"Auth
 	[self postNetworkActivityBeginNotificationForService:ServiceLogin];
 	
 	RPLoginServiceCompletion completion = ^(BOOL success, NSError *error, LoginResponse *response) {
+		
+		RPKAnalyticEvent *loginEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventLogin];
+		
 		if (success) {
 			if ([response.userDetails.email length] > 0) {
 				[self updateAccount:response.userDetails];
@@ -56,14 +60,20 @@ NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"Auth
 				[[ULDataSourceManager sharedManager] notifyDataSourcesOfService:[RPService serviceNameFromType:ServiceGetUserConfig]];
 				
 				[self handleAuthenticatedAccount];
-//				[RPAnalyticHandler trackSuccessLogin];
+				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Success"];
+			} else {
+				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Failed"];
 			}
 		} else {
+			[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Failed"];
+			[loginEvent addPropertyForError:error];
+			
 			if ([error.domain isEqualToString:NSErrorResponseDomain]) {
-//				[RPAnalyticHandler trackFailureLoginForUser:username errorCode:error.code];
+				
 			}
 		}
 		
+		[loginEvent send];
 		[self postNetworkActivityCompleteNotificationForService:ServiceLogin error:error];
 	};
 	

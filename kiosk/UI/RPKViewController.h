@@ -7,6 +7,7 @@
 //
 
 #import "RPKUIKit.h"
+#import "RPKAnalyticEvent.h"
 
 @interface RPKViewController : UIViewController
 

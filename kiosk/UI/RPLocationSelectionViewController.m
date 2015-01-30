@@ -11,6 +11,7 @@
 #import "RPNotificationCenter.h"
 #import "UIViewController+Alert.h"
 #import "RPKTableViewCell.h"
+#import "RPAccountManager.h"
 
 #define kLSVCSearchBarHeight				50.0f
 #define kLSVCSectionAll						0
@@ -166,6 +167,8 @@ NSString *const LSVCCellID = @"LSVCCellID";
 {
 	NSMutableArray *selectedLocations = [[self selectionDataSource] selectedLocations];
 	
+	[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount] location:[selectedLocations firstObject]];
+	
 	if ([self.delegate respondsToSelector:@selector(locationSelectionViewController:selectLocations:)]) {
 		[self.delegate locationSelectionViewController:self selectLocations:selectedLocations];
 	}
@@ -273,7 +276,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	
 	[alertController addButtonTitle:@"OK" style:AlertButtonStyleDefault action:^(RPAlertButton *alertButton) {
 		[[selfPointer selectionDataSource] persistSelectedLocation];
-		[selfPointer dismissViewController];
+		[selfPointer handleDoneButtonTapped:nil];
 	}];
 	
 	[self presentViewController:alertController animated:YES completion:NULL];
