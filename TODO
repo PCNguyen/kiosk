@@ -1,6 +1,7 @@
 Connectivity UI handling - pending on Owen
 Adding Message in between
-Analytic Tracking
+Handling authentication failed
+Adding the kiosk indicator
 Handle extra query in about link
 Externalize all js and stylesheet file
 Adding RSS screen while wait for Google Page Load
