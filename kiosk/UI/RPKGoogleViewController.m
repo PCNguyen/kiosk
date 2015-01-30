@@ -358,12 +358,16 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			break;
 		
 		case GooglePageGplusWidget:
+		{
 			[self.popupTask stop];
 			[self.submitButton setActive:YES];
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
-			NSLog(@"yOffset: %f, height: %f", self.webView.scrollView.bounds.origin.y, self.webView.scrollView.bounds.size.height);
-			break;
+			
+			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
+			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[signinEvent send];
+		} break;
 	
 		case GooglePageCustomError: //--javascript, we don't have will load event for this
 			break;
