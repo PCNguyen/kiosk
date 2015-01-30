@@ -144,11 +144,11 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 												 multiplier:1.0f
 												   constant:670.0f];
 	[self.webView addConstraint:self.submitTop];
-	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(670.0f, 42.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 38.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
-	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:10.0f leftToRight:NO]];
+	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:0.0f leftToRight:NO]];
 	
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
@@ -604,7 +604,6 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 	if (!_submitButton) {
 		_submitButton = [[RPKMaskButton alloc] init];
 		_submitButton.alpha = 0.0f;
-		
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
 			[selfPointer removeKeyboardMask];
@@ -614,7 +613,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		};
 		
 		[_submitButton ul_enableAutoLayout];
-		[_submitButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
+		[_submitButton ul_fixedSize:CGSizeMake(130.0f, 62.0f)];
 	}
 	
 	return _submitButton;
@@ -628,7 +627,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		[_cancelButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal];
 		[_cancelButton addTarget:self action:@selector(handleCancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_cancelButton ul_enableAutoLayout];
-		[_cancelButton ul_fixedSize:CGSizeMake(120.0f, 42.0f)];
+		[_cancelButton ul_fixedSize:CGSizeMake(130.0f, 62.0f)];
 	}
 	
 	return _cancelButton;
