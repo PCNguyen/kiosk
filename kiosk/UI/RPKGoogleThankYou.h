@@ -10,4 +10,7 @@
 
 @interface RPKGoogleThankYou : RPKView
 
+- (void)setTitleMessage:(NSString *)titleMessage;
+- (void)setSubtitleMessage:(NSString *)subtitleMessage;
+
 @end

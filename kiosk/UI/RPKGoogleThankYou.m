@@ -65,6 +65,11 @@
 	return _messageTitle;
 }
 
+- (void)setTitleMessage:(NSString *)titleMessage
+{
+	self.messageTitle.text = titleMessage;
+}
+
 - (UILabel *)messageSubtitle
 {
 	if (!_messageSubtitle) {
@@ -78,6 +83,11 @@
 	}
 	
 	return _messageSubtitle;
+}
+
+- (void)setSubtitleMessage:(NSString *)subtitleMessage
+{
+	self.messageSubtitle.text = subtitleMessage;
 }
 
 @end
