@@ -38,6 +38,7 @@
 		[RPAuthenticationHandler handleAuthenticatedAccount];
 	}
 	
+	[RPKAnalyticEvent sendEvent:AnalyticEventAppLaunch];
 	[self configureReachability];
 	
 	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
