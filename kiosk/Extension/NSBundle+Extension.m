@@ -26,12 +26,7 @@
 
 + (NSString *)ns_appAnalyticName
 {
-	NSString *bundleName = @"Reputation";
-	
-	if ([self ns_isFordCustomBuild]) {
-		bundleName = @"FD Social";
-	}
-	
+	NSString *bundleName = @"Kiosk";
 	return bundleName;
 }
 

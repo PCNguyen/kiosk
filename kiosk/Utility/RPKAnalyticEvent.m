@@ -14,6 +14,12 @@
 #import "NSBundle+Extension.h"
 #import "MobileCommon.h"
 
+#import <AppSDK/AppLibExtension.h>
+
+#define kAnalyticSuperDeviceName			@"Device Name"
+#define kAnalyticSuperLocationName			@"Location Name"
+#define kAnalyticSuperSourcesEnabled		@"Source Enabled"
+
 @interface RPKAnalyticEvent ()
 
 @property (nonatomic, strong) NSMutableDictionary *eventProperties;
@@ -37,17 +43,66 @@
 
 + (void)registerSuperProperties
 {
-
+	Mixpanel *mixpanel = [Mixpanel sharedInstance];
+	
+	[mixpanel registerSuperProperties:@{[MobileCommonConstants SUPER_PROP_USER]: @"",
+										[MobileCommonConstants SUPER_PROP_TENANT]: @"",
+										[MobileCommonConstants SUPER_PROP_PLATFORM]: [NSBundle ns_platformID],
+										[MobileCommonConstants SUPER_PROP_VERSION]: [NSBundle ns_appVersion],
+										[MobileCommonConstants SUPER_PROP_APP_NAME]: [NSBundle ns_appAnalyticName],
+										kAnalyticSuperDeviceName: [UIDevice currentDevice].name,
+										kAnalyticSuperLocationName: @"",
+										kAnalyticSuperSourcesEnabled: @""}];
 }
 
 + (void)registerSuperPropertiesForUser:(User *)user
 {
-
+	if (user) {
+		Mixpanel *mixpanel = [Mixpanel sharedInstance];
+		[mixpanel identify:[user rp_alias]];
+		NSString *userValue = [NSString stringWithFormat:@"%@ %@ (%@,%@)", user.firstName, user.lastName, [user rp_alias], user.email];
+		NSString *tenantValue = [NSString stringWithFormat:@"%@ (%@)", user.tenantName, [user rp_tenantIDString]];
+		[mixpanel registerSuperProperties:@{[MobileCommonConstants SUPER_PROP_USER]: userValue,
+											[MobileCommonConstants SUPER_PROP_TENANT]: tenantValue,
+											[MobileCommonConstants SUPER_PROP_PLATFORM]: [NSBundle ns_platformID],
+											[MobileCommonConstants SUPER_PROP_VERSION]: [NSBundle ns_appVersion],
+											[MobileCommonConstants SUPER_PROP_APP_NAME]: [NSBundle ns_appAnalyticName],
+											kAnalyticSuperDeviceName: [UIDevice currentDevice].name,
+											kAnalyticSuperLocationName: @"",
+											kAnalyticSuperSourcesEnabled: @""}];
+	}
 }
 
 + (void)registerSuperPropertiesForUser:(User *)user location:(Location *)location
 {
-
+	if (user && location) {
+		Mixpanel *mixpanel = [Mixpanel sharedInstance];
+		[mixpanel identify:[user rp_alias]];
+		NSString *userValue = [NSString stringWithFormat:@"%@ %@ (%@,%@)", user.firstName, user.lastName, [user rp_alias], user.email];
+		NSString *tenantValue = [NSString stringWithFormat:@"%@ (%@)", user.tenantName, [user rp_tenantIDString]];
+		NSString *locationValue = [NSString stringWithFormat:@"%@ (%@)", location.name, location.code];
+		NSMutableArray *locationSources = [NSMutableArray array];
+		
+		if ([location.kioskUrl length] > 0) {
+			[locationSources addObject:kAnalyticSourceKiosk];
+		}
+		
+		for (SourceUrl *sourceURL in location.sourceUrls) {
+			[locationSources addObject:sourceURL.source];
+		}
+		
+		NSDictionary *properties = @{
+									 [MobileCommonConstants SUPER_PROP_USER]: userValue,
+									 [MobileCommonConstants SUPER_PROP_TENANT]: tenantValue,
+									 [MobileCommonConstants SUPER_PROP_PLATFORM]: [NSBundle ns_platformID],
+									 [MobileCommonConstants SUPER_PROP_VERSION]: [NSBundle ns_appVersion],
+									 [MobileCommonConstants SUPER_PROP_APP_NAME]: [NSBundle ns_appAnalyticName],
+									 kAnalyticSuperDeviceName: [UIDevice currentDevice].name,
+									 kAnalyticSuperLocationName: locationValue,
+									 kAnalyticSuperSourcesEnabled: [locationSources al_stringSeparatedByString:@", "]
+									 };
+		[mixpanel registerSuperProperties:properties];
+	}
 }
 
 #pragma mark - Accessor
