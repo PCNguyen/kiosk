@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 };
 
 typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
+	PropertyErrorCode,
+	PropertyErrorDescription,
 	PropertyAppLaunchIsAuthenticated,
 	PropertyLoginSuccess,
 	PropertySourceName,
@@ -36,7 +38,7 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
 	PropertyGooglePageHost,
 };
 
-@interface RPAnalyticEvent : NSObject
+@interface RPKAnalyticEvent : NSObject
 
 #pragma mark - Initialized
 
@@ -63,9 +65,9 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
  *  register super property when we have both account and selected location
  *
  *  @param user     the user that is set
- *  @param location the location that is set
+ *  @param location the location code that is set
  */
-+ (void)registerSuperPropertiesForUser:(User *)user location:(Location *)location;
++ (void)registerSuperPropertiesForUser:(User *)user location:(NSString *)location;
 
 #pragma mark - Event Handling
 
@@ -87,6 +89,13 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
  *  @param value    the value
  */
 - (void)addProperty:(RPAnalyticEventProperty)property value:(id)value;
+
+/**
+ *  Preconfigured template to report error
+ *
+ *  @param error the error object
+ */
+- (void)addPropertyForError:(NSError *)error;
 
 /**
  *  Sending both event name and all the property registered

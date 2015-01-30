@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 www. All rights reserved.
 //
 
-#import "RPAnalyticEvent.h"
+#import "RPKAnalyticEvent.h"
 #import "Mixpanel.h"
 
 #import "User+RP.h"
@@ -14,13 +14,13 @@
 #import "NSBundle+Extension.h"
 #import "MobileCommon.h"
 
-@interface RPAnalyticEvent ()
+@interface RPKAnalyticEvent ()
 
 @property (nonatomic, strong) NSMutableDictionary *eventProperties;
 
 @end
 
-@implementation RPAnalyticEvent
+@implementation RPKAnalyticEvent
 
 #pragma mark - General
 
@@ -65,12 +65,12 @@
 
 + (instancetype)analyticEvent:(RPAnalyticEventName)eventName
 {
-	RPAnalyticEvent *event = [RPAnalyticEvent new];
+	RPKAnalyticEvent *event = [RPKAnalyticEvent new];
 	event.eventName = eventName;
 	return event;
 }
 
-- (void)addProperty:(RPAnalyticEventProperty)property value:(id)value
+- (void)addProperty:(RPAnalyticEventProperty)property value:(NSString *)value
 {
 	[self.eventProperties setValue:value forKey:[[self class] eventProperty:property]];
 }
@@ -88,7 +88,7 @@
 
 + (void)sendEvent:(RPAnalyticEventName)eventName
 {
-	RPAnalyticEvent *event = [[self class] analyticEvent:eventName];
+	RPKAnalyticEvent *event = [[self class] analyticEvent:eventName];
 	[event send];
 }
 
