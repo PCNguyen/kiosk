@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Mobile.h"
 
-#define kAnalyticSourceGoogle			@"GOOGLE+ LOCAL"
-#define kAnalyticSourceKiosk			@"KIOSK"
+#define kAnalyticSourceGoogle				@"GOOGLE+ LOCAL"
+#define kAnalyticSourceKiosk				@"KIOSK"
+#define kAnalyticWebPageSignUp				@"SIGN UP"
+#define kAnalyticWebPageTwoFactor			@"TWO FACTOR"
+#define kAnalyticSignInSuccess				@"SUCCESS"
+#define kAnalyticSignInFailed				@"FAILED"
 
 typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventAppLaunch,
@@ -24,8 +28,8 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventSourceTimeOut,
 	AnalyticEventSourceIdle,
 	AnalyticEventSourceContinue,
-	AnalyticEventGooglePage,
-	AnalyticEventPageReload,
+	AnalyticEventWebPageLoad,
+	AnalyticEventWebPageReload,
 	AnalyticEventGoogleWidgetFailed,
 };
 

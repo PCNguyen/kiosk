@@ -60,12 +60,12 @@ NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"Auth
 				[[ULDataSourceManager sharedManager] notifyDataSourcesOfService:[RPService serviceNameFromType:ServiceGetUserConfig]];
 				
 				[self handleAuthenticatedAccount];
-				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Success"];
+				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInSuccess];
 			} else {
-				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Failed"];
+				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInFailed];
 			}
 		} else {
-			[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:@"Failed"];
+			[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInFailed];
 			[loginEvent addPropertyForError:error];
 			
 			if ([error.domain isEqualToString:NSErrorResponseDomain]) {

@@ -388,6 +388,7 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			
 			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
 			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
 			[signinEvent send];
 		} break;
 	
@@ -430,9 +431,14 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		} break;
 			
 		case GooglePageAccountAuthentication: //--if we land here mean login fail
+		{
 			[self toggleCustomViewForLoginScreen:YES];
 			[self hideLoading];
-			break;
+			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
+			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInFailed];
+			[signinEvent send];
+		} break;
 		
 		case GooglePageGplus:
 			break;
@@ -447,18 +453,27 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 		} break;
 		
 		case GooglePageGplusSignup:
+		{
 			[self.popupTask stop];
 			[self hideLoading];
+			RPKAnalyticEvent *signUpEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventWebPageLoad];
+			[signUpEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[signUpEvent addProperty:PropertyGooglePageName value:kAnalyticWebPageSignUp];
+			[signUpEvent send];
 			[self handleGoogleSignUp];
-			break;
+		} break;
 		
 		case GooglePageGplusWidget: //--we don't have widget did load hook
 			break;
 			
 		case GooglePageCustomError:
+		{
 			[self.popupTask stop];
 			[self hideLoading];
-			break;
+			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];
+			[timedOutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[timedOutEvent send];
+		} break;
 			
 		default:
 			break;
