@@ -618,6 +618,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 			selfPointer.logoutButton.enabled = NO;
 			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:0.5f];
 			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:7.0f];
+			
+			RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+			[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[submitEvent send];
 		};
 		
 		[_submitButton ul_enableAutoLayout];
@@ -654,6 +658,10 @@ typedef NS_ENUM(NSInteger, RPKGooglePage) {
 
 - (void)handleCancelButtonTapped:(id)sender
 {
+	RPKAnalyticEvent *cancelEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceCancel];
+	[cancelEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+	[cancelEvent send];
+	
 	[self removeKeyboardMask];
 	[self logout];
 }

@@ -114,6 +114,10 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
 	if ([message.name isEqualToString:kKVCSubmitDetectMessage]) {
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
+		[submitEvent send];
+		
 		[userContentController removeScriptMessageHandlerForName:kKVCSubmitDetectMessage];
 		[self showLoading];
 		[self performSelector:@selector(logout) withObject:nil afterDelay:7];
