@@ -36,6 +36,7 @@
 		0F79DC251A705A3900A4EF9A /* icon_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC221A705A3900A4EF9A /* icon_x.png */; };
 		0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
 		0F79DC2B1A7063F200A4EF9A /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
+		0F8FDBFF1A7B2ED40043A3D0 /* RPAnalyticHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPAnalyticHandler.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -177,6 +178,8 @@
 		0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleMessage.m; sourceTree = "<group>"; };
 		0F79DC291A7063F200A4EF9A /* RPKMaskButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMaskButton.h; sourceTree = "<group>"; };
 		0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMaskButton.m; sourceTree = "<group>"; };
+		0F8FDBFD1A7B2ED40043A3D0 /* RPAnalyticHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPAnalyticHandler.h; sourceTree = "<group>"; };
+		0F8FDBFE1A7B2ED40043A3D0 /* RPAnalyticHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPAnalyticHandler.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				0FA0E1D41A6886080011EAC9 /* RPNotificationCenter.m */,
 				0FA0E1D91A6886540011EAC9 /* RPScheduleHandler.h */,
 				0FA0E1DA1A6886540011EAC9 /* RPScheduleHandler.m */,
+				0F8FDBFD1A7B2ED40043A3D0 /* RPAnalyticHandler.h */,
+				0F8FDBFE1A7B2ED40043A3D0 /* RPAnalyticHandler.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1122,6 +1127,7 @@
 				0FA0E18B1A686AC80011EAC9 /* TMemoryBuffer.m in Sources */,
 				0FA0E1E51A6888090011EAC9 /* RPAlertController.m in Sources */,
 				0FA0E1C31A6883D70011EAC9 /* NSBundle+Extension.m in Sources */,
+				0F8FDBFF1A7B2ED40043A3D0 /* RPAnalyticHandler.m in Sources */,
 				0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FA0E1E21A6887DB0011EAC9 /* UIViewController+Alert.m in Sources */,
