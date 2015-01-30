@@ -13,6 +13,7 @@
 #import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
 #import "RPKAnalyticEvent.h"
+#import "RPKPreferenceStorage.h"
 
 #import <Reachability/Reachability.h>
 
@@ -25,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	application.idleTimerDisabled = YES;
-	
+	[RPKAnalyticEvent configure];
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
     [self.window makeKeyAndVisible];
@@ -34,7 +35,14 @@
 		[RPKAnalyticEvent registerSuperProperties];
         [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
 	} else {
-		[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount]];
+		RPKPreferenceStorage *preferenceStorage = [[RPKPreferenceStorage alloc] init];
+		Location *location = [preferenceStorage selectedLocation];
+		if (location) {
+			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount] location:location];
+		} else {
+			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount]];
+		}
+		
 		[RPAuthenticationHandler handleAuthenticatedAccount];
 	}
 	

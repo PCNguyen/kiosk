@@ -188,6 +188,8 @@
 			return @"Web Page Load";
 		case AnalyticEventWebPageReload:
 			return @"Web Page Reload";
+		case AnalyticEventLocationSelect:
+			return @"Location Select";
 		default:
 			break;
 	};

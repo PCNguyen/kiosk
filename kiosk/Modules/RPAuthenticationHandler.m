@@ -56,6 +56,8 @@ NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"Auth
 		if (success) {
 			if ([response.userDetails.email length] > 0) {
 				[self updateAccount:response.userDetails];
+				[RPKAnalyticEvent registerSuperPropertiesForUser:response.userDetails];
+				
 				[RPReferenceHandler saveUserConfig:response.userConfig];
 				[[ULDataSourceManager sharedManager] notifyDataSourcesOfService:[RPService serviceNameFromType:ServiceGetUserConfig]];
 				

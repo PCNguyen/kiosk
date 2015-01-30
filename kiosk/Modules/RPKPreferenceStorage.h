@@ -50,4 +50,11 @@
  */
 - (NSString *)loadSelectedLocation;
 
+/**
+ *  wrapper to get the selected location
+ *
+ *  @return Location object
+ */
+- (Location *)selectedLocation;
+
 @end

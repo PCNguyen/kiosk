@@ -55,4 +55,18 @@
 	return locationCode;
 }
 
+- (Location *)selectedLocation
+{
+	NSString *selectedLocationID = [self loadSelectedLocation];
+	NSMutableArray *authLocations = [self loadUserConfig].authLocations;
+	
+	for (Location *location in authLocations) {
+		if ([location.code isEqualToString:selectedLocationID]) {
+			return location;
+		}
+	}
+	
+	return nil;
+}
+
 @end

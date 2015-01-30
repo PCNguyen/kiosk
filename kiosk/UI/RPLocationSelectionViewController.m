@@ -169,6 +169,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	Location *location = [[self selectionDataSource] locationForCode:[selectedLocations firstObject]];
 	if (location) {
 		[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount] location:location];
+		[RPKAnalyticEvent sendEvent:AnalyticEventLocationSelect];
 	}
 	
 	if ([self.delegate respondsToSelector:@selector(locationSelectionViewController:selectLocations:)]) {
