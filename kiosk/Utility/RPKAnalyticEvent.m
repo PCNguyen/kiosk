@@ -29,6 +29,15 @@
 
 @implementation RPKAnalyticEvent
 
+- (instancetype)initWithEventName:(RPAnalyticEventName)eventName
+{
+	if (self = [super init]) {
+		_eventName = eventName;
+	}
+	
+	return self;
+}
+
 #pragma mark - General
 
 + (void)configure
@@ -121,8 +130,7 @@
 
 + (instancetype)analyticEvent:(RPAnalyticEventName)eventName
 {
-	RPKAnalyticEvent *event = [RPKAnalyticEvent new];
-	event.eventName = eventName;
+	RPKAnalyticEvent *event = [[RPKAnalyticEvent alloc] initWithEventName:eventName];
 	return event;
 }
 
@@ -162,34 +170,49 @@
 	switch (eventName) {
 		case AnalyticEventAppLaunch:
 			return @"App Launch";
+			break;
 		case AnalyticEventGoogleWidgetFailed:
 			return @"Google Widget Failed";
+			break;
 		case AnalyticEventLogin:
 			return @"Login";
+			break;
 		case AnalyticEventSourceCancel:
 			return @"Source Cancel";
+			break;
 		case AnalyticEventSourceContinue:
 			return @"Source Continue";
+			break;
 		case AnalyticEventSourceIdle:
 			return @"Source Idle";
+			break;
 		case AnalyticEventSourceLoaded:
 			return @"Source Loaded";
+			break;
 		case AnalyticEventSourceLogout:
 			return @"Source Logout";
+			break;
 		case AnalyticEventSourceSelect:
 			return @"Source Select";
+			break;
 		case AnalyticEventSourceSignin:
 			return @"Source Signin";
+			break;
 		case AnalyticEventSourceSubmit:
 			return @"Source Submit";
+			break;
 		case AnalyticEventSourceTimeOut:
 			return @"Source Timeout";
+			break;
 		case AnalyticEventWebPageLoad:
 			return @"Web Page Load";
+			break;
 		case AnalyticEventWebPageReload:
 			return @"Web Page Reload";
+			break;
 		case AnalyticEventLocationSelect:
 			return @"Location Select";
+			break;
 		default:
 			break;
 	};
@@ -202,25 +225,35 @@
 	switch (eventProperty) {
 		case PropertyAppLaunchIsAuthenticated:
 			return @"is authenticated";
+			break;
 		case PropertyErrorCode:
 			return @"error code";
+			break;
 		case PropertyErrorDescription:
 			return @"error description";
+			break;
 		case PropertyWebPageHost:
 			return @"web host";
+			break;
 		case PropertyLoginSuccess:
 		case PropertySourceSigninSucess:
 			return @"login success";
+			break;
 		case PropertySourceName:
 			return @"source name";
+			break;
 		case PropertySourcePageDidLoad:
 			return @"page did load";
+			break;
 		case PropertySourcePageWillLoad:
 			return @"page will load";
+			break;
 		case PropertySourceTimeLoad:
 			return @"source time load";
+			break;
 		case PropertyWebPageName:
 			return @"web page name";
+			break;
 		default:
 			break;
 	};

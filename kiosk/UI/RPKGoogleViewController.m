@@ -29,21 +29,21 @@
 
 #define kGVCMaxPopupTry					10
 
-typedef NS_ENUM(NSInteger, RPKGooglePage) {
+typedef enum {
 	GooglePageUnknown,
 	
 	GooglePageAccount,
 	GooglePageAccountClearCookie,
 	GooglePageAccountLogin,
 	GooglePageAccountAuthentication,
-
+	
 	GooglePageGplus,
 	GooglePageGplusSignup,
 	GooglePageGplusAbout,
 	GooglePageGplusWidget,
 	
 	GooglePageCustomError,
-};
+} RPKGooglePage;
 
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
 

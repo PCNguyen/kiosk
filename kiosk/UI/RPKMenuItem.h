@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, MenuItemType) {
+typedef enum {
 	MenuTypeGeneric,
 	MenuTypeGoogle,
-};
+} MenuItemType;
 
 @interface RPKMenuItem : NSObject
 

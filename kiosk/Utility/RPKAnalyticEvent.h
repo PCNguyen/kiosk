@@ -18,8 +18,8 @@
 #define kAnalyticValueYES					@"YES"
 #define kAnalyticValueNO					@"NO"
 
-typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
-	AnalyticEventAppLaunch,
+typedef enum {
+	AnalyticEventAppLaunch = 0,
 	AnalyticEventLogin,
 	AnalyticEventLocationSelect,
 	AnalyticEventSourceSelect,
@@ -34,10 +34,10 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventName) {
 	AnalyticEventWebPageLoad,
 	AnalyticEventWebPageReload,
 	AnalyticEventGoogleWidgetFailed,
-};
+} RPAnalyticEventName;
 
-typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
-	PropertyErrorCode,
+typedef enum {
+	PropertyErrorCode = 0,
 	PropertyErrorDescription,
 	PropertyAppLaunchIsAuthenticated,
 	PropertyLoginSuccess,
@@ -48,9 +48,13 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
 	PropertySourcePageDidLoad,
 	PropertyWebPageName,
 	PropertyWebPageHost,
-};
+} RPAnalyticEventProperty;
 
 @interface RPKAnalyticEvent : NSObject
+
+@property (nonatomic, assign) RPAnalyticEventName eventName;
+
+- (instancetype)initWithEventName:(RPAnalyticEventName)eventName;
 
 #pragma mark - Initialized
 
@@ -82,8 +86,6 @@ typedef NS_ENUM(NSInteger, RPAnalyticEventProperty) {
 + (void)registerSuperPropertiesForUser:(User *)user location:(Location *)location;
 
 #pragma mark - Event Handling
-
-@property (nonatomic, assign) RPAnalyticEventName eventName;
 
 /**
  *  Create an event to add property
