@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.reputation.r4e.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.reputation.r4e.kiosk</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>r4eurl</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>9</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>MixPanel API Token</key>
+	<string>0f4f0084eb962358524d818899790ddf</string>
+	<key>Server Port</key>
+	<string>443</string>
+	<key>Server URL</key>
+	<string>https://qa-r4e-mobile.reputation.com</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>museosans_100-museosans.ttf</string>
+		<string>museosans_100_italic-museosans.ttf</string>
+		<string>museosans_300-museosans.ttf</string>
+		<string>museosans_300_italic-museosans.ttf</string>
+		<string>museosans_500-museosans.ttf</string>
+		<string>museosans_500_italic-museosans.ttf</string>
+		<string>museosans_700-museosans.ttf</string>
+		<string>museosans_700_italic-museosans.ttf</string>
+		<string>museosans_900-museosans.ttf</string>
+		<string>museosans_900_italic-museosans.ttf</string>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
