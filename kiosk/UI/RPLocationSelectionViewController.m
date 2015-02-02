@@ -20,7 +20,8 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 @interface RPKLocationCell : RPKTableViewCell
 
-@property (nonatomic, strong) UIImageView *sourceIndicator;
+@property (nonatomic, strong) UIImageView *googleIndicator;
+@property (nonatomic, strong) UIImageView *kioskIndicator;
 
 @end
 
@@ -29,22 +30,26 @@ NSString *const LSVCCellID = @"LSVCCellID";
 - (void)commonInit
 {
 	self.paddings = UIEdgeInsetsMake(12.0f, 0.0f, 12.0f, 35.0f);
+	self.spacings = CGSizeMake(10.0f, 0.0f);
+	
 	self.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
-	[self.contentView addSubview:self.sourceIndicator];
+	[self.contentView addSubview:self.googleIndicator];
+	[self.contentView addSubview:self.kioskIndicator];
 }
 
 - (void)prepareForReuse
 {
 	[super prepareForReuse];
 	self.textLabel.textColor = [UIColor blackColor];
-	self.sourceIndicator.highlighted = NO;
+	self.googleIndicator.highlighted = NO;
 }
 
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
 	
-	self.sourceIndicator.frame = [self sourceIndicatorFrame];
+	self.kioskIndicator.frame = [self kioskIndicatorFrame];
+	self.googleIndicator.frame = [self googleIndicatorFrame:self.kioskIndicator.frame];
 }
 
 - (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
@@ -60,13 +65,34 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	}
 
 	if (selection.enabledSources & LocationSourceGoogle) {
-		self.sourceIndicator.highlighted = YES;
+		self.googleIndicator.highlighted = YES;
 	}
 }
 
 #pragma mark - UI Elements
 
-- (CGRect)sourceIndicatorFrame
+- (CGRect)googleIndicatorFrame:(CGRect)preferenceFrame
+{
+	CGFloat yOffset = preferenceFrame.origin.y;
+	CGFloat height = preferenceFrame.size.height;
+	CGFloat width = height;
+	CGFloat xOffset = preferenceFrame.origin.x - width - self.spacings.width;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (UIImageView *)googleIndicator
+{
+	if (!_googleIndicator) {
+		_googleIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_small_google_disabled.png"]
+											 highlightedImage:[UIImage rpk_bundleImageNamed:@"icon_small_google.png"]];
+		_googleIndicator.contentMode = UIViewContentModeScaleAspectFit;
+	}
+	
+	return _googleIndicator;
+}
+
+- (CGRect)kioskIndicatorFrame
 {
 	CGFloat yOffset = self.paddings.top;
 	CGFloat height = self.bounds.size.height - yOffset - self.paddings.bottom;
@@ -76,15 +102,14 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	return CGRectMake(xOffset, yOffset, width, height);
 }
 
-- (UIImageView *)sourceIndicator
+- (UIImageView *)kioskIndicator
 {
-	if (!_sourceIndicator) {
-		_sourceIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_small_google_disabled.png"]
-											 highlightedImage:[UIImage rpk_bundleImageNamed:@"icon_small_google.png"]];
-		_sourceIndicator.contentMode = UIViewContentModeScaleAspectFit;
+	if (!_kioskIndicator) {
+		_kioskIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_quicksurvey.png"]];
+		_kioskIndicator.contentMode = UIViewContentModeScaleAspectFit;
 	}
 	
-	return _sourceIndicator;
+	return _kioskIndicator;
 }
 
 @end
