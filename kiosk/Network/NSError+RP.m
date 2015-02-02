@@ -307,7 +307,7 @@ static NSInteger currentErrorCode;
 
 + (NSString *)errorMessage:(NSString *)message code:(NSInteger)code
 {
-	return [NSString stringWithFormat:@"%@ (%d)", message, code];
+	return [NSString stringWithFormat:@"%@ (%ld)", message, (long)code];
 }
 
 + (BOOL)errorCodeOfException:(NSException *)exception matchedCode:(NSInteger)code

@@ -13,13 +13,13 @@
 - (NSString *)rp_hash
 {
 	NSMutableString *compoundHash = [[NSMutableString alloc] init];
-	[compoundHash appendString:[NSString stringWithFormat:@"%d", [self.preferenceId hash]]];
+	[compoundHash appendString:[NSString stringWithFormat:@"%lu", (unsigned long)[self.preferenceId hash]]];
 	
 	for (id selection in self.selectedValues) {
-		[compoundHash appendString:[NSString stringWithFormat:@"%d", [selection hash]]];
+		[compoundHash appendString:[NSString stringWithFormat:@"%ld", (long)[selection hash]]];
 	}
 	
-	NSString *hash = [NSString stringWithFormat:@"%d-%d", [compoundHash hash], [self.selectedValues count]];
+	NSString *hash = [NSString stringWithFormat:@"%ld-%ld", (long)[compoundHash hash], (long)[self.selectedValues count]];
 	return hash;
 }
 

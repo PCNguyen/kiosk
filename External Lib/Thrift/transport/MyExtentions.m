@@ -14,7 +14,7 @@
 {
     const char *cStr = [self UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, strlen(cStr), result ); // This is the md5 call
+    CC_MD5( cStr, (unsigned int)strlen(cStr), result ); // This is the md5 call
     return [NSString stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             result[0], result[1], result[2], result[3],
@@ -29,7 +29,7 @@
 - (NSString*)md5
 {
     unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( self.bytes, self.length, result ); // This is the md5 call
+    CC_MD5( self.bytes, (unsigned int)self.length, result ); // This is the md5 call
     return [NSString stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             result[0], result[1], result[2], result[3],

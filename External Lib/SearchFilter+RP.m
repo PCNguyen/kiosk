@@ -12,14 +12,14 @@
 
 - (NSString *)reviewHash
 {
-	NSString *concatHash = [NSString stringWithFormat:@"%d-%d", [self.dateRangeFilterId hash], [self.sentimentFilters hash]];
+	NSString *concatHash = [NSString stringWithFormat:@"%lu-%ld", (unsigned long)[self.dateRangeFilterId hash], (long)[self.sentimentFilters hash]];
 	
 	return concatHash;
 }
 
 - (NSString *)socialHash
 {
-	NSString *concatHash = [NSString stringWithFormat:@"%d-%d", [self.dateRangeFilterId hash], [self.postState hash]];
+	NSString *concatHash = [NSString stringWithFormat:@"%ld-%ld", (long)[self.dateRangeFilterId hash], (long)[self.postState hash]];
 	
 	return concatHash;
 }

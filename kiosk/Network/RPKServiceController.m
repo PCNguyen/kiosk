@@ -45,26 +45,9 @@
 			   functionName:(NSString *)functionName
 			   attemptCount:(NSInteger)attemptCount
 				 completion:(RPServiceOperationResponseBlock)completion
-{
-	NSDate *anchorTime = [NSDate date];
-	
-	RPServiceOperationResponseBlock responseBlock = ^(RPKServiceOperation *operation, id response, NSError *error) {
-		//--track failure
-//		[RPAnalyticHandler trackAPIName:functionName error:error];
-		
-		//--track performance
-//		long interval = [anchorTime timeIntervalSinceNow] * (-1000);
-//		[RPAnalyticHandler trackConnectionTime:interval
-//								  functionName:functionName
-//								 correlationID:(operation.operationID ? operation.operationID : @"")
-//										 error:error];
-		
-		
-		completion(operation, response, error);
-	};
-	
+{	
 	RPKServiceOperation *networkOperation = [[RPKServiceOperation alloc] initWithNetworkBlock:networkBlock
-																		 responseCompletion:responseBlock];
+																		 responseCompletion:completion];
 	networkOperation.retryAttempt = attemptCount;
 	
 	[self.networkQueue addOperation:networkOperation];
