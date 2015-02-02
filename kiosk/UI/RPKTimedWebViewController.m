@@ -116,17 +116,13 @@
 - (void)displayExpirationMessage
 {
 	[self.webView endEditing:YES];
-
+	self.lastInteractionDate = [NSDate date];
+	
 	RPKExpirationViewController *expirationViewController = [[RPKExpirationViewController alloc] init];
 	expirationViewController.delegate = self;
 	[self presentViewController:expirationViewController animated:YES completion:^{
 		[expirationViewController startCountDown:kTWVCExpirationWaitTime];
 	}];
-}
-
-- (void)hideExpirationMessage
-{
-	self.lastInteractionDate = [NSDate date];
 }
 
 - (RPKMaskButton *)maskButton
@@ -151,8 +147,7 @@
 
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
-	[self hideExpirationMessage];
-	[self handleLogoutItemTapped:nil];
+	//--do nothing, subclass override
 }
 
 #pragma mark - Loading

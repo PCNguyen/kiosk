@@ -256,9 +256,6 @@ typedef enum {
 
 - (void)logout
 {
-	//--in case a count down is in progress
-	[self hideExpirationMessage];
-	
 	//--disable mask button
 	self.submitButton.active = NO;
 	
@@ -272,8 +269,6 @@ typedef enum {
 
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
-	[super expirationViewControllerTimeExpired:expirationViewController];
-	
 	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle];
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[expiredEvent send];

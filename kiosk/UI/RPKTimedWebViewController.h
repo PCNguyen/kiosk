@@ -23,11 +23,6 @@
 
 - (void)handleLogoutItemTapped:(id)sender;
 
-#pragma mark - Expiration
-
-- (void)displayExpirationMessage;
-- (void)hideExpirationMessage;
-
 #pragma mark - Loading Animation
 
 - (void)showLoading;

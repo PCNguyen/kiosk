@@ -22,6 +22,6 @@
 @property (nonatomic, weak) id<RPKExpirationViewControllerDelegate>delegate;
 
 - (void)startCountDown:(NSTimeInterval)timeRemain;
-- (void)stopCountDown;
+- (void)stopCountDown:(BOOL)expired;
 
 @end

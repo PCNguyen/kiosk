@@ -8,6 +8,7 @@
 
 #import <JWGCircleCounter/JWGCircleCounter.h>
 #import <AppSDK/AppLibExtension.h>
+#import <AppSDK/AppLibScheduler.h>
 
 #import "RPKExpirationViewController.h"
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) JWGCircleCounter *circleCounter;
 @property (nonatomic, strong) UILabel *unitLabel;
 @property (nonatomic, strong) UIButton *continueButton;
+@property (nonatomic, strong) ALScheduledTask *countDownTask;
 
 @end
 
@@ -73,7 +75,6 @@
 		_circleCounter.circleBackgroundColor = [UIColor rpk_defaultBlue];
 		_circleCounter.circleTimerWidth = 5.0f;
 		_circleCounter.timerLabelHidden = NO;
-		_circleCounter.delegate = self;
 		[_circleCounter ul_enableAutoLayout];
 		[_circleCounter ul_fixedSize:kEVCTimerSize];
 	}
@@ -84,22 +85,40 @@
 - (void)startCountDown:(NSTimeInterval)timeRemain
 {
 	[self.circleCounter startWithSeconds:timeRemain];
+	[self.countDownTask start];
 }
 
-- (void)stopCountDown
+- (void)stopCountDown:(BOOL)expired
 {
 	if (_circleCounter) {
 		[self.circleCounter reset];
 	}
 	
-	[self dismissViewControllerAnimated:YES completion:^{}];
+	if (_countDownTask) {
+		[self.countDownTask stop];
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:^{
+		if (expired) {
+			if ([self.delegate respondsToSelector:@selector(expirationViewControllerTimeExpired:)]) {
+				[self.delegate expirationViewControllerTimeExpired:self];
+			}
+		}
+	}];
 }
 
-- (void)circleCounterTimeDidExpire:(JWGCircleCounter *)circleCounter
+- (ALScheduledTask *)countDownTask
 {
-	if ([self.delegate respondsToSelector:@selector(expirationViewControllerTimeExpired:)]) {
-		[self.delegate expirationViewControllerTimeExpired:self];
+	if (!_countDownTask) {
+		__weak RPKExpirationViewController *selfPointer = self;
+		_countDownTask = [[ALScheduledTask alloc] initWithTaskInterval:1 taskBlock:^{
+			if ([selfPointer.circleCounter didFinish]) {
+				[selfPointer stopCountDown:YES];
+			}
+		}];
 	}
+	
+	return _countDownTask;
 }
 
 #pragma mark - Static UI Element
@@ -114,6 +133,7 @@
 		_messageLabel.text = NSLocalizedString(@"Your session will\nautomatically log out in", nil);
 		_messageLabel.numberOfLines = 0;
 		[_messageLabel ul_enableAutoLayout];
+		[_messageLabel ul_addTapGestureWithTarget:self action:@selector(handleMessageTapped:)];
 	}
 	
 	return _messageLabel;
@@ -158,7 +178,12 @@
 
 - (void)handleContinueButtonTapped:(id)sender
 {
-	[self stopCountDown];
+	[self stopCountDown:NO];
+}
+
+- (void)handleMessageTapped:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark - Transition
