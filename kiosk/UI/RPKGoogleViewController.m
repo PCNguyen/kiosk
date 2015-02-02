@@ -26,6 +26,7 @@
 
 #define kGVCClearCookieMessage			@"CookieClearCompleted"
 #define kGVCSignupDetectMessage			@"SignupDetect"
+#define kGVCDoneDetectMessage			@"DoneDialogDetect"
 
 #define kGVCMaxPopupTry					10
 
@@ -48,6 +49,7 @@ typedef enum {
 @interface RPKGoogleViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
+@property (nonatomic, strong) ALScheduledTask *doneTask;
 
 /**
  *  Background view for login page
@@ -172,6 +174,10 @@ typedef enum {
 	if (_popupTask) {
 		[self.popupTask stop];
 	}
+	
+	if (_doneTask) {
+		[self.doneTask stop];
+	}
 }
 
 #pragma mark - Override
@@ -192,6 +198,8 @@ typedef enum {
 
 - (WKWebViewConfiguration *)webConfiguration
 {
+	WKUserContentController *userContentController = [WKUserContentController new];
+	
 	//--add script to handle cookies
 	NSString *cookiesScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
 																						withExtension:@"js"]
@@ -200,7 +208,6 @@ typedef enum {
 	WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:cookiesScriptText
 													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
 												   forMainFrameOnly:YES];
-	WKUserContentController *userContentController = [WKUserContentController new];
 	[userContentController addUserScript:cookieScript];
 	
 	//--add script to modify style of the dialog box
@@ -213,11 +220,24 @@ typedef enum {
 												  forMainFrameOnly:NO];
 	[userContentController addUserScript:cssScript];
 	
+	//--add script to handle manual selection
+	NSString *selectScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
+																					   withExtension:@"js"]
+													  encoding:NSUTF8StringEncoding
+														 error:NULL];
+	WKUserScript *selectScript = [[WKUserScript alloc] initWithSource:selectScriptText
+													 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+												  forMainFrameOnly:NO];
+	[userContentController addUserScript:selectScript];
+	
 	//--add handler to handle clearing cookies
 	[userContentController addScriptMessageHandler:self name:kGVCClearCookieMessage];
 	
 	//--add handler to handle no gplus account
 	[userContentController addScriptMessageHandler:self name:kGVCSignupDetectMessage];
+	
+	//--add handler to handle done reviewing
+	[userContentController addScriptMessageHandler:self name:kGVCDoneDetectMessage];
 	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;
@@ -443,14 +463,9 @@ typedef enum {
 		case GooglePageGplus:
 			break;
 			
-		case GooglePageGplusAbout: {
-			//--inject the function to be called
-			NSString *selectScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect" withExtension:@"js"]
-															  encoding:NSUTF8StringEncoding
-																 error:NULL];
-			[self.webView evaluateJavaScript:selectScript completionHandler:NULL];
+		case GooglePageGplusAbout:
 			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
-		} break;
+			break;
 		
 		case GooglePageGplusSignup: {
 			[self.popupTask stop];
@@ -486,7 +501,8 @@ typedef enum {
 	//--remove message handler to avoid leaking
 	[self.webView.configuration.userContentController removeScriptMessageHandlerForName:kGVCClearCookieMessage];
 	[self.webView.configuration.userContentController removeScriptMessageHandlerForName:kGVCSignupDetectMessage];
-
+	[self.webView.configuration.userContentController removeScriptMessageHandlerForName:kGVCDoneDetectMessage];
+	
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -502,6 +518,16 @@ typedef enum {
 		[self.webView loadRequest:nonCacheRequest];
 	} else if ([message.name isEqualToString:kGVCSignupDetectMessage]) {
 		self.pageDidLoad = GooglePageGplusSignup;
+	} else if ([message.name isEqualToString:kGVCDoneDetectMessage]) {
+		[self.doneTask stop];
+		[self removeKeyboardMask];
+		self.logoutButton.enabled = NO;
+		[self displayThankyouPage];
+		[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
+		
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+		[submitEvent send];
 	}
 }
 
@@ -531,6 +557,24 @@ typedef enum {
 		[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
 		[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
 	}
+}
+
+- (ALScheduledTask *)doneTask
+{
+	if (!_doneTask) {
+		__weak RPKGoogleViewController *selfPointer = self;
+		_doneTask = [[ALScheduledTask alloc] initWithTaskInterval:3 taskBlock:^{
+			[selfPointer executeDoneDetectScript];
+		}];
+		_doneTask.startImmediately = NO;
+	}
+	
+	return _doneTask;
+}
+
+- (void)executeDoneDetectScript
+{
+	[self.webView evaluateJavaScript:@"detectDoneDialog();" completionHandler:NULL];
 }
 
 #pragma mark - Login Page Custom Views
@@ -650,14 +694,7 @@ typedef enum {
 		_submitButton.alpha = 0.0f;
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
-			[selfPointer removeKeyboardMask];
-			selfPointer.logoutButton.enabled = NO;
-			[selfPointer performSelector:@selector(displayThankyouPage) withObject:nil afterDelay:0.5f];
-			[selfPointer performSelector:@selector(logout) withObject:nil afterDelay:7.0f];
-			
-			RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
-			[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
-			[submitEvent send];
+			[selfPointer.doneTask start];
 		};
 		
 		[_submitButton ul_enableAutoLayout];

@@ -16,9 +16,9 @@ function detectNoGplus() {
 }
 
 function detectDoneDialog() {
-	var doneDialog = document.getElementsByClassName('Hme')[0];
+	var doneDialog = document.getElementById('glass-content');
 	
-	if (doneDialog) {
+	if (!doneDialog) {
 		webkit.messageHandlers.DoneDialogDetect.postMessage('true');
 	}
 }
