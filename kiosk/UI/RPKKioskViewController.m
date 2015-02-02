@@ -14,6 +14,7 @@
 @interface RPKKioskViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) RPKMaskButton *submitButton;
+@property (nonatomic, assign) BOOL kioskLoaded;
 
 @end
 
@@ -125,13 +126,14 @@
 	RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
 	[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[sourceLoadedEvent send];
+	self.kioskLoaded = YES;
 }
 
 #pragma mark - Message Handler
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-	if ([message.name isEqualToString:kKVCSubmitDetectMessage]) {
+	if ([message.name isEqualToString:kKVCSubmitDetectMessage] && self.kioskLoaded) {
 		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 		[submitEvent send];
