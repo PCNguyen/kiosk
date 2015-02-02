@@ -268,6 +268,9 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleTripleFingerTapped:(id)sender
 {
+	NSArray *crash = @[];
+	NSLog(@"%@", [crash objectAtIndex:1]);
+	
 	//--show location selector
 	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
 	
