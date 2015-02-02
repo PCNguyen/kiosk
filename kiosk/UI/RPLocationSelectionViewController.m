@@ -165,12 +165,6 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 - (void)configureNavigation
 {
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-																				target:self
-																				action:@selector(handleDoneButtonTapped:)];
-	
-	self.navigationItem.rightBarButtonItem = doneButton;
-	
 	[self refreshNavigation];
 }
 
@@ -188,7 +182,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 }
 
-- (void)handleDoneButtonTapped:(id)sender
+- (void)handleLocationSelected
 {
 	NSMutableArray *selectedLocations = [[self selectionDataSource] selectedLocations];
 	Location *location = [[self selectionDataSource] locationForCode:[selectedLocations firstObject]];
@@ -304,7 +298,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	
 	[alertController addButtonTitle:@"OK" style:AlertButtonStyleDefault action:^(RPAlertButton *alertButton) {
 		[[selfPointer selectionDataSource] persistSelectedLocation];
-		[selfPointer handleDoneButtonTapped:nil];
+		[selfPointer handleLocationSelected];
 	}];
 	
 	[self presentViewController:alertController animated:YES completion:NULL];
