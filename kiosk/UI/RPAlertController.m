@@ -84,8 +84,8 @@
 - (UIButton *)defaultButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor whiteColor]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f] textColor:[UIColor whiteColor]];
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f] textColor:[UIColor ul_colorWithR:255 G:255 B:255 A:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
 	[customButton setBackgroundColor:[UIColor rpk_brightBlue]];
@@ -98,9 +98,9 @@
 - (UIButton *)cancelButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f]
 																   textColor:[UIColor rpk_mediumGray]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f]
 																		   textColor:[[UIColor rpk_mediumGray] colorWithAlphaComponent:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
@@ -116,9 +116,9 @@
 - (UIButton *)destructiveButton:(NSString *)title
 {
 	UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+	NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f]
 																   textColor:[UIColor redColor]];
-	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f]
+	NSAttributedString *attributedSelectedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f]
 																		   textColor:[[UIColor rpk_mediumGray] colorWithAlphaComponent:0.5f]];
 	[customButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 	[customButton setAttributedTitle:attributedSelectedTitle forState:UIControlStateHighlighted];
@@ -392,7 +392,7 @@
 
 #pragma mark -
 #define kACMaxAlertRatio					CGSizeMake(0.4, 0.8)
-#define kACMinAlertHeight					135.0f
+#define kACMinAlertHeight					180.0f
 #define kACTransitionDuration				0.25f
 
 /*********************************
@@ -579,7 +579,7 @@
 	UILabel *label = nil;
 	
 	if ([title length] > 0) {
-		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:16.0f] textColor:nil];
+		NSAttributedString *attributedTitle = [title al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:20.0f] textColor:nil];
 		[attributedTitle rp_addLineSpacing:3.0f];
 		
 		label = [[UILabel alloc] init];
@@ -595,12 +595,13 @@
 	UILabel *label = nil;
 	
 	if ([message length] > 0) {
-		NSAttributedString *attributedMessage = [message al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:13.0f] textColor:[UIColor rpk_lightGray]];
+		NSAttributedString *attributedMessage = [message al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:18.0f] textColor:[UIColor rpk_lightGray]];
 		[attributedMessage rp_addLineSpacing:3.0f];
 		
 		label = [[UILabel alloc] init];
 		label.attributedText = attributedMessage;
 		label.textAlignment = NSTextAlignmentCenter;
+		label.numberOfLines = 0;
 	}
 	
 	return label;
