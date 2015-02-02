@@ -98,16 +98,6 @@
 
 #pragma mark - Expiration
 
-- (RPKExpirationViewController *)expirationViewController
-{
-	if (!_expirationViewController) {
-		_expirationViewController = [[RPKExpirationViewController alloc] init];
-		_expirationViewController.delegate = self;
-	}
-	
-	return _expirationViewController;
-}
-
 - (ALScheduledTask *)idleTask
 {
 	if (!_idleTask) {
@@ -127,16 +117,16 @@
 {
 	[self.webView endEditing:YES];
 
-	__weak RPKTimedWebViewController *selfPointer = self;
-	[self presentViewController:self.expirationViewController animated:YES completion:^{
-		[selfPointer.expirationViewController startCountDown:kTWVCExpirationWaitTime];
+	RPKExpirationViewController *expirationViewController = [[RPKExpirationViewController alloc] init];
+	expirationViewController.delegate = self;
+	[self presentViewController:expirationViewController animated:YES completion:^{
+		[expirationViewController startCountDown:kTWVCExpirationWaitTime];
 	}];
 }
 
 - (void)hideExpirationMessage
 {
 	self.lastInteractionDate = [NSDate date];
-	[self.expirationViewController stopCountDown];
 }
 
 - (RPKMaskButton *)maskButton
@@ -162,6 +152,7 @@
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
 	[self hideExpirationMessage];
+	[self handleLogoutItemTapped:nil];
 }
 
 #pragma mark - Loading
