@@ -21,9 +21,9 @@
 
 @implementation RPKTimedWebViewController
 
-- (instancetype)init
+- (instancetype)initWithURL:(NSURL *)url
 {
-	if (self = [super init]) {
+	if (self = [super initWithURL:url]) {
 		_shouldTimedOut = YES;
 	}
 	
