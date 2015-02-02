@@ -15,6 +15,14 @@ function detectNoGplus() {
 	}
 }
 
+function detectDoneDialog() {
+	var doneDialog = document.getElementsByClassName('Hme')[0];
+	
+	if (doneDialog) {
+		webkit.messageHandlers.DoneDialogDetect.postMessage('true');
+	}
+}
+
 function addEventHandler(elem,eventType,handler) {
 	if (elem.addEventListener)
 		elem.addEventListener (eventType,handler,false);
