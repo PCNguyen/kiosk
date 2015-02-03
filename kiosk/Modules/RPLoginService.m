@@ -37,15 +37,28 @@
 
 - (void)refreshKeyForUser:(User *)userAccount completion:(RPLoginServiceCompletion)completion
 {
+	[self refreshKeyForUserID:userAccount.id
+						email:userAccount.email
+					 tenantID:userAccount.tenantID
+					  userKey:userAccount.userKey
+				   completion:completion];
+}
+
+- (void)refreshKeyForUserID:(int)userID
+					  email:(NSString *)email
+				   tenantID:(long long)tenantID
+					userKey:(NSString *)userKey
+				 completion:(RPLoginServiceCompletion)completion
+{
 	__weak RPLoginService *selfPointer = self;
 	
 	[self performNetworkBlock:^id(NSString **correlationID) {
 		
-		MobileAuthClient *authenticateClient = [selfPointer authenticateClientForUserID:userAccount.email correlationID:correlationID];
-		return [authenticateClient refresh:userAccount.email
-									userId:userAccount.id
-								  tenantId:userAccount.tenantID
-								   userKey:userAccount.userKey];
+		MobileAuthClient *authenticateClient = [selfPointer authenticateClientForUserID:email correlationID:correlationID];
+		return [authenticateClient refresh:email
+									userId:userID
+								  tenantId:tenantID
+								   userKey:userKey];
 		
 	} functionName:@"refresh" withCompletion:^(RPKServiceOperation *operation, id responseObject, NSError *error) {
 		

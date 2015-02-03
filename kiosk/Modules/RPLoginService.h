@@ -21,4 +21,10 @@ typedef void(^RPLoginServiceCompletion)(BOOL success, NSError *error, LoginRespo
 - (void)refreshKeyForUser:(User *)userAccount
 			   completion:(RPLoginServiceCompletion)completion;
 
+- (void)refreshKeyForUserID:(int)userID
+					  email:(NSString *)email
+				   tenantID:(long long)tenantID
+					userKey:(NSString *)userKey
+				 completion:(RPLoginServiceCompletion)completion;
+
 @end
