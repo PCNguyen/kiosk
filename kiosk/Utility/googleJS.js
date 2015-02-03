@@ -90,7 +90,7 @@ function manualClickClassElement(className)
 	var element = document.getElementsByClassName(className)[0];
 	var clickEvent = document.createEvent('MouseEvents');
 	clickEvent.initEvent('click',true,true);
-	var cancelled = !l.dispatchEvent(clickEvent);
+	var cancelled = !element.dispatchEvent(clickEvent);
 	
 	return cancelled;
 }

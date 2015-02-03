@@ -200,35 +200,21 @@ typedef enum {
 {
 	WKUserContentController *userContentController = [WKUserContentController new];
 	
-	//--add script to handle cookies
-	NSString *cookiesScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"cookies"
-																						withExtension:@"js"]
+	//--add script library
+	NSString *googleScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"googleJS"
+																						   withExtension:@"js"]
 													   encoding:NSUTF8StringEncoding
 														  error:NULL];
-	WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:cookiesScriptText
-													  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-												   forMainFrameOnly:YES];
-	[userContentController addUserScript:cookieScript];
+	WKUserScript *googleScript = [[WKUserScript alloc] initWithSource:googleScriptText
+														injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+													forMainFrameOnly:NO];
+	[userContentController addUserScript:googleScript];
 	
-	//--add script to modify style of the dialog box
-	NSString *cssScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"customStyle"
-																						withExtension:@"js"]
-													   encoding:NSUTF8StringEncoding
-														  error:NULL];
-	WKUserScript *cssScript = [[WKUserScript alloc] initWithSource:cssScriptText
-													 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+	//--execute css script
+	WKUserScript *cssScript = [[WKUserScript alloc] initWithSource:@"styleMultiPage()"
+													 injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
 												  forMainFrameOnly:NO];
 	[userContentController addUserScript:cssScript];
-	
-	//--add script to handle manual selection
-	NSString *selectScriptText = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"manualSelect"
-																					   withExtension:@"js"]
-													  encoding:NSUTF8StringEncoding
-														 error:NULL];
-	WKUserScript *selectScript = [[WKUserScript alloc] initWithSource:selectScriptText
-													 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
-												  forMainFrameOnly:NO];
-	[userContentController addUserScript:selectScript];
 	
 	//--add handler to handle clearing cookies
 	[userContentController addScriptMessageHandler:self name:kGVCClearCookieMessage];
@@ -428,14 +414,10 @@ typedef enum {
 			[self hideLoading];
 			break;
 			
-		case GooglePageAccountClearCookie: {
-			NSString *logoutScript = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"deleteCookies" withExtension:@"js"]
-															  encoding:NSUTF8StringEncoding
-																 error:NULL];
-			
-			[self.webView evaluateJavaScript:logoutScript completionHandler:NULL];
+		case GooglePageAccountClearCookie:
+			[self.webView evaluateJavaScript:@"removeGoogleLogin();" completionHandler:NULL];
 			[self toggleCustomViewForLoginScreen:YES];
-		} break;
+			break;
 			
 		case GooglePageAccountLogin:
 		{
@@ -549,7 +531,7 @@ typedef enum {
 	if (self.popupTryCount > kGVCMaxPopupTry) {
 		self.pageDidLoad = GooglePageCustomError;
 	} else {
-		[self.webView evaluateJavaScript:@"displayPopup();" completionHandler:NULL];
+		[self.webView evaluateJavaScript:@"triggerReviewWidget();" completionHandler:NULL];
 		[self.webView evaluateJavaScript:@"detectNoGplus();" completionHandler:NULL];
 	}
 }
