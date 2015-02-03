@@ -15,7 +15,12 @@
 #import "RPKAnalyticEvent.h"
 #import "RPKPreferenceStorage.h"
 
+#import <AppSDK/AppLibScheduler.h>
+
 @interface AppDelegate ()
+
+@property (nonatomic, strong) ALScheduledTask *getGuidedAccessTask;
+@property (nonatomic, assign) __block NSInteger maxSingleAppAttempt;
 
 @end
 
@@ -47,11 +52,8 @@
 	[RPKAnalyticEvent sendEvent:AnalyticEventAppLaunch];
 	[[RPKLayoutManager sharedManager] configureReachability];
 	
-	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
-		if (success) {
-			NSLog(@"Enter Single App Mode");
-		}
-	});
+	self.maxSingleAppAttempt = 0;
+	[self.getGuidedAccessTask start];
 
 	return YES;
 }
@@ -60,6 +62,30 @@
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[self.window setRootViewController:[RPKLayoutManager rootViewController]];
+}
+
+- (ALScheduledTask *)getGuidedAccessTask
+{
+	if (_getGuidedAccessTask) {
+		__weak AppDelegate *selfPointer = self;
+		_getGuidedAccessTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
+			selfPointer.maxSingleAppAttempt++;
+			if (selfPointer.maxSingleAppAttempt > 5) {
+				[selfPointer.getGuidedAccessTask stop];
+			}
+			
+			UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+				if (success) {
+					NSLog(@"Enter Single App Mode");
+					[selfPointer.getGuidedAccessTask stop];
+				} else {
+					NSLog(@"Failed To Get Single Acces");
+				}
+			});
+		}];
+	}
+	
+	return _getGuidedAccessTask;
 }
 
 @end
