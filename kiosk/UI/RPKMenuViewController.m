@@ -268,15 +268,15 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleTripleFingerTapped:(id)sender
 {
-	NSArray *crash = @[];
-	NSLog(@"%@", [crash objectAtIndex:1]);
-	
 	//--show location selector
 	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
 	
 	UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
 		if (success) {
-			NSLog(@"Enter Single App Mode");
+			NSLog(@"Exit Single App Mode");
+			
+			NSArray *crash = @[];
+			NSLog(@"%@", [crash objectAtIndex:1]);
 		}
 	});
 }
