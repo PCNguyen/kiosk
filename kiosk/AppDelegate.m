@@ -66,7 +66,7 @@
 
 - (ALScheduledTask *)getGuidedAccessTask
 {
-	if (_getGuidedAccessTask) {
+	if (!_getGuidedAccessTask) {
 		__weak AppDelegate *selfPointer = self;
 		_getGuidedAccessTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
 			selfPointer.maxSingleAppAttempt++;
