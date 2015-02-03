@@ -26,9 +26,7 @@
 		0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
 		0F1473231A804812001D1C16 /* googleJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1473221A804812001D1C16 /* googleJS.js */; };
 		0F1473241A804812001D1C16 /* googleJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1473221A804812001D1C16 /* googleJS.js */; };
-		0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
-		0F1932F71A5F51620083B96E /* customStyle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932F61A5F51620083B96E /* customStyle.js */; };
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
 		0F6F7C691A7C4A0F0084755D /* RPKNoConnectivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */; };
 		0F6F7C6D1A7C52660084755D /* RPKGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */; };
@@ -142,19 +140,13 @@
 		0F6F7CDB1A7C52660084755D /* icon_lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE21A6EFE940092F607 /* icon_lock_small.png */; };
 		0F6F7CDC1A7C52660084755D /* museosans_900_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */; };
 		0F6F7CDD1A7C52660084755D /* museosans_900-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */; };
-		0F6F7CDE1A7C52660084755D /* manualSelect.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932EA1A5E08DF0083B96E /* manualSelect.js */; };
 		0F6F7CDF1A7C52660084755D /* icon_gplus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE01A6EFE940092F607 /* icon_gplus.png */; };
-		0F6F7CE01A7C52660084755D /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
 		0F6F7CE11A7C52660084755D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
-		0F6F7CE21A7C52660084755D /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
-		0F6F7CE31A7C52660084755D /* customStyle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1932F61A5F51620083B96E /* customStyle.js */; };
 		0F6F7CE41A7C52660084755D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABDE1A40AE8A007AA263 /* Podfile */; };
 		0F6F7CE51A7C52660084755D /* icon_lock_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE11A6EFE940092F607 /* icon_lock_large.png */; };
 		0F6F7CE61A7C52660084755D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
 		0F6F7CE71A7C52660084755D /* bg_locked_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ADE1A6EFE940092F607 /* bg_locked_text.png */; };
 		0F6F7CE81A7C52660084755D /* icon_small_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FB1A76EEFC00C25788 /* icon_small_google.png */; };
-		0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBC1A52FD9B003B7718 /* cookies.js */; };
-		0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F78EEBE1A5305D4003B7718 /* deleteCookies.js */; };
 		0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
 		0F79DC231A705A3900A4EF9A /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC201A705A3900A4EF9A /* icon_back.png */; };
 		0F79DC241A705A3900A4EF9A /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC211A705A3900A4EF9A /* icon_refresh.png */; };
@@ -287,18 +279,14 @@
 		0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKSecuredView.h; sourceTree = "<group>"; };
 		0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKSecuredView.m; sourceTree = "<group>"; };
 		0F1473221A804812001D1C16 /* googleJS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = googleJS.js; sourceTree = "<group>"; };
-		0F1932EA1A5E08DF0083B96E /* manualSelect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = manualSelect.js; sourceTree = "<group>"; };
 		0F1932F31A5F38950083B96E /* UIColor+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RPK.h"; sourceTree = "<group>"; };
 		0F1932F41A5F38950083B96E /* UIColor+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RPK.m"; sourceTree = "<group>"; };
-		0F1932F61A5F51620083B96E /* customStyle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = customStyle.js; sourceTree = "<group>"; };
 		0F4987791A4A21BE0083F850 /* RPKCookieHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKCookieHandler.h; sourceTree = "<group>"; };
 		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
 		0F6F7C671A7C4A0F0084755D /* RPKNoConnectivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNoConnectivityController.h; sourceTree = "<group>"; };
 		0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNoConnectivityController.m; sourceTree = "<group>"; };
 		0F6F7CED1A7C52660084755D /* Kiosk QA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kiosk QA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk QA-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationGitRepo/kiosk/Kiosk QA-Info.plist"; sourceTree = "<absolute>"; };
-		0F78EEBC1A52FD9B003B7718 /* cookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cookies.js; sourceTree = "<group>"; };
-		0F78EEBE1A5305D4003B7718 /* deleteCookies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deleteCookies.js; sourceTree = "<group>"; };
 		0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKReloadView.h; sourceTree = "<group>"; };
 		0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKReloadView.m; sourceTree = "<group>"; };
 		0F79DC201A705A3900A4EF9A /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
@@ -779,10 +767,6 @@
 		0FA0E1011A65D0A50011EAC9 /* Javascipts */ = {
 			isa = PBXGroup;
 			children = (
-				0F78EEBC1A52FD9B003B7718 /* cookies.js */,
-				0F78EEBE1A5305D4003B7718 /* deleteCookies.js */,
-				0F1932EA1A5E08DF0083B96E /* manualSelect.js */,
-				0F1932F61A5F51620083B96E /* customStyle.js */,
 				0F1473221A804812001D1C16 /* googleJS.js */,
 			);
 			name = Javascipts;
@@ -1167,12 +1151,8 @@
 				0F6F7CDB1A7C52660084755D /* icon_lock_small.png in Resources */,
 				0F6F7CDC1A7C52660084755D /* museosans_900_italic-museosans.ttf in Resources */,
 				0F6F7CDD1A7C52660084755D /* museosans_900-museosans.ttf in Resources */,
-				0F6F7CDE1A7C52660084755D /* manualSelect.js in Resources */,
 				0F6F7CDF1A7C52660084755D /* icon_gplus.png in Resources */,
-				0F6F7CE01A7C52660084755D /* cookies.js in Resources */,
 				0F6F7CE11A7C52660084755D /* Settings.bundle in Resources */,
-				0F6F7CE21A7C52660084755D /* deleteCookies.js in Resources */,
-				0F6F7CE31A7C52660084755D /* customStyle.js in Resources */,
 				0F6F7CE41A7C52660084755D /* Podfile in Resources */,
 				0F6F7CE51A7C52660084755D /* icon_lock_large.png in Resources */,
 				0F1473231A804812001D1C16 /* googleJS.js in Resources */,
@@ -1204,12 +1184,8 @@
 				0F063AE91A6EFE940092F607 /* icon_lock_small.png in Resources */,
 				0F063ADC1A6EF5970092F607 /* museosans_900_italic-museosans.ttf in Resources */,
 				0F063ADD1A6EF5970092F607 /* museosans_900-museosans.ttf in Resources */,
-				0F1932EB1A5E08DF0083B96E /* manualSelect.js in Resources */,
 				0F063AE71A6EFE940092F607 /* icon_gplus.png in Resources */,
-				0F78EEBD1A52FD9B003B7718 /* cookies.js in Resources */,
 				0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */,
-				0F78EEBF1A5305D4003B7718 /* deleteCookies.js in Resources */,
-				0F1932F71A5F51620083B96E /* customStyle.js in Resources */,
 				0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */,
 				0F063AE81A6EFE940092F607 /* icon_lock_large.png in Resources */,
 				0F1473241A804812001D1C16 /* googleJS.js in Resources */,
