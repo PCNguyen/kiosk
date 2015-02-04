@@ -136,6 +136,14 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 	[[RPNetworkManager loginService] refreshKeyForUserID:userID email:email tenantID:tenantID userKey:userKey completion:completion];
 }
 
++ (BOOL)canHandleSilentLogin
+{
+	NSDictionary *userInfo = [JNKeychain loadValueForKey:AHUserInfoKey];
+	BOOL canHandle = userInfo != nil;
+	canHandle = canHandle && [userInfo count] == 4;
+	return canHandle;
+}
+
 + (void)refreshKey
 {
 	if (!keyRefreshLock) {
@@ -191,13 +199,18 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 	if (userAccount) {
 		NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
 		[userInfo setValue:@(userAccount.id) forKey:AHUserIDKey];
-		[userInfo setValue:userAccount.email forKey:AHUserIDKey];
-		[userInfo setValue:@(userAccount.tenantID) forKey:AHUserIDKey];
+		[userInfo setValue:userAccount.email forKey:AHUserEmailKey];
+		[userInfo setValue:@(userAccount.tenantID) forKey:AHTenantIDKey];
 		[userInfo setValue:userAccount.userKey forKey:AHUserSecretKey];
 		[JNKeychain saveValue:userInfo forKey:AHUserInfoKey];
 	} else {
 		[JNKeychain deleteValueForKey:AHUserInfoKey];
 	}
+}
+
++ (void)wipeSilentLoginInfo
+{
+	[JNKeychain deleteValueForKey:AHUserInfoKey];
 }
 
 @end

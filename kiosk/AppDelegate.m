@@ -35,8 +35,12 @@
     [self.window makeKeyAndVisible];
 
     if (![[RPAccountManager sharedManager] isAuthenticated]) {
-		[RPKAnalyticEvent registerSuperProperties];
-        [RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
+		if ([RPAuthenticationHandler canHandleSilentLogin]) {
+			[RPAuthenticationHandler silentLogin];
+		} else {
+			[RPKAnalyticEvent registerSuperProperties];
+			[RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
+		}
 	} else {
 		RPKPreferenceStorage *preferenceStorage = [[RPKPreferenceStorage alloc] init];
 		Location *location = [preferenceStorage selectedLocation];

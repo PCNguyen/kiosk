@@ -21,4 +21,7 @@ extern NSString *const AuthenticationHandlerAuthenticationRequiredNotification;
 + (void)refreshKey;
 + (void)handleAuthenticatedAccount;
 
++ (BOOL)canHandleSilentLogin;
++ (void)wipeSilentLoginInfo;
+
 @end
