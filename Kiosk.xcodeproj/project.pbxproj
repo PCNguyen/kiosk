@@ -154,6 +154,8 @@
 		0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
 		0F79DC2B1A7063F200A4EF9A /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
 		0F8FDBFF1A7B2ED40043A3D0 /* RPKAnalyticEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */; };
+		0FA0441E1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
+		0FA0441F1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -298,6 +300,8 @@
 		0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMaskButton.m; sourceTree = "<group>"; };
 		0F8FDBFD1A7B2ED40043A3D0 /* RPKAnalyticEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKAnalyticEvent.h; sourceTree = "<group>"; };
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
+		0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskDataSource.h; sourceTree = "<group>"; };
+		0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskDataSource.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kiosk-Info.plist"; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -710,6 +714,8 @@
 				0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */,
 				0FBF99E41A71E72500C25788 /* RPLocationSelectionDataSource.h */,
 				0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */,
+				0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */,
+				0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */,
 				0FBF99E81A71E73F00C25788 /* RPKSelection.h */,
 				0FBF99E91A71E73F00C25788 /* RPKSelection.m */,
 				0FBF9A031A7708D900C25788 /* RPKLocationSelection.h */,
@@ -1356,6 +1362,7 @@
 				0F6F7CBE1A7C52660084755D /* RPNetworkHandler.m in Sources */,
 				0F6F7CBF1A7C52660084755D /* RPKAppService.m in Sources */,
 				0F6F7CC01A7C52660084755D /* UIView+LayoutFrame.m in Sources */,
+				0FA0441E1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */,
 				0F6F7CC11A7C52660084755D /* RPKOperation.m in Sources */,
 				0F6F7CC21A7C52660084755D /* THTTPClient.m in Sources */,
 				0F6F7CC31A7C52660084755D /* RPPreferenceService.m in Sources */,
@@ -1454,6 +1461,7 @@
 				0FA0E1C91A6884E30011EAC9 /* RPNetworkHandler.m in Sources */,
 				0FA0E1AB1A686EF30011EAC9 /* RPKAppService.m in Sources */,
 				0FA0E1E81A6888270011EAC9 /* UIView+LayoutFrame.m in Sources */,
+				0FA0441F1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */,
 				0FA0E1A71A686EF30011EAC9 /* RPKOperation.m in Sources */,
 				0FA0E18A1A686AC80011EAC9 /* THTTPClient.m in Sources */,
 				0FA0E2031A6889C40011EAC9 /* RPPreferenceService.m in Sources */,
