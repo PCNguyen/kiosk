@@ -9,6 +9,7 @@
 #import "RPKPreferenceStorage.h"
 
 #import <AppSDK/AppLibExtension.h>
+#import <JNKeychain/JNKeychain.h>
 
 #define kRSUserConfigKey					@"UserConfig"
 #define kRSSelectedLocationKey				@"SelectedLocation"
@@ -46,11 +47,15 @@
 - (void)saveSelectedLocation:(NSString *)locationID
 {
 	[self saveValue:locationID forKey:kRSSelectedLocationKey];
+	[JNKeychain saveValue:locationID forKey:kRSSelectedLocationKey];
 }
 
 - (NSString *)loadSelectedLocation
 {
 	NSString *locationCode = [self loadValueForKey:kRSSelectedLocationKey];
+	if ([locationCode length] == 0) {
+		locationCode = [JNKeychain loadValueForKey:kRSSelectedLocationKey];
+	}
 	
 	return locationCode;
 }
