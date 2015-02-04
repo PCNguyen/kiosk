@@ -299,7 +299,7 @@
 		0F8FDBFD1A7B2ED40043A3D0 /* RPKAnalyticEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKAnalyticEvent.h; sourceTree = "<group>"; };
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FA0ABB71A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kiosk-Info.plist"; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0FA0ABBA1A40ABE1007AA263 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */,
-				0FA0ABB71A40ABE1007AA263 /* Info.plist */,
+				0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */,
 				0FA0ABB81A40ABE1007AA263 /* main.m */,
 				0FA1E9411A605B8700DC4429 /* Settings.bundle */,
 			);
@@ -1598,7 +1598,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = kiosk/Info.plist;
+				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
 				PROVISIONING_PROFILE = "";
@@ -1613,7 +1613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = kiosk/Info.plist;
+				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
 				PROVISIONING_PROFILE = "40ef0ea7-4860-427d-81cd-cf0a214b30af";
