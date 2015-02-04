@@ -88,4 +88,15 @@
 	return _getGuidedAccessTask;
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Exit Single App Mode");
+		} else {
+			NSLog(@"Failed To Exit Single Acces");
+		}
+	});
+}
+
 @end
