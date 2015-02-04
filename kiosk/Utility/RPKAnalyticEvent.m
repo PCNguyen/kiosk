@@ -177,6 +177,9 @@
 		case AnalyticEventLogin:
 			return @"Login";
 			break;
+		case AnalyticEventSilentLogin:
+			return @"Silent Login";
+			break;
 		case AnalyticEventSourceCancel:
 			return @"Source Cancel";
 			break;

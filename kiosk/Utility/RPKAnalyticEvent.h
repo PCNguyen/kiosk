@@ -21,6 +21,7 @@
 typedef enum {
 	AnalyticEventAppLaunch = 0,
 	AnalyticEventLogin,
+	AnalyticEventSilentLogin,
 	AnalyticEventLocationSelect,
 	AnalyticEventSourceSelect,
 	AnalyticEventSourceLoaded,

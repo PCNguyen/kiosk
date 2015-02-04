@@ -17,6 +17,7 @@ extern NSString *const AuthenticationHandlerAuthenticationRequiredNotification;
 @interface RPAuthenticationHandler : RPNetworkHandler
 
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password;
++ (void)silentLogin;
 + (void)refreshKey;
 + (void)handleAuthenticatedAccount;
 
