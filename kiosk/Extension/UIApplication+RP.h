@@ -24,4 +24,6 @@
 
 - (void)rp_addSubviewOnFrontWindow:(UIView *)view;
 
++ (NSString *)rp_kioskURLString;
+
 @end

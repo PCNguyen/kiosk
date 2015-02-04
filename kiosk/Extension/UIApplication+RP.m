@@ -59,6 +59,12 @@
 	[window bringSubviewToFront:view];
 }
 
++ (NSString *)rp_kioskURLString
+{
+	NSString *kioskURL = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Kiosk Host URL"];
+	return kioskURL;
+}
+
 #pragma mark - Private
 
 + (NSString *)serverURLString

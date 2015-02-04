@@ -88,6 +88,8 @@
 		locationSelectionVC.delegate = self;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
 		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
+	} else {
+		[[self menuViewController] validateSources];
 	}
 }
 

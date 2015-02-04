@@ -7,6 +7,8 @@
 //
 
 #import "RPKMenuDataSource.h"
+#import "UIApplication+RP.h"
+
 #import <AppSDK/AppLibExtension.h>
 
 @implementation RPKMenuDataSource
@@ -27,6 +29,14 @@
 			SourceUrl *sourceURL = [selectedLocation.sourceUrls firstObject];
 			googleURLString = sourceURL.sourceUrl;
 		}
+	} else if ([locations count] == 1) {
+		Location *singleLocation = [locations firstObject];
+		kioskURLString = singleLocation.kioskUrl;
+	}
+	
+	if ([kioskURLString rangeOfString:@"reputation.com"].location == NSNotFound) {
+		NSString *host = [UIApplication rp_kioskURLString];
+		kioskURLString = [NSString stringWithFormat:@"%@/%@", host, [kioskURLString lastPathComponent]];
 	}
 	
 	NSMutableArray *menuItems = [NSMutableArray array];

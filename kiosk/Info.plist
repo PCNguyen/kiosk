@@ -38,7 +38,9 @@
 	<key>Server Port</key>
 	<string>443</string>
 	<key>Server URL</key>
-	<string>https://qa-r4e-mobile.reputation.com</string>
+	<string>https://r4e-mobile.reputation.com</string>
+	<key>Kiosk Host URL</key>
+	<string>http://reputation.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>

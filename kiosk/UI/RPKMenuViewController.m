@@ -184,7 +184,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	self.paddings = UIEdgeInsetsMake(90.0f, 140.0f, 280.0f, 140.0f);
 	self.spacings = CGSizeMake(0.0f, 60.0f);
 	
-	self.view.backgroundColor = [UIColor rpk_backgroundColor];
+	self.view.backgroundColor = [UIColor ul_colorWithR:10 G:53 B:70 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 
     [self.view addSubview:self.kioskTitle];
