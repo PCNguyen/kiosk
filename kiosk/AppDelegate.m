@@ -56,9 +56,6 @@
 	[RPKAnalyticEvent sendEvent:AnalyticEventAppLaunch];
 	[[RPKLayoutManager sharedManager] configureReachability];
 	
-	self.maxSingleAppAttempt = 0;
-	[self.getGuidedAccessTask start];
-
 	return YES;
 }
 
@@ -90,6 +87,12 @@
 	}
 	
 	return _getGuidedAccessTask;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	self.maxSingleAppAttempt = 0;
+	[self.getGuidedAccessTask start];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
