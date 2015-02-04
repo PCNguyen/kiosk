@@ -39,6 +39,9 @@
 		kioskURLString = [NSString stringWithFormat:@"%@/%@", host, [kioskURLString lastPathComponent]];
 	}
 	
+	//--customize for Ammco
+	googleURLString = @"";
+	
 	NSMutableArray *menuItems = [NSMutableArray array];
 	
 	//--loading Kiosk
