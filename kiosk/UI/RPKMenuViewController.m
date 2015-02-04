@@ -227,6 +227,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)handleBinderSourceUpdated:(NSArray *)updatedItems
 {
 	[self.menuSelectionView reloadData];
+	
+	if (!self.presentedViewController ||
+		[self.presentedViewController isKindOfClass:[RPKKioskViewController class]]) {
+		[self validateSources];
+	}
 }
 
 - (void)validateSources
@@ -239,6 +244,10 @@ NSString *const MVCCellID = @"kMVCCellID";
 		timeWebVC.kioskOnly = YES;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
+	} else if ([[self dataSource].menuItems count] > 1) {
+		if ([self.presentedViewController isKindOfClass:[RPKKioskViewController class]]) {
+			[self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+		}
 	}
 }
 
