@@ -268,15 +268,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleTripleFingerTapped:(id)sender
 {
-	//--show location selector
-	[[RPKLayoutManager sharedManager] loginViewControllerDidDismissed];
-	
 	UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
 		if (success) {
 			NSLog(@"Exit Single App Mode");
-			
-			NSArray *crash = @[];
-			NSLog(@"%@", [crash objectAtIndex:1]);
+		} else {
+			NSLog(@"Failed to exit single app mode");
 		}
 	});
 }

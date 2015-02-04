@@ -268,9 +268,7 @@
 	
     if ([[RPAccountManager sharedManager] isAuthenticated]) {
         [self dismissViewControllerAnimated:YES completion:^{
-			if ([self.delegate respondsToSelector:@selector(loginViewControllerDidDismissed)]) {
-				[self.delegate loginViewControllerDidDismissed];
-			}
+			[RPAuthenticationHandler handleAuthenticatedAccount];
 		}];
     }
 }

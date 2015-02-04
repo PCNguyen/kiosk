@@ -17,7 +17,6 @@
 
 + (UIViewController *)rootViewController;
 
-- (void)loginViewControllerDidDismissed;
 - (void)configureReachability;
 
 @end
