@@ -514,6 +514,11 @@
 	[self.alertView addtextField:alertTextField];
 }
 
+- (NSArray *)textFields
+{
+	return [self.alertView textFields];
+}
+
 #pragma mark Transition
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source

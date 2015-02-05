@@ -15,10 +15,13 @@
 #import "RPKSecuredView.h"
 #import "RPKNavigationController.h"
 #import "RPService.h"
+#import "RPAlertController.h"
+#import "RPLocationSelectionViewController.h"
 
 #import "RPKLayoutManager.h"
 #import "NSAttributedString+RP.h"
 #import "RPAccountManager.h"
+#import "RPReferenceHandler.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
@@ -161,7 +164,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 /********************************
  *  RPKMenuViewController
  ********************************/
-@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate>
+@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
@@ -286,13 +289,51 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleTripleFingerTapped:(id)sender
 {
-	UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
-		if (success) {
-			NSLog(@"Exit Single App Mode");
-		} else {
-			NSLog(@"Failed to exit single app mode");
+	RPAlertController *alertController = [[RPAlertController alloc] initWithTitle:@"" message:@"Enter the administrative code"];
+	[alertController addTextFieldWithStyleHandler:^(UITextField *textField) {
+		textField.textAlignment = NSTextAlignmentCenter;
+		textField.layer.sublayerTransform = CATransform3DMakeTranslation(0, 0, 0); //--override the margin
+	}];
+	
+	__weak RPAlertController *weakPreference = alertController;
+	__weak RPKMenuViewController *selfPointer = self;
+	
+	[alertController addButtonTitle:@"Cancel" style:AlertButtonStyleCancel action:NULL];
+	[alertController addButtonTitle:@"Ok" style:AlertButtonStyleDefault action:^(RPAlertButton *button) {
+		UITextField *codeTextField = [[weakPreference textFields] firstObject];
+		[selfPointer handleAdministratorCode:codeTextField.text];
+	}];
+	
+	[self presentViewController:alertController animated:YES completion:NULL];
+}
+
+#pragma mark - administrative code
+
+- (void)handleAdministratorCode:(NSString *)code
+{
+	if ([code isEqualToString:@"RDC1000"]) {
+		UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
+			if (success) {
+				NSLog(@"Exit Single App Mode");
+			} else {
+				NSLog(@"Failed to exit single app mode");
+			}
+		});
+	} else if ([code isEqualToString:@"RDC1001"]) {
+		if ([RPReferenceHandler hasMultiLocation]) {
+			RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
+			locationSelectionVC.delegate = self;
+			RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
+			[self presentViewController:navigationHolder animated:YES completion:NULL];
 		}
-	});
+	}
+}
+
+#pragma mark - RPLocationSelectionView Delegate
+
+- (void)locationSelectionViewControllerDidDismiss
+{
+	[self validateSources];
 }
 
 #pragma mark - Collection View

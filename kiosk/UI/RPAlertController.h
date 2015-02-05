@@ -40,4 +40,6 @@ typedef void(^RPAlertTextFieldStyleHandler)(UITextField *textField);
 
 - (void)addTextFieldWithStyleHandler:(RPAlertTextFieldStyleHandler)styleHandler;
 
+- (NSArray *)textFields;
+
 @end
