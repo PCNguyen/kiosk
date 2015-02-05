@@ -1104,6 +1104,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
+					0F6F7C6A1A7C52660084755D = {
+						DevelopmentTeam = Z2EXNP9RZT;
+					};
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = Z2EXNP9RZT;
