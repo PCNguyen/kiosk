@@ -4,8 +4,9 @@
 <dict>
 	<key>Administrative Code</key>
 	<array>
-		<string>RDC1000</string>
-		<string>RDC1001</string>
+		<string>RDC0000</string>
+		<string>RDCLLLL</string>
+		<string>RDCXXXX</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
