@@ -18,6 +18,7 @@
 
 #import "RPKLayoutManager.h"
 #import "NSAttributedString+RP.h"
+#import "RPAccountManager.h"
 
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
@@ -228,15 +229,25 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[self.menuSelectionView reloadData];
 	
-	if (!self.presentedViewController ||
-		[self.presentedViewController isKindOfClass:[RPKKioskViewController class]]) {
-		[self validateSources];
+	if (!self.presentedViewController || [self kioskPresent]) {
+		if ([[RPAccountManager sharedManager] isAuthenticated]) {
+			[self validateSources];
+		}
 	}
+}
+
+- (BOOL)kioskPresent
+{
+	BOOL kioskPresent = self.presentedViewController != nil;
+	kioskPresent = kioskPresent && [self.presentedViewController isKindOfClass:[RPKNavigationController class]];
+	kioskPresent = kioskPresent && [[(RPKNavigationController *)self.presentedViewController topViewController] isKindOfClass:[RPKKioskViewController class]];
+	
+	return kioskPresent;
 }
 
 - (void)validateSources
 {
-	if ([[self dataSource].menuItems count] == 1) {
+	if ([[self dataSource].menuItems count] == 1 && ![self kioskPresent]) {
 		//--we only have kiosk
 		RPKMenuItem *menuItem = [[self dataSource] menuItemAtIndex:0];
 		RPKKioskViewController *timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
@@ -244,10 +255,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		timeWebVC.kioskOnly = YES;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
-	} else if ([[self dataSource].menuItems count] > 1) {
-		if ([self.presentedViewController isKindOfClass:[RPKKioskViewController class]]) {
-			[self.navigationController dismissViewControllerAnimated:YES completion:^{}];
-		}
+	} else if ([[self dataSource].menuItems count] > 1 && [self kioskPresent]) {
+		[self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 	}
 }
 
