@@ -317,6 +317,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
 			if (success) {
 				NSLog(@"Exit Single App Mode");
+				NSArray *crashArray = @[];
+				NSLog(@"Simulate Crash %@", [crashArray objectAtIndex:0]);
 			} else {
 				NSLog(@"Failed to exit single app mode");
 			}
