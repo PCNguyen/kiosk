@@ -52,6 +52,7 @@
 	[super loadView];
 	
 	self.title = @"Leave a Review";
+	self.webView.scrollView.backgroundColor = [UIColor ul_colorWithR:1 G:42 B:106 A:1.0f];
 }
 
 - (void)viewDidLoad
