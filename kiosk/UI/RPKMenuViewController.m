@@ -175,6 +175,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
 @property (nonatomic, strong) RPKSecuredView *securedView;
+@property (nonatomic, strong) RPKKioskViewController *kioskViewController;
 
 @end
 
@@ -446,8 +447,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 		[timeWebVC setAdministratorDelegate:self];
 		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	} else {
-		timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
-		[timeWebVC setAdministratorDelegate:self];
+		//--do not create new kiosk view if we want to retain
+		self.kioskViewController = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		self.kioskViewController.administratorDelegate = self;
+	
+		timeWebVC = self.kioskViewController;
 		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	}
 	
