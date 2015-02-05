@@ -19,8 +19,7 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) ALScheduledTask *getGuidedAccessTask;
-@property (nonatomic, assign) __block NSInteger maxSingleAppAttempt;
+@property (nonatomic, assign) BOOL appLaunch;
 
 @end
 
@@ -55,7 +54,8 @@
 	
 	[RPKAnalyticEvent sendEvent:AnalyticEventAppLaunch];
 	[[RPKLayoutManager sharedManager] configureReachability];
-	
+
+	self.appLaunch = YES;
 	return YES;
 }
 
@@ -65,34 +65,23 @@
 	[self.window setRootViewController:[RPKLayoutManager rootViewController]];
 }
 
-- (ALScheduledTask *)getGuidedAccessTask
+- (void)applicationWillEnterForeground:(UIApplication *)application
 {
-	if (!_getGuidedAccessTask) {
-		__weak AppDelegate *selfPointer = self;
-		_getGuidedAccessTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
-			selfPointer.maxSingleAppAttempt++;
-			if (selfPointer.maxSingleAppAttempt > 5) {
-				[selfPointer.getGuidedAccessTask stop];
-			}
-			
-			UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
-				if (success) {
-					NSLog(@"Enter Single App Mode");
-					[selfPointer.getGuidedAccessTask stop];
-				} else {
-					NSLog(@"Failed To Get Single Acces");
-				}
-			});
-		}];
-	}
-	
-	return _getGuidedAccessTask;
+	self.appLaunch = YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	self.maxSingleAppAttempt = 0;
-	[self.getGuidedAccessTask start];
+	if (self.appLaunch) {
+		UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+			if (success) {
+				NSLog(@"Enter Single App Mode");
+				self.appLaunch = NO;
+			} else {
+				NSLog(@"Failed To Get Single Acces");
+			}
+		});
+	}
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
