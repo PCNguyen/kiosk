@@ -1861,7 +1861,7 @@
 				INFOPLIST_FILE = "Kiosk Review-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk Review";
-				PROVISIONING_PROFILE = "40ef0ea7-4860-427d-81cd-cf0a214b30af";
+				PROVISIONING_PROFILE = "0c458a9f-da52-40ed-8e91-5f8dfbebb25b";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
