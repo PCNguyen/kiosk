@@ -73,15 +73,20 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	if (self.appLaunch) {
-		UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
-			if (success) {
-				NSLog(@"Enter Single App Mode");
-				self.appLaunch = NO;
-			} else {
-				NSLog(@"Failed To Get Single Acces");
-			}
-		});
+		[self performSelector:@selector(aquireSingleAppMode) withObject:self afterDelay:3];
 	}
+}
+
+- (void)aquireSingleAppMode
+{
+	UIAccessibilityRequestGuidedAccessSession(YES, ^(BOOL success) {
+		if (success) {
+			NSLog(@"Enter Single App Mode");
+			self.appLaunch = NO;
+		} else {
+			NSLog(@"Failed To Get Single Acces");
+		}
+	});
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
