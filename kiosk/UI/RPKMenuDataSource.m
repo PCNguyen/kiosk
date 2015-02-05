@@ -13,12 +13,17 @@
 
 @implementation RPKMenuDataSource
 
+- (void)configureNonBindingProperty
+{
+	[self ignoreUpdateProperty:@selector(selectedLocationID)];
+}
+
 - (void)loadData
 {
 	//--grabing the selected location
 	NSArray *locations = [[self preferenceStorage] allLocations];
-	NSString *selectedLocationID = [[self preferenceStorage] loadSelectedLocation];
-	Location *selectedLocation = [[locations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"code == %@", selectedLocationID]] firstObject];
+	self.selectedLocationID = [[self preferenceStorage] loadSelectedLocation];
+	Location *selectedLocation = [[locations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"code == %@", self.selectedLocationID]] firstObject];
 	
 	NSString *kioskURLString = @"";
 	NSString *googleURLString = @"";

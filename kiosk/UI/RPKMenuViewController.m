@@ -17,6 +17,10 @@
 #import "RPService.h"
 #import "RPAlertController.h"
 #import "RPLocationSelectionViewController.h"
+#import "RPKLoginViewController.h"
+
+#import "RPNotificationCenter.h"
+#import "RPAuthenticationHandler.h"
 
 #import "RPKLayoutManager.h"
 #import "NSAttributedString+RP.h"
@@ -166,7 +170,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 /********************************
  *  RPKMenuViewController
  ********************************/
-@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate>
+@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate, RPKAdministratorDelegate>
 
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
@@ -179,6 +183,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)dealloc
 {
 	[self ul_unRegisterAllManagedServices];
+	[self unRegisterNotification];
 }
 
 #pragma mark - View Life Cycle
@@ -206,6 +211,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	[self registerNotification];
 	
 	NSArray *services = @[[RPService serviceNameFromType:ServiceUpdateSelectedLocation],
 						  [RPService serviceNameFromType:ServiceGetUserConfig]];
@@ -258,6 +265,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		RPKKioskViewController *timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
 		timeWebVC.shouldTimedOut = NO;
 		timeWebVC.kioskOnly = YES;
+		[timeWebVC setAdministratorDelegate:self];
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
 	} else if ([[self dataSource].menuItems count] > 1 && [self kioskPresent]) {
@@ -278,18 +286,32 @@ NSString *const MVCCellID = @"kMVCCellID";
 		_kioskTitle.attributedText = attributedText;
 		_kioskTitle.numberOfLines = 0;
 		[_kioskTitle ul_enableAutoLayout];
-		
-		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleFingerTapped:)];
-		tapGesture.numberOfTapsRequired = 1;
-		tapGesture.numberOfTouchesRequired = 2;
-		_kioskTitle.userInteractionEnabled = YES;
-		[_kioskTitle addGestureRecognizer:tapGesture];
     }
 
     return _kioskTitle;
 }
 
-- (void)handleTripleFingerTapped:(id)sender
+- (void)handleAdministratorGesture:(UIGestureRecognizer *)gesture
+{
+	[self displayAdministratorView];
+}
+
+#pragma mark - Administrator Delegate
+
+- (void)handleAdministratorTask
+{
+	if (self.presentedViewController) {
+		[self.navigationController dismissViewControllerAnimated:YES completion:^{
+			[self displayAdministratorView];
+		}];
+	} else {
+		[self displayAdministratorView];
+	}
+}
+
+#pragma mark - administrative code
+
+- (void)displayAdministratorView
 {
 	RPAlertController *alertController = [[RPAlertController alloc] initWithTitle:@"" message:@"Enter the administrative code"];
 	[alertController addTextFieldWithStyleHandler:^(UITextField *textField) {
@@ -300,18 +322,23 @@ NSString *const MVCCellID = @"kMVCCellID";
 	__weak RPAlertController *weakPreference = alertController;
 	__weak RPKMenuViewController *selfPointer = self;
 	
-	[alertController addButtonTitle:@"Cancel" style:AlertButtonStyleCancel action:NULL];
+	[alertController addButtonTitle:@"Cancel" style:AlertButtonStyleCancel action:^(RPAlertButton *button) {
+		[selfPointer validateSources];
+	}];
+	
 	[alertController addButtonTitle:@"Ok" style:AlertButtonStyleDefault action:^(RPAlertButton *button) {
 		UITextField *codeTextField = [[weakPreference textFields] firstObject];
-		[selfPointer handleAdministratorCode:codeTextField.text];
+		NSError *error = nil;
+		[selfPointer handleAdministratorCode:codeTextField.text error:&error];
+		if (error) {
+			[selfPointer validateSources];
+		}
 	}];
 	
 	[self presentViewController:alertController animated:YES completion:NULL];
 }
 
-#pragma mark - administrative code
-
-- (void)handleAdministratorCode:(NSString *)code
+- (void)handleAdministratorCode:(NSString *)code error:(NSError **)error
 {
 	if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:0]]) {
 		UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
@@ -321,6 +348,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 				NSLog(@"Simulate Crash %@", [crashArray objectAtIndex:0]);
 			} else {
 				NSLog(@"Failed to exit single app mode");
+				*error = [NSError errorWithDomain:@"Administrator Error" code:-2100 userInfo:nil];
 			}
 		});
 	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:1]]) {
@@ -329,7 +357,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 			locationSelectionVC.delegate = self;
 			RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
 			[self presentViewController:navigationHolder animated:YES completion:NULL];
+		} else {
+			*error = [NSError errorWithDomain:@"Administrator Error" code:-2101 userInfo:nil];
 		}
+	} else {
+		*error = [NSError errorWithDomain:@"Administrator Error" code:-2102 userInfo:nil];
 	}
 }
 
@@ -400,9 +432,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 	if (menuItem.itemType == MenuTypeGoogle) {
 		timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
 		[(RPKGoogleViewController *)timeWebVC setDelegate:self];
+		[timeWebVC setAdministratorDelegate:self];
 		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	} else {
 		timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+		[timeWebVC setAdministratorDelegate:self];
 		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	}
 	
@@ -450,6 +484,42 @@ NSString *const MVCCellID = @"kMVCCellID";
 	}
 	
 	return _securedView;
+}
+
+#pragma mark - Notification
+
+- (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
+	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
+	[[RPKLayoutManager rootViewController] presentViewController:loginViewController animated:YES completion:NULL];
+}
+
+- (void)handleAuthenticatedNotification:(NSNotification *)notification {
+	if ([RPReferenceHandler hasMultiLocation] && [[self dataSource].selectedLocationID length] == 0) {
+		RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
+		locationSelectionVC.delegate = self;
+		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
+		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
+	} else {
+		[self validateSources];
+	}
+}
+
+- (void)registerNotification
+{
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification
+								 handler:@selector(handleAuthenticationNeededNotification:)
+							   parameter:nil];
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:AuthenticationHandlerAuthenticatedNotification
+								 handler:@selector(handleAuthenticatedNotification:)
+							   parameter:nil];
+
+}
+
+- (void)unRegisterNotification
+{
+	[RPNotificationCenter unRegisterAllNotificationForObject:self];
 }
 
 @end

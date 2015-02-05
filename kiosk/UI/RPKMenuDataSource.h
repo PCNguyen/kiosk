@@ -16,6 +16,8 @@
  */
 @property (nonatomic, strong) NSArray *menuItems;
 
+@property (nonatomic, strong) NSString *selectedLocationID;
+
 - (RPKMenuItem *)menuItemAtIndex:(NSInteger)index;
 
 @end

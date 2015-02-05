@@ -10,16 +10,12 @@
 
 #import "RPKLayoutManager.h"
 #import "RPKNavigationController.h"
-#import "RPKLoginViewController.h"
-#import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
-#import "RPLocationSelectionViewController.h"
-#import "RPReferenceHandler.h"
 #import "RPKNoConnectivityController.h"
 
 #import <Reachability/Reachability.h>
 
-@interface RPKLayoutManager () <RPLocationSelectionViewControllerDelegate>
+@interface RPKLayoutManager ()
 
 @property (nonatomic, strong) RPKNavigationController *mainNavigationController;
 
@@ -32,42 +28,6 @@
 	SHARE_INSTANCE_BLOCK(^{
 		return [[self alloc] init];
 	});
-}
-
-- (void)dealloc
-{
-    [RPNotificationCenter unRegisterObject:self forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification parameter:nil];
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [RPNotificationCenter registerObject:self
-                         forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification
-                                     handler:@selector(handleAuthenticationNeededNotification:)
-                                   parameter:nil];
-		[RPNotificationCenter registerObject:self
-						 forNotificationName:AuthenticationHandlerAuthenticatedNotification
-									 handler:@selector(handleAuthenticatedNotification:)
-								   parameter:nil];
-    }
-
-    return self;
-}
-
-- (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
-    RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
-    [[RPKLayoutManager rootViewController] presentViewController:loginViewController animated:YES completion:NULL];
-}
-
-- (void)handleAuthenticatedNotification:(NSNotification *)notification {
-	if ([RPReferenceHandler hasMultiLocation]) {
-		RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
-		locationSelectionVC.delegate = self;
-		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
-		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
-	} else {
-		[[self menuViewController] validateSources];
-	}
 }
 
 + (UIViewController *)rootViewController
@@ -93,12 +53,7 @@
 	return _mainNavigationController;
 }
 
-#pragma mark - LocationSelectionView Delegate
-
-- (void)locationSelectionViewControllerDidDismiss
-{
-	[self.menuViewController validateSources];
-}
+#pragma mark - Reachbility
 
 - (void)configureReachability
 {

@@ -28,6 +28,11 @@
 	[super viewWillAppear:animated];
 	
 	[self tintNavigationItems];
+	
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleAdministratorGesture:)];
+	tapGesture.numberOfTapsRequired = 1;
+	tapGesture.numberOfTouchesRequired = 3;
+	[self.view addGestureRecognizer:tapGesture];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -37,6 +42,13 @@
 	[self.loadingView hide];
 	[self.loadingView remove];
 	self.loadingView = nil;
+}
+
+- (void)handleAdministratorGesture:(UIGestureRecognizer *)gesture
+{
+	if ([self.administratorDelegate respondsToSelector:@selector(handleAdministratorTask)]) {
+		[self.administratorDelegate handleAdministratorTask];
+	}
 }
 
 - (void)toggleLoadingView:(BOOL)isVisible {
