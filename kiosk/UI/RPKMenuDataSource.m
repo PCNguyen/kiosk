@@ -44,17 +44,20 @@
 		kioskURLString = [NSString stringWithFormat:@"%@/%@", host, [kioskURLString lastPathComponent]];
 	}
 	
-	Facet *kioskSources = [self userConfig].kioskSources;
-	BOOL googleEnabled = NO;
-	for (FacetOption *facetOption in kioskSources.facetOptions) {
-		if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
-			googleEnabled = YES;
-		}
-	}
+//	Facet *kioskSources = [self userConfig].kioskSources;
+//	BOOL googleEnabled = NO;
+//	for (FacetOption *facetOption in kioskSources.facetOptions) {
+//		if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
+//			googleEnabled = YES;
+//		}
+//	}
+//	
+//	if (!googleEnabled) {
+//		googleURLString = @"";
+//	}
 	
-	if (!googleEnabled) {
-		googleURLString = @"";
-	}
+	//--custom for AMMCO
+	googleURLString = @"";
 	
 	NSMutableArray *menuItems = [NSMutableArray array];
 	
