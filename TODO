@@ -1,4 +1,3 @@
-Use MenuDataSource to update kiosk locked status when user config receive google link
 Handle extra query in about link
 Externalize all js and stylesheet file
 Adding RSS screen while wait for Google Page Load
