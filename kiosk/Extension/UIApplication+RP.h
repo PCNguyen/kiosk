@@ -26,4 +26,6 @@
 
 + (NSString *)rp_kioskURLString;
 
++ (NSArray *)rp_administratorCodes;
+
 @end

@@ -65,6 +65,12 @@
 	return kioskURL;
 }
 
++ (NSArray *)rp_administratorCodes
+{
+	NSArray *administratorCodes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Administrative Code"];
+	return administratorCodes;
+}
+
 #pragma mark - Private
 
 + (NSString *)serverURLString

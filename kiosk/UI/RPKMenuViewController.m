@@ -23,6 +23,8 @@
 #import "RPAccountManager.h"
 #import "RPReferenceHandler.h"
 
+#import "UIApplication+RP.h"
+
 #define kMCLogoImageSize			CGSizeMake(150.0f, 150.0f)
 
 #pragma mark -
@@ -279,7 +281,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		
 		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleFingerTapped:)];
 		tapGesture.numberOfTapsRequired = 1;
-		tapGesture.numberOfTouchesRequired = 2;
+		tapGesture.numberOfTouchesRequired = 1;
 		_kioskTitle.userInteractionEnabled = YES;
 		[_kioskTitle addGestureRecognizer:tapGesture];
     }
@@ -311,7 +313,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleAdministratorCode:(NSString *)code
 {
-	if ([code isEqualToString:@"RDC1000"]) {
+	if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:0]]) {
 		UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
 			if (success) {
 				NSLog(@"Exit Single App Mode");
@@ -319,7 +321,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 				NSLog(@"Failed to exit single app mode");
 			}
 		});
-	} else if ([code isEqualToString:@"RDC1001"]) {
+	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:1]]) {
 		if ([RPReferenceHandler hasMultiLocation]) {
 			RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
 			locationSelectionVC.delegate = self;
