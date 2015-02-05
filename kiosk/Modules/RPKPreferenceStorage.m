@@ -21,6 +21,7 @@
 - (void)wipe
 {
 	[self saveUserConfig:nil];
+	[self saveSelectedLocation:nil];
 }
 
 #pragma mark - Preference
@@ -47,7 +48,12 @@
 - (void)saveSelectedLocation:(NSString *)locationID
 {
 	[self saveValue:locationID forKey:kRSSelectedLocationKey];
-	[JNKeychain saveValue:locationID forKey:kRSSelectedLocationKey];
+	
+	if ([locationID length] > 0) {
+		[JNKeychain saveValue:locationID forKey:kRSSelectedLocationKey];
+	} else {
+		[JNKeychain deleteValueForKey:kRSSelectedLocationKey];
+	}
 }
 
 - (NSString *)loadSelectedLocation

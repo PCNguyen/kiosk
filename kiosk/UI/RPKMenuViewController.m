@@ -188,6 +188,15 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 #pragma mark - View Life Cycle
 
+- (instancetype)init
+{
+	if (self = [super init]) {
+		[self registerNotification];
+	}
+	
+	return self;
+}
+
 - (void)loadView
 {
 	[super loadView];
@@ -211,13 +220,15 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
-	[self registerNotification];
-	
 	NSArray *services = @[[RPService serviceNameFromType:ServiceUpdateSelectedLocation],
 						  [RPService serviceNameFromType:ServiceGetUserConfig]];
 	[self ul_registerManagedServices:services];
 	[[self dataSource] loadData];
+	
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:AuthenticationHandlerAuthenticatedNotification
+								 handler:@selector(handleAuthenticatedNotification:)
+							   parameter:nil];
 }
 
 #pragma mark - ULViewDataBinding Protocol
@@ -490,7 +501,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
 	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
-	[[RPKLayoutManager rootViewController] presentViewController:loginViewController animated:YES completion:NULL];
+	[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
 }
 
 - (void)handleAuthenticatedNotification:(NSNotification *)notification {
@@ -498,7 +509,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
 		locationSelectionVC.delegate = self;
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
-		[[RPKLayoutManager rootViewController] presentViewController:navigationHolder animated:YES completion:NULL];
+		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
 	} else {
 		[self validateSources];
 	}
@@ -510,11 +521,6 @@ NSString *const MVCCellID = @"kMVCCellID";
 					 forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification
 								 handler:@selector(handleAuthenticationNeededNotification:)
 							   parameter:nil];
-	[RPNotificationCenter registerObject:self
-					 forNotificationName:AuthenticationHandlerAuthenticatedNotification
-								 handler:@selector(handleAuthenticatedNotification:)
-							   parameter:nil];
-
 }
 
 - (void)unRegisterNotification

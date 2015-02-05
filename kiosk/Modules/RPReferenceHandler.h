@@ -70,6 +70,8 @@
  */
 + (NSArray *)allowedSocialSitesAtLocations:(NSArray *)locations;
 
++ (void)wipePreferenceData;
+
 #pragma mark - Permission
 
 /**

@@ -13,7 +13,7 @@
 #import "RPNotificationCenter.h"
 #import "RPAuthenticationHandler.h"
 #import "RPKAnalyticEvent.h"
-#import "RPKPreferenceStorage.h"
+#import "RPReferenceHandler.h"
 
 #import <AppSDK/AppLibScheduler.h>
 
@@ -28,6 +28,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	application.idleTimerDisabled = YES;
+	
+	//--uncomment this if we need to clear keychain
+//	[RPAuthenticationHandler wipeSilentLoginInfo];
+//	[RPReferenceHandler wipePreferenceData];
+	
 	[RPKAnalyticEvent configure];
 	[RPKCookieHandler clearCookie];
 	[self configureLayout];
