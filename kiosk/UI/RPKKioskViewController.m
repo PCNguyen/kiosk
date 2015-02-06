@@ -68,10 +68,8 @@
 {
 	WKUserContentController *userContentController = [WKUserContentController new];
 	
-	if (!self.kioskOnly) {
-		//--add handler to handle clearing cookies
-		[userContentController addScriptMessageHandler:self name:kKVCSubmitDetectMessage];
-	}
+	//--add handler to handle submit
+	[userContentController addScriptMessageHandler:self name:kKVCSubmitDetectMessage];
 	
 	WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 	configuration.userContentController = userContentController;
@@ -137,7 +135,9 @@
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 		[submitEvent send];
 		
-		[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
+		if (!self.kioskOnly) {
+			[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
+		}
 	}
 }
 
