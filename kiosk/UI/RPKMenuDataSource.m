@@ -39,11 +39,6 @@
 		kioskURLString = singleLocation.kioskUrl;
 	}
 	
-	if ([kioskURLString rangeOfString:@"reputation.com"].location == NSNotFound) {
-		NSString *host = [UIApplication rp_kioskURLString];
-		kioskURLString = [NSString stringWithFormat:@"%@/%@", host, [kioskURLString lastPathComponent]];
-	}
-	
 	Facet *kioskSources = [self userConfig].kioskSources;
 	BOOL googleEnabled = NO;
 	for (FacetOption *facetOption in kioskSources.facetOptions) {
