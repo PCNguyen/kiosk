@@ -312,7 +312,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)handleAdministratorTask
 {
-	if (self.presentedViewController) {
+	if (self.presentedViewController && ![self.presentedViewController isKindOfClass:[RPKLoginViewController class]]) {
 		[self.navigationController dismissViewControllerAnimated:YES completion:^{
 			[self displayAdministratorView];
 		}];
@@ -347,7 +347,12 @@ NSString *const MVCCellID = @"kMVCCellID";
 		}
 	}];
 	
-	[self presentViewController:alertController animated:YES completion:NULL];
+	UIViewController *presentingViewController = self;
+	while (presentingViewController.presentedViewController) {
+		presentingViewController = presentingViewController.presentedViewController;
+	}
+	
+	[presentingViewController presentViewController:alertController animated:YES completion:NULL];
 }
 
 - (void)handleAdministratorCode:(NSString *)code error:(NSError **)error
@@ -368,18 +373,22 @@ NSString *const MVCCellID = @"kMVCCellID";
 	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:1]]) {
 		
 		//--Location Selection Code
-		if ([RPReferenceHandler hasMultiLocation]) {
-			RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
-			locationSelectionVC.delegate = self;
-			RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
-			[self presentViewController:navigationHolder animated:YES completion:NULL];
-		} else {
-			*error = [NSError errorWithDomain:@"Administrator Error" code:-2101 userInfo:nil];
+		if ([[RPAccountManager sharedManager] isAuthenticated]) {
+			if ([RPReferenceHandler hasMultiLocation]) {
+				RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
+				locationSelectionVC.delegate = self;
+				RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:locationSelectionVC];
+				[self presentViewController:navigationHolder animated:YES completion:NULL];
+			} else {
+				*error = [NSError errorWithDomain:@"Administrator Error" code:-2101 userInfo:nil];
+			}
 		}
 	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:2]]) {
 		
 		//--Logout Code
-		[RPAuthenticationHandler logout];
+		if ([[RPAccountManager sharedManager] isAuthenticated]) {
+			[RPAuthenticationHandler logout];
+		}
 	} else {
 		*error = [NSError errorWithDomain:@"Administrator Error" code:-2102 userInfo:nil];
 	}
@@ -388,6 +397,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)displayLoginScreen
 {
 	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
+	loginViewController.administratorDelegate = self;
 	[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
 }
 
