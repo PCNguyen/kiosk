@@ -253,6 +253,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[self.menuSelectionView reloadData];
 	
+	self.kioskViewController = nil; //--reset kiosk view controller to update the URL
+	
 	if (!self.presentedViewController || [self kioskPresent]) {
 		if ([[RPAccountManager sharedManager] isAuthenticated]) {
 			[self validateSources];
