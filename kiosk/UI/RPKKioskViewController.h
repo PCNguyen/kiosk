@@ -8,8 +8,19 @@
 
 #import "RPKTimedWebViewController.h"
 
+@class RPKKioskViewController;
+
+@protocol RPKKioskViewControllerDelegate <NSObject>
+
+@optional
+- (void)kioskViewControllerShouldClearInformation;
+
+@end
+
 @interface RPKKioskViewController : RPKTimedWebViewController
 
 @property (nonatomic, assign) BOOL kioskOnly;
+
+@property (nonatomic, weak) id <RPKKioskViewControllerDelegate>delegate;
 
 @end

@@ -170,7 +170,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 /********************************
  *  RPKMenuViewController
  ********************************/
-@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate, RPKAdministratorDelegate>
+@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate, RPKAdministratorDelegate, RPKKioskViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;
@@ -476,6 +476,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 		//--do not create new kiosk view if we want to retain
 		if (!_kioskViewController) {
 			self.kioskViewController = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
+			self.kioskViewController.delegate = self;
 			self.kioskViewController.administratorDelegate = self;
 		}
 	
@@ -506,6 +507,13 @@ NSString *const MVCCellID = @"kMVCCellID";
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:kioskViewController];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
 	}];
+}
+
+#pragma mark - RPKKioskViewController Delegate
+
+- (void)kioskViewControllerShouldClearInformation
+{
+	self.kioskViewController = nil;
 }
 
 #pragma mark - Secured View

@@ -39,12 +39,18 @@
 	[event addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[event send];
 
-	[self logout];
+	[self logoutAndClear:YES];
 }
 
-- (void)logout
+- (void)logoutAndClear:(BOOL)shouldClear
 {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[self dismissViewControllerAnimated:YES completion:^{
+		if (shouldClear) {
+			if ([self.delegate respondsToSelector:@selector(kioskViewControllerShouldClearInformation)]) {
+				[self.delegate kioskViewControllerShouldClearInformation];
+			}
+		}
+	}];
 }
 
 - (void)loadView
@@ -55,12 +61,14 @@
 	self.webView.scrollView.backgroundColor = [UIColor ul_colorWithR:1 G:42 B:106 A:1.0f];
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidLoad];
+	[super viewWillAppear:animated];
 	
 	if (self.kioskOnly) {
 		self.navigationItem.rightBarButtonItem = nil;
+	} else {
+		self.navigationItem.rightBarButtonItem = [self logoutButton];
 	}
 }
 
@@ -106,7 +114,7 @@
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[expiredEvent send];
 	
-	[self logout];
+	[self logoutAndClear:YES];
 }
 
 #pragma mark - WKWebView Delegate
@@ -134,11 +142,17 @@
 		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 		[submitEvent send];
+		self.navigationItem.rightBarButtonItem = nil;
 		
 		if (!self.kioskOnly) {
-			[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
+			[self performSelector:@selector(doneSubmiting) withObject:nil afterDelay:3.0f];
 		}
 	}
+}
+
+- (void)doneSubmiting
+{
+	[self logoutAndClear:NO];
 }
 
 @end
