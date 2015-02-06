@@ -19,7 +19,8 @@
 #define kAnalyticValueNO					@"NO"
 
 typedef enum {
-	AnalyticEventAppLaunch = 0,
+	AnalyticEventUserActivity = 0,
+	AnalyticEventAppLaunch,
 	AnalyticEventLogin,
 	AnalyticEventSilentLogin,
 	AnalyticEventLocationSelect,
@@ -38,7 +39,8 @@ typedef enum {
 } RPAnalyticEventName;
 
 typedef enum {
-	PropertyErrorCode = 0,
+	PropertyActivityName = 0,
+	PropertyErrorCode,
 	PropertyErrorDescription,
 	PropertyAppLaunchIsAuthenticated,
 	PropertyLoginSuccess,

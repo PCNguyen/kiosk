@@ -168,100 +168,106 @@
 + (NSString *)eventName:(RPAnalyticEventName)eventName
 {
 	switch (eventName) {
+		case AnalyticEventUserActivity:
+			return @"K_User Activity";
+			break;
 		case AnalyticEventAppLaunch:
-			return @"App Launch";
+			return @"K_App Launch";
 			break;
 		case AnalyticEventGoogleWidgetFailed:
-			return @"Google Widget Failed";
+			return @"K_Google Widget Failed";
 			break;
 		case AnalyticEventLogin:
-			return @"Login";
+			return @"K_Login";
 			break;
 		case AnalyticEventSilentLogin:
-			return @"Silent Login";
+			return @"K_Silent Login";
 			break;
 		case AnalyticEventSourceCancel:
-			return @"Source Cancel";
+			return @"K_Source Cancel";
 			break;
 		case AnalyticEventSourceContinue:
-			return @"Source Continue";
+			return @"K_Source Continue";
 			break;
 		case AnalyticEventSourceIdle:
-			return @"Source Idle";
+			return @"K_Source Idle";
 			break;
 		case AnalyticEventSourceLoaded:
-			return @"Source Loaded";
+			return @"K_Source Loaded";
 			break;
 		case AnalyticEventSourceLogout:
-			return @"Source Logout";
+			return @"K_Source Logout";
 			break;
 		case AnalyticEventSourceSelect:
-			return @"Source Select";
+			return @"K_Source Select";
 			break;
 		case AnalyticEventSourceSignin:
-			return @"Source Signin";
+			return @"K_Source Signin";
 			break;
 		case AnalyticEventSourceSubmit:
-			return @"Source Submit";
+			return @"K_Source Submit";
 			break;
 		case AnalyticEventSourceTimeOut:
-			return @"Source Timeout";
+			return @"K_Source Timeout";
 			break;
 		case AnalyticEventWebPageLoad:
-			return @"Web Page Load";
+			return @"K_Web Page Load";
 			break;
 		case AnalyticEventWebPageReload:
-			return @"Web Page Reload";
+			return @"K_Web Page Reload";
 			break;
 		case AnalyticEventLocationSelect:
-			return @"Location Select";
+			return @"K_Location Select";
 			break;
 		default:
 			break;
 	};
 	
-	return @"Unknown Event";
+	return @"K_Unknown Event";
 }
 
 + (NSString *)eventProperty:(RPAnalyticEventProperty)eventProperty
 {
 	switch (eventProperty) {
+		case PropertyActivityName:
+			return @"k_activity name";
+			break;
 		case PropertyAppLaunchIsAuthenticated:
-			return @"is authenticated";
+			return @"k_is authenticated";
 			break;
 		case PropertyErrorCode:
-			return @"error code";
+			return @"k_error code";
 			break;
 		case PropertyErrorDescription:
-			return @"error description";
+			return @"k_error description";
 			break;
 		case PropertyWebPageHost:
-			return @"web host";
+			return @"k_web host";
 			break;
 		case PropertyLoginSuccess:
 		case PropertySourceSigninSucess:
-			return @"login success";
+			return @"k_login success";
 			break;
 		case PropertySourceName:
-			return @"source name";
+			return @"k_source name";
 			break;
 		case PropertySourcePageDidLoad:
-			return @"page did load";
+			return @"k_page did load";
 			break;
 		case PropertySourcePageWillLoad:
-			return @"page will load";
+			return @"k_page will load";
 			break;
 		case PropertySourceTimeLoad:
-			return @"source time load";
+			return @"k_source time load";
 			break;
 		case PropertyWebPageName:
-			return @"web page name";
+			return @"k_web page name";
 			break;
 		default:
 			break;
 	};
 	
-	return @"unknown property";
+	return @"k_unknown property";
 }
 
 @end
