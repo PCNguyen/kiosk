@@ -183,6 +183,15 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 	
 	if (userAccount) {
 		
+		//--analytic
+		RPKPreferenceStorage *preferenceStorage = [[RPKPreferenceStorage alloc] init];
+		Location *location = [preferenceStorage selectedLocation];
+		if (location) {
+			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount] location:location];
+		} else {
+			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount]];
+		}
+		
 		[RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticatedNotification object:nil];
 		
 		//--scheduler

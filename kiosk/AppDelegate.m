@@ -46,14 +46,6 @@
 			[RPNotificationCenter postNotificationName:AuthenticationHandlerAuthenticationRequiredNotification object:nil];
 		}
 	} else {
-		RPKPreferenceStorage *preferenceStorage = [[RPKPreferenceStorage alloc] init];
-		Location *location = [preferenceStorage selectedLocation];
-		if (location) {
-			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount] location:location];
-		} else {
-			[RPKAnalyticEvent registerSuperPropertiesForUser:[[RPAccountManager sharedManager] userAccount]];
-		}
-		
 		[RPAuthenticationHandler handleAuthenticatedAccount];
 	}
 	
