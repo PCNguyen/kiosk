@@ -157,6 +157,11 @@
 	} else {
 		[[Mixpanel sharedInstance] track:eventName];
 	}
+	
+	NSString *userEvent = [[self class] eventName:AnalyticEventUserActivity];
+	NSString *userEventProperty = [[self class] eventProperty:PropertyActivityName];
+	
+	[[Mixpanel sharedInstance] track:userEvent properties:@{userEventProperty:eventName}];
 }
 
 + (void)sendEvent:(RPAnalyticEventName)eventName
