@@ -137,8 +137,7 @@
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 		[submitEvent send];
 		
-		[userContentController removeScriptMessageHandlerForName:kKVCSubmitDetectMessage];
-		[self logout];
+		[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
 	}
 }
 
