@@ -159,9 +159,12 @@
 	}
 	
 	NSString *userEvent = [[self class] eventName:AnalyticEventUserActivity];
-	NSString *userEventProperty = [[self class] eventProperty:PropertyActivityName];
+	NSString *userActivityName = [[self class] eventProperty:PropertyActivityName];
+	__block NSMutableDictionary *userActivityProperties = [NSMutableDictionary dictionary];
+	[userActivityProperties setValue:eventName forKey:userActivityName];
+	[userActivityProperties addEntriesFromDictionary:self.eventProperties];
 	
-	[[Mixpanel sharedInstance] track:userEvent properties:@{userEventProperty:eventName}];
+	[[Mixpanel sharedInstance] track:userEvent properties:userActivityProperties];
 }
 
 + (void)sendEvent:(RPAnalyticEventName)eventName
