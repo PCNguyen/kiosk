@@ -13,6 +13,7 @@ static BOOL keyRefreshLock;
 
 extern NSString *const AuthenticationHandlerAuthenticatedNotification;
 extern NSString *const AuthenticationHandlerAuthenticationRequiredNotification;
+extern NSString *const AuthenticationHandlerLogoutNotification;
 
 @interface RPAuthenticationHandler : RPNetworkHandler
 
@@ -22,6 +23,7 @@ extern NSString *const AuthenticationHandlerAuthenticationRequiredNotification;
 + (void)handleAuthenticatedAccount;
 
 + (BOOL)canHandleSilentLogin;
-+ (void)wipeSilentLoginInfo;
++ (void)wipeAccount;
++ (void)logout;
 
 @end

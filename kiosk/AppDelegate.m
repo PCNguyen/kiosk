@@ -30,7 +30,7 @@
 	application.idleTimerDisabled = YES;
 	
 	//--uncomment this if we need to clear keychain
-//	[RPAuthenticationHandler wipeSilentLoginInfo];
+//	[RPAuthenticationHandler wipeAccount];
 //	[RPReferenceHandler wipePreferenceData];
 	
 	[RPKAnalyticEvent configure];

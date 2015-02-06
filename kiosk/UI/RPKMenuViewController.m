@@ -353,6 +353,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)handleAdministratorCode:(NSString *)code error:(NSError **)error
 {
 	if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:0]]) {
+		
+		//--Exit Single App Code
 		UIAccessibilityRequestGuidedAccessSession(NO, ^(BOOL success) {
 			if (success) {
 				NSLog(@"Exit Single App Mode");
@@ -364,6 +366,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 			}
 		});
 	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:1]]) {
+		
+		//--Location Selection Code
 		if ([RPReferenceHandler hasMultiLocation]) {
 			RPLocationSelectionViewController *locationSelectionVC = [[RPLocationSelectionViewController alloc] init];
 			locationSelectionVC.delegate = self;
@@ -372,9 +376,19 @@ NSString *const MVCCellID = @"kMVCCellID";
 		} else {
 			*error = [NSError errorWithDomain:@"Administrator Error" code:-2101 userInfo:nil];
 		}
+	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:2]]) {
+		
+		//--Logout Code
+		[RPAuthenticationHandler logout];
 	} else {
 		*error = [NSError errorWithDomain:@"Administrator Error" code:-2102 userInfo:nil];
 	}
+}
+
+- (void)displayLoginScreen
+{
+	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
+	[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
 }
 
 #pragma mark - RPLocationSelectionView Delegate
@@ -504,8 +518,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 #pragma mark - Notification
 
 - (void)handleAuthenticationNeededNotification:(NSNotification *)notification {
-	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
-	[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
+	[self displayLoginScreen];
 }
 
 - (void)handleAuthenticatedNotification:(NSNotification *)notification {
@@ -519,12 +532,19 @@ NSString *const MVCCellID = @"kMVCCellID";
 	}
 }
 
+- (void)handleLogoutNotification:(NSNotification *)notification {
+	[self displayLoginScreen];
+}
+
 - (void)registerNotification
 {
 	[RPNotificationCenter registerObject:self
 					 forNotificationName:AuthenticationHandlerAuthenticationRequiredNotification
 								 handler:@selector(handleAuthenticationNeededNotification:)
 							   parameter:nil];
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:AuthenticationHandlerLogoutNotification
+								 handler:@selector(handleLogoutNotification:) parameter:nil];
 }
 
 - (void)unRegisterNotification

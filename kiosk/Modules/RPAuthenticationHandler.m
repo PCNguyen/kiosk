@@ -27,6 +27,7 @@ NSString *const RPAuthenticationHandlerActivityBeginNotification = @" RPAuthenti
 NSString *const RPAuthenticationHandlerActivityCompleteNotification = @"RPAuthenticationHandlerActivityCompleteNotification";
 NSString *const AuthenticationHandlerAuthenticatedNotification = @"AuthenticationHandlerAuthenticatedNotification";
 NSString *const AuthenticationHandlerAuthenticationRequiredNotification = @"AuthenticationHandlerAuthenticationRequiredNotification";
+NSString *const AuthenticationHandlerLogoutNotification = @"AuthenticationHandlerLogoutNotification";
 
 NSString *const AHUserIDKey = @"AHUserIDKey";
 NSString *const AHUserEmailKey = @"AHUserEmailKey";
@@ -208,9 +209,20 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 	}
 }
 
-+ (void)wipeSilentLoginInfo
++ (void)wipeAccount
 {
 	[JNKeychain deleteValueForKey:AHUserInfoKey];
+}
+
++ (void)logout
+{
+	if (!logoutLock) {
+		[RPScheduleHandler unScheduleAllServices];
+		[self updateAccount:nil];
+		[RPReferenceHandler wipePreferenceData];
+		[RPKAnalyticEvent registerSuperProperties];
+		[RPNotificationCenter postNotificationName:AuthenticationHandlerLogoutNotification object:nil];
+	}
 }
 
 @end
