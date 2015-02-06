@@ -74,6 +74,7 @@ typedef enum {
 @property (nonatomic, strong) UIButton *cancelButton;
 
 @property (nonatomic, assign) NSInteger popupTryCount;
+@property (nonatomic, assign) __block BOOL submitButtonTapped;
 
 /**
  *  view to mask the keyboard
@@ -233,6 +234,13 @@ typedef enum {
 
 - (void)handleLogoutItemTapped:(id)sender
 {
+	if (self.submitButtonTapped) {
+		//--since we can't precisely determine this
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+		[submitEvent send];
+	}
+	
 	RPKAnalyticEvent *logoutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout];
 	[logoutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[logoutEvent send];
@@ -671,6 +679,7 @@ typedef enum {
 		_submitButton.alpha = 0.0f;
 		__weak RPKGoogleViewController *selfPointer = self;
 		_submitButton.actionBlock = ^{
+			selfPointer.submitButtonTapped = YES;
 			[selfPointer.doneTask start];
 		};
 		
