@@ -313,6 +313,9 @@ typedef enum {
 	
 	if (!didCancel) {
 		self.pageWillLoad = [self googlePageForURL:navigationAction.request.URL];
+		if (self.pageWillLoad == GooglePageGplusWidget) {
+			self.pageDidLoad = GooglePageGplusWidget;
+		}
 		decisionHandler(WKNavigationActionPolicyAllow);
 	}
 }
@@ -400,20 +403,7 @@ typedef enum {
 			break;
 		
 		case GooglePageGplusWidget:
-		{
-			[self.popupTask stop];
-			[self.submitButton setActive:YES];
-			[self hideLoading];
-			[self toggleCustomViewForGooglePage:YES];
-			
-			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin sessionID:self.sessionID];
-			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
-			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
-			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
-			[signinEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
-
-			[signinEvent send];
-		} break;
+			break;
 	
 		case GooglePageCustomError: //--javascript, we don't have will load event for this
 			break;
@@ -479,8 +469,20 @@ typedef enum {
 			[self performSelector:@selector(handleGoogleSignUp) withObject:nil afterDelay:10.0f];
 		} break;
 		
-		case GooglePageGplusWidget: //--we don't have widget did load hook
-			break;
+		case GooglePageGplusWidget: {
+			[self.popupTask stop];
+			[self.submitButton setActive:YES];
+			[self hideLoading];
+			[self toggleCustomViewForGooglePage:YES];
+			
+			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin sessionID:self.sessionID];
+			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
+			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
+			[signinEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
+			[signinEvent send];
+			
+		} break;
 			
 		case GooglePageCustomError: {
 			[self.popupTask stop];
@@ -539,7 +541,7 @@ typedef enum {
 	if (!_popupTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_popupTask = [[ALScheduledTask alloc] initWithTaskInterval:2 taskBlock:^{
-			if (selfPointer.pageWillLoad != GooglePageGplusWidget) {
+			if (selfPointer.pageDidLoad != GooglePageGplusWidget) {
 				[selfPointer executePopupScript];
 			}
 		}];
@@ -825,14 +827,14 @@ typedef enum {
 
 - (void)handleKeyboardDidShowNotification:(NSNotification *)notification
 {
-	if (self.pageWillLoad == GooglePageGplusWidget) {
+	if (self.pageDidLoad == GooglePageGplusWidget) {
 		[self addKeyboardMask];
 	}
 }
 
 - (void)handleKeyboardWillShowNotification:(NSNotification *)notification
 {
-	if (self.pageWillLoad == GooglePageGplusWidget) {
+	if (self.pageDidLoad == GooglePageGplusWidget) {
 		self.googleTop.constant = -100.0f;
 		self.submitTop.constant = 495.0f;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
@@ -848,7 +850,7 @@ typedef enum {
 
 - (void)handleKeyboardWillHideNotification:(NSNotification *)notification
 {
-	if (self.pageWillLoad == GooglePageGplusWidget) {
+	if (self.pageDidLoad == GooglePageGplusWidget) {
 		self.submitTop.constant = 840;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
