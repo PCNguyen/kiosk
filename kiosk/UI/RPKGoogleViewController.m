@@ -97,6 +97,7 @@ typedef enum {
  */
 @property (nonatomic, strong) NSDate *dateLoaded;
 @property (nonatomic, strong) NSDate *dateSignIn;
+@property (nonatomic, strong) NSString *sessionID;
 
 @end
 
@@ -172,6 +173,7 @@ typedef enum {
 	[self registerNotification];
 	
 	self.dateLoaded = [NSDate date];
+	self.sessionID = [[NSUUID UUID] UUIDString];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -244,12 +246,12 @@ typedef enum {
 {
 	if (self.submitButtonTapped) {
 		//--since we can't precisely determine this
-		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit sessionID:self.sessionID];
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 		[submitEvent send];
 	}
 	
-	RPKAnalyticEvent *logoutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout];
+	RPKAnalyticEvent *logoutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout sessionID:self.sessionID];
 	[logoutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[logoutEvent send];
 	
@@ -271,7 +273,7 @@ typedef enum {
 
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
-	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle];
+	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle sessionID:self.sessionID];
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[expiredEvent send];
 	
@@ -404,7 +406,7 @@ typedef enum {
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
 			
-			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
+			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin sessionID:self.sessionID];
 			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
 			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
@@ -442,7 +444,7 @@ typedef enum {
 		case GooglePageAccountLogin:
 		{
 			[self hideLoading];
-			RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
+			RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded sessionID:self.sessionID];
 			[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			NSTimeInterval timeLoad = abs([self.dateLoaded timeIntervalSinceNow]);
 			[sourceLoadedEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
@@ -453,7 +455,7 @@ typedef enum {
 		{
 			[self toggleCustomViewForLoginScreen:YES];
 			[self hideLoading];
-			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
+			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin sessionID:self.sessionID];
 			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInFailed];
 			[signinEvent send];
@@ -469,7 +471,7 @@ typedef enum {
 		case GooglePageGplusSignup: {
 			[self.popupTask stop];
 			[self hideLoading];
-			RPKAnalyticEvent *signUpEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventWebPageLoad];
+			RPKAnalyticEvent *signUpEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventWebPageLoad sessionID:self.sessionID];
 			[signUpEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signUpEvent addProperty:PropertyWebPageName value:kAnalyticWebPageSignUp];
 			[signUpEvent send];
@@ -483,7 +485,7 @@ typedef enum {
 		case GooglePageCustomError: {
 			[self.popupTask stop];
 			[self hideLoading];
-			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut];
+			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut sessionID:self.sessionID];
 			[timedOutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[timedOutEvent send];
 		} break;
@@ -524,7 +526,7 @@ typedef enum {
 		[self displayThankyouPage];
 		[self performSelector:@selector(logout) withObject:nil afterDelay:5.0f];
 		
-		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit sessionID:self.sessionID];
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 		[submitEvent send];
 	}
@@ -731,7 +733,7 @@ typedef enum {
 
 - (void)handleCancelButtonTapped:(id)sender
 {
-	RPKAnalyticEvent *cancelEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceCancel];
+	RPKAnalyticEvent *cancelEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceCancel sessionID:self.sessionID];
 	[cancelEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 	[cancelEvent send];
 	
