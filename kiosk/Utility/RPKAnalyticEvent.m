@@ -134,6 +134,13 @@
 	return event;
 }
 
++ (instancetype)analyticEvent:(RPAnalyticEventName)eventName sessionID:(NSString *)sessionID
+{
+	RPKAnalyticEvent *event = [[RPKAnalyticEvent alloc] initWithEventName:eventName];
+	[event addProperty:PropertySessionID value:sessionID];
+	return event;
+}
+
 - (void)addProperty:(RPAnalyticEventProperty)property value:(NSString *)value
 {
 	[self.eventProperties setValue:value forKey:[[self class] eventProperty:property]];
@@ -239,6 +246,9 @@
 	switch (eventProperty) {
 		case PropertyActivityName:
 			return @"k_activity name";
+			break;
+		case PropertySessionID:
+			return @"k_session id";
 			break;
 		case PropertyAppLaunchIsAuthenticated:
 			return @"k_is authenticated";

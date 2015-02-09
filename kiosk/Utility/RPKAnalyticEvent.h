@@ -40,6 +40,7 @@ typedef enum {
 
 typedef enum {
 	PropertyActivityName = 0,
+	PropertySessionID,
 	PropertyErrorCode,
 	PropertyErrorDescription,
 	PropertyAppLaunchIsAuthenticated,
@@ -98,6 +99,16 @@ typedef enum {
  *  @return a preconfigured analytic event
  */
 + (instancetype)analyticEvent:(RPAnalyticEventName)eventName;
+
+/**
+ *  Create an event that is grouped within a session ID
+ *
+ *  @param eventName the event name
+ *  @param sessionID the session ID to correlate with other events
+ *
+ *  @return the preconfigured analytic event
+ */
++ (instancetype)analyticEvent:(RPAnalyticEventName)eventName sessionID:(NSString *)sessionID;
 
 /**
  *  Adding property to an event
