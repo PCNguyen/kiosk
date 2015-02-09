@@ -14,7 +14,12 @@
 @interface RPKKioskViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong) RPKMaskButton *submitButton;
-@property (nonatomic, assign) BOOL kioskLoaded;
+@property (nonatomic, assign) BOOL kioskLoaded; //--to handle server error
+
+/**
+ *  For analytic purpose
+ */
+@property (nonatomic, strong) NSString *sessionID;
 
 @end
 
@@ -35,7 +40,7 @@
 
 - (void)handleLogoutItemTapped:(id)sender
 {
-	RPKAnalyticEvent *event = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout];
+	RPKAnalyticEvent *event = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLogout sessionID:self.sessionID];
 	[event addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[event send];
 
@@ -70,6 +75,9 @@
 	} else {
 		self.navigationItem.rightBarButtonItem = [self logoutButton];
 	}
+	
+	//--create new session
+	self.sessionID = nil;
 }
 
 - (WKWebViewConfiguration *)webConfiguration
@@ -110,7 +118,7 @@
 
 - (void)expirationViewControllerTimeExpired:(RPKExpirationViewController *)expirationViewController
 {
-	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle];
+	RPKAnalyticEvent *expiredEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceIdle sessionID:self.sessionID];
 	[expiredEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[expiredEvent send];
 	
@@ -128,7 +136,7 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
 	[self hideLoading];
-	RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
+	RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded sessionID:self.sessionID];
 	[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 	[sourceLoadedEvent send];
 	self.kioskLoaded = YES;
@@ -139,10 +147,13 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
 	if ([message.name isEqualToString:kKVCSubmitDetectMessage] && self.kioskLoaded) {
-		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit];
+		RPKAnalyticEvent *submitEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSubmit sessionID:self.sessionID];
 		[submitEvent addProperty:PropertySourceName value:kAnalyticSourceKiosk];
 		[submitEvent send];
 		self.navigationItem.rightBarButtonItem = nil;
+		
+		//--create new session
+		self.sessionID = nil;
 		
 		if (!self.kioskOnly) {
 			[self performSelector:@selector(doneSubmiting) withObject:nil afterDelay:3.0f];
@@ -153,6 +164,17 @@
 - (void)doneSubmiting
 {
 	[self logoutAndClear:NO];
+}
+
+#pragma mark - Analytic
+
+- (NSString *)sessionID
+{
+	if (!_sessionID) {
+		_sessionID = [[NSUUID UUID] UUIDString];
+	}
+	
+	return _sessionID;
 }
 
 @end
