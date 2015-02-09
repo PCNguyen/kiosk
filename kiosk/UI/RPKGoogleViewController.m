@@ -92,6 +92,12 @@ typedef enum {
 @property (nonatomic, assign) RPKGooglePage pageWillLoad;
 @property (nonatomic, assign) RPKGooglePage pageDidLoad;
 
+/**
+ *  For analytic purpose
+ */
+@property (nonatomic, strong) NSDate *dateLoaded;
+@property (nonatomic, strong) NSDate *dateSignIn;
+
 @end
 
 @implementation RPKGoogleViewController
@@ -164,6 +170,8 @@ typedef enum {
 	self.popupTryCount = 0;
 	
 	[self registerNotification];
+	
+	self.dateLoaded = [NSDate date];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -375,6 +383,7 @@ typedef enum {
 		case GooglePageAccountAuthentication:
 			[self toggleCustomViewForLoginScreen:NO];
 			[self showLoading];
+			self.dateSignIn = [NSDate date];
 			break;
 			
 		case GooglePageGplus:
@@ -398,6 +407,9 @@ typedef enum {
 			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin];
 			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
+			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
+			[signinEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
+
 			[signinEvent send];
 		} break;
 	
@@ -432,6 +444,8 @@ typedef enum {
 			[self hideLoading];
 			RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded];
 			[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			NSTimeInterval timeLoad = abs([self.dateLoaded timeIntervalSinceNow]);
+			[sourceLoadedEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[sourceLoadedEvent send];
 		} break;
 			
