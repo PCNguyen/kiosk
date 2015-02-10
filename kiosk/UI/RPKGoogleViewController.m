@@ -489,6 +489,8 @@ typedef enum {
 			[self hideLoading];
 			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut sessionID:self.sessionID];
 			[timedOutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
+			[timedOutEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[timedOutEvent send];
 		} break;
 			
