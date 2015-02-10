@@ -59,7 +59,7 @@
 {
 	__weak RPKLayoutManager *selfPointer = self;
 	
-	Reachability *connectivityMonitor = [Reachability reachabilityWithHostName:@"www.google.com"];
+	Reachability *connectivityMonitor = [Reachability reachabilityWithHostname:@"www.google.com"];
 	connectivityMonitor.reachableBlock = ^(Reachability *monitor) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			UIViewController *presentingViewController = [selfPointer mainNavigationController];
