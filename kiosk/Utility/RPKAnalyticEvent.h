@@ -32,10 +32,7 @@ typedef enum {
 	AnalyticEventSourceLogout,
 	AnalyticEventSourceTimeOut,
 	AnalyticEventSourceIdle,
-	AnalyticEventSourceContinue,
 	AnalyticEventWebPageLoad,
-	AnalyticEventWebPageReload,
-	AnalyticEventGoogleWidgetFailed,
 } RPAnalyticEventName;
 
 typedef enum {

@@ -189,9 +189,6 @@
 		case AnalyticEventAppLaunch:
 			return @"K_App Launch";
 			break;
-		case AnalyticEventGoogleWidgetFailed:
-			return @"K_Google Widget Failed";
-			break;
 		case AnalyticEventLogin:
 			return @"K_Login";
 			break;
@@ -200,9 +197,6 @@
 			break;
 		case AnalyticEventSourceCancel:
 			return @"K_Source Cancel";
-			break;
-		case AnalyticEventSourceContinue:
-			return @"K_Source Continue";
 			break;
 		case AnalyticEventSourceIdle:
 			return @"K_Source Idle";
@@ -227,9 +221,6 @@
 			break;
 		case AnalyticEventWebPageLoad:
 			return @"K_Web Page Load";
-			break;
-		case AnalyticEventWebPageReload:
-			return @"K_Web Page Reload";
 			break;
 		case AnalyticEventLocationSelect:
 			return @"K_Location Select";
