@@ -610,8 +610,9 @@
 		0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuItem.m; sourceTree = "<group>"; };
 		0FD805CC1A5D979500EE1AD6 /* RPKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKView.h; sourceTree = "<group>"; };
 		0FD805CD1A5D979500EE1AD6 /* RPKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKView.m; sourceTree = "<group>"; };
-		A54E7477F06A4189BAD439F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -696,8 +697,8 @@
 				0FA0ABB51A40ABE1007AA263 /* kiosk */,
 				0FA0ABCF1A40ABE1007AA263 /* kioskTests */,
 				0FA0ABB41A40ABE1007AA263 /* Products */,
-				A54E7477F06A4189BAD439F9 /* Pods.xcconfig */,
 				C9509CDA336D4DA3A9089C5C /* Frameworks */,
+				CBDD01CD7FD50275098885BB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1169,6 +1170,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CBDD01CD7FD50275098885BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */,
+				39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1257,7 +1267,7 @@
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
 					0F6F7C6A1A7C52660084755D = {
-						DevelopmentTeam = Z2EXNP9RZT;
+						DevelopmentTeam = EE57RVF7T8;
 					};
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1427,7 +1437,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		0FA045AF1A8458D500386BE1 /* Check Pods Manifest.lock */ = {
@@ -1811,13 +1821,48 @@
 /* Begin XCBuildConfiguration section */
 		0F6F7CEB1A7C52660084755D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
+			baseConfigurationReference = D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Kiosk QA-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-AppSDK\"",
+					"-l\"Pods-JNKeychain\"",
+					"-l\"Pods-JWGCircleCounter\"",
+					"-l\"Pods-Mixpanel\"",
+					"-l\"Pods-PQFCustomLoaders\"",
+					"-l\"Pods-Reachability\"",
+					"-l\"Pods-TTTAttributedLabel\"",
+					"-l\"Pods-UIColor+FlatColors\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "Kiosk QA";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1826,13 +1871,48 @@
 		};
 		0F6F7CEC1A7C52660084755D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
+			baseConfigurationReference = 39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Kiosk QA-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-AppSDK\"",
+					"-l\"Pods-JNKeychain\"",
+					"-l\"Pods-JWGCircleCounter\"",
+					"-l\"Pods-Mixpanel\"",
+					"-l\"Pods-PQFCustomLoaders\"",
+					"-l\"Pods-Reachability\"",
+					"-l\"Pods-TTTAttributedLabel\"",
+					"-l\"Pods-UIColor+FlatColors\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "Kiosk QA";
 				PROVISIONING_PROFILE = "1a072aad-3909-4b25-b679-20c234d852fd";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1841,7 +1921,6 @@
 		};
 		0FA0462D1A8458D500386BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1856,7 +1935,6 @@
 		};
 		0FA0462E1A8458D500386BE1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1949,7 +2027,6 @@
 		};
 		0FA0ABD71A40ABE1007AA263 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1964,7 +2041,6 @@
 		};
 		0FA0ABD81A40ABE1007AA263 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54E7477F06A4189BAD439F9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
