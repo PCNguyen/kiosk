@@ -1,4 +1,4 @@
-pod 'AppSDK', :git => 'https://github.com/PCNguyen/AppSDK.git'
+pod 'AppSDK', :git => 'https://github.com/reputation/ios-sdk.git'
 pod 'Mixpanel', '~> 2.3.5'
 pod 'AFNetworking'
 pod 'PQFCustomLoaders'
