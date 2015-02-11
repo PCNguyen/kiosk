@@ -24,129 +24,10 @@
 		0F063AE91A6EFE940092F607 /* icon_lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE21A6EFE940092F607 /* icon_lock_small.png */; };
 		0F063AEB1A6EFE940092F607 /* logo_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE41A6EFE940092F607 /* logo_reputation.png */; };
 		0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
-		0F1473231A804812001D1C16 /* googleJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1473221A804812001D1C16 /* googleJS.js */; };
 		0F1473241A804812001D1C16 /* googleJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1473221A804812001D1C16 /* googleJS.js */; };
 		0F1932F51A5F38950083B96E /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
 		0F49877B1A4A21BE0083F850 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
 		0F6F7C691A7C4A0F0084755D /* RPKNoConnectivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */; };
-		0F6F7C6D1A7C52660084755D /* RPKGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */; };
-		0F6F7C6E1A7C52660084755D /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1651A686AC80011EAC9 /* TApplicationException.m */; };
-		0F6F7C6F1A7C52660084755D /* RPKTimedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */; };
-		0F6F7C701A7C52660084755D /* RPKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */; };
-		0F6F7C711A7C52660084755D /* RPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1CB1A6885220011EAC9 /* RPService.m */; };
-		0F6F7C721A7C52660084755D /* TTransportException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E17E1A686AC80011EAC9 /* TTransportException.m */; };
-		0F6F7C731A7C52660084755D /* RPNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D41A6886080011EAC9 /* RPNotificationCenter.m */; };
-		0F6F7C741A7C52660084755D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
-		0F6F7C751A7C52660084755D /* RPKHMACHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A21A686EF30011EAC9 /* RPKHMACHTTPClient.m */; };
-		0F6F7C761A7C52660084755D /* UserPreference+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2051A6889D70011EAC9 /* UserPreference+RP.m */; };
-		0F6F7C771A7C52660084755D /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
-		0F6F7C781A7C52660084755D /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
-		0F6F7C791A7C52660084755D /* RPAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1CE1A6885670011EAC9 /* RPAccountManager.m */; };
-		0F6F7C7A1A7C52660084755D /* RPKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A011A7705C600C25788 /* RPKTableViewCell.m */; };
-		0F6F7C7B1A7C52660084755D /* UIApplication+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D71A68862A0011EAC9 /* UIApplication+RP.m */; };
-		0F6F7C7C1A7C52660084755D /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
-		0F6F7C7D1A7C52660084755D /* Mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1931A686B350011EAC9 /* Mobile.m */; };
-		0F6F7C7E1A7C52660084755D /* RPKExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */; };
-		0F6F7C7F1A7C52660084755D /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
-		0F6F7C801A7C52660084755D /* TNSStreamTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1791A686AC80011EAC9 /* TNSStreamTransport.m */; };
-		0F6F7C811A7C52660084755D /* RPScheduleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1DA1A6886540011EAC9 /* RPScheduleHandler.m */; };
-		0F6F7C821A7C52660084755D /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
-		0F6F7C831A7C52660084755D /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
-		0F6F7C841A7C52660084755D /* UIFont+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AD21A6EE8790092F607 /* UIFont+RPK.m */; };
-		0F6F7C851A7C52660084755D /* TSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1631A686AC80011EAC9 /* TSocketServer.m */; };
-		0F6F7C861A7C52660084755D /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
-		0F6F7C871A7C52660084755D /* RPKNoConnectivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */; };
-		0F6F7C881A7C52660084755D /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E16D1A686AC80011EAC9 /* Base64.m */; };
-		0F6F7C891A7C52660084755D /* RPKPreferenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BA1A6883540011EAC9 /* RPKPreferenceStorage.m */; };
-		0F6F7C8A1A7C52660084755D /* RPAccountStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B81A6883540011EAC9 /* RPAccountStorage.m */; };
-		0F6F7C8B1A7C52660084755D /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1671A686AC80011EAC9 /* TException.m */; };
-		0F6F7C8C1A7C52660084755D /* RPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D11A6885810011EAC9 /* RPNetworkManager.m */; };
-		0F6F7C8D1A7C52660084755D /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
-		0F6F7C8E1A7C52660084755D /* MobileCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1971A686B350011EAC9 /* MobileCommon.m */; };
-		0F6F7C8F1A7C52660084755D /* NSAttributedString+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1FF1A6889460011EAC9 /* NSAttributedString+RP.m */; };
-		0F6F7C901A7C52660084755D /* RPKSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPKSelection.m */; };
-		0F6F7C911A7C52660084755D /* RPKServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A41A686EF30011EAC9 /* RPKServiceController.m */; };
-		0F6F7C921A7C52660084755D /* DLAppStorage+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C51A68847E0011EAC9 /* DLAppStorage+RP.m */; };
-		0F6F7C931A7C52660084755D /* RPKLocationSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A041A7708D900C25788 /* RPKLocationSelection.m */; };
-		0F6F7C941A7C52660084755D /* TSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E17B1A686AC80011EAC9 /* TSocketClient.m */; };
-		0F6F7C951A7C52660084755D /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
-		0F6F7C961A7C52660084755D /* MobileAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1951A686B350011EAC9 /* MobileAuth.m */; };
-		0F6F7C971A7C52660084755D /* RPKMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */; };
-		0F6F7C981A7C52660084755D /* RPAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99F31A73155900C25788 /* RPAttributedLabel.m */; };
-		0F6F7C991A7C52660084755D /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
-		0F6F7C9A1A7C52660084755D /* User+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BF1A6883A40011EAC9 /* User+RP.m */; };
-		0F6F7C9B1A7C52660084755D /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
-		0F6F7C9C1A7C52660084755D /* TNSFileHandleTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1771A686AC80011EAC9 /* TNSFileHandleTransport.m */; };
-		0F6F7C9D1A7C52660084755D /* TFramedTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1711A686AC80011EAC9 /* TFramedTransport.m */; };
-		0F6F7C9E1A7C52660084755D /* UIButton+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F91A6888DD0011EAC9 /* UIButton+DynamicHeight.m */; };
-		0F6F7C9F1A7C52660084755D /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
-		0F6F7CA01A7C52660084755D /* NSError+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1AE1A68828A0011EAC9 /* NSError+RP.m */; };
-		0F6F7CA11A7C52660084755D /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
-		0F6F7CA21A7C52660084755D /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
-		0F6F7CA31A7C52660084755D /* UIButton+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F61A6888D50011EAC9 /* UIButton+RP.m */; };
-		0F6F7CA41A7C52660084755D /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1601A686AC80011EAC9 /* TProtocolUtil.m */; };
-		0F6F7CA51A7C52660084755D /* RPAuthenticationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B51A68833B0011EAC9 /* RPAuthenticationHandler.m */; };
-		0F6F7CA61A7C52660084755D /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
-		0F6F7CA71A7C52660084755D /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
-		0F6F7CA81A7C52660084755D /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
-		0F6F7CA91A7C52660084755D /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
-		0F6F7CAA1A7C52660084755D /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1751A686AC80011EAC9 /* TMemoryBuffer.m */; };
-		0F6F7CAB1A7C52660084755D /* RPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E41A6888090011EAC9 /* RPAlertController.m */; };
-		0F6F7CAC1A7C52660084755D /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */; };
-		0F6F7CAD1A7C52660084755D /* RPKAnalyticEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */; };
-		0F6F7CAE1A7C52660084755D /* SearchFilter+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */; };
-		0F6F7CAF1A7C52660084755D /* RPKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFD1A40FBA9007AA263 /* RPKCollectionViewCell.m */; };
-		0F6F7CB01A7C52660084755D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E11A6887DB0011EAC9 /* UIViewController+Alert.m */; };
-		0F6F7CB11A7C52660084755D /* RPLocationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */; };
-		0F6F7CB21A7C52660084755D /* MyExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E16F1A686AC80011EAC9 /* MyExtentions.m */; };
-		0F6F7CB31A7C52660084755D /* RPKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE81A40B87B007AA263 /* RPKViewController.m */; };
-		0F6F7CB41A7C52660084755D /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E15A1A686AC80011EAC9 /* TBinaryProtocol.m */; };
-		0F6F7CB51A7C52660084755D /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
-		0F6F7CB61A7C52660084755D /* RPLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B21A68832E0011EAC9 /* RPLoginService.m */; };
-		0F6F7CB71A7C52660084755D /* UITextField+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1FC1A6888E70011EAC9 /* UITextField+RP.m */; };
-		0F6F7CB81A7C52660084755D /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
-		0F6F7CB91A7C52660084755D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
-		0F6F7CBA1A7C52660084755D /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E15D1A686AC80011EAC9 /* TProtocolException.m */; };
-		0F6F7CBB1A7C52660084755D /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1801A686AC80011EAC9 /* TSharedProcessorFactory.m */; };
-		0F6F7CBC1A7C52660084755D /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
-		0F6F7CBD1A7C52660084755D /* UIImage+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */; };
-		0F6F7CBE1A7C52660084755D /* RPNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C81A6884E30011EAC9 /* RPNetworkHandler.m */; };
-		0F6F7CBF1A7C52660084755D /* RPKAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A61A686EF30011EAC9 /* RPKAppService.m */; };
-		0F6F7CC01A7C52660084755D /* UIView+LayoutFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E71A6888270011EAC9 /* UIView+LayoutFrame.m */; };
-		0F6F7CC11A7C52660084755D /* RPKOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E19E1A686EF30011EAC9 /* RPKOperation.m */; };
-		0F6F7CC21A7C52660084755D /* THTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1731A686AC80011EAC9 /* THTTPClient.m */; };
-		0F6F7CC31A7C52660084755D /* RPPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2021A6889C40011EAC9 /* RPPreferenceService.m */; };
-		0F6F7CC41A7C52660084755D /* RPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99F61A73158000C25788 /* RPLink.m */; };
-		0F6F7CC51A7C52660084755D /* UILabel+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1EA1A6888500011EAC9 /* UILabel+DynamicHeight.m */; };
-		0F6F7CC61A7C52660084755D /* RPReferenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1DE1A68869B0011EAC9 /* RPReferenceHandler.m */; };
-		0F6F7CC71A7C52660084755D /* RPKServiceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A01A686EF30011EAC9 /* RPKServiceOperation.m */; };
-		0F6F7CC91A7C52660084755D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
-		0F6F7CCA1A7C52660084755D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
-		0F6F7CCC1A7C52660084755D /* museosans_100_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */; };
-		0F6F7CCD1A7C52660084755D /* icon_small_google_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FA1A76EEFC00C25788 /* icon_small_google_disabled.png */; };
-		0F6F7CCE1A7C52660084755D /* bg_source_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99F81A76EEFC00C25788 /* bg_source_button.png */; };
-		0F6F7CCF1A7C52660084755D /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC211A705A3900A4EF9A /* icon_refresh.png */; };
-		0F6F7CD01A7C52660084755D /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC201A705A3900A4EF9A /* icon_back.png */; };
-		0F6F7CD11A7C52660084755D /* museosans_100-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */; };
-		0F6F7CD21A7C52660084755D /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99F91A76EEFC00C25788 /* icon_quicksurvey.png */; };
-		0F6F7CD31A7C52660084755D /* museosans_300_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC91A6EE80B0092F607 /* museosans_300_italic-museosans.ttf */; };
-		0F6F7CD41A7C52660084755D /* museosans_300-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACA1A6EE80B0092F607 /* museosans_300-museosans.ttf */; };
-		0F6F7CD51A7C52660084755D /* icon_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC221A705A3900A4EF9A /* icon_x.png */; };
-		0F6F7CD61A7C52660084755D /* museosans_500_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACB1A6EE80B0092F607 /* museosans_500_italic-museosans.ttf */; };
-		0F6F7CD71A7C52660084755D /* museosans_500-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACC1A6EE80B0092F607 /* museosans_500-museosans.ttf */; };
-		0F6F7CD81A7C52660084755D /* museosans_700_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACD1A6EE80B0092F607 /* museosans_700_italic-museosans.ttf */; };
-		0F6F7CD91A7C52660084755D /* museosans_700-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */; };
-		0F6F7CDA1A7C52660084755D /* logo_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE41A6EFE940092F607 /* logo_reputation.png */; };
-		0F6F7CDB1A7C52660084755D /* icon_lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE21A6EFE940092F607 /* icon_lock_small.png */; };
-		0F6F7CDC1A7C52660084755D /* museosans_900_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */; };
-		0F6F7CDD1A7C52660084755D /* museosans_900-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */; };
-		0F6F7CDF1A7C52660084755D /* icon_gplus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE01A6EFE940092F607 /* icon_gplus.png */; };
-		0F6F7CE11A7C52660084755D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
-		0F6F7CE41A7C52660084755D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABDE1A40AE8A007AA263 /* Podfile */; };
-		0F6F7CE51A7C52660084755D /* icon_lock_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE11A6EFE940092F607 /* icon_lock_large.png */; };
-		0F6F7CE61A7C52660084755D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
-		0F6F7CE71A7C52660084755D /* bg_locked_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ADE1A6EFE940092F607 /* bg_locked_text.png */; };
-		0F6F7CE81A7C52660084755D /* icon_small_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FB1A76EEFC00C25788 /* icon_small_google.png */; };
 		0F79DC1F1A70556100A4EF9A /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
 		0F79DC231A705A3900A4EF9A /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC201A705A3900A4EF9A /* icon_back.png */; };
 		0F79DC241A705A3900A4EF9A /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC211A705A3900A4EF9A /* icon_refresh.png */; };
@@ -154,128 +35,7 @@
 		0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
 		0F79DC2B1A7063F200A4EF9A /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
 		0F8FDBFF1A7B2ED40043A3D0 /* RPKAnalyticEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */; };
-		0FA0441E1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
 		0FA0441F1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
-		0FA045B11A8458D500386BE1 /* RPKGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEE1A40C0E9007AA263 /* RPKGoogleViewController.m */; };
-		0FA045B21A8458D500386BE1 /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1651A686AC80011EAC9 /* TApplicationException.m */; };
-		0FA045B31A8458D500386BE1 /* RPKTimedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */; };
-		0FA045B41A8458D500386BE1 /* RPKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABEB1A40C0AF007AA263 /* RPKMenuViewController.m */; };
-		0FA045B51A8458D500386BE1 /* RPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1CB1A6885220011EAC9 /* RPService.m */; };
-		0FA045B61A8458D500386BE1 /* TTransportException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E17E1A686AC80011EAC9 /* TTransportException.m */; };
-		0FA045B71A8458D500386BE1 /* RPNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D41A6886080011EAC9 /* RPNotificationCenter.m */; };
-		0FA045B81A8458D500386BE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
-		0FA045B91A8458D500386BE1 /* RPKHMACHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A21A686EF30011EAC9 /* RPKHMACHTTPClient.m */; };
-		0FA045BA1A8458D500386BE1 /* UserPreference+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2051A6889D70011EAC9 /* UserPreference+RP.m */; };
-		0FA045BB1A8458D500386BE1 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
-		0FA045BC1A8458D500386BE1 /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
-		0FA045BD1A8458D500386BE1 /* RPAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1CE1A6885670011EAC9 /* RPAccountManager.m */; };
-		0FA045BE1A8458D500386BE1 /* RPKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A011A7705C600C25788 /* RPKTableViewCell.m */; };
-		0FA045BF1A8458D500386BE1 /* UIApplication+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D71A68862A0011EAC9 /* UIApplication+RP.m */; };
-		0FA045C01A8458D500386BE1 /* RPKSecuredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */; };
-		0FA045C11A8458D500386BE1 /* Mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1931A686B350011EAC9 /* Mobile.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045C21A8458D500386BE1 /* RPKExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */; };
-		0FA045C31A8458D500386BE1 /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
-		0FA045C41A8458D500386BE1 /* TNSStreamTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1791A686AC80011EAC9 /* TNSStreamTransport.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045C51A8458D500386BE1 /* RPScheduleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1DA1A6886540011EAC9 /* RPScheduleHandler.m */; };
-		0FA045C61A8458D500386BE1 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
-		0FA045C71A8458D500386BE1 /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
-		0FA045C81A8458D500386BE1 /* UIFont+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AD21A6EE8790092F607 /* UIFont+RPK.m */; };
-		0FA045C91A8458D500386BE1 /* TSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1631A686AC80011EAC9 /* TSocketServer.m */; };
-		0FA045CA1A8458D500386BE1 /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
-		0FA045CB1A8458D500386BE1 /* RPKNoConnectivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */; };
-		0FA045CC1A8458D500386BE1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E16D1A686AC80011EAC9 /* Base64.m */; };
-		0FA045CD1A8458D500386BE1 /* RPKPreferenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BA1A6883540011EAC9 /* RPKPreferenceStorage.m */; };
-		0FA045CE1A8458D500386BE1 /* RPAccountStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B81A6883540011EAC9 /* RPAccountStorage.m */; };
-		0FA045CF1A8458D500386BE1 /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1671A686AC80011EAC9 /* TException.m */; };
-		0FA045D01A8458D500386BE1 /* RPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1D11A6885810011EAC9 /* RPNetworkManager.m */; };
-		0FA045D11A8458D500386BE1 /* RPKCookieHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */; };
-		0FA045D21A8458D500386BE1 /* MobileCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1971A686B350011EAC9 /* MobileCommon.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045D31A8458D500386BE1 /* NSAttributedString+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1FF1A6889460011EAC9 /* NSAttributedString+RP.m */; };
-		0FA045D41A8458D500386BE1 /* RPKSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E91A71E73F00C25788 /* RPKSelection.m */; };
-		0FA045D51A8458D500386BE1 /* RPKServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A41A686EF30011EAC9 /* RPKServiceController.m */; };
-		0FA045D61A8458D500386BE1 /* DLAppStorage+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C51A68847E0011EAC9 /* DLAppStorage+RP.m */; };
-		0FA045D71A8458D500386BE1 /* RPKLocationSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF9A041A7708D900C25788 /* RPKLocationSelection.m */; };
-		0FA045D81A8458D500386BE1 /* TSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E17B1A686AC80011EAC9 /* TSocketClient.m */; };
-		0FA045D91A8458D500386BE1 /* RPKReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */; };
-		0FA045DA1A8458D500386BE1 /* MobileAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1951A686B350011EAC9 /* MobileAuth.m */; };
-		0FA045DB1A8458D500386BE1 /* RPKMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF51A40C859007AA263 /* RPKMenuDataSource.m */; };
-		0FA045DC1A8458D500386BE1 /* RPAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99F31A73155900C25788 /* RPAttributedLabel.m */; };
-		0FA045DD1A8458D500386BE1 /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
-		0FA045DE1A8458D500386BE1 /* User+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1BF1A6883A40011EAC9 /* User+RP.m */; };
-		0FA045DF1A8458D500386BE1 /* UIColor+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1932F41A5F38950083B96E /* UIColor+RPK.m */; };
-		0FA045E01A8458D500386BE1 /* TNSFileHandleTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1771A686AC80011EAC9 /* TNSFileHandleTransport.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045E11A8458D500386BE1 /* TFramedTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1711A686AC80011EAC9 /* TFramedTransport.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045E21A8458D500386BE1 /* UIButton+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F91A6888DD0011EAC9 /* UIButton+DynamicHeight.m */; };
-		0FA045E31A8458D500386BE1 /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
-		0FA045E41A8458D500386BE1 /* NSError+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1AE1A68828A0011EAC9 /* NSError+RP.m */; };
-		0FA045E51A8458D500386BE1 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
-		0FA045E61A8458D500386BE1 /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
-		0FA045E71A8458D500386BE1 /* UIButton+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F61A6888D50011EAC9 /* UIButton+RP.m */; };
-		0FA045E81A8458D500386BE1 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1601A686AC80011EAC9 /* TProtocolUtil.m */; };
-		0FA045E91A8458D500386BE1 /* RPAuthenticationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B51A68833B0011EAC9 /* RPAuthenticationHandler.m */; };
-		0FA045EA1A8458D500386BE1 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
-		0FA045EB1A8458D500386BE1 /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
-		0FA045EC1A8458D500386BE1 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
-		0FA045ED1A8458D500386BE1 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
-		0FA045EE1A8458D500386BE1 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1751A686AC80011EAC9 /* TMemoryBuffer.m */; };
-		0FA045EF1A8458D500386BE1 /* RPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E41A6888090011EAC9 /* RPAlertController.m */; };
-		0FA045F01A8458D500386BE1 /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */; };
-		0FA045F11A8458D500386BE1 /* RPKAnalyticEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */; };
-		0FA045F21A8458D500386BE1 /* SearchFilter+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */; };
-		0FA045F31A8458D500386BE1 /* RPKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABFD1A40FBA9007AA263 /* RPKCollectionViewCell.m */; };
-		0FA045F41A8458D500386BE1 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E11A6887DB0011EAC9 /* UIViewController+Alert.m */; };
-		0FA045F51A8458D500386BE1 /* RPLocationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EC1A71E84000C25788 /* RPLocationSelectionViewController.m */; };
-		0FA045F61A8458D500386BE1 /* MyExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E16F1A686AC80011EAC9 /* MyExtentions.m */; };
-		0FA045F71A8458D500386BE1 /* RPKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE81A40B87B007AA263 /* RPKViewController.m */; };
-		0FA045F81A8458D500386BE1 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E15A1A686AC80011EAC9 /* TBinaryProtocol.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA045F91A8458D500386BE1 /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
-		0FA045FA1A8458D500386BE1 /* RPLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1B21A68832E0011EAC9 /* RPLoginService.m */; };
-		0FA045FB1A8458D500386BE1 /* UITextField+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1FC1A6888E70011EAC9 /* UITextField+RP.m */; };
-		0FA045FC1A8458D500386BE1 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
-		0FA045FD1A8458D500386BE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
-		0FA045FE1A8458D500386BE1 /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E15D1A686AC80011EAC9 /* TProtocolException.m */; };
-		0FA045FF1A8458D500386BE1 /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1801A686AC80011EAC9 /* TSharedProcessorFactory.m */; };
-		0FA046001A8458D500386BE1 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
-		0FA046011A8458D500386BE1 /* UIImage+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */; };
-		0FA046021A8458D500386BE1 /* RPNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C81A6884E30011EAC9 /* RPNetworkHandler.m */; };
-		0FA046031A8458D500386BE1 /* RPKAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A61A686EF30011EAC9 /* RPKAppService.m */; };
-		0FA046041A8458D500386BE1 /* UIView+LayoutFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E71A6888270011EAC9 /* UIView+LayoutFrame.m */; };
-		0FA046051A8458D500386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
-		0FA046061A8458D500386BE1 /* RPKOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E19E1A686EF30011EAC9 /* RPKOperation.m */; };
-		0FA046071A8458D500386BE1 /* THTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1731A686AC80011EAC9 /* THTTPClient.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		0FA046081A8458D500386BE1 /* RPPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2021A6889C40011EAC9 /* RPPreferenceService.m */; };
-		0FA046091A8458D500386BE1 /* RPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99F61A73158000C25788 /* RPLink.m */; };
-		0FA0460A1A8458D500386BE1 /* UILabel+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1EA1A6888500011EAC9 /* UILabel+DynamicHeight.m */; };
-		0FA0460B1A8458D500386BE1 /* RPReferenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1DE1A68869B0011EAC9 /* RPReferenceHandler.m */; };
-		0FA0460C1A8458D500386BE1 /* RPKServiceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1A01A686EF30011EAC9 /* RPKServiceOperation.m */; };
-		0FA0460E1A8458D500386BE1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
-		0FA0460F1A8458D500386BE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
-		0FA046111A8458D500386BE1 /* museosans_100_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */; };
-		0FA046121A8458D500386BE1 /* icon_small_google_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FA1A76EEFC00C25788 /* icon_small_google_disabled.png */; };
-		0FA046131A8458D500386BE1 /* bg_source_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99F81A76EEFC00C25788 /* bg_source_button.png */; };
-		0FA046141A8458D500386BE1 /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC211A705A3900A4EF9A /* icon_refresh.png */; };
-		0FA046151A8458D500386BE1 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC201A705A3900A4EF9A /* icon_back.png */; };
-		0FA046161A8458D500386BE1 /* museosans_100-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */; };
-		0FA046171A8458D500386BE1 /* icon_quicksurvey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99F91A76EEFC00C25788 /* icon_quicksurvey.png */; };
-		0FA046181A8458D500386BE1 /* museosans_300_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AC91A6EE80B0092F607 /* museosans_300_italic-museosans.ttf */; };
-		0FA046191A8458D500386BE1 /* museosans_300-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACA1A6EE80B0092F607 /* museosans_300-museosans.ttf */; };
-		0FA0461A1A8458D500386BE1 /* icon_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC221A705A3900A4EF9A /* icon_x.png */; };
-		0FA0461B1A8458D500386BE1 /* museosans_500_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACB1A6EE80B0092F607 /* museosans_500_italic-museosans.ttf */; };
-		0FA0461C1A8458D500386BE1 /* museosans_500-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACC1A6EE80B0092F607 /* museosans_500-museosans.ttf */; };
-		0FA0461D1A8458D500386BE1 /* museosans_700_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACD1A6EE80B0092F607 /* museosans_700_italic-museosans.ttf */; };
-		0FA0461E1A8458D500386BE1 /* museosans_700-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACE1A6EE80B0092F607 /* museosans_700-museosans.ttf */; };
-		0FA0461F1A8458D500386BE1 /* logo_reputation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE41A6EFE940092F607 /* logo_reputation.png */; };
-		0FA046201A8458D500386BE1 /* icon_lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE21A6EFE940092F607 /* icon_lock_small.png */; };
-		0FA046211A8458D500386BE1 /* museosans_900_italic-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ACF1A6EE80B0092F607 /* museosans_900_italic-museosans.ttf */; };
-		0FA046221A8458D500386BE1 /* museosans_900-museosans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AD01A6EE80B0092F607 /* museosans_900-museosans.ttf */; };
-		0FA046231A8458D500386BE1 /* icon_gplus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE01A6EFE940092F607 /* icon_gplus.png */; };
-		0FA046241A8458D500386BE1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
-		0FA046251A8458D500386BE1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABDE1A40AE8A007AA263 /* Podfile */; };
-		0FA046261A8458D500386BE1 /* icon_lock_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063AE11A6EFE940092F607 /* icon_lock_large.png */; };
-		0FA046271A8458D500386BE1 /* googleJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F1473221A804812001D1C16 /* googleJS.js */; };
-		0FA046281A8458D500386BE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
-		0FA046291A8458D500386BE1 /* bg_locked_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F063ADE1A6EFE940092F607 /* bg_locked_text.png */; };
-		0FA0462A1A8458D500386BE1 /* icon_small_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBF99FB1A76EEFC00C25788 /* icon_small_google.png */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
@@ -367,7 +127,6 @@
 		0FD805C11A5D18A900EE1AD6 /* RPKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C01A5D18A900EE1AD6 /* RPKWebViewController.m */; };
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
-		B91F3340072D49079E4D21EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7FA71AABB4ADB94A6204D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,8 +166,7 @@
 		0F49877A1A4A21BE0083F850 /* RPKCookieHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKCookieHandler.m; sourceTree = "<group>"; };
 		0F6F7C671A7C4A0F0084755D /* RPKNoConnectivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNoConnectivityController.h; sourceTree = "<group>"; };
 		0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNoConnectivityController.m; sourceTree = "<group>"; };
-		0F6F7CED1A7C52660084755D /* Kiosk QA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kiosk QA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk QA-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationGitRepo/r4e-mobile-kiosk/Kiosk QA-Info.plist"; sourceTree = "<absolute>"; };
+		0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk QA-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationRepo/r4e-mobile-kiosk/kiosk/Kiosk QA-Info.plist"; sourceTree = "<absolute>"; };
 		0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKReloadView.h; sourceTree = "<group>"; };
 		0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKReloadView.m; sourceTree = "<group>"; };
 		0F79DC201A705A3900A4EF9A /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
@@ -422,8 +180,7 @@
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
 		0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskDataSource.h; sourceTree = "<group>"; };
 		0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskDataSource.m; sourceTree = "<group>"; };
-		0FA0462F1A8458D500386BE1 /* Kiosk Review.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kiosk Review.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FA046301A8458D500386BE1 /* Kiosk Review-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk Review-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationGitRepo/r4e-mobile-kiosk/Kiosk Review-Info.plist"; sourceTree = "<absolute>"; };
+		0FA046301A8458D500386BE1 /* Kiosk Review-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk Review-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationRepo/r4e-mobile-kiosk/kiosk/Kiosk Review-Info.plist"; sourceTree = "<absolute>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kiosk-Info.plist"; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -610,36 +367,14 @@
 		0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMenuItem.m; sourceTree = "<group>"; };
 		0FD805CC1A5D979500EE1AD6 /* RPKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKView.h; sourceTree = "<group>"; };
 		0FD805CD1A5D979500EE1AD6 /* RPKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKView.m; sourceTree = "<group>"; };
-		39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		BAA7FA71AABB4ADB94A6204D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0F6F7CC81A7C52660084755D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0F6F7CC91A7C52660084755D /* WebKit.framework in Frameworks */,
-				0F6F7CCA1A7C52660084755D /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0FA0460D1A8458D500386BE1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0FA0460E1A8458D500386BE1 /* WebKit.framework in Frameworks */,
-				0FA0460F1A8458D500386BE1 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0FA0ABB01A40ABE1007AA263 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */,
-				B91F3340072D49079E4D21EB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,8 +442,6 @@
 			children = (
 				0FA0ABB31A40ABE1007AA263 /* Kiosk.app */,
 				0FA0ABCC1A40ABE1007AA263 /* KioskTests.xctest */,
-				0F6F7CED1A7C52660084755D /* Kiosk QA.app */,
-				0FA0462F1A8458D500386BE1 /* Kiosk Review.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1165,7 +898,6 @@
 			isa = PBXGroup;
 			children = (
 				0FA0AC191A489300007AA263 /* WebKit.framework */,
-				BAA7FA71AABB4ADB94A6204D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1173,8 +905,6 @@
 		CBDD01CD7FD50275098885BB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */,
-				39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1182,53 +912,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0F6F7C6A1A7C52660084755D /* Kiosk QA */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0F6F7CEA1A7C52660084755D /* Build configuration list for PBXNativeTarget "Kiosk QA" */;
-			buildPhases = (
-				0F6F7C6B1A7C52660084755D /* Check Pods Manifest.lock */,
-				0F6F7C6C1A7C52660084755D /* Sources */,
-				0F6F7CC81A7C52660084755D /* Frameworks */,
-				0F6F7CCB1A7C52660084755D /* Resources */,
-				0F6F7CE91A7C52660084755D /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Kiosk QA";
-			productName = kiosk;
-			productReference = 0F6F7CED1A7C52660084755D /* Kiosk QA.app */;
-			productType = "com.apple.product-type.application";
-		};
-		0FA045AE1A8458D500386BE1 /* Kiosk Review */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0FA0462C1A8458D500386BE1 /* Build configuration list for PBXNativeTarget "Kiosk Review" */;
-			buildPhases = (
-				0FA045AF1A8458D500386BE1 /* Check Pods Manifest.lock */,
-				0FA045B01A8458D500386BE1 /* Sources */,
-				0FA0460D1A8458D500386BE1 /* Frameworks */,
-				0FA046101A8458D500386BE1 /* Resources */,
-				0FA0462B1A8458D500386BE1 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Kiosk Review";
-			productName = kiosk;
-			productReference = 0FA0462F1A8458D500386BE1 /* Kiosk Review.app */;
-			productType = "com.apple.product-type.application";
-		};
 		0FA0ABB21A40ABE1007AA263 /* Kiosk */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0FA0ABD61A40ABE1007AA263 /* Build configuration list for PBXNativeTarget "Kiosk" */;
 			buildPhases = (
-				982F68D230A8474D84E5532E /* Check Pods Manifest.lock */,
 				0FA0ABAF1A40ABE1007AA263 /* Sources */,
 				0FA0ABB01A40ABE1007AA263 /* Frameworks */,
 				0FA0ABB11A40ABE1007AA263 /* Resources */,
-				1CB4BFDE8EA94159830284E1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1266,9 +956,6 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
-					0F6F7C6A1A7C52660084755D = {
-						DevelopmentTeam = EE57RVF7T8;
-					};
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = Z2EXNP9RZT;
@@ -1292,81 +979,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0F6F7C6A1A7C52660084755D /* Kiosk QA */,
 				0FA0ABB21A40ABE1007AA263 /* Kiosk */,
-				0FA045AE1A8458D500386BE1 /* Kiosk Review */,
 				0FA0ABCB1A40ABE1007AA263 /* KioskTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0F6F7CCB1A7C52660084755D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0F6F7CCC1A7C52660084755D /* museosans_100_italic-museosans.ttf in Resources */,
-				0F6F7CCD1A7C52660084755D /* icon_small_google_disabled.png in Resources */,
-				0F6F7CCE1A7C52660084755D /* bg_source_button.png in Resources */,
-				0F6F7CCF1A7C52660084755D /* icon_refresh.png in Resources */,
-				0F6F7CD01A7C52660084755D /* icon_back.png in Resources */,
-				0F6F7CD11A7C52660084755D /* museosans_100-museosans.ttf in Resources */,
-				0F6F7CD21A7C52660084755D /* icon_quicksurvey.png in Resources */,
-				0F6F7CD31A7C52660084755D /* museosans_300_italic-museosans.ttf in Resources */,
-				0F6F7CD41A7C52660084755D /* museosans_300-museosans.ttf in Resources */,
-				0F6F7CD51A7C52660084755D /* icon_x.png in Resources */,
-				0F6F7CD61A7C52660084755D /* museosans_500_italic-museosans.ttf in Resources */,
-				0F6F7CD71A7C52660084755D /* museosans_500-museosans.ttf in Resources */,
-				0F6F7CD81A7C52660084755D /* museosans_700_italic-museosans.ttf in Resources */,
-				0F6F7CD91A7C52660084755D /* museosans_700-museosans.ttf in Resources */,
-				0F6F7CDA1A7C52660084755D /* logo_reputation.png in Resources */,
-				0F6F7CDB1A7C52660084755D /* icon_lock_small.png in Resources */,
-				0F6F7CDC1A7C52660084755D /* museosans_900_italic-museosans.ttf in Resources */,
-				0F6F7CDD1A7C52660084755D /* museosans_900-museosans.ttf in Resources */,
-				0F6F7CDF1A7C52660084755D /* icon_gplus.png in Resources */,
-				0F6F7CE11A7C52660084755D /* Settings.bundle in Resources */,
-				0F6F7CE41A7C52660084755D /* Podfile in Resources */,
-				0F6F7CE51A7C52660084755D /* icon_lock_large.png in Resources */,
-				0F1473231A804812001D1C16 /* googleJS.js in Resources */,
-				0F6F7CE61A7C52660084755D /* Images.xcassets in Resources */,
-				0F6F7CE71A7C52660084755D /* bg_locked_text.png in Resources */,
-				0F6F7CE81A7C52660084755D /* icon_small_google.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0FA046101A8458D500386BE1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0FA046111A8458D500386BE1 /* museosans_100_italic-museosans.ttf in Resources */,
-				0FA046121A8458D500386BE1 /* icon_small_google_disabled.png in Resources */,
-				0FA046131A8458D500386BE1 /* bg_source_button.png in Resources */,
-				0FA046141A8458D500386BE1 /* icon_refresh.png in Resources */,
-				0FA046151A8458D500386BE1 /* icon_back.png in Resources */,
-				0FA046161A8458D500386BE1 /* museosans_100-museosans.ttf in Resources */,
-				0FA046171A8458D500386BE1 /* icon_quicksurvey.png in Resources */,
-				0FA046181A8458D500386BE1 /* museosans_300_italic-museosans.ttf in Resources */,
-				0FA046191A8458D500386BE1 /* museosans_300-museosans.ttf in Resources */,
-				0FA0461A1A8458D500386BE1 /* icon_x.png in Resources */,
-				0FA0461B1A8458D500386BE1 /* museosans_500_italic-museosans.ttf in Resources */,
-				0FA0461C1A8458D500386BE1 /* museosans_500-museosans.ttf in Resources */,
-				0FA0461D1A8458D500386BE1 /* museosans_700_italic-museosans.ttf in Resources */,
-				0FA0461E1A8458D500386BE1 /* museosans_700-museosans.ttf in Resources */,
-				0FA0461F1A8458D500386BE1 /* logo_reputation.png in Resources */,
-				0FA046201A8458D500386BE1 /* icon_lock_small.png in Resources */,
-				0FA046211A8458D500386BE1 /* museosans_900_italic-museosans.ttf in Resources */,
-				0FA046221A8458D500386BE1 /* museosans_900-museosans.ttf in Resources */,
-				0FA046231A8458D500386BE1 /* icon_gplus.png in Resources */,
-				0FA046241A8458D500386BE1 /* Settings.bundle in Resources */,
-				0FA046251A8458D500386BE1 /* Podfile in Resources */,
-				0FA046261A8458D500386BE1 /* icon_lock_large.png in Resources */,
-				0FA046271A8458D500386BE1 /* googleJS.js in Resources */,
-				0FA046281A8458D500386BE1 /* Images.xcassets in Resources */,
-				0FA046291A8458D500386BE1 /* bg_locked_text.png in Resources */,
-				0FA0462A1A8458D500386BE1 /* icon_small_google.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0FA0ABB11A40ABE1007AA263 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1409,298 +1028,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0F6F7C6B1A7C52660084755D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		0F6F7CE91A7C52660084755D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0FA045AF1A8458D500386BE1 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		0FA0462B1A8458D500386BE1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1CB4BFDE8EA94159830284E1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		982F68D230A8474D84E5532E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		0F6F7C6C1A7C52660084755D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0F6F7C6D1A7C52660084755D /* RPKGoogleViewController.m in Sources */,
-				0F6F7C6E1A7C52660084755D /* TApplicationException.m in Sources */,
-				0F6F7C6F1A7C52660084755D /* RPKTimedWebViewController.m in Sources */,
-				0F6F7C701A7C52660084755D /* RPKMenuViewController.m in Sources */,
-				0F6F7C711A7C52660084755D /* RPService.m in Sources */,
-				0F6F7C721A7C52660084755D /* TTransportException.m in Sources */,
-				0F6F7C731A7C52660084755D /* RPNotificationCenter.m in Sources */,
-				0F6F7C741A7C52660084755D /* AppDelegate.m in Sources */,
-				0F6F7C751A7C52660084755D /* RPKHMACHTTPClient.m in Sources */,
-				0F6F7C761A7C52660084755D /* UserPreference+RP.m in Sources */,
-				0F6F7C771A7C52660084755D /* RPKWebViewController.m in Sources */,
-				0F6F7C781A7C52660084755D /* RPKGoogleMessage.m in Sources */,
-				0F6F7C791A7C52660084755D /* RPAccountManager.m in Sources */,
-				0F6F7C7A1A7C52660084755D /* RPKTableViewCell.m in Sources */,
-				0F6F7C7B1A7C52660084755D /* UIApplication+RP.m in Sources */,
-				0F6F7C7C1A7C52660084755D /* RPKSecuredView.m in Sources */,
-				0F6F7C7D1A7C52660084755D /* Mobile.m in Sources */,
-				0F6F7C7E1A7C52660084755D /* RPKExpirationViewController.m in Sources */,
-				0F6F7C7F1A7C52660084755D /* RPPreferenceDataSource.m in Sources */,
-				0F6F7C801A7C52660084755D /* TNSStreamTransport.m in Sources */,
-				0F6F7C811A7C52660084755D /* RPScheduleHandler.m in Sources */,
-				0F6F7C821A7C52660084755D /* NSBundle+RPK.m in Sources */,
-				0F6F7C831A7C52660084755D /* RPKRestServiceController.m in Sources */,
-				0F6F7C841A7C52660084755D /* UIFont+RPK.m in Sources */,
-				0F6F7C851A7C52660084755D /* TSocketServer.m in Sources */,
-				0F6F7C861A7C52660084755D /* RPLocationSelectionDataSource.m in Sources */,
-				0F6F7C871A7C52660084755D /* RPKNoConnectivityController.m in Sources */,
-				0F6F7C881A7C52660084755D /* Base64.m in Sources */,
-				0F6F7C891A7C52660084755D /* RPKPreferenceStorage.m in Sources */,
-				0F6F7C8A1A7C52660084755D /* RPAccountStorage.m in Sources */,
-				0F6F7C8B1A7C52660084755D /* TException.m in Sources */,
-				0F6F7C8C1A7C52660084755D /* RPNetworkManager.m in Sources */,
-				0F6F7C8D1A7C52660084755D /* RPKCookieHandler.m in Sources */,
-				0F6F7C8E1A7C52660084755D /* MobileCommon.m in Sources */,
-				0F6F7C8F1A7C52660084755D /* NSAttributedString+RP.m in Sources */,
-				0F6F7C901A7C52660084755D /* RPKSelection.m in Sources */,
-				0F6F7C911A7C52660084755D /* RPKServiceController.m in Sources */,
-				0F6F7C921A7C52660084755D /* DLAppStorage+RP.m in Sources */,
-				0F6F7C931A7C52660084755D /* RPKLocationSelection.m in Sources */,
-				0F6F7C941A7C52660084755D /* TSocketClient.m in Sources */,
-				0F6F7C951A7C52660084755D /* RPKReloadView.m in Sources */,
-				0F6F7C961A7C52660084755D /* MobileAuth.m in Sources */,
-				0F6F7C971A7C52660084755D /* RPKMenuDataSource.m in Sources */,
-				0F6F7C981A7C52660084755D /* RPAttributedLabel.m in Sources */,
-				0F6F7C991A7C52660084755D /* RPKMaskButton.m in Sources */,
-				0F6F7C9A1A7C52660084755D /* User+RP.m in Sources */,
-				0F6F7C9B1A7C52660084755D /* UIColor+RPK.m in Sources */,
-				0F6F7C9C1A7C52660084755D /* TNSFileHandleTransport.m in Sources */,
-				0F6F7C9D1A7C52660084755D /* TFramedTransport.m in Sources */,
-				0F6F7C9E1A7C52660084755D /* UIButton+DynamicHeight.m in Sources */,
-				0F6F7C9F1A7C52660084755D /* RPKLayoutManager.m in Sources */,
-				0F6F7CA01A7C52660084755D /* NSError+RP.m in Sources */,
-				0F6F7CA11A7C52660084755D /* NSError+RPK.m in Sources */,
-				0F6F7CA21A7C52660084755D /* RPKNavigationController.m in Sources */,
-				0F6F7CA31A7C52660084755D /* UIButton+RP.m in Sources */,
-				0F6F7CA41A7C52660084755D /* TProtocolUtil.m in Sources */,
-				0F6F7CA51A7C52660084755D /* RPAuthenticationHandler.m in Sources */,
-				0F6F7CA61A7C52660084755D /* RPKKioskViewController.m in Sources */,
-				0F6F7CA71A7C52660084755D /* RPFixedHeaderTableView.m in Sources */,
-				0F6F7CA81A7C52660084755D /* RPKGoogleThankYou.m in Sources */,
-				0F6F7CA91A7C52660084755D /* RPKRequestManager.m in Sources */,
-				0F6F7CAA1A7C52660084755D /* TMemoryBuffer.m in Sources */,
-				0F6F7CAB1A7C52660084755D /* RPAlertController.m in Sources */,
-				0F6F7CAC1A7C52660084755D /* NSBundle+Extension.m in Sources */,
-				0F6F7CAD1A7C52660084755D /* RPKAnalyticEvent.m in Sources */,
-				0F6F7CAE1A7C52660084755D /* SearchFilter+RP.m in Sources */,
-				0F6F7CAF1A7C52660084755D /* RPKCollectionViewCell.m in Sources */,
-				0F6F7CB01A7C52660084755D /* UIViewController+Alert.m in Sources */,
-				0F6F7CB11A7C52660084755D /* RPLocationSelectionViewController.m in Sources */,
-				0F6F7CB21A7C52660084755D /* MyExtentions.m in Sources */,
-				0F6F7CB31A7C52660084755D /* RPKViewController.m in Sources */,
-				0F6F7CB41A7C52660084755D /* TBinaryProtocol.m in Sources */,
-				0F6F7CB51A7C52660084755D /* RPKLoginViewController.m in Sources */,
-				0F6F7CB61A7C52660084755D /* RPLoginService.m in Sources */,
-				0F6F7CB71A7C52660084755D /* UITextField+RP.m in Sources */,
-				0F6F7CB81A7C52660084755D /* RPKView.m in Sources */,
-				0F6F7CB91A7C52660084755D /* main.m in Sources */,
-				0F6F7CBA1A7C52660084755D /* TProtocolException.m in Sources */,
-				0F6F7CBB1A7C52660084755D /* TSharedProcessorFactory.m in Sources */,
-				0F6F7CBC1A7C52660084755D /* RPKMenuItem.m in Sources */,
-				0F6F7CBD1A7C52660084755D /* UIImage+RPK.m in Sources */,
-				0F6F7CBE1A7C52660084755D /* RPNetworkHandler.m in Sources */,
-				0F6F7CBF1A7C52660084755D /* RPKAppService.m in Sources */,
-				0F6F7CC01A7C52660084755D /* UIView+LayoutFrame.m in Sources */,
-				0FA0441E1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */,
-				0F6F7CC11A7C52660084755D /* RPKOperation.m in Sources */,
-				0F6F7CC21A7C52660084755D /* THTTPClient.m in Sources */,
-				0F6F7CC31A7C52660084755D /* RPPreferenceService.m in Sources */,
-				0F6F7CC41A7C52660084755D /* RPLink.m in Sources */,
-				0F6F7CC51A7C52660084755D /* UILabel+DynamicHeight.m in Sources */,
-				0F6F7CC61A7C52660084755D /* RPReferenceHandler.m in Sources */,
-				0F6F7CC71A7C52660084755D /* RPKServiceOperation.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0FA045B01A8458D500386BE1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0FA045B11A8458D500386BE1 /* RPKGoogleViewController.m in Sources */,
-				0FA045B21A8458D500386BE1 /* TApplicationException.m in Sources */,
-				0FA045B31A8458D500386BE1 /* RPKTimedWebViewController.m in Sources */,
-				0FA045B41A8458D500386BE1 /* RPKMenuViewController.m in Sources */,
-				0FA045B51A8458D500386BE1 /* RPService.m in Sources */,
-				0FA045B61A8458D500386BE1 /* TTransportException.m in Sources */,
-				0FA045B71A8458D500386BE1 /* RPNotificationCenter.m in Sources */,
-				0FA045B81A8458D500386BE1 /* AppDelegate.m in Sources */,
-				0FA045B91A8458D500386BE1 /* RPKHMACHTTPClient.m in Sources */,
-				0FA045BA1A8458D500386BE1 /* UserPreference+RP.m in Sources */,
-				0FA045BB1A8458D500386BE1 /* RPKWebViewController.m in Sources */,
-				0FA045BC1A8458D500386BE1 /* RPKGoogleMessage.m in Sources */,
-				0FA045BD1A8458D500386BE1 /* RPAccountManager.m in Sources */,
-				0FA045BE1A8458D500386BE1 /* RPKTableViewCell.m in Sources */,
-				0FA045BF1A8458D500386BE1 /* UIApplication+RP.m in Sources */,
-				0FA045C01A8458D500386BE1 /* RPKSecuredView.m in Sources */,
-				0FA045C11A8458D500386BE1 /* Mobile.m in Sources */,
-				0FA045C21A8458D500386BE1 /* RPKExpirationViewController.m in Sources */,
-				0FA045C31A8458D500386BE1 /* RPPreferenceDataSource.m in Sources */,
-				0FA045C41A8458D500386BE1 /* TNSStreamTransport.m in Sources */,
-				0FA045C51A8458D500386BE1 /* RPScheduleHandler.m in Sources */,
-				0FA045C61A8458D500386BE1 /* NSBundle+RPK.m in Sources */,
-				0FA045C71A8458D500386BE1 /* RPKRestServiceController.m in Sources */,
-				0FA045C81A8458D500386BE1 /* UIFont+RPK.m in Sources */,
-				0FA045C91A8458D500386BE1 /* TSocketServer.m in Sources */,
-				0FA045CA1A8458D500386BE1 /* RPLocationSelectionDataSource.m in Sources */,
-				0FA045CB1A8458D500386BE1 /* RPKNoConnectivityController.m in Sources */,
-				0FA045CC1A8458D500386BE1 /* Base64.m in Sources */,
-				0FA045CD1A8458D500386BE1 /* RPKPreferenceStorage.m in Sources */,
-				0FA045CE1A8458D500386BE1 /* RPAccountStorage.m in Sources */,
-				0FA045CF1A8458D500386BE1 /* TException.m in Sources */,
-				0FA045D01A8458D500386BE1 /* RPNetworkManager.m in Sources */,
-				0FA045D11A8458D500386BE1 /* RPKCookieHandler.m in Sources */,
-				0FA045D21A8458D500386BE1 /* MobileCommon.m in Sources */,
-				0FA045D31A8458D500386BE1 /* NSAttributedString+RP.m in Sources */,
-				0FA045D41A8458D500386BE1 /* RPKSelection.m in Sources */,
-				0FA045D51A8458D500386BE1 /* RPKServiceController.m in Sources */,
-				0FA045D61A8458D500386BE1 /* DLAppStorage+RP.m in Sources */,
-				0FA045D71A8458D500386BE1 /* RPKLocationSelection.m in Sources */,
-				0FA045D81A8458D500386BE1 /* TSocketClient.m in Sources */,
-				0FA045D91A8458D500386BE1 /* RPKReloadView.m in Sources */,
-				0FA045DA1A8458D500386BE1 /* MobileAuth.m in Sources */,
-				0FA045DB1A8458D500386BE1 /* RPKMenuDataSource.m in Sources */,
-				0FA045DC1A8458D500386BE1 /* RPAttributedLabel.m in Sources */,
-				0FA045DD1A8458D500386BE1 /* RPKMaskButton.m in Sources */,
-				0FA045DE1A8458D500386BE1 /* User+RP.m in Sources */,
-				0FA045DF1A8458D500386BE1 /* UIColor+RPK.m in Sources */,
-				0FA045E01A8458D500386BE1 /* TNSFileHandleTransport.m in Sources */,
-				0FA045E11A8458D500386BE1 /* TFramedTransport.m in Sources */,
-				0FA045E21A8458D500386BE1 /* UIButton+DynamicHeight.m in Sources */,
-				0FA045E31A8458D500386BE1 /* RPKLayoutManager.m in Sources */,
-				0FA045E41A8458D500386BE1 /* NSError+RP.m in Sources */,
-				0FA045E51A8458D500386BE1 /* NSError+RPK.m in Sources */,
-				0FA045E61A8458D500386BE1 /* RPKNavigationController.m in Sources */,
-				0FA045E71A8458D500386BE1 /* UIButton+RP.m in Sources */,
-				0FA045E81A8458D500386BE1 /* TProtocolUtil.m in Sources */,
-				0FA045E91A8458D500386BE1 /* RPAuthenticationHandler.m in Sources */,
-				0FA045EA1A8458D500386BE1 /* RPKKioskViewController.m in Sources */,
-				0FA045EB1A8458D500386BE1 /* RPFixedHeaderTableView.m in Sources */,
-				0FA045EC1A8458D500386BE1 /* RPKGoogleThankYou.m in Sources */,
-				0FA045ED1A8458D500386BE1 /* RPKRequestManager.m in Sources */,
-				0FA045EE1A8458D500386BE1 /* TMemoryBuffer.m in Sources */,
-				0FA045EF1A8458D500386BE1 /* RPAlertController.m in Sources */,
-				0FA045F01A8458D500386BE1 /* NSBundle+Extension.m in Sources */,
-				0FA045F11A8458D500386BE1 /* RPKAnalyticEvent.m in Sources */,
-				0FA045F21A8458D500386BE1 /* SearchFilter+RP.m in Sources */,
-				0FA045F31A8458D500386BE1 /* RPKCollectionViewCell.m in Sources */,
-				0FA045F41A8458D500386BE1 /* UIViewController+Alert.m in Sources */,
-				0FA045F51A8458D500386BE1 /* RPLocationSelectionViewController.m in Sources */,
-				0FA045F61A8458D500386BE1 /* MyExtentions.m in Sources */,
-				0FA045F71A8458D500386BE1 /* RPKViewController.m in Sources */,
-				0FA045F81A8458D500386BE1 /* TBinaryProtocol.m in Sources */,
-				0FA045F91A8458D500386BE1 /* RPKLoginViewController.m in Sources */,
-				0FA045FA1A8458D500386BE1 /* RPLoginService.m in Sources */,
-				0FA045FB1A8458D500386BE1 /* UITextField+RP.m in Sources */,
-				0FA045FC1A8458D500386BE1 /* RPKView.m in Sources */,
-				0FA045FD1A8458D500386BE1 /* main.m in Sources */,
-				0FA045FE1A8458D500386BE1 /* TProtocolException.m in Sources */,
-				0FA045FF1A8458D500386BE1 /* TSharedProcessorFactory.m in Sources */,
-				0FA046001A8458D500386BE1 /* RPKMenuItem.m in Sources */,
-				0FA046011A8458D500386BE1 /* UIImage+RPK.m in Sources */,
-				0FA046021A8458D500386BE1 /* RPNetworkHandler.m in Sources */,
-				0FA046031A8458D500386BE1 /* RPKAppService.m in Sources */,
-				0FA046041A8458D500386BE1 /* UIView+LayoutFrame.m in Sources */,
-				0FA046051A8458D500386BE1 /* RPKKioskDataSource.m in Sources */,
-				0FA046061A8458D500386BE1 /* RPKOperation.m in Sources */,
-				0FA046071A8458D500386BE1 /* THTTPClient.m in Sources */,
-				0FA046081A8458D500386BE1 /* RPPreferenceService.m in Sources */,
-				0FA046091A8458D500386BE1 /* RPLink.m in Sources */,
-				0FA0460A1A8458D500386BE1 /* UILabel+DynamicHeight.m in Sources */,
-				0FA0460B1A8458D500386BE1 /* RPReferenceHandler.m in Sources */,
-				0FA0460C1A8458D500386BE1 /* RPKServiceOperation.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0FA0ABAF1A40ABE1007AA263 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1819,134 +1147,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0F6F7CEB1A7C52660084755D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D35C00784AB3B8478BD4D5F9 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Kiosk QA-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
-					"-l\"Pods-AppSDK\"",
-					"-l\"Pods-JNKeychain\"",
-					"-l\"Pods-JWGCircleCounter\"",
-					"-l\"Pods-Mixpanel\"",
-					"-l\"Pods-PQFCustomLoaders\"",
-					"-l\"Pods-Reachability\"",
-					"-l\"Pods-TTTAttributedLabel\"",
-					"-l\"Pods-UIColor+FlatColors\"",
-					"-framework",
-					"\"Accelerate\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"$(inherited)",
-				);
-				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		0F6F7CEC1A7C52660084755D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39B0E748DF299EEF5A4E426C /* Pods.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Kiosk QA-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
-					"-l\"Pods-AppSDK\"",
-					"-l\"Pods-JNKeychain\"",
-					"-l\"Pods-JWGCircleCounter\"",
-					"-l\"Pods-Mixpanel\"",
-					"-l\"Pods-PQFCustomLoaders\"",
-					"-l\"Pods-Reachability\"",
-					"-l\"Pods-TTTAttributedLabel\"",
-					"-l\"Pods-UIColor+FlatColors\"",
-					"-framework",
-					"\"Accelerate\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"$(inherited)",
-				);
-				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "1a072aad-3909-4b25-b679-20c234d852fd";
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
-		0FA0462D1A8458D500386BE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Kiosk Review-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Kiosk Review";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		0FA0462E1A8458D500386BE1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Kiosk Review-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Kiosk Review";
-				PROVISIONING_PROFILE = "0c458a9f-da52-40ed-8e91-5f8dfbebb25b";
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
 		0FA0ABD41A40ABE1007AA263 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2090,24 +1290,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0F6F7CEA1A7C52660084755D /* Build configuration list for PBXNativeTarget "Kiosk QA" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0F6F7CEB1A7C52660084755D /* Debug */,
-				0F6F7CEC1A7C52660084755D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0FA0462C1A8458D500386BE1 /* Build configuration list for PBXNativeTarget "Kiosk Review" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0FA0462D1A8458D500386BE1 /* Debug */,
-				0FA0462E1A8458D500386BE1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		0FA0ABAE1A40ABE1007AA263 /* Build configuration list for PBXProject "Kiosk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
