@@ -9,7 +9,7 @@
 #import "RPKViewController.h"
 #import "RPKMenuDataSource.h"
 
-@interface RPKMenuViewController : RPKViewController <ULViewDataBinding>
+@interface RPKMenuViewController : RPKViewController <ULViewDataBinding, RPKAdministratorDelegate>
 
 - (void)validateSources;
 

@@ -170,7 +170,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 /********************************
  *  RPKMenuViewController
  ********************************/
-@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate, RPKAdministratorDelegate, RPKKioskViewControllerDelegate>
+@interface RPKMenuViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, RPKGoogleViewControllerDelegate, RPLocationSelectionViewControllerDelegate, RPKKioskViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *kioskTitle;
 @property (nonatomic, strong) UICollectionView *menuSelectionView;

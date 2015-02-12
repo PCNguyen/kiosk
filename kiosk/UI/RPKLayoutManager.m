@@ -75,6 +75,7 @@
 	connectivityMonitor.unreachableBlock = ^(Reachability *monitor){
 		dispatch_async(dispatch_get_main_queue(), ^{
 			RPKNoConnectivityController *noConnectivity = [[RPKNoConnectivityController alloc] init];
+			noConnectivity.administratorDelegate = selfPointer.menuViewController;
 			UIViewController *presentingViewController = [selfPointer mainNavigationController];
 			while ([presentingViewController presentedViewController]) {
 				presentingViewController = [presentingViewController presentedViewController];
