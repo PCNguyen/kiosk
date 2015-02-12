@@ -16,4 +16,6 @@ extern NSString *const RPKReachabilityChangedNotification;
 
 - (BOOL)isReachable;
 
+- (void)reset;
+
 @end

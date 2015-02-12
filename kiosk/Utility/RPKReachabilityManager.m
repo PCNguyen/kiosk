@@ -64,4 +64,11 @@ NSString *const RPKReachabilityChangedNotification = @"RPKReachabilityChangedNot
 	return [self.reachabilityMonitor isReachable];
 }
 
+- (void)reset
+{
+	[self.reachabilityMonitor stopNotifier];
+	self.reachabilityMonitor = nil;
+	[self.reachabilityMonitor startNotifier];
+}
+
 @end

@@ -46,7 +46,7 @@
 		_messageLabel.font = [UIFont rpk_thinFontWithSize:40.0f];
 		_messageLabel.textAlignment = NSTextAlignmentCenter;
 		_messageLabel.textColor = [UIColor rpk_darkGray];
-		_messageLabel.text = NSLocalizedString(@"No Connectivity!\nPlease Contact Reputation.com Support", nil);
+		_messageLabel.text = NSLocalizedString(@"No Connectivity!\nWill resume when connection restored.", nil);
 		_messageLabel.numberOfLines = 0;
 		[_messageLabel ul_enableAutoLayout];
 	}

@@ -7,6 +7,8 @@
 //
 
 #import "RPKWebViewController.h"
+#import "RPKReachabilityManager.h"
+#import "RPNotificationCenter.h"
 
 @implementation RPKWebViewController
 
@@ -18,6 +20,11 @@
 	}
 	
 	return self;
+}
+
+- (void)dealloc
+{
+	[self unRegisterNotification];
 }
 
 - (void)loadView
@@ -41,7 +48,14 @@
 {
 	[super viewDidLoad];
 	
-	[self loadRequest];
+	[self registerNotification]
+	;
+	if ([[RPKReachabilityManager sharedManager] isReachable]) {
+		[self loadRequest];
+	} else {
+		//--revalidate reachability
+		[[RPKReachabilityManager sharedManager] reset];
+	}
 }
 
 - (void)loadRequest
@@ -81,6 +95,23 @@
 - (void)handleDoneButtonTapped:(id)sender
 {
 	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)registerNotification
+{
+	[RPNotificationCenter registerObject:self forNotificationName:RPKReachabilityChangedNotification handler:@selector(handleReachabilityChangedNotification:) parameter:nil];
+}
+
+- (void)unRegisterNotification
+{
+	[RPNotificationCenter unRegisterAllNotificationForObject:self];
+}
+
+- (void)handleReachabilityChangedNotification:(NSNotification *)notification
+{
+	if ([[RPKReachabilityManager sharedManager] isReachable]) {
+		[self loadRequest];
+	}
 }
 
 @end
