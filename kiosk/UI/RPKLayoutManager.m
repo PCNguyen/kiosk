@@ -12,6 +12,8 @@
 #import "RPKNavigationController.h"
 #import "RPAuthenticationHandler.h"
 #import "RPKNoConnectivityController.h"
+#import "RPKReachabilityManager.h"
+#import "RPNotificationCenter.h"
 
 #import <Reachability/Reachability.h>
 
@@ -57,37 +59,40 @@
 
 - (void)configureReachability
 {
-	__weak RPKLayoutManager *selfPointer = self;
-	
-	Reachability *connectivityMonitor = [Reachability reachabilityWithHostname:@"www.google.com"];
-	connectivityMonitor.reachableBlock = ^(Reachability *monitor) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			UIViewController *presentingViewController = [selfPointer mainNavigationController];
-			while ([presentingViewController presentedViewController]) {
-				presentingViewController = [presentingViewController presentedViewController];
-				if ([presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
-					[presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-				}
+	[RPNotificationCenter registerObject:self
+					 forNotificationName:RPKReachabilityChangedNotification
+								 handler:@selector(handleReachabilityChangedNotification:)
+							   parameter:nil];
+	[RPKReachabilityManager sharedManager];
+}
+
+- (void)handleReachabilityChangedNotification:(NSNotification *)notification
+{
+	[self toggleNoConnectivityScreen];
+}
+
+- (void)toggleNoConnectivityScreen
+{
+	if ([[RPKReachabilityManager sharedManager] isReachable]) {
+		UIViewController *presentingViewController = [self mainNavigationController];
+		while ([presentingViewController presentedViewController]) {
+			presentingViewController = [presentingViewController presentedViewController];
+			if ([presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
+				[presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 			}
-		});
-	};
-	
-	connectivityMonitor.unreachableBlock = ^(Reachability *monitor){
-		dispatch_async(dispatch_get_main_queue(), ^{
-			RPKNoConnectivityController *noConnectivity = [[RPKNoConnectivityController alloc] init];
-			noConnectivity.administratorDelegate = selfPointer.menuViewController;
-			UIViewController *presentingViewController = [selfPointer mainNavigationController];
-			while ([presentingViewController presentedViewController]) {
-				presentingViewController = [presentingViewController presentedViewController];
-			}
-			
-			if (![presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
-				[presentingViewController presentViewController:noConnectivity animated:YES completion:NULL];
-			}
-		});
-	};
-	
-	[connectivityMonitor startNotifier];
+		}
+	} else {
+		RPKNoConnectivityController *noConnectivity = [[RPKNoConnectivityController alloc] init];
+		noConnectivity.administratorDelegate = self.menuViewController;
+		UIViewController *presentingViewController = [self mainNavigationController];
+		while ([presentingViewController presentedViewController]) {
+			presentingViewController = [presentingViewController presentedViewController];
+		}
+		
+		if (![presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
+			[presentingViewController presentViewController:noConnectivity animated:YES completion:NULL];
+		}
+	}
 }
 
 @end
