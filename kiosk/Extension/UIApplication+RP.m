@@ -71,6 +71,12 @@
 	return administratorCodes;
 }
 
++ (BOOL)rp_googleEnabled
+{
+	BOOL googleEnabled = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Enable Google"];
+	return googleEnabled;
+}
+
 #pragma mark - Private
 
 + (NSString *)serverURLString

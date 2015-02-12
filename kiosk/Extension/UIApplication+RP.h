@@ -28,4 +28,6 @@
 
 + (NSArray *)rp_administratorCodes;
 
++ (BOOL)rp_googleEnabled;
+
 @end

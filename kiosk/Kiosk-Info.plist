@@ -47,6 +47,8 @@
 	<string>443</string>
 	<key>Server URL</key>
 	<string>https://r4e-mobile.reputation.com</string>
+	<key>Enable Google</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>
