@@ -47,7 +47,7 @@
 		}
 	}
 	
-	if (!googleEnabled) {
+	if (!googleEnabled || ![UIApplication rp_googleEnabled]) { //--either server or plist has google disabled
 		googleURLString = @"";
 	}
 	

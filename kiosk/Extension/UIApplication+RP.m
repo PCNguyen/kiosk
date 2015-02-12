@@ -73,7 +73,7 @@
 
 + (BOOL)rp_googleEnabled
 {
-	BOOL googleEnabled = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Enable Google"];
+	BOOL googleEnabled = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"Enable Google"] boolValue];
 	return googleEnabled;
 }
 
