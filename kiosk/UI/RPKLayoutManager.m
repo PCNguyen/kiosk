@@ -81,7 +81,9 @@
 				presentingViewController = [presentingViewController presentedViewController];
 			}
 			
-			[presentingViewController presentViewController:noConnectivity animated:YES completion:NULL];
+			if (![presentingViewController isKindOfClass:[RPKNoConnectivityController class]]) {
+				[presentingViewController presentViewController:noConnectivity animated:YES completion:NULL];
+			}
 		});
 	};
 	
