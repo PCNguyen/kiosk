@@ -85,14 +85,19 @@ function styleMultiPage() {
 * handling selection && element detection
 ******************************************/
 
-function manualClickClassElement(className)
+function manualClickClassElements(className, index)
 {
-	var element = document.getElementsByClassName(className)[0];
+	var element = document.getElementsByClassName(className)[index];
 	var clickEvent = document.createEvent('MouseEvents');
 	clickEvent.initEvent('click',true,true);
 	var cancelled = !element.dispatchEvent(clickEvent);
 	
 	return cancelled;
+}
+
+function manualClickClassElement(className)
+{
+	manualClickClassElements(className, 0)
 }
 
 //--main hook
