@@ -13,6 +13,7 @@
 #import "RPKGoogleMessage.h"
 #import "RPKMaskButton.h"
 #import "RPKGoogleThankYou.h"
+#import "RPKStarRatingView.h"
 
 #import "RPNotificationCenter.h"
 #import "UIApplication+RP.h"
@@ -72,6 +73,7 @@ typedef enum {
 @property (nonatomic, strong) RPKMaskButton *submitButton;
 @property (nonatomic, strong) NSLayoutConstraint *submitTop;
 @property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) RPKStarRatingView *starRatingView;
 
 @property (nonatomic, assign) NSInteger popupTryCount;
 @property (nonatomic, assign) __block BOOL submitButtonTapped;
@@ -162,6 +164,8 @@ typedef enum {
 	
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
+	
+	[self.webView addSubview:self.starRatingView];
 }
 
 - (void)viewDidLoad
@@ -189,6 +193,13 @@ typedef enum {
 	if (_doneTask) {
 		[self.doneTask stop];
 	}
+}
+
+- (void)viewWillLayoutSubviews
+{
+	[super viewWillLayoutSubviews];
+	
+	self.starRatingView.frame = [self starRatingFrame];
 }
 
 #pragma mark - Override
@@ -657,6 +668,7 @@ typedef enum {
 	self.reloadView.alpha = visible;
 	self.googleMessage.alpha = visible;
 	self.cancelButton.alpha = visible;
+	self.starRatingView.alpha = visible;
 }
 
 - (void)handleReloadViewTapped:(id)sender
@@ -764,6 +776,26 @@ typedef enum {
 - (void)hideThankyouPage
 {
 	self.googleThankyou.alpha = 0.0f;
+}
+
+- (CGRect)starRatingFrame
+{
+	CGFloat xOffset = 0.0f;
+	CGFloat yOffset = 0.0f;
+	CGFloat width = 200.0f;
+	CGFloat height = 40.0f;
+	
+	return CGRectMake(xOffset, yOffset, width, height);
+}
+
+- (RPKStarRatingView *)starRatingView
+{
+	if (!_starRatingView) {
+		_starRatingView = [[RPKStarRatingView alloc] initWithMaxRating:5.0f];
+		_starRatingView.alpha = 0.0f;
+	}
+	
+	return _starRatingView;
 }
 
 #pragma mark - Keyboard Cover View

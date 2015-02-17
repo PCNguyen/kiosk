@@ -57,7 +57,7 @@
 {
 	if (!_starLayer) {
 		_starLayer = [CALayer layer];
-		_starLayer.contents = (__bridge id)[UIImage rpk_bundleImageNamed:@"bg_5_stars.png"].CGImage;
+		_starLayer.contents = (__bridge id)([UIImage rpk_bundleImageNamed:@"bg_5_stars.png"].CGImage);
 	}
 	
 	return _starLayer;
@@ -67,7 +67,7 @@
 {
 	if (!_maskLayer) {
 		_maskLayer = [CALayer layer];
-		_maskLayer.contents = (__bridge id)[UIImage rpk_bundleImageNamed:@"bg_5_stars.png"].CGImage;
+		_maskLayer.contents = (__bridge id)([UIImage rpk_bundleImageNamed:@"bg_5_stars.png"].CGImage);
 	}
 	
 	return _maskLayer;
