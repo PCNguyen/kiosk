@@ -123,3 +123,28 @@ function detectDoneDialog() {
 		webkit.messageHandlers.DoneDialogDetect.postMessage('true');
 	}
 }
+
+function triggerRatingClick(starIndex) {
+	//--get the widget iframe
+	iframes = document.getElementsByTagName('iframe');
+	var widgetFrame;
+	for (var i = 0; i<iframes.length; i++) {
+		var sourceURL = iframes[i].getAttribute('src');
+		if (sourceURL && sourceURL.indexOf("widget") > 0) {
+			widgetFrame = iframes[i];
+		}
+	}
+	
+	//--access the doc elements
+	doc = widgetFrame.contentDocument || widgetFrame.contentWindow.document;
+	
+	//--search for the star element
+	var element = doc.getElementsByClassName('b-db-ac')[starIndex];
+	
+	//--simulate the click event
+	var clickEvent = document.createEvent('MouseEvents');
+	clickEvent.initEvent('click',true,true);
+	var cancelled = !element.dispatchEvent(clickEvent);
+	
+	return cancelled;
+}
