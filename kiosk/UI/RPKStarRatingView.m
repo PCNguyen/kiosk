@@ -6,7 +6,7 @@
 
 #import "UIImage+RPK.h"
 
-@interface RPKStarRatingView()
+@interface RPKStarRatingView() <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) CGFloat maxRating;
 @property (nonatomic, assign) CGFloat currentRating;
@@ -40,6 +40,12 @@
 	
 	[self.layer addSublayer:self.starLayer];
 	[self.layer addSublayer:self.tintLayer];
+	
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:NULL];
+	tapGesture.numberOfTapsRequired = 1;
+	tapGesture.numberOfTouchesRequired = 1;
+	tapGesture.delegate = self;
+	[self addGestureRecognizer:tapGesture];
 }
 
 - (void)layoutSubviews
@@ -105,6 +111,17 @@
 + (UIColor *)defaultStarTintColor
 {
 	return [UIColor yellowColor];
+}
+
+#pragma mark - Gesture Recognizer
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+	CGPoint touchPoint = [touch locationInView:self];
+	CGFloat starIndex = ceil(touchPoint.x / (self.bounds.size.width / self.maxRating));
+	[self setCurrentRating:starIndex];
+	
+	return YES;
 }
 
 @end
