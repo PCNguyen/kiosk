@@ -352,6 +352,12 @@
 		0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2091A688A910011EAC9 /* SearchFilter+RP.m */; };
 		0FA0E2421A6D69690011EAC9 /* RPKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */; };
 		0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1E9411A605B8700DC4429 /* Settings.bundle */; };
+		0FA737AF1A93D40E002CB38D /* RPKStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA737AE1A93D40E002CB38D /* RPKStarRatingView.m */; };
+		0FA737B01A93D40E002CB38D /* RPKStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA737AE1A93D40E002CB38D /* RPKStarRatingView.m */; };
+		0FA737B11A93D40E002CB38D /* RPKStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA737AE1A93D40E002CB38D /* RPKStarRatingView.m */; };
+		0FA737B31A93D77F002CB38D /* bg_5_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA737B21A93D77F002CB38D /* bg_5_stars.png */; };
+		0FA737B41A93D77F002CB38D /* bg_5_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA737B21A93D77F002CB38D /* bg_5_stars.png */; };
+		0FA737B51A93D77F002CB38D /* bg_5_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA737B21A93D77F002CB38D /* bg_5_stars.png */; };
 		0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
 		0FBF99E11A71C9E400C25788 /* RPKExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E01A71C9E400C25788 /* RPKExpirationViewController.m */; };
 		0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E31A71E72500C25788 /* RPPreferenceDataSource.m */; };
@@ -582,6 +588,9 @@
 		0FA0E2401A6D69690011EAC9 /* RPKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKLoginViewController.h; sourceTree = "<group>"; };
 		0FA0E2411A6D69690011EAC9 /* RPKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKLoginViewController.m; sourceTree = "<group>"; };
 		0FA1E9411A605B8700DC4429 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		0FA737AD1A93D40E002CB38D /* RPKStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKStarRatingView.h; sourceTree = "<group>"; };
+		0FA737AE1A93D40E002CB38D /* RPKStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKStarRatingView.m; sourceTree = "<group>"; };
+		0FA737B21A93D77F002CB38D /* bg_5_stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_5_stars.png; sourceTree = "<group>"; };
 		0FBF99DC1A71ACCA00C25788 /* RPKGoogleThankYou.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKGoogleThankYou.h; sourceTree = "<group>"; };
 		0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleThankYou.m; sourceTree = "<group>"; };
 		0FBF99DF1A71C9E400C25788 /* RPKExpirationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKExpirationViewController.h; sourceTree = "<group>"; };
@@ -872,6 +881,7 @@
 			children = (
 				0F063ADE1A6EFE940092F607 /* bg_locked_text.png */,
 				0FBF99F81A76EEFC00C25788 /* bg_source_button.png */,
+				0FA737B21A93D77F002CB38D /* bg_5_stars.png */,
 				0F063AE01A6EFE940092F607 /* icon_gplus.png */,
 				0F063AE11A6EFE940092F607 /* icon_lock_large.png */,
 				0F063AE21A6EFE940092F607 /* icon_lock_small.png */,
@@ -1164,6 +1174,8 @@
 				0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */,
 				0FBF99F21A73155900C25788 /* RPAttributedLabel.h */,
 				0FBF99F31A73155900C25788 /* RPAttributedLabel.m */,
+				0FA737AD1A93D40E002CB38D /* RPKStarRatingView.h */,
+				0FA737AE1A93D40E002CB38D /* RPKStarRatingView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1326,6 +1338,7 @@
 				0F591A471A8BE951000A0541 /* logo_reputation.png in Resources */,
 				0F591A481A8BE951000A0541 /* icon_lock_small.png in Resources */,
 				0F591A491A8BE951000A0541 /* museosans_900_italic-museosans.ttf in Resources */,
+				0FA737B41A93D77F002CB38D /* bg_5_stars.png in Resources */,
 				0F591A4A1A8BE951000A0541 /* museosans_900-museosans.ttf in Resources */,
 				0F591A4B1A8BE951000A0541 /* icon_gplus.png in Resources */,
 				0F591A4C1A8BE951000A0541 /* Settings.bundle in Resources */,
@@ -1359,6 +1372,7 @@
 				0F591ACA1A8BE9D0000A0541 /* logo_reputation.png in Resources */,
 				0F591ACB1A8BE9D0000A0541 /* icon_lock_small.png in Resources */,
 				0F591ACC1A8BE9D0000A0541 /* museosans_900_italic-museosans.ttf in Resources */,
+				0FA737B51A93D77F002CB38D /* bg_5_stars.png in Resources */,
 				0F591ACD1A8BE9D0000A0541 /* museosans_900-museosans.ttf in Resources */,
 				0F591ACE1A8BE9D0000A0541 /* icon_gplus.png in Resources */,
 				0F591ACF1A8BE9D0000A0541 /* Settings.bundle in Resources */,
@@ -1392,6 +1406,7 @@
 				0F063AEB1A6EFE940092F607 /* logo_reputation.png in Resources */,
 				0F063AE91A6EFE940092F607 /* icon_lock_small.png in Resources */,
 				0F063ADC1A6EF5970092F607 /* museosans_900_italic-museosans.ttf in Resources */,
+				0FA737B31A93D77F002CB38D /* bg_5_stars.png in Resources */,
 				0F063ADD1A6EF5970092F607 /* museosans_900-museosans.ttf in Resources */,
 				0F063AE71A6EFE940092F607 /* icon_gplus.png in Resources */,
 				0FA1E9421A605B8700DC4429 /* Settings.bundle in Resources */,
@@ -1578,6 +1593,7 @@
 				0F591A181A8BE951000A0541 /* NSBundle+Extension.m in Sources */,
 				0F591A191A8BE951000A0541 /* RPKAnalyticEvent.m in Sources */,
 				0F591A1A1A8BE951000A0541 /* SearchFilter+RP.m in Sources */,
+				0FA737B01A93D40E002CB38D /* RPKStarRatingView.m in Sources */,
 				0F591A1B1A8BE951000A0541 /* RPKCollectionViewCell.m in Sources */,
 				0F591A1C1A8BE951000A0541 /* UIViewController+Alert.m in Sources */,
 				0F591A1D1A8BE951000A0541 /* RPLocationSelectionViewController.m in Sources */,
@@ -1678,6 +1694,7 @@
 				0F591A9B1A8BE9D0000A0541 /* NSBundle+Extension.m in Sources */,
 				0F591A9C1A8BE9D0000A0541 /* RPKAnalyticEvent.m in Sources */,
 				0F591A9D1A8BE9D0000A0541 /* SearchFilter+RP.m in Sources */,
+				0FA737B11A93D40E002CB38D /* RPKStarRatingView.m in Sources */,
 				0F591A9E1A8BE9D0000A0541 /* RPKCollectionViewCell.m in Sources */,
 				0F591A9F1A8BE9D0000A0541 /* UIViewController+Alert.m in Sources */,
 				0F591AA01A8BE9D0000A0541 /* RPLocationSelectionViewController.m in Sources */,
@@ -1778,6 +1795,7 @@
 				0FA0E1C31A6883D70011EAC9 /* NSBundle+Extension.m in Sources */,
 				0F8FDBFF1A7B2ED40043A3D0 /* RPKAnalyticEvent.m in Sources */,
 				0FA0E20A1A688A910011EAC9 /* SearchFilter+RP.m in Sources */,
+				0FA737AF1A93D40E002CB38D /* RPKStarRatingView.m in Sources */,
 				0FA0ABFE1A40FBA9007AA263 /* RPKCollectionViewCell.m in Sources */,
 				0FA0E1E21A6887DB0011EAC9 /* UIViewController+Alert.m in Sources */,
 				0FBF99ED1A71E84000C25788 /* RPLocationSelectionViewController.m in Sources */,
