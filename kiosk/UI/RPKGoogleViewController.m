@@ -47,7 +47,7 @@ typedef enum {
 	GooglePageCustomError,
 } RPKGooglePage;
 
-@interface RPKGoogleViewController () <WKScriptMessageHandler>
+@interface RPKGoogleViewController () <WKScriptMessageHandler, RPKStarMaskViewDelegate>
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) ALScheduledTask *doneTask;
@@ -73,6 +73,7 @@ typedef enum {
 @property (nonatomic, strong) RPKMaskButton *submitButton;
 @property (nonatomic, strong) NSLayoutConstraint *submitTop;
 @property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) NSLayoutConstraint *ratingTop;
 @property (nonatomic, strong) RPKStarMaskView *starRatingView;
 
 @property (nonatomic, assign) NSInteger popupTryCount;
@@ -144,7 +145,7 @@ typedef enum {
 												 multiplier:1.0f
 												   constant:50.0f];
 	[self.webView addConstraint:self.googleTop];
-	[self.webView ul_addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(50.0f, 0.0f, kUIViewUnpinInset, 0.0f)]
+	[self.webView ul_addConstraints:[self.googleMessage ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 0.0f, kUIViewUnpinInset, 0.0f)]
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.submitButton];
@@ -154,18 +155,28 @@ typedef enum {
 													 toItem:self.webView
 												  attribute:NSLayoutAttributeTop
 												 multiplier:1.0f
-												   constant:670.0f];
+												   constant:677.0f];
 	[self.webView addConstraint:self.submitTop];
-	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(665.0f, 38.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 45.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
-	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:0.0f leftToRight:NO]];
+	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:5.0f leftToRight:NO]];
 	
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
 	
 	[self.webView addSubview:self.starRatingView];
+	self.ratingTop = [NSLayoutConstraint constraintWithItem:self.starRatingView
+												  attribute:NSLayoutAttributeTop
+												  relatedBy:NSLayoutRelationEqual
+													 toItem:self.webView
+												  attribute:NSLayoutAttributeTop
+												 multiplier:1.0f
+												   constant:305.0f];
+	[self.webView addConstraint:self.ratingTop];
+	[self.webView ul_addConstraints:[self.starRatingView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 55.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+						   priority:(UILayoutPriorityRequired - 1)];
 }
 
 - (void)viewDidLoad
@@ -193,13 +204,6 @@ typedef enum {
 	if (_doneTask) {
 		[self.doneTask stop];
 	}
-}
-
-- (void)viewWillLayoutSubviews
-{
-	[super viewWillLayoutSubviews];
-	
-	self.starRatingView.frame = [self starRatingFrame];
 }
 
 #pragma mark - Override
@@ -328,6 +332,14 @@ typedef enum {
 			self.pageDidLoad = GooglePageGplusWidget;
 		}
 		decisionHandler(WKNavigationActionPolicyAllow);
+	}
+}
+
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+	if (self.pageWillLoad != GooglePageAccountLogin) {
+		NSString *javascript = @"var meta = document.createElement('meta');meta.setAttribute('name', 'viewport');meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');document.getElementsByTagName('head')[0].appendChild(meta);";
+		
+		[webView evaluateJavaScript:javascript completionHandler:nil];
 	}
 }
 
@@ -482,7 +494,6 @@ typedef enum {
 		
 		case GooglePageGplusWidget: {
 			[self.popupTask stop];
-			[self.submitButton setActive:YES];
 			[self hideLoading];
 			[self toggleCustomViewForGooglePage:YES];
 			
@@ -665,6 +676,7 @@ typedef enum {
 
 - (void)toggleCustomViewForGooglePage:(BOOL)visible
 {
+	self.submitButton.active = visible;
 	self.reloadView.alpha = visible;
 	self.googleMessage.alpha = visible;
 	self.cancelButton.alpha = visible;
@@ -716,7 +728,7 @@ typedef enum {
 		};
 		
 		[_submitButton ul_enableAutoLayout];
-		[_submitButton ul_fixedSize:CGSizeMake(130.0f, 62.0f)];
+		[_submitButton ul_fixedSize:CGSizeMake(160.0f, 65.0f)];
 	}
 	
 	return _submitButton;
@@ -730,7 +742,7 @@ typedef enum {
 		[_cancelButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal];
 		[_cancelButton addTarget:self action:@selector(handleCancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_cancelButton ul_enableAutoLayout];
-		[_cancelButton ul_fixedSize:CGSizeMake(130.0f, 62.0f)];
+		[_cancelButton ul_fixedSize:CGSizeMake(160.0f, 65.0f)];
 	}
 	
 	return _cancelButton;
@@ -778,24 +790,24 @@ typedef enum {
 	self.googleThankyou.alpha = 0.0f;
 }
 
-- (CGRect)starRatingFrame
-{
-	CGFloat xOffset = 0.0f;
-	CGFloat yOffset = 0.0f;
-	CGFloat width = 200.0f;
-	CGFloat height = 40.0f;
-	
-	return CGRectMake(xOffset, yOffset, width, height);
-}
-
 - (RPKStarMaskView *)starRatingView
 {
 	if (!_starRatingView) {
 		_starRatingView = [[RPKStarMaskView alloc] initWithMaxRating:5.0f];
+		_starRatingView.backgroundColor = [UIColor clearColor];
 		_starRatingView.alpha = 0.0f;
+		_starRatingView.delegate = self;
+		[_starRatingView ul_enableAutoLayout];
+		[_starRatingView ul_fixedSize:CGSizeMake(150.0f, 35.0f)];
 	}
 	
 	return _starRatingView;
+}
+
+- (void)starMaskView:(RPKStarMaskView *)starMaskView selectStarAtIndex:(NSInteger)index
+{
+	NSString *starClickScript = [NSString stringWithFormat:@"triggerRatingClick(%d)", (int)index];
+	[self.webView evaluateJavaScript:starClickScript completionHandler:NULL];
 }
 
 #pragma mark - Keyboard Cover View
@@ -870,7 +882,8 @@ typedef enum {
 {
 	if (self.pageDidLoad == GooglePageGplusWidget) {
 		self.googleTop.constant = -100.0f;
-		self.submitTop.constant = 495.0f;
+		self.submitTop.constant = 497.0f;
+		self.ratingTop.constant = 135.0f;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		} completion:^(BOOL finished) {
@@ -885,7 +898,8 @@ typedef enum {
 - (void)handleKeyboardWillHideNotification:(NSNotification *)notification
 {
 	if (self.pageDidLoad == GooglePageGplusWidget) {
-		self.submitTop.constant = 840;
+		self.submitTop.constant = 842;
+		self.ratingTop.constant = 490;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		} completion:^(BOOL finished) {

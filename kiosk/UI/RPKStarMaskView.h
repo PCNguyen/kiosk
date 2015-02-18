@@ -4,37 +4,19 @@
 #import <UIKit/UIKit.h>
 #import "RPKView.h"
 
+@class RPKStarMaskView;
+
+@protocol RPKStarMaskViewDelegate <NSObject>
+
+@optional
+- (void)starMaskView:(RPKStarMaskView *)starMaskView selectStarAtIndex:(NSInteger)index;
+
+@end
+
 @interface RPKStarMaskView : RPKView
 
-/**
- *  provide custom tinting for the stars
- *	default to defaultStarTintColor
- */
-@property (nonatomic, strong) UIColor *starTintColor;
+@property (nonatomic, weak) id<RPKStarMaskViewDelegate>delegate;
 
-/**
- *  create a star view with max rating.
- *	currently this is harcoded to 5 stars
- *	this should be dynamic in future release
- *
- *  @param maxRating the max number of stars to draw
- *
- *  @return a StarView object
- */
-- (id)initWithMaxRating:(CGFloat)maxRating;
-
-/**
- *  adjust the tinting of the star based on current rating
- *
- *  @param currentRating the current star tinting
- */
-- (void)setCurrentRating:(CGFloat)currentRating;
-
-/**
- *  the default tint color
- *
- *  @return the default tint color for the star
- */
-+ (UIColor *)defaultStarTintColor;
+- (instancetype)initWithMaxRating:(CGFloat)maxRating;
 
 @end

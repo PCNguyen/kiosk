@@ -51,7 +51,7 @@ function styleBackgroundHidden() {
 }
 
 function styleReviewTextField() {
-	addCustomStyle('textarea.mKd {height:350px !important; font-size:2em !important;} .vVc {font-size:3em !important;} .Fme {font-size:2em !important;} .bxd {font-size:1em !important;} ;');
+	addCustomStyle('textarea.mKd {height:250px !important; font-size:2em !important;} .vVc {font-size:3em !important;} .Fme {font-size:2em !important;} .bxd {font-size:1em !important;} ;');
 }
 
 function styleReviewButtons() {
@@ -59,7 +59,7 @@ function styleReviewButtons() {
 }
 
 function styleReviewBox() {
-	addCustomStyle('div[role=dialog] {left:10px !important;} #glass-content, #glass-content iframe, .The {width:960px !important; height:700px !important;} ;');
+	addCustomStyle('div[role=dialog] {left:10px !important;} #glass-content, #glass-content iframe, .The {width:745px !important; height:580px !important;} ;');
 	styleReviewTextField();
 	styleReviewButtons();
 }
