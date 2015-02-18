@@ -2,11 +2,11 @@
 //  StarRatingView.m
 
 #import <QuartzCore/QuartzCore.h>
-#import "RPKStarRatingView.h"
+#import "RPKStarMaskView.h"
 
 #import "UIImage+RPK.h"
 
-@interface RPKStarRatingView() <UIGestureRecognizerDelegate>
+@interface RPKStarMaskView() <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) CGFloat maxRating;
 @property (nonatomic, assign) CGFloat currentRating;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation RPKStarRatingView
+@implementation RPKStarMaskView
 
 - (id)initWithMaxRating:(CGFloat)maxRating
 {

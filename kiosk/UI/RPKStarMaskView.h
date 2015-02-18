@@ -4,7 +4,7 @@
 #import <UIKit/UIKit.h>
 #import "RPKView.h"
 
-@interface RPKStarRatingView : RPKView
+@interface RPKStarMaskView : RPKView
 
 /**
  *  provide custom tinting for the stars

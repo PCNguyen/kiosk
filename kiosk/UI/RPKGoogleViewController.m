@@ -13,7 +13,7 @@
 #import "RPKGoogleMessage.h"
 #import "RPKMaskButton.h"
 #import "RPKGoogleThankYou.h"
-#import "RPKStarRatingView.h"
+#import "RPKStarMaskView.h"
 
 #import "RPNotificationCenter.h"
 #import "UIApplication+RP.h"
@@ -73,7 +73,7 @@ typedef enum {
 @property (nonatomic, strong) RPKMaskButton *submitButton;
 @property (nonatomic, strong) NSLayoutConstraint *submitTop;
 @property (nonatomic, strong) UIButton *cancelButton;
-@property (nonatomic, strong) RPKStarRatingView *starRatingView;
+@property (nonatomic, strong) RPKStarMaskView *starRatingView;
 
 @property (nonatomic, assign) NSInteger popupTryCount;
 @property (nonatomic, assign) __block BOOL submitButtonTapped;
@@ -788,10 +788,10 @@ typedef enum {
 	return CGRectMake(xOffset, yOffset, width, height);
 }
 
-- (RPKStarRatingView *)starRatingView
+- (RPKStarMaskView *)starRatingView
 {
 	if (!_starRatingView) {
-		_starRatingView = [[RPKStarRatingView alloc] initWithMaxRating:5.0f];
+		_starRatingView = [[RPKStarMaskView alloc] initWithMaxRating:5.0f];
 		_starRatingView.alpha = 0.0f;
 	}
 	
