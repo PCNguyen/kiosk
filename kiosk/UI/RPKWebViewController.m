@@ -42,6 +42,11 @@
 	} else {
 		[self.view addConstraints:[self.webView ul_pinWithInset:UIEdgeInsetsZero]];
 	}
+	
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleAdministratorGesture:)];
+	tapGesture.numberOfTapsRequired = 1;
+	tapGesture.numberOfTouchesRequired = 3;
+	[self.webView addGestureRecognizer:tapGesture];
 }
 
 - (void)viewDidLoad
