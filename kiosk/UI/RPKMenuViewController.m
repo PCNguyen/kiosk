@@ -334,18 +334,17 @@ NSString *const MVCCellID = @"kMVCCellID";
 	}];
 	
 	__weak RPAlertController *weakPreference = alertController;
-	__weak RPKMenuViewController *selfPointer = self;
 	
 	[alertController addButtonTitle:@"Cancel" style:AlertButtonStyleCancel action:^(RPAlertButton *button) {
-		[selfPointer validateSources];
+		[self validateSources];
 	}];
 	
 	[alertController addButtonTitle:@"Ok" style:AlertButtonStyleDefault action:^(RPAlertButton *button) {
 		UITextField *codeTextField = [[weakPreference textFields] firstObject];
 		NSError *error = nil;
-		[selfPointer handleAdministratorCode:codeTextField.text error:&error];
+		[self handleAdministratorCode:codeTextField.text error:&error];
 		if (error) {
-			[selfPointer validateSources];
+			[self validateSources];
 		}
 	}];
 	
