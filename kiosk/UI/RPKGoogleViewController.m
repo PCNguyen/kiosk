@@ -591,6 +591,7 @@ typedef enum {
 	if (!_doneTask) {
 		__weak RPKGoogleViewController *selfPointer = self;
 		_doneTask = [[ALScheduledTask alloc] initWithTaskInterval:3 taskBlock:^{
+			[selfPointer toggleCustomViewForGooglePage:NO];
 			[selfPointer executeDoneDetectScript];
 		}];
 		_doneTask.startImmediately = NO;
