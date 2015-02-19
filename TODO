@@ -5,6 +5,5 @@ Not assume the source only have google. Generalization using the SourceUrl.Sourc
 
 1.0.6
 Fix three finger tap gesture to be easier on Kiosk Screen
-Fix Location not reported for single location
 Fix Kiosk Screen not display correctly with logout button
 Adding javascript listening
