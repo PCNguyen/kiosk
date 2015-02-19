@@ -155,9 +155,9 @@ typedef enum {
 													 toItem:self.webView
 												  attribute:NSLayoutAttributeTop
 												 multiplier:1.0f
-												   constant:677.0f];
+												   constant:637.0f];
 	[self.webView addConstraint:self.submitTop];
-	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 45.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
+	[self.webView ul_addConstraints:[self.submitButton ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 47.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
@@ -173,7 +173,7 @@ typedef enum {
 													 toItem:self.webView
 												  attribute:NSLayoutAttributeTop
 												 multiplier:1.0f
-												   constant:305.0f];
+												   constant:280.0f];
 	[self.webView addConstraint:self.ratingTop];
 	[self.webView ul_addConstraints:[self.starRatingView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 55.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
@@ -882,8 +882,8 @@ typedef enum {
 {
 	if (self.pageDidLoad == GooglePageGplusWidget) {
 		self.googleTop.constant = -100.0f;
-		self.submitTop.constant = 497.0f;
-		self.ratingTop.constant = 135.0f;
+		self.submitTop.constant = 467.0f;
+		self.ratingTop.constant = 107.0f;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		} completion:^(BOOL finished) {
@@ -898,8 +898,8 @@ typedef enum {
 - (void)handleKeyboardWillHideNotification:(NSNotification *)notification
 {
 	if (self.pageDidLoad == GooglePageGplusWidget) {
-		self.submitTop.constant = 842;
-		self.ratingTop.constant = 490;
+		self.submitTop.constant = 815;
+		self.ratingTop.constant = 455;
 		[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
 			[self.view layoutIfNeeded];
 		} completion:^(BOOL finished) {

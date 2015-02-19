@@ -51,11 +51,11 @@ function styleBackgroundHidden() {
 }
 
 function styleReviewTextField() {
-	addCustomStyle('textarea.mKd {height:250px !important; font-size:2em !important;} .vVc {font-size:3em !important;} .Fme {font-size:2em !important;} .bxd {font-size:1em !important;} ;');
+	addCustomStyle('textarea.mKd {height:250px !important; font-size:1.5em !important;} .vVc {font-size:1.5em !important;} .Fme {font-size:1em !important;} .bxd {font-size:1em !important;} ;');
 }
 
 function styleReviewButtons() {
-	addCustomStyle('.pKd div[role=button] {width:130px !important; height:40px !important; font-size:2em !important; padding-top:10px !important;} ;');
+	addCustomStyle('.pKd div[role=button] {width:130px !important; height:40px !important; font-size:1.5em !important; padding-top:10px !important;} ;');
 }
 
 function styleReviewBox() {
