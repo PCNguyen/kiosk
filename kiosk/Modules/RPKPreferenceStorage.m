@@ -71,10 +71,16 @@
 	NSString *selectedLocationID = [self loadSelectedLocation];
 	NSMutableArray *authLocations = [self loadUserConfig].authLocations;
 	
-	for (Location *location in authLocations) {
-		if ([location.code isEqualToString:selectedLocationID]) {
-			return location;
+	if ([authLocations count] > 1) {
+		for (Location *location in authLocations) {
+			if ([location.code isEqualToString:selectedLocationID]) {
+				return location;
+			}
 		}
+	}
+	
+	if ([authLocations count] > 0) {
+		return [authLocations firstObject];
 	}
 	
 	return nil;
