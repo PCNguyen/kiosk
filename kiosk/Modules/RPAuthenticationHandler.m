@@ -114,14 +114,12 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInSuccess];
 			} else {
 				[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInFailed];
+				[self logout];
 			}
 		} else {
 			[loginEvent addProperty:PropertyAppLaunchIsAuthenticated value:kAnalyticSignInFailed];
 			[loginEvent addPropertyForError:error];
-			
-			if ([error.domain isEqualToString:NSErrorResponseDomain]) {
-				
-			}
+			[self logout];
 		}
 		
 		[loginEvent send];

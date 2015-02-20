@@ -386,10 +386,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		}
 	} else if ([code isEqualToString:[[UIApplication rp_administratorCodes] al_objectAtIndex:2]]) {
 		
-		//--Logout Code
-		if ([[RPAccountManager sharedManager] isAuthenticated]) {
-			[RPAuthenticationHandler logout];
-		}
+		[RPAuthenticationHandler logout];
+	
 	} else {
 		*error = [NSError errorWithDomain:@"Administrator Error" code:-2102 userInfo:nil];
 	}
@@ -397,9 +395,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (void)displayLoginScreen
 {
-	RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
-	loginViewController.administratorDelegate = self;
-	[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
+	if (![[self presentedViewController] isKindOfClass:[RPKLoginViewController class]]) {
+		RPKLoginViewController *loginViewController = [[RPKLoginViewController alloc] init];
+		loginViewController.administratorDelegate = self;
+		[self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
+	}
 }
 
 #pragma mark - RPLocationSelectionView Delegate
