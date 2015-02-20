@@ -5,3 +5,4 @@ Not assume the source only have google. Generalization using the SourceUrl.Sourc
 
 1.0.7
 Adding javascript listening
+Fixing the silent login failed to kick user back to login screen
