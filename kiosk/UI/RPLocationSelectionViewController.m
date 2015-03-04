@@ -36,7 +36,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	self.textLabel.font = [UIFont rpk_boldFontWithSize:18.0f];
 	[self.contentView addSubview:self.googleIndicator];
 	[self.contentView addSubview:self.kioskIndicator];
-    [self.contentView addSubview:self.carsIndicator];
+	[self.contentView addSubview:self.carsIndicator];
 }
 
 - (void)prepareForReuse
@@ -52,8 +52,8 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	[super layoutSubviews];
 
 	self.kioskIndicator.frame = [self kioskIndicatorFrame];
-    self.carsIndicator.frame = [self carsIndicatorFrame:self.kioskIndicator.frame];
-    self.googleIndicator.frame = [self googleIndicatorFrame:self.carsIndicator.frame];
+	self.carsIndicator.frame = [self carsIndicatorFrame:self.kioskIndicator.frame];
+	self.googleIndicator.frame = [self googleIndicatorFrame:self.carsIndicator.frame];
 }
 
 - (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
@@ -70,11 +70,11 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 	if (selection.enabledSources & LocationSourceGoogle) {
 		self.googleIndicator.highlighted = YES;
-    }
+	}
 
-    if (selection.enabledSources & LocationSourceCars) {
-        self.carsIndicator.highlighted = YES;
-    }
+	if (selection.enabledSources & LocationSourceCars) {
+		self.carsIndicator.highlighted = YES;
+	}
 }
 
 #pragma mark - UI Elements
@@ -122,23 +122,23 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 - (CGRect)carsIndicatorFrame:(CGRect)preferenceFrame
 {
-    CGFloat yOffset = preferenceFrame.origin.y;
-    CGFloat height = preferenceFrame.size.height;
-    CGFloat width = height;
-    CGFloat xOffset = preferenceFrame.origin.x - width - self.spacings.width;
+	CGFloat yOffset = preferenceFrame.origin.y;
+	CGFloat height = preferenceFrame.size.height;
+	CGFloat width = height;
+	CGFloat xOffset = preferenceFrame.origin.x - width - self.spacings.width;
 
-    return CGRectMake(xOffset, yOffset, width, height);
+	return CGRectMake(xOffset, yOffset, width, height);
 }
 
 - (UIImageView *)carsIndicator
 {
-    if(!_carsIndicator) {
-        _carsIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_small_cars_disabled.png"]
-                                           highlightedImage:[UIImage rpk_bundleImageNamed:@"icon_small_cars.png"]];
-        _carsIndicator.contentMode = UIViewContentModeScaleAspectFit;
-    }
+	if(!_carsIndicator) {
+		_carsIndicator = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"icon_small_cars_disabled.png"]
+										   highlightedImage:[UIImage rpk_bundleImageNamed:@"icon_small_cars.png"]];
+		_carsIndicator.contentMode = UIViewContentModeScaleAspectFit;
+	}
 
-    return _carsIndicator;
+	return _carsIndicator;
 }
 
 @end
@@ -167,7 +167,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 	NSString *configService = [RPService serviceNameFromType:ServiceGetUserConfig];
 	[self ul_registerManagedService:configService];
@@ -416,9 +416,9 @@ NSString *const LSVCCellID = @"LSVCCellID";
 {
 	BOOL visible = [[notification name] isEqualToString:UIKeyboardDidShowNotification];
 	
-    CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect convertedKeyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    CGFloat keyboardHeight = convertedKeyboardRect.size.height;
+	CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	CGRect convertedKeyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+	CGFloat keyboardHeight = convertedKeyboardRect.size.height;
 	
 	if (visible) {
 		CGFloat adjustment = keyboardHeight / 2;

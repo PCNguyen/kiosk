@@ -25,51 +25,51 @@
 	NSArray *locations = [[self preferenceStorage] allLocations];
 	self.selectedLocationID = [[self preferenceStorage] loadSelectedLocation];
 	Location *selectedLocation = [[locations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"code == %@", self.selectedLocationID]] firstObject];
-    Location *locationData;
+	Location *locationData;
 
 	NSString *kioskURLString = @"";
-    NSString *googleURLString = @"";
-    NSString *carsLocationKey = @"";
+	NSString *googleURLString = @"";
+	NSString *carsLocationKey = @"";
 
-    Facet *kioskSources = [self userConfig].kioskSources;
-    BOOL googleEnabled = NO;
-    for (FacetOption *facetOption in kioskSources.facetOptions) {
-        if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
-            googleEnabled = YES;
-        }
-    }
+	Facet *kioskSources = [self userConfig].kioskSources;
+	BOOL googleEnabled = NO;
+	for (FacetOption *facetOption in kioskSources.facetOptions) {
+		if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
+			googleEnabled = YES;
+		}
+	}
 	
 	if (selectedLocation) {
-        locationData = selectedLocation;
+		locationData = selectedLocation;
 	} else if ([locations count] == 1) {
-        locationData = [locations firstObject];
+		locationData = [locations firstObject];
 	}
 
-    if(locationData) {
-        kioskURLString = locationData.kioskUrl;
-        if ([locationData.sourceUrls count] > 0) {
+	if(locationData) {
+		kioskURLString = locationData.kioskUrl;
+		if ([locationData.sourceUrls count] > 0) {
 
-            // Iterate source urls and get enabled sources.
-            for(SourceUrl *sourceUrl in locationData.sourceUrls) {
+			// Iterate source urls and get enabled sources.
+			for(SourceUrl *sourceUrl in locationData.sourceUrls) {
 
-                // If this is a Google-related source.
-                if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
-                    // If google is enabled (including in the plist)
-                    if(googleEnabled && [UIApplication rp_googleEnabled]) {
-                        // Get the Google source url.
-                        googleURLString = sourceUrl.sourceUrl;
-                    }
-                }
+				// If this is a Google-related source.
+				if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
+					// If google is enabled (including in the plist)
+					if(googleEnabled && [UIApplication rp_googleEnabled]) {
+						// Get the Google source url.
+						googleURLString = sourceUrl.sourceUrl;
+					}
+				}
 
-                // If this is a Cars.com source.
-                if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
-                    // Cars.com is enabled.
-                    carsLocationKey = locationData.locationKey;
-                }
+				// If this is a Cars.com source.
+				if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
+					// Cars.com is enabled.
+					carsLocationKey = locationData.locationKey;
+				}
 
-            }
-        }
-    }
+			}
+		}
+	}
 	
 	NSMutableArray *menuItems = [NSMutableArray array];
 	
@@ -96,20 +96,20 @@
 		googlePlusItem.itemType = MenuTypeGoogle;
 		
 		[menuItems addObject:googlePlusItem];
-    }
-    
-    //--loading Cars
-    if ([carsLocationKey length] > 0) {
-        RPKMenuItem *carsItem = [[RPKMenuItem alloc] init];
+	}
+	
+	//--loading Cars
+	if ([carsLocationKey length] > 0) {
+		RPKMenuItem *carsItem = [[RPKMenuItem alloc] init];
 
-        NSString *carsURL = [NSString stringWithFormat:@"%@/survey?key=%@&type=cars&noReviewSources=y", [UIApplication rp_kioskURLString], carsLocationKey];
-        carsItem.itemURL = [NSURL URLWithString:carsURL];
-        carsItem.imageName = @"icon_large_cars.png";
-        carsItem.itemTitle = NSLocalizedString(@"Take a\nCars Survey", nil);
-        carsItem.isSecured = NO;
-        carsItem.itemType = MenuTypeGeneric;
-        [menuItems addObject:carsItem];
-    }
+		NSString *carsURL = [NSString stringWithFormat:@"%@/survey?key=%@&type=cars&noReviewSources=y", [UIApplication rp_kioskURLString], carsLocationKey];
+		carsItem.itemURL = [NSURL URLWithString:carsURL];
+		carsItem.imageName = @"icon_large_cars.png";
+		carsItem.itemTitle = NSLocalizedString(@"Take a\nCars Survey", nil);
+		carsItem.isSecured = NO;
+		carsItem.itemType = MenuTypeGeneric;
+		[menuItems addObject:carsItem];
+	}
 	
 	self.menuItems = menuItems;
 }
@@ -123,7 +123,7 @@
 {
 	NSString *result = originalString;
 	
-	static CFStringRef doNotEscapeTheseIllegalCharacters = CFSTR(" "); /* prevent <space> being replaced with %20	*/
+	static CFStringRef doNotEscapeTheseIllegalCharacters = CFSTR(" "); /* prevent <space> being replaced with %20   */
 	static CFStringRef escapeTheseLegalCharacters = CFSTR("\n\r:/=,!$&'()*+;[]@#?%."); /* Even if these are legal, escape them anyway */
 	
 	CFStringRef escapedStr = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,

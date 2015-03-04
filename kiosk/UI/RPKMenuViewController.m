@@ -94,8 +94,8 @@
 - (UIImageView *)buttonBackgroundView
 {
 	if (!_buttonBackgroundView) {
-        UIImage *sourceImage = [UIImage rpk_bundleImageNamed:@"bg_source_button.png"];
-        
+		UIImage *sourceImage = [UIImage rpk_bundleImageNamed:@"bg_source_button.png"];
+		
 		_buttonBackgroundView = [[UIImageView alloc] initWithImage:sourceImage];
 		_buttonBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
 		[_buttonBackgroundView ul_enableAutoLayout];
@@ -210,8 +210,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 	self.view.backgroundColor = [UIColor ul_colorWithR:10 G:53 B:70 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 
-    [self.view addSubview:self.kioskTitle];
-    [self.view addSubview:self.menuSelectionView];
+	[self.view addSubview:self.kioskTitle];
+	[self.view addSubview:self.menuSelectionView];
 	[self.view addSubview:self.securedView];
 	
 	[self.view addConstraints:[self.kioskTitle ul_pinWithInset:UIEdgeInsetsMake(self.paddings.top, 0.0f, kUIViewUnpinInset, 0.0f)]];
@@ -292,19 +292,19 @@ NSString *const MVCCellID = @"kMVCCellID";
 #pragma mark - Title
 
 - (UILabel *)kioskTitle {
-    if (!_kioskTitle) {
-        _kioskTitle = [[UILabel alloc] init];
-        _kioskTitle.backgroundColor = [UIColor clearColor];
-        _kioskTitle.textAlignment = NSTextAlignmentCenter;
+	if (!_kioskTitle) {
+		_kioskTitle = [[UILabel alloc] init];
+		_kioskTitle.backgroundColor = [UIColor clearColor];
+		_kioskTitle.textAlignment = NSTextAlignmentCenter;
 		NSString *labelText = NSLocalizedString(@"Please tell us\nwhat you think", nil);
 		NSMutableAttributedString *attributedText = [labelText al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:65.0f] textColor:[UIColor whiteColor]];
 		[attributedText rp_addLineSpacing:4.0f];
 		_kioskTitle.attributedText = attributedText;
 		_kioskTitle.numberOfLines = 0;
 		[_kioskTitle ul_enableAutoLayout];
-    }
+	}
 
-    return _kioskTitle;
+	return _kioskTitle;
 }
 
 - (void)handleAdministratorGesture:(UIGestureRecognizer *)gesture

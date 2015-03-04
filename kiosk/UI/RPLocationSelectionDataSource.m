@@ -72,17 +72,17 @@
 			}
 			
 			if ([location.sourceUrls count] > 0) {
-                for (SourceUrl *sourceUrl in location.sourceUrls) {
-                    // Check for Google Plus/Places sources before enabling Google functionality.
-                    if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
-                        selection.enabledSources |= LocationSourceGoogle;
-                    }
+				for (SourceUrl *sourceUrl in location.sourceUrls) {
+					// Check for Google Plus/Places sources before enabling Google functionality.
+					if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
+						selection.enabledSources |= LocationSourceGoogle;
+					}
 
-                    // Check for the Cars.com source before enabling cars.com functionality.
-                    if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
-                        selection.enabledSources |= LocationSourceCars;
-                    }
-                }
+					// Check for the Cars.com source before enabling cars.com functionality.
+					if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
+						selection.enabledSources |= LocationSourceCars;
+					}
+				}
 			}
 		
 			//--retrieve the section this location belong to, if not, create new
