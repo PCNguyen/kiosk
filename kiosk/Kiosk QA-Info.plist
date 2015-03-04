@@ -40,15 +40,15 @@
 	<key>Enable Google</key>
 	<true/>
 	<key>Kiosk Host URL</key>
-	<string>http://smarty.trunk.local</string>
+	<string>http://qa.reputation.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MixPanel API Token</key>
 	<string>0f4f0084eb962358524d818899790ddf</string>
 	<key>Server Port</key>
-	<string>40003</string>
+	<string>443</string>
 	<key>Server URL</key>
-	<string>http://localhost</string>
+	<string>https://qa-r4e-mobile.reputation.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>museosans_100-museosans.ttf</string>
