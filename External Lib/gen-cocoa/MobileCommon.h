@@ -2283,6 +2283,7 @@ typedef NSString * SourceGroup;
   Facet * __industrySources;
   NSMutableArray * __pushNotificationsPref;
   Facet * __menus;
+  NSString * __tenantProgramID;
 
   BOOL __featuresEnabled_isset;
   BOOL __reviewSources_isset;
@@ -2299,6 +2300,7 @@ typedef NSString * SourceGroup;
   BOOL __industrySources_isset;
   BOOL __pushNotificationsPref_isset;
   BOOL __menus_isset;
+  BOOL __tenantProgramID_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -2317,10 +2319,11 @@ typedef NSString * SourceGroup;
 @property (nonatomic, retain, getter=industrySources, setter=setIndustrySources:) Facet * industrySources;
 @property (nonatomic, retain, getter=pushNotificationsPref, setter=setPushNotificationsPref:) NSMutableArray * pushNotificationsPref;
 @property (nonatomic, retain, getter=menus, setter=setMenus:) Facet * menus;
+@property (nonatomic, retain, getter=tenantProgramID, setter=setTenantProgramID:) NSString * tenantProgramID;
 #endif
 
 - (id) init;
-- (id) initWithFeaturesEnabled: (NSMutableArray *) featuresEnabled reviewSources: (Facet *) reviewSources kioskSources: (Facet *) kioskSources surveySources: (Facet *) surveySources socialSources: (Facet *) socialSources authLocations: (NSMutableArray *) authLocations dateRanges: (Facet *) dateRanges socialStates: (Facet *) socialStates sentimentValues: (Facet *) sentimentValues userSettings: (NSMutableArray *) userSettings isDefaultSettings: (BOOL) isDefaultSettings tenantLogoUrl: (NSString *) tenantLogoUrl industrySources: (Facet *) industrySources pushNotificationsPref: (NSMutableArray *) pushNotificationsPref menus: (Facet *) menus;
+- (id) initWithFeaturesEnabled: (NSMutableArray *) featuresEnabled reviewSources: (Facet *) reviewSources kioskSources: (Facet *) kioskSources surveySources: (Facet *) surveySources socialSources: (Facet *) socialSources authLocations: (NSMutableArray *) authLocations dateRanges: (Facet *) dateRanges socialStates: (Facet *) socialStates sentimentValues: (Facet *) sentimentValues userSettings: (NSMutableArray *) userSettings isDefaultSettings: (BOOL) isDefaultSettings tenantLogoUrl: (NSString *) tenantLogoUrl industrySources: (Facet *) industrySources pushNotificationsPref: (NSMutableArray *) pushNotificationsPref menus: (Facet *) menus tenantProgramID: (NSString *) tenantProgramID;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -2416,6 +2419,12 @@ typedef NSString * SourceGroup;
 - (void) setMenus: (Facet *) menus;
 #endif
 - (BOOL) menusIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) tenantProgramID;
+- (void) setTenantProgramID: (NSString *) tenantProgramID;
+#endif
+- (BOOL) tenantProgramIDIsSet;
 
 @end
 
@@ -2603,6 +2612,7 @@ typedef NSString * SourceGroup;
 + (NSString *) RATINGS_KIOSK_ENABLED;
 + (NSString *) RATINGS_LOCATIONS_ENABLED;
 + (NSString *) TODO_TAB_ENABLED;
++ (NSString *) BUSINESS_LISTING_ENABLED;
 + (NSString *) PREFERENCE_PUSHNOTIF_SENTIMENT_THIRDPARTY;
 + (NSString *) PREFERENCE_PUSHNOTIF_SENTIMENT_KIOSK;
 + (NSString *) PREFERENCE_PUSHNOTIF_SENTIMENT_SURVEY;
@@ -2643,6 +2653,8 @@ typedef NSString * SourceGroup;
 + (NSString *) SOURCE_ID_YOUTUBE;
 + (NSString *) SOURCE_ID_SURVEY;
 + (NSString *) SOURCE_ID_KIOSK;
++ (NSString *) SOURCE_GOOGLE_PLACES;
++ (NSString *) SOURCE_CARS;
 + (NSString *) PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED;
 + (NSString *) PREFERENCE_DASHBOARD_SOURCE_DEFAULT;
 + (NSString *) PREFERENCE_REVIEW_FILTER_SOURCE;

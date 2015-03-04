@@ -29,7 +29,7 @@
   return self;
 }
 
-- (id) initWithResponse: (Response *) response userDetails: (User *) userDetails userConfig: (UserConfig *) userConfig
+- (id) initWithResponse: (Response *) response userDetails: (User *) userDetails userConfig: (UserConfig *) userConfig sessionId: (NSString *) sessionId
 {
   self = [super init];
   __response = [response retain_stub];
@@ -38,6 +38,8 @@
   __userDetails_isset = YES;
   __userConfig = [userConfig retain_stub];
   __userConfig_isset = YES;
+  __sessionId = [sessionId retain_stub];
+  __sessionId_isset = YES;
   return self;
 }
 
@@ -59,6 +61,11 @@
     __userConfig = [[decoder decodeObjectForKey: @"userConfig"] retain_stub];
     __userConfig_isset = YES;
   }
+  if ([decoder containsValueForKey: @"sessionId"])
+  {
+    __sessionId = [[decoder decodeObjectForKey: @"sessionId"] retain_stub];
+    __sessionId_isset = YES;
+  }
   return self;
 }
 
@@ -76,6 +83,10 @@
   {
     [encoder encodeObject: __userConfig forKey: @"userConfig"];
   }
+  if (__sessionId_isset)
+  {
+    [encoder encodeObject: __sessionId forKey: @"sessionId"];
+  }
 }
 
 - (void) dealloc
@@ -83,6 +94,7 @@
   [__response release_stub];
   [__userDetails release_stub];
   [__userConfig release_stub];
+  [__sessionId release_stub];
   [super dealloc_stub];
 }
 
@@ -149,6 +161,27 @@
   __userConfig_isset = NO;
 }
 
+- (NSString *) sessionId {
+  return [[__sessionId retain_stub] autorelease_stub];
+}
+
+- (void) setSessionId: (NSString *) sessionId {
+  [sessionId retain_stub];
+  [__sessionId release_stub];
+  __sessionId = sessionId;
+  __sessionId_isset = YES;
+}
+
+- (BOOL) sessionIdIsSet {
+  return __sessionId_isset;
+}
+
+- (void) unsetSessionId {
+  [__sessionId release_stub];
+  __sessionId = nil;
+  __sessionId_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -194,6 +227,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setSessionId: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -226,6 +267,13 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__sessionId_isset) {
+    if (__sessionId != nil) {
+      [outProtocol writeFieldBeginWithName: @"sessionId" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __sessionId];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -242,6 +290,8 @@
   [ms appendFormat: @"%@", __userDetails];
   [ms appendString: @",userConfig:"];
   [ms appendFormat: @"%@", __userConfig];
+  [ms appendString: @",sessionId:"];
+  [ms appendFormat: @"\"%@\"", __sessionId];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }

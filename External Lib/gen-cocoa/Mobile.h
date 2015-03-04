@@ -16,6 +16,8 @@
 #import "TBase.h"
 
 #import "MobileCommon.h"
+#import "MobileListing.h"
+#import "MobileActivity.h"
 
 enum ReviewType {
   ReviewType_Kiosk = 1,
@@ -1181,7 +1183,7 @@ typedef NSString * SourceCode;
   int32_t __numReplies;
   int32_t __numRepliesFromSelf;
   BOOL __flagged;
-  BOOL __read;
+  BOOL __readFlag;
   BOOL __upvoted;
   BOOL __deletable;
   NSString * __sourceName;
@@ -1209,7 +1211,7 @@ typedef NSString * SourceCode;
   BOOL __numReplies_isset;
   BOOL __numRepliesFromSelf_isset;
   BOOL __flagged_isset;
-  BOOL __read_isset;
+  BOOL __readFlag_isset;
   BOOL __upvoted_isset;
   BOOL __deletable_isset;
   BOOL __sourceName_isset;
@@ -1239,7 +1241,7 @@ typedef NSString * SourceCode;
 @property (nonatomic, getter=numReplies, setter=setNumReplies:) int32_t numReplies;
 @property (nonatomic, getter=numRepliesFromSelf, setter=setNumRepliesFromSelf:) int32_t numRepliesFromSelf;
 @property (nonatomic, getter=flagged, setter=setFlagged:) BOOL flagged;
-@property (nonatomic, getter=read, setter=setRead:) BOOL read;
+@property (nonatomic, getter=readFlag, setter=setReadFlag:) BOOL readFlag;
 @property (nonatomic, getter=upvoted, setter=setUpvoted:) BOOL upvoted;
 @property (nonatomic, getter=deletable, setter=setDeletable:) BOOL deletable;
 @property (nonatomic, retain, getter=sourceName, setter=setSourceName:) NSString * sourceName;
@@ -1252,7 +1254,7 @@ typedef NSString * SourceCode;
 #endif
 
 - (id) init;
-- (id) initWithId: (NSString *) id externalID: (NSString *) externalID sourceId: (NSString *) sourceId postUrl: (NSString *) postUrl user: (PostUser *) user text: (NSString *) text links: (NSMutableArray *) links medias: (NSMutableArray *) medias tags: (NSMutableArray *) tags hashtags: (NSMutableArray *) hashtags properties: (NSMutableDictionary *) properties created: (int64_t) created updated: (int64_t) updated latestReplyTime: (int64_t) latestReplyTime numReplies: (int32_t) numReplies numRepliesFromSelf: (int32_t) numRepliesFromSelf flagged: (BOOL) flagged read: (BOOL) read upvoted: (BOOL) upvoted deletable: (BOOL) deletable sourceName: (NSString *) sourceName sourceSmallIconPath: (NSString *) sourceSmallIconPath sourceLargeIconPath: (NSString *) sourceLargeIconPath replies: (NSMutableArray *) replies allowedActions: (NSMutableArray *) allowedActions createdDtPrettyShort: (NSString *) createdDtPrettyShort createdDtPrettyLong: (NSString *) createdDtPrettyLong;
+- (id) initWithId: (NSString *) id externalID: (NSString *) externalID sourceId: (NSString *) sourceId postUrl: (NSString *) postUrl user: (PostUser *) user text: (NSString *) text links: (NSMutableArray *) links medias: (NSMutableArray *) medias tags: (NSMutableArray *) tags hashtags: (NSMutableArray *) hashtags properties: (NSMutableDictionary *) properties created: (int64_t) created updated: (int64_t) updated latestReplyTime: (int64_t) latestReplyTime numReplies: (int32_t) numReplies numRepliesFromSelf: (int32_t) numRepliesFromSelf flagged: (BOOL) flagged readFlag: (BOOL) readFlag upvoted: (BOOL) upvoted deletable: (BOOL) deletable sourceName: (NSString *) sourceName sourceSmallIconPath: (NSString *) sourceSmallIconPath sourceLargeIconPath: (NSString *) sourceLargeIconPath replies: (NSMutableArray *) replies allowedActions: (NSMutableArray *) allowedActions createdDtPrettyShort: (NSString *) createdDtPrettyShort createdDtPrettyLong: (NSString *) createdDtPrettyLong;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1362,10 +1364,10 @@ typedef NSString * SourceCode;
 - (BOOL) flaggedIsSet;
 
 #if !__has_feature(objc_arc)
-- (BOOL) read;
-- (void) setRead: (BOOL) read;
+- (BOOL) readFlag;
+- (void) setReadFlag: (BOOL) readFlag;
 #endif
-- (BOOL) readIsSet;
+- (BOOL) readFlagIsSet;
 
 #if !__has_feature(objc_arc)
 - (BOOL) upvoted;
@@ -1429,12 +1431,14 @@ typedef NSString * SourceCode;
   NSString * __bodyHash;
   int __mimeType;
   NSMutableDictionary * __imageMetaData;
+  NSString * __url;
 
   BOOL __data_isset;
   BOOL __size_isset;
   BOOL __bodyHash_isset;
   BOOL __mimeType_isset;
   BOOL __imageMetaData_isset;
+  BOOL __url_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -1443,10 +1447,11 @@ typedef NSString * SourceCode;
 @property (nonatomic, retain, getter=bodyHash, setter=setBodyHash:) NSString * bodyHash;
 @property (nonatomic, getter=mimeType, setter=setMimeType:) int mimeType;
 @property (nonatomic, retain, getter=imageMetaData, setter=setImageMetaData:) NSMutableDictionary * imageMetaData;
+@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
 #endif
 
 - (id) init;
-- (id) initWithData: (NSData *) data size: (int32_t) size bodyHash: (NSString *) bodyHash mimeType: (int) mimeType imageMetaData: (NSMutableDictionary *) imageMetaData;
+- (id) initWithData: (NSData *) data size: (int32_t) size bodyHash: (NSString *) bodyHash mimeType: (int) mimeType imageMetaData: (NSMutableDictionary *) imageMetaData url: (NSString *) url;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1482,6 +1487,12 @@ typedef NSString * SourceCode;
 - (void) setImageMetaData: (NSMutableDictionary *) imageMetaData;
 #endif
 - (BOOL) imageMetaDataIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) url;
+- (void) setUrl: (NSString *) url;
+#endif
+- (BOOL) urlIsSet;
 
 @end
 
@@ -1816,22 +1827,22 @@ typedef NSString * SourceCode;
 
 @interface FeedResponse : NSObject <TBase, NSCoding> {
   Response * __response;
-  int64_t __count;
+  int64_t __itemsCount;
   NSMutableArray * __items;
 
   BOOL __response_isset;
-  BOOL __count_isset;
+  BOOL __itemsCount_isset;
   BOOL __items_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
-@property (nonatomic, getter=count, setter=setCount:) int64_t count;
+@property (nonatomic, getter=itemsCount, setter=setItemsCount:) int64_t itemsCount;
 @property (nonatomic, retain, getter=items, setter=setItems:) NSMutableArray * items;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response count: (int64_t) count items: (NSMutableArray *) items;
+- (id) initWithResponse: (Response *) response itemsCount: (int64_t) itemsCount items: (NSMutableArray *) items;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1845,10 +1856,10 @@ typedef NSString * SourceCode;
 - (BOOL) responseIsSet;
 
 #if !__has_feature(objc_arc)
-- (int64_t) count;
-- (void) setCount: (int64_t) count;
+- (int64_t) itemsCount;
+- (void) setItemsCount: (int64_t) itemsCount;
 #endif
-- (BOOL) countIsSet;
+- (BOOL) itemsCountIsSet;
 
 #if !__has_feature(objc_arc)
 - (NSMutableArray *) items;
@@ -2098,21 +2109,21 @@ typedef NSString * SourceCode;
 @interface SocialFeedResponse : NSObject <TBase, NSCoding> {
   Response * __response;
   NSMutableArray * __socialPosts;
-  int64_t __count;
+  int64_t __postsCount;
 
   BOOL __response_isset;
   BOOL __socialPosts_isset;
-  BOOL __count_isset;
+  BOOL __postsCount_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
 @property (nonatomic, retain, getter=socialPosts, setter=setSocialPosts:) NSMutableArray * socialPosts;
-@property (nonatomic, getter=count, setter=setCount:) int64_t count;
+@property (nonatomic, getter=postsCount, setter=setPostsCount:) int64_t postsCount;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts count: (int64_t) count;
+- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts postsCount: (int64_t) postsCount;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -2132,10 +2143,10 @@ typedef NSString * SourceCode;
 - (BOOL) socialPostsIsSet;
 
 #if !__has_feature(objc_arc)
-- (int64_t) count;
-- (void) setCount: (int64_t) count;
+- (int64_t) postsCount;
+- (void) setPostsCount: (int64_t) postsCount;
 #endif
-- (BOOL) countIsSet;
+- (BOOL) postsCountIsSet;
 
 @end
 
@@ -2333,6 +2344,85 @@ typedef NSString * SourceCode;
 
 @end
 
+@interface GetBusinessListingsResponse : NSObject <TBase, NSCoding> {
+  Response * __response;
+  NSMutableArray * __locationListings;
+  NSMutableArray * __sourceListings;
+
+  BOOL __response_isset;
+  BOOL __locationListings_isset;
+  BOOL __sourceListings_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
+@property (nonatomic, retain, getter=locationListings, setter=setLocationListings:) NSMutableArray * locationListings;
+@property (nonatomic, retain, getter=sourceListings, setter=setSourceListings:) NSMutableArray * sourceListings;
+#endif
+
+- (id) init;
+- (id) initWithResponse: (Response *) response locationListings: (NSMutableArray *) locationListings sourceListings: (NSMutableArray *) sourceListings;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Response *) response;
+- (void) setResponse: (Response *) response;
+#endif
+- (BOOL) responseIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableArray *) locationListings;
+- (void) setLocationListings: (NSMutableArray *) locationListings;
+#endif
+- (BOOL) locationListingsIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableArray *) sourceListings;
+- (void) setSourceListings: (NSMutableArray *) sourceListings;
+#endif
+- (BOOL) sourceListingsIsSet;
+
+@end
+
+@interface ActivityResponse : NSObject <TBase, NSCoding> {
+  Response * __response;
+  NSMutableDictionary * __activities;
+
+  BOOL __response_isset;
+  BOOL __activities_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
+@property (nonatomic, retain, getter=activities, setter=setActivities:) NSMutableDictionary * activities;
+#endif
+
+- (id) init;
+- (id) initWithResponse: (Response *) response activities: (NSMutableDictionary *) activities;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Response *) response;
+- (void) setResponse: (Response *) response;
+#endif
+- (BOOL) responseIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableDictionary *) activities;
+- (void) setActivities: (NSMutableDictionary *) activities;
+#endif
+- (BOOL) activitiesIsSet;
+
+@end
+
 @protocol Mobile <NSObject>
 - (FeedResponse *) getReviewsFeed: (int64_t) uptoTime start: (int32_t) start pageCount: (int32_t) pageCount searchCriteria: (SearchFilter *) searchCriteria;  // throws TException
 - (SocialFeedResponse *) getSocialFeed: (int64_t) uptoTime start: (int32_t) start pageCount: (int32_t) pageCount searchCriteria: (SearchFilter *) searchCriteria;  // throws TException
@@ -2353,6 +2443,8 @@ typedef NSString * SourceCode;
 - (SummaryResponse *) getSummaryIds: (NSMutableArray *) summaryCells;  // throws TException
 - (SummaryResponse *) getSummary;  // throws TException
 - (Response *) logout;  // throws TException
+- (GetBusinessListingsResponse *) getBusinessListings: (SearchFilter *) searchCriteria;  // throws TException
+- (ActivityResponse *) getActivityFeed;  // throws TException
 @end
 
 @interface MobileClient : NSObject <Mobile> {
@@ -2388,6 +2480,7 @@ typedef NSString * SourceCode;
 + (int32_t) ERROR_SOCIAL_S3_SVC;
 + (int32_t) ERROR_DISTRIBUTION_SVC;
 + (int32_t) ERROR_USER_SVC;
++ (int32_t) ERROR_USER_ACTIVITY_SVC;
 + (int32_t) ERROR_AUTH_READ_RATINGS;
 + (int32_t) ERROR_AUTH_READ_SOCIAL;
 + (int32_t) ERROR_VALIDATION_RATINGID;
@@ -2411,6 +2504,9 @@ typedef NSString * SourceCode;
 + (int32_t) ERROR_AUTH_SOCIAL_APPROVE_REJECT;
 + (int32_t) ERROR_VALIDATION_SOCIAL_DUPLICATE;
 + (int32_t) ERROR_SUMMARY_INVALID_CELL;
++ (int32_t) ERROR_SEARCH_SOURCE_LISTING_AUDITS;
++ (int32_t) ERROR_SEARCH_LISTING_AUDITS;
++ (int32_t) ERROR_AUTH_VIEW_BUSINESS_LISTINGS;
 + (int32_t) TWITTER_URL_LENGTH;
 + (NSString *) SUMMARY_OVERALL_SCORE;
 + (NSString *) SUMMARY_NOREVIEWS_THIRDPARTY_SOURCES;
@@ -2421,8 +2517,14 @@ typedef NSString * SourceCode;
 + (NSString *) SUMMARY_THIRD_PARTY_SOURCE_TRACKING_NO_KIOSK;
 + (NSString *) SUMMARY_THIRD_PARTY_SOURCE_ALL_TIME;
 + (NSString *) SUMMARY_AVGRATING_SOURCE;
++ (NSString *) SUMMARY_AVGRATING_ALL;
 + (NSString *) SUMMARY_NOREVIEWS_SOURCE;
 + (NSString *) SUMMARY_SOCIALCOUNTS_SOURCE;
++ (NSString *) SUMMARY_SOCIALCOUNTS_TOTAL;
++ (NSString *) SUMMARY_SOCIALCOUNTS_SOURCE_30_DAYS;
++ (NSString *) SUMMARY_SOCIALCOUNTS_TOTAL_30_DAYS;
++ (NSString *) SUMMARY_BUSINESS_LISTINGS_SCORE;
++ (NSString *) SUMMARY_BUSINESS_LISTINGS_SCORE_VALUE;
 + (NSString *) SUMMARY_OVERALL_SCORE_VALUE;
 + (NSString *) SUMMARY_OVERALL_SCORE_WEIGHTEDRATING;
 + (NSString *) SUMMARY_OVERALL_SCORE_VISIBILITY;
@@ -2436,6 +2538,7 @@ typedef NSString * SourceCode;
 + (NSString *) SUMMARY_OVERALL_SCORE_LENGTH_FILLCOLOR;
 + (NSString *) SUMMARY_OVERALL_SCORE_TIME_FILLCOLOR;
 + (NSString *) SUMMARY_OVERALL_SCORE_VOLUME_FILLCOLOR;
++ (NSString *) SUMMARY_AVGRATING_ALL_VALUE;
 + (NSString *) SUMMARY_NOREVIEWS_SOURCELOGO;
 + (NSString *) SUMMARY_NOREVIEWS_SOURCENAME;
 + (NSString *) SUMMARY_SOURCE_LOGO_URL;

@@ -21,20 +21,23 @@
   Response * __response;
   User * __userDetails;
   UserConfig * __userConfig;
+  NSString * __sessionId;
 
   BOOL __response_isset;
   BOOL __userDetails_isset;
   BOOL __userConfig_isset;
+  BOOL __sessionId_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
 @property (nonatomic, retain, getter=userDetails, setter=setUserDetails:) User * userDetails;
 @property (nonatomic, retain, getter=userConfig, setter=setUserConfig:) UserConfig * userConfig;
+@property (nonatomic, retain, getter=sessionId, setter=setSessionId:) NSString * sessionId;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response userDetails: (User *) userDetails userConfig: (UserConfig *) userConfig;
+- (id) initWithResponse: (Response *) response userDetails: (User *) userDetails userConfig: (UserConfig *) userConfig sessionId: (NSString *) sessionId;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -58,6 +61,12 @@
 - (void) setUserConfig: (UserConfig *) userConfig;
 #endif
 - (BOOL) userConfigIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) sessionId;
+- (void) setSessionId: (NSString *) sessionId;
+#endif
+- (BOOL) sessionIdIsSet;
 
 @end
 

@@ -12,6 +12,7 @@ typedef NS_OPTIONS(NSInteger, RPKLocationSourceOptions) {
 	LocationSourceNone = 1 << 0,
 	LocationSourceKiosk = 1 << 1,
 	LocationSourceGoogle = 1 << 2,
+    LocationSourceCars = 2 << 3
 };
 
 @interface RPKLocationSelection : RPKSelection
