@@ -1890,7 +1890,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "a7e216e9-ce15-4cc3-a7d1-bc8edec7f3c7";
+				PROVISIONING_PROFILE = "b00aa921-7f60-4fd9-9ca1-7caac19ecca8";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1905,7 +1905,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "a7e216e9-ce15-4cc3-a7d1-bc8edec7f3c7";
+				PROVISIONING_PROFILE = "0e3190d0-cdfa-4dc7-8c39-80781dcbb394";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -2028,7 +2028,7 @@
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "a7e216e9-ce15-4cc3-a7d1-bc8edec7f3c7";
+				PROVISIONING_PROFILE = "ca6bc47c-596a-415a-8b2a-ad35d224688f";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2043,7 +2043,7 @@
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "a7e216e9-ce15-4cc3-a7d1-bc8edec7f3c7";
+				PROVISIONING_PROFILE = "f7d6aef8-c0a8-4fba-acde-0606136e402b";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
