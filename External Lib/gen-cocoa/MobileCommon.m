@@ -11406,7 +11406,7 @@
   return self;
 }
 
-- (id) initWithFeaturesEnabled: (NSMutableArray *) featuresEnabled reviewSources: (Facet *) reviewSources kioskSources: (Facet *) kioskSources surveySources: (Facet *) surveySources socialSources: (Facet *) socialSources authLocations: (NSMutableArray *) authLocations dateRanges: (Facet *) dateRanges socialStates: (Facet *) socialStates sentimentValues: (Facet *) sentimentValues userSettings: (NSMutableArray *) userSettings isDefaultSettings: (BOOL) isDefaultSettings tenantLogoUrl: (NSString *) tenantLogoUrl industrySources: (Facet *) industrySources pushNotificationsPref: (NSMutableArray *) pushNotificationsPref menus: (Facet *) menus
+- (id) initWithFeaturesEnabled: (NSMutableArray *) featuresEnabled reviewSources: (Facet *) reviewSources kioskSources: (Facet *) kioskSources surveySources: (Facet *) surveySources socialSources: (Facet *) socialSources authLocations: (NSMutableArray *) authLocations dateRanges: (Facet *) dateRanges socialStates: (Facet *) socialStates sentimentValues: (Facet *) sentimentValues userSettings: (NSMutableArray *) userSettings isDefaultSettings: (BOOL) isDefaultSettings tenantLogoUrl: (NSString *) tenantLogoUrl industrySources: (Facet *) industrySources pushNotificationsPref: (NSMutableArray *) pushNotificationsPref menus: (Facet *) menus tenantProgramID: (NSString *) tenantProgramID
 {
   self = [super init];
   __featuresEnabled = [featuresEnabled retain_stub];
@@ -11439,6 +11439,8 @@
   __pushNotificationsPref_isset = YES;
   __menus = [menus retain_stub];
   __menus_isset = YES;
+  __tenantProgramID = [tenantProgramID retain_stub];
+  __tenantProgramID_isset = YES;
   return self;
 }
 
@@ -11520,6 +11522,11 @@
     __menus = [[decoder decodeObjectForKey: @"menus"] retain_stub];
     __menus_isset = YES;
   }
+  if ([decoder containsValueForKey: @"tenantProgramID"])
+  {
+    __tenantProgramID = [[decoder decodeObjectForKey: @"tenantProgramID"] retain_stub];
+    __tenantProgramID_isset = YES;
+  }
   return self;
 }
 
@@ -11585,6 +11592,10 @@
   {
     [encoder encodeObject: __menus forKey: @"menus"];
   }
+  if (__tenantProgramID_isset)
+  {
+    [encoder encodeObject: __tenantProgramID forKey: @"tenantProgramID"];
+  }
 }
 
 - (void) dealloc
@@ -11603,6 +11614,7 @@
   [__industrySources release_stub];
   [__pushNotificationsPref release_stub];
   [__menus release_stub];
+  [__tenantProgramID release_stub];
   [super dealloc_stub];
 }
 
@@ -11917,6 +11929,27 @@
   __menus_isset = NO;
 }
 
+- (NSString *) tenantProgramID {
+  return [[__tenantProgramID retain_stub] autorelease_stub];
+}
+
+- (void) setTenantProgramID: (NSString *) tenantProgramID {
+  [tenantProgramID retain_stub];
+  [__tenantProgramID release_stub];
+  __tenantProgramID = tenantProgramID;
+  __tenantProgramID_isset = YES;
+}
+
+- (BOOL) tenantProgramIDIsSet {
+  return __tenantProgramID_isset;
+}
+
+- (void) unsetTenantProgramID {
+  [__tenantProgramID release_stub];
+  __tenantProgramID = nil;
+  __tenantProgramID_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -12116,6 +12149,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 16:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setTenantProgramID: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -12262,6 +12303,13 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__tenantProgramID_isset) {
+    if (__tenantProgramID != nil) {
+      [outProtocol writeFieldBeginWithName: @"tenantProgramID" type: TType_STRING fieldID: 16];
+      [outProtocol writeString: __tenantProgramID];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -12302,6 +12350,8 @@
   [ms appendFormat: @"%@", __pushNotificationsPref];
   [ms appendString: @",menus:"];
   [ms appendFormat: @"%@", __menus];
+  [ms appendString: @",tenantProgramID:"];
+  [ms appendFormat: @"\"%@\"", __tenantProgramID];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -13187,6 +13237,7 @@ static NSString * RATINGS_SENTIMENT_ENABLED = @"ratings.sentiment.enabled";
 static NSString * RATINGS_KIOSK_ENABLED = @"ratings.kiosk.enabled";
 static NSString * RATINGS_LOCATIONS_ENABLED = @"ratings.locations.enabled";
 static NSString * TODO_TAB_ENABLED = @"todo.tab.enabled";
+static NSString * BUSINESS_LISTING_ENABLED = @"business.listing.enabled";
 static NSString * PREFERENCE_PUSHNOTIF_SENTIMENT_THIRDPARTY = @"pn.sentiment.thirdparty";
 static NSString * PREFERENCE_PUSHNOTIF_SENTIMENT_KIOSK = @"pn.sentiment.kiosk";
 static NSString * PREFERENCE_PUSHNOTIF_SENTIMENT_SURVEY = @"pn.sentiment.survey";
@@ -13227,6 +13278,8 @@ static NSString * SOURCE_ID_TWITTER = @"TWITTER";
 static NSString * SOURCE_ID_YOUTUBE = @"YOUTUBE";
 static NSString * SOURCE_ID_SURVEY = @"SURVEY";
 static NSString * SOURCE_ID_KIOSK = @"KIOSK";
+static NSString * SOURCE_GOOGLE_PLACES = @"GOOGLE_PLACES";
+static NSString * SOURCE_CARS = @"CARS";
 static NSString * PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED = @"db.source.customized";
 static NSString * PREFERENCE_DASHBOARD_SOURCE_DEFAULT = @"db.source.default";
 static NSString * PREFERENCE_REVIEW_FILTER_SOURCE = @"review.filter.source";
@@ -13411,6 +13464,9 @@ static NSString * HTTP_HEADER_CONTENT_MD5 = @"Content-Md5";
 + (NSString *) TODO_TAB_ENABLED{
   return TODO_TAB_ENABLED;
 }
++ (NSString *) BUSINESS_LISTING_ENABLED{
+  return BUSINESS_LISTING_ENABLED;
+}
 + (NSString *) PREFERENCE_PUSHNOTIF_SENTIMENT_THIRDPARTY{
   return PREFERENCE_PUSHNOTIF_SENTIMENT_THIRDPARTY;
 }
@@ -13530,6 +13586,12 @@ static NSString * HTTP_HEADER_CONTENT_MD5 = @"Content-Md5";
 }
 + (NSString *) SOURCE_ID_KIOSK{
   return SOURCE_ID_KIOSK;
+}
++ (NSString *) SOURCE_GOOGLE_PLACES{
+  return SOURCE_GOOGLE_PLACES;
+}
++ (NSString *) SOURCE_CARS{
+  return SOURCE_CARS;
 }
 + (NSString *) PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED{
   return PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED;

@@ -94,7 +94,9 @@
 - (UIImageView *)buttonBackgroundView
 {
 	if (!_buttonBackgroundView) {
-		_buttonBackgroundView = [[UIImageView alloc] initWithImage:[UIImage rpk_bundleImageNamed:@"bg_source_button.png"]];
+		UIImage *sourceImage = [UIImage rpk_bundleImageNamed:@"bg_source_button.png"];
+		
+		_buttonBackgroundView = [[UIImageView alloc] initWithImage:sourceImage];
 		_buttonBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
 		[_buttonBackgroundView ul_enableAutoLayout];
 	}
@@ -202,20 +204,20 @@ NSString *const MVCCellID = @"kMVCCellID";
 {
 	[super loadView];
 	
-	self.paddings = UIEdgeInsetsMake(90.0f, 140.0f, 280.0f, 140.0f);
+	self.paddings = UIEdgeInsetsMake(80.0f, 140.0f, 280.0f, 140.0f);
 	self.spacings = CGSizeMake(0.0f, 60.0f);
 	
 	self.view.backgroundColor = [UIColor ul_colorWithR:10 G:53 B:70 A:1];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 
-    [self.view addSubview:self.kioskTitle];
-    [self.view addSubview:self.menuSelectionView];
+	[self.view addSubview:self.kioskTitle];
+	[self.view addSubview:self.menuSelectionView];
 	[self.view addSubview:self.securedView];
 	
 	[self.view addConstraints:[self.kioskTitle ul_pinWithInset:UIEdgeInsetsMake(self.paddings.top, 0.0f, kUIViewUnpinInset, 0.0f)]];
-	[self.view addConstraints:[self.menuSelectionView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left, self.paddings.bottom, self.paddings.right)]];
+	[self.view addConstraints:[self.menuSelectionView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, self.paddings.left + 20, self.paddings.bottom - 50, self.paddings.right + 20)]];
 	[self.view addConstraints:[self.menuSelectionView ul_verticalAlign:NSLayoutFormatAlignAllCenterX withView:self.kioskTitle distance:self.spacings.height topToBottom:NO]];
-	[self.view addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 100.0f, 80.0f)]];
+	[self.view addConstraints:[self.securedView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 80.0f, 50.0f, 80.0f)]];
 }
 
 - (void)viewDidLoad
@@ -290,19 +292,19 @@ NSString *const MVCCellID = @"kMVCCellID";
 #pragma mark - Title
 
 - (UILabel *)kioskTitle {
-    if (!_kioskTitle) {
-        _kioskTitle = [[UILabel alloc] init];
-        _kioskTitle.backgroundColor = [UIColor clearColor];
-        _kioskTitle.textAlignment = NSTextAlignmentCenter;
+	if (!_kioskTitle) {
+		_kioskTitle = [[UILabel alloc] init];
+		_kioskTitle.backgroundColor = [UIColor clearColor];
+		_kioskTitle.textAlignment = NSTextAlignmentCenter;
 		NSString *labelText = NSLocalizedString(@"Please tell us\nwhat you think", nil);
-		NSMutableAttributedString *attributedText = [labelText al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:70.0f] textColor:[UIColor whiteColor]];
+		NSMutableAttributedString *attributedText = [labelText al_attributedStringWithFont:[UIFont rpk_boldFontWithSize:65.0f] textColor:[UIColor whiteColor]];
 		[attributedText rp_addLineSpacing:4.0f];
 		_kioskTitle.attributedText = attributedText;
 		_kioskTitle.numberOfLines = 0;
 		[_kioskTitle ul_enableAutoLayout];
-    }
+	}
 
-    return _kioskTitle;
+	return _kioskTitle;
 }
 
 - (void)handleAdministratorGesture:(UIGestureRecognizer *)gesture
@@ -491,7 +493,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGSize itemSize = CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height / 2 - 20.0f);
+	CGSize itemSize = CGSizeMake(collectionView.bounds.size.width, 165);
 	
 	return itemSize;
 }

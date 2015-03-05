@@ -16,6 +16,8 @@
 #import "TBase.h"
 
 #import "MobileCommon.h"
+#import "MobileListing.h"
+#import "MobileActivity.h"
 
 #import "Mobile.h"
 
@@ -6006,7 +6008,7 @@
   return self;
 }
 
-- (id) initWithId: (NSString *) id externalID: (NSString *) externalID sourceId: (NSString *) sourceId postUrl: (NSString *) postUrl user: (PostUser *) user text: (NSString *) text links: (NSMutableArray *) links medias: (NSMutableArray *) medias tags: (NSMutableArray *) tags hashtags: (NSMutableArray *) hashtags properties: (NSMutableDictionary *) properties created: (int64_t) created updated: (int64_t) updated latestReplyTime: (int64_t) latestReplyTime numReplies: (int32_t) numReplies numRepliesFromSelf: (int32_t) numRepliesFromSelf flagged: (BOOL) flagged read: (BOOL) read upvoted: (BOOL) upvoted deletable: (BOOL) deletable sourceName: (NSString *) sourceName sourceSmallIconPath: (NSString *) sourceSmallIconPath sourceLargeIconPath: (NSString *) sourceLargeIconPath replies: (NSMutableArray *) replies allowedActions: (NSMutableArray *) allowedActions createdDtPrettyShort: (NSString *) createdDtPrettyShort createdDtPrettyLong: (NSString *) createdDtPrettyLong
+- (id) initWithId: (NSString *) id externalID: (NSString *) externalID sourceId: (NSString *) sourceId postUrl: (NSString *) postUrl user: (PostUser *) user text: (NSString *) text links: (NSMutableArray *) links medias: (NSMutableArray *) medias tags: (NSMutableArray *) tags hashtags: (NSMutableArray *) hashtags properties: (NSMutableDictionary *) properties created: (int64_t) created updated: (int64_t) updated latestReplyTime: (int64_t) latestReplyTime numReplies: (int32_t) numReplies numRepliesFromSelf: (int32_t) numRepliesFromSelf flagged: (BOOL) flagged readFlag: (BOOL) readFlag upvoted: (BOOL) upvoted deletable: (BOOL) deletable sourceName: (NSString *) sourceName sourceSmallIconPath: (NSString *) sourceSmallIconPath sourceLargeIconPath: (NSString *) sourceLargeIconPath replies: (NSMutableArray *) replies allowedActions: (NSMutableArray *) allowedActions createdDtPrettyShort: (NSString *) createdDtPrettyShort createdDtPrettyLong: (NSString *) createdDtPrettyLong
 {
   self = [super init];
   __id = [id retain_stub];
@@ -6043,8 +6045,8 @@
   __numRepliesFromSelf_isset = YES;
   __flagged = flagged;
   __flagged_isset = YES;
-  __read = read;
-  __read_isset = YES;
+  __readFlag = readFlag;
+  __readFlag_isset = YES;
   __upvoted = upvoted;
   __upvoted_isset = YES;
   __deletable = deletable;
@@ -6154,10 +6156,10 @@
     __flagged = [decoder decodeBoolForKey: @"flagged"];
     __flagged_isset = YES;
   }
-  if ([decoder containsValueForKey: @"read"])
+  if ([decoder containsValueForKey: @"readFlag"])
   {
-    __read = [decoder decodeBoolForKey: @"read"];
-    __read_isset = YES;
+    __readFlag = [decoder decodeBoolForKey: @"readFlag"];
+    __readFlag_isset = YES;
   }
   if ([decoder containsValueForKey: @"upvoted"])
   {
@@ -6277,9 +6279,9 @@
   {
     [encoder encodeBool: __flagged forKey: @"flagged"];
   }
-  if (__read_isset)
+  if (__readFlag_isset)
   {
-    [encoder encodeBool: __read forKey: @"read"];
+    [encoder encodeBool: __readFlag forKey: @"readFlag"];
   }
   if (__upvoted_isset)
   {
@@ -6675,21 +6677,21 @@
   __flagged_isset = NO;
 }
 
-- (BOOL) read {
-  return __read;
+- (BOOL) readFlag {
+  return __readFlag;
 }
 
-- (void) setRead: (BOOL) read {
-  __read = read;
-  __read_isset = YES;
+- (void) setReadFlag: (BOOL) readFlag {
+  __readFlag = readFlag;
+  __readFlag_isset = YES;
 }
 
-- (BOOL) readIsSet {
-  return __read_isset;
+- (BOOL) readFlagIsSet {
+  return __readFlag_isset;
 }
 
-- (void) unsetRead {
-  __read_isset = NO;
+- (void) unsetReadFlag {
+  __readFlag_isset = NO;
 }
 
 - (BOOL) upvoted {
@@ -7088,7 +7090,7 @@
       case 18:
         if (fieldType == TType_BOOL) {
           BOOL fieldValue = [inProtocol readBool];
-          [self setRead: fieldValue];
+          [self setReadFlag: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -7347,9 +7349,9 @@
     [outProtocol writeBool: __flagged];
     [outProtocol writeFieldEnd];
   }
-  if (__read_isset) {
-    [outProtocol writeFieldBeginWithName: @"read" type: TType_BOOL fieldID: 18];
-    [outProtocol writeBool: __read];
+  if (__readFlag_isset) {
+    [outProtocol writeFieldBeginWithName: @"readFlag" type: TType_BOOL fieldID: 18];
+    [outProtocol writeBool: __readFlag];
     [outProtocol writeFieldEnd];
   }
   if (__upvoted_isset) {
@@ -7471,8 +7473,8 @@
   [ms appendFormat: @"%i", __numRepliesFromSelf];
   [ms appendString: @",flagged:"];
   [ms appendFormat: @"%i", __flagged];
-  [ms appendString: @",read:"];
-  [ms appendFormat: @"%i", __read];
+  [ms appendString: @",readFlag:"];
+  [ms appendFormat: @"%i", __readFlag];
   [ms appendString: @",upvoted:"];
   [ms appendFormat: @"%i", __upvoted];
   [ms appendString: @",deletable:"];
@@ -7507,7 +7509,7 @@
   return self;
 }
 
-- (id) initWithData: (NSData *) data size: (int32_t) size bodyHash: (NSString *) bodyHash mimeType: (int) mimeType imageMetaData: (NSMutableDictionary *) imageMetaData
+- (id) initWithData: (NSData *) data size: (int32_t) size bodyHash: (NSString *) bodyHash mimeType: (int) mimeType imageMetaData: (NSMutableDictionary *) imageMetaData url: (NSString *) url
 {
   self = [super init];
   __data = [data retain_stub];
@@ -7520,6 +7522,8 @@
   __mimeType_isset = YES;
   __imageMetaData = [imageMetaData retain_stub];
   __imageMetaData_isset = YES;
+  __url = [url retain_stub];
+  __url_isset = YES;
   return self;
 }
 
@@ -7551,6 +7555,11 @@
     __imageMetaData = [[decoder decodeObjectForKey: @"imageMetaData"] retain_stub];
     __imageMetaData_isset = YES;
   }
+  if ([decoder containsValueForKey: @"url"])
+  {
+    __url = [[decoder decodeObjectForKey: @"url"] retain_stub];
+    __url_isset = YES;
+  }
   return self;
 }
 
@@ -7576,6 +7585,10 @@
   {
     [encoder encodeObject: __imageMetaData forKey: @"imageMetaData"];
   }
+  if (__url_isset)
+  {
+    [encoder encodeObject: __url forKey: @"url"];
+  }
 }
 
 - (void) dealloc
@@ -7583,6 +7596,7 @@
   [__data release_stub];
   [__bodyHash release_stub];
   [__imageMetaData release_stub];
+  [__url release_stub];
   [super dealloc_stub];
 }
 
@@ -7683,6 +7697,27 @@
   __imageMetaData_isset = NO;
 }
 
+- (NSString *) url {
+  return [[__url retain_stub] autorelease_stub];
+}
+
+- (void) setUrl: (NSString *) url {
+  [url retain_stub];
+  [__url release_stub];
+  __url = url;
+  __url_isset = YES;
+}
+
+- (BOOL) urlIsSet {
+  return __url_isset;
+}
+
+- (void) unsetUrl {
+  [__url release_stub];
+  __url = nil;
+  __url_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -7749,6 +7784,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 6:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setUrl: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -7801,6 +7844,13 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__url_isset) {
+    if (__url != nil) {
+      [outProtocol writeFieldBeginWithName: @"url" type: TType_STRING fieldID: 6];
+      [outProtocol writeString: __url];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -7821,6 +7871,8 @@
   [ms appendFormat: @"%i", __mimeType];
   [ms appendString: @",imageMetaData:"];
   [ms appendFormat: @"%@", __imageMetaData];
+  [ms appendString: @",url:"];
+  [ms appendFormat: @"\"%@\"", __url];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -12412,6 +12464,466 @@
 
 @end
 
+@implementation GetBusinessListingsResponse
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithResponse: (Response *) response locationListings: (NSMutableArray *) locationListings sourceListings: (NSMutableArray *) sourceListings
+{
+  self = [super init];
+  __response = [response retain_stub];
+  __response_isset = YES;
+  __locationListings = [locationListings retain_stub];
+  __locationListings_isset = YES;
+  __sourceListings = [sourceListings retain_stub];
+  __sourceListings_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"response"])
+  {
+    __response = [[decoder decodeObjectForKey: @"response"] retain_stub];
+    __response_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"locationListings"])
+  {
+    __locationListings = [[decoder decodeObjectForKey: @"locationListings"] retain_stub];
+    __locationListings_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"sourceListings"])
+  {
+    __sourceListings = [[decoder decodeObjectForKey: @"sourceListings"] retain_stub];
+    __sourceListings_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__response_isset)
+  {
+    [encoder encodeObject: __response forKey: @"response"];
+  }
+  if (__locationListings_isset)
+  {
+    [encoder encodeObject: __locationListings forKey: @"locationListings"];
+  }
+  if (__sourceListings_isset)
+  {
+    [encoder encodeObject: __sourceListings forKey: @"sourceListings"];
+  }
+}
+
+- (void) dealloc
+{
+  [__response release_stub];
+  [__locationListings release_stub];
+  [__sourceListings release_stub];
+  [super dealloc_stub];
+}
+
+- (Response *) response {
+  return [[__response retain_stub] autorelease_stub];
+}
+
+- (void) setResponse: (Response *) response {
+  [response retain_stub];
+  [__response release_stub];
+  __response = response;
+  __response_isset = YES;
+}
+
+- (BOOL) responseIsSet {
+  return __response_isset;
+}
+
+- (void) unsetResponse {
+  [__response release_stub];
+  __response = nil;
+  __response_isset = NO;
+}
+
+- (NSMutableArray *) locationListings {
+  return [[__locationListings retain_stub] autorelease_stub];
+}
+
+- (void) setLocationListings: (NSMutableArray *) locationListings {
+  [locationListings retain_stub];
+  [__locationListings release_stub];
+  __locationListings = locationListings;
+  __locationListings_isset = YES;
+}
+
+- (BOOL) locationListingsIsSet {
+  return __locationListings_isset;
+}
+
+- (void) unsetLocationListings {
+  [__locationListings release_stub];
+  __locationListings = nil;
+  __locationListings_isset = NO;
+}
+
+- (NSMutableArray *) sourceListings {
+  return [[__sourceListings retain_stub] autorelease_stub];
+}
+
+- (void) setSourceListings: (NSMutableArray *) sourceListings {
+  [sourceListings retain_stub];
+  [__sourceListings release_stub];
+  __sourceListings = sourceListings;
+  __sourceListings_isset = YES;
+}
+
+- (BOOL) sourceListingsIsSet {
+  return __sourceListings_isset;
+}
+
+- (void) unsetSourceListings {
+  [__sourceListings release_stub];
+  __sourceListings = nil;
+  __sourceListings_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Response *fieldValue = [[Response alloc] init];
+          [fieldValue read: inProtocol];
+          [self setResponse: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size189;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size189];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size189];
+          int _i190;
+          for (_i190 = 0; _i190 < _size189; ++_i190)
+          {
+            LocationListing *_elem191 = [[LocationListing alloc] init];
+            [_elem191 read: inProtocol];
+            [fieldValue addObject: _elem191];
+            [_elem191 release_stub];
+          }
+          [inProtocol readListEnd];
+          [self setLocationListings: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_LIST) {
+          int _size192;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size192];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size192];
+          int _i193;
+          for (_i193 = 0; _i193 < _size192; ++_i193)
+          {
+            SourceListing *_elem194 = [[SourceListing alloc] init];
+            [_elem194 read: inProtocol];
+            [fieldValue addObject: _elem194];
+            [_elem194 release_stub];
+          }
+          [inProtocol readListEnd];
+          [self setSourceListings: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"GetBusinessListingsResponse"];
+  if (__response_isset) {
+    if (__response != nil) {
+      [outProtocol writeFieldBeginWithName: @"response" type: TType_STRUCT fieldID: 1];
+      [__response write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__locationListings_isset) {
+    if (__locationListings != nil) {
+      [outProtocol writeFieldBeginWithName: @"locationListings" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__locationListings count]];
+        int i196;
+        for (i196 = 0; i196 < [__locationListings count]; i196++)
+        {
+          [[__locationListings objectAtIndex: i196] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__sourceListings_isset) {
+    if (__sourceListings != nil) {
+      [outProtocol writeFieldBeginWithName: @"sourceListings" type: TType_LIST fieldID: 3];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__sourceListings count]];
+        int i198;
+        for (i198 = 0; i198 < [__sourceListings count]; i198++)
+        {
+          [[__sourceListings objectAtIndex: i198] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"GetBusinessListingsResponse("];
+  [ms appendString: @"response:"];
+  [ms appendFormat: @"%@", __response];
+  [ms appendString: @",locationListings:"];
+  [ms appendFormat: @"%@", __locationListings];
+  [ms appendString: @",sourceListings:"];
+  [ms appendFormat: @"%@", __sourceListings];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation ActivityResponse
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithResponse: (Response *) response activityPeriod: (NSMutableArray *) activityPeriod
+{
+  self = [super init];
+  __response = [response retain_stub];
+  __response_isset = YES;
+  __activityPeriod = [activityPeriod retain_stub];
+  __activityPeriod_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"response"])
+  {
+    __response = [[decoder decodeObjectForKey: @"response"] retain_stub];
+    __response_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"activityPeriod"])
+  {
+    __activityPeriod = [[decoder decodeObjectForKey: @"activityPeriod"] retain_stub];
+    __activityPeriod_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__response_isset)
+  {
+    [encoder encodeObject: __response forKey: @"response"];
+  }
+  if (__activityPeriod_isset)
+  {
+    [encoder encodeObject: __activityPeriod forKey: @"activityPeriod"];
+  }
+}
+
+- (void) dealloc
+{
+  [__response release_stub];
+  [__activityPeriod release_stub];
+  [super dealloc_stub];
+}
+
+- (Response *) response {
+  return [[__response retain_stub] autorelease_stub];
+}
+
+- (void) setResponse: (Response *) response {
+  [response retain_stub];
+  [__response release_stub];
+  __response = response;
+  __response_isset = YES;
+}
+
+- (BOOL) responseIsSet {
+  return __response_isset;
+}
+
+- (void) unsetResponse {
+  [__response release_stub];
+  __response = nil;
+  __response_isset = NO;
+}
+
+- (NSMutableArray *) activityPeriod {
+  return [[__activityPeriod retain_stub] autorelease_stub];
+}
+
+- (void) setActivityPeriod: (NSMutableArray *) activityPeriod {
+  [activityPeriod retain_stub];
+  [__activityPeriod release_stub];
+  __activityPeriod = activityPeriod;
+  __activityPeriod_isset = YES;
+}
+
+- (BOOL) activityPeriodIsSet {
+  return __activityPeriod_isset;
+}
+
+- (void) unsetActivityPeriod {
+  [__activityPeriod release_stub];
+  __activityPeriod = nil;
+  __activityPeriod_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Response *fieldValue = [[Response alloc] init];
+          [fieldValue read: inProtocol];
+          [self setResponse: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size199;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size199];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size199];
+          int _i200;
+          for (_i200 = 0; _i200 < _size199; ++_i200)
+          {
+            ActivityPeriod *_elem201 = [[ActivityPeriod alloc] init];
+            [_elem201 read: inProtocol];
+            [fieldValue addObject: _elem201];
+            [_elem201 release_stub];
+          }
+          [inProtocol readListEnd];
+          [self setActivityPeriod: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"ActivityResponse"];
+  if (__response_isset) {
+    if (__response != nil) {
+      [outProtocol writeFieldBeginWithName: @"response" type: TType_STRUCT fieldID: 1];
+      [__response write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__activityPeriod_isset) {
+    if (__activityPeriod != nil) {
+      [outProtocol writeFieldBeginWithName: @"activityPeriod" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__activityPeriod count]];
+        int i203;
+        for (i203 = 0; i203 < [__activityPeriod count]; i203++)
+        {
+          [[__activityPeriod objectAtIndex: i203] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"ActivityResponse("];
+  [ms appendString: @"response:"];
+  [ms appendFormat: @"%@", __response];
+  [ms appendString: @",activityPeriod:"];
+  [ms appendFormat: @"%@", __activityPeriod];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 static int32_t ERROR_SVC = 1001;
 static int32_t ERROR_SOURCES_SVC = 1010;
 static int32_t ERROR_SOCIAL_SVC = 1012;
@@ -12427,6 +12939,8 @@ static int32_t ERROR_SOCIAL_POST_SVC = 1020;
 static int32_t ERROR_SOCIAL_S3_SVC = 1021;
 static int32_t ERROR_DISTRIBUTION_SVC = 1022;
 static int32_t ERROR_USER_SVC = 1023;
+static int32_t ERROR_ACTIVITY_IDS_SVC = 1024;
+static int32_t ERROR_USER_ACTIVITY_STAT_SVC = 1025;
 static int32_t ERROR_AUTH_READ_RATINGS = 1101;
 static int32_t ERROR_AUTH_READ_SOCIAL = 1102;
 static int32_t ERROR_VALIDATION_RATINGID = 1103;
@@ -12450,6 +12964,9 @@ static int32_t ERROR_VALIDATION_SOCIAL_TRANSMISSION = 1120;
 static int32_t ERROR_AUTH_SOCIAL_APPROVE_REJECT = 1121;
 static int32_t ERROR_VALIDATION_SOCIAL_DUPLICATE = 1122;
 static int32_t ERROR_SUMMARY_INVALID_CELL = 1123;
+static int32_t ERROR_SEARCH_SOURCE_LISTING_AUDITS = 1124;
+static int32_t ERROR_SEARCH_LISTING_AUDITS = 1125;
+static int32_t ERROR_AUTH_VIEW_BUSINESS_LISTINGS = 1126;
 static int32_t TWITTER_URL_LENGTH = 22;
 static NSString * SUMMARY_OVERALL_SCORE = @"summary.overallscore.score";
 static NSString * SUMMARY_NOREVIEWS_THIRDPARTY_SOURCES = @"summary.numreviews.tpsources";
@@ -12460,8 +12977,14 @@ static NSString * SUMMARY_THIRD_PARTY_SOURCE_TRACKING = @"summary.tpsource.last5
 static NSString * SUMMARY_THIRD_PARTY_SOURCE_TRACKING_NO_KIOSK = @"summary.tpsource.nokiosk.last5weeks";
 static NSString * SUMMARY_THIRD_PARTY_SOURCE_ALL_TIME = @"summary.tpsource.alltime";
 static NSString * SUMMARY_AVGRATING_SOURCE = @"summary.avgrating.source";
+static NSString * SUMMARY_AVGRATING_ALL = @"summary.avgrating.all";
 static NSString * SUMMARY_NOREVIEWS_SOURCE = @"summary.numreviews.source";
 static NSString * SUMMARY_SOCIALCOUNTS_SOURCE = @"summary.socialcounts.source";
+static NSString * SUMMARY_SOCIALCOUNTS_TOTAL = @"summary.socialcounts.total";
+static NSString * SUMMARY_SOCIALCOUNTS_SOURCE_30_DAYS = @"summary.socialcounts.source.last30days";
+static NSString * SUMMARY_SOCIALCOUNTS_TOTAL_30_DAYS = @"summary.socialcounts.total.last30days";
+static NSString * SUMMARY_BUSINESS_LISTINGS_SCORE = @"summary.businesslistings.score";
+static NSString * SUMMARY_BUSINESS_LISTINGS_SCORE_VALUE = @"summary.businesslistings.value";
 static NSString * SUMMARY_OVERALL_SCORE_VALUE = @"summary.overallscore.value";
 static NSString * SUMMARY_OVERALL_SCORE_WEIGHTEDRATING = @"summary.overallscore.weightedrating";
 static NSString * SUMMARY_OVERALL_SCORE_VISIBILITY = @"summary.overallscore.visibility";
@@ -12475,6 +12998,7 @@ static NSString * SUMMARY_OVERALL_SCORE_SPREAD_FILLCOLOR = @"summary.overallscor
 static NSString * SUMMARY_OVERALL_SCORE_LENGTH_FILLCOLOR = @"summary.overallscore.length.fillcolor";
 static NSString * SUMMARY_OVERALL_SCORE_TIME_FILLCOLOR = @"summary.overallscore.time.fillcolor";
 static NSString * SUMMARY_OVERALL_SCORE_VOLUME_FILLCOLOR = @"summary.overallscore.volume.fillcolor";
+static NSString * SUMMARY_AVGRATING_ALL_VALUE = @"summary.avgrating.all.value";
 static NSString * SUMMARY_NOREVIEWS_SOURCELOGO = @"summary.avgrating.sourcelogopath";
 static NSString * SUMMARY_NOREVIEWS_SOURCENAME = @"summary.avgrating.sourcename";
 static NSString * SUMMARY_SOURCE_LOGO_URL = @"summary.source.logourl";
@@ -12562,6 +13086,12 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 + (int32_t) ERROR_USER_SVC{
   return ERROR_USER_SVC;
 }
++ (int32_t) ERROR_ACTIVITY_IDS_SVC{
+  return ERROR_ACTIVITY_IDS_SVC;
+}
++ (int32_t) ERROR_USER_ACTIVITY_STAT_SVC{
+  return ERROR_USER_ACTIVITY_STAT_SVC;
+}
 + (int32_t) ERROR_AUTH_READ_RATINGS{
   return ERROR_AUTH_READ_RATINGS;
 }
@@ -12631,6 +13161,15 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 + (int32_t) ERROR_SUMMARY_INVALID_CELL{
   return ERROR_SUMMARY_INVALID_CELL;
 }
++ (int32_t) ERROR_SEARCH_SOURCE_LISTING_AUDITS{
+  return ERROR_SEARCH_SOURCE_LISTING_AUDITS;
+}
++ (int32_t) ERROR_SEARCH_LISTING_AUDITS{
+  return ERROR_SEARCH_LISTING_AUDITS;
+}
++ (int32_t) ERROR_AUTH_VIEW_BUSINESS_LISTINGS{
+  return ERROR_AUTH_VIEW_BUSINESS_LISTINGS;
+}
 + (int32_t) TWITTER_URL_LENGTH{
   return TWITTER_URL_LENGTH;
 }
@@ -12661,11 +13200,29 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 + (NSString *) SUMMARY_AVGRATING_SOURCE{
   return SUMMARY_AVGRATING_SOURCE;
 }
++ (NSString *) SUMMARY_AVGRATING_ALL{
+  return SUMMARY_AVGRATING_ALL;
+}
 + (NSString *) SUMMARY_NOREVIEWS_SOURCE{
   return SUMMARY_NOREVIEWS_SOURCE;
 }
 + (NSString *) SUMMARY_SOCIALCOUNTS_SOURCE{
   return SUMMARY_SOCIALCOUNTS_SOURCE;
+}
++ (NSString *) SUMMARY_SOCIALCOUNTS_TOTAL{
+  return SUMMARY_SOCIALCOUNTS_TOTAL;
+}
++ (NSString *) SUMMARY_SOCIALCOUNTS_SOURCE_30_DAYS{
+  return SUMMARY_SOCIALCOUNTS_SOURCE_30_DAYS;
+}
++ (NSString *) SUMMARY_SOCIALCOUNTS_TOTAL_30_DAYS{
+  return SUMMARY_SOCIALCOUNTS_TOTAL_30_DAYS;
+}
++ (NSString *) SUMMARY_BUSINESS_LISTINGS_SCORE{
+  return SUMMARY_BUSINESS_LISTINGS_SCORE;
+}
++ (NSString *) SUMMARY_BUSINESS_LISTINGS_SCORE_VALUE{
+  return SUMMARY_BUSINESS_LISTINGS_SCORE_VALUE;
 }
 + (NSString *) SUMMARY_OVERALL_SCORE_VALUE{
   return SUMMARY_OVERALL_SCORE_VALUE;
@@ -12705,6 +13262,9 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 }
 + (NSString *) SUMMARY_OVERALL_SCORE_VOLUME_FILLCOLOR{
   return SUMMARY_OVERALL_SCORE_VOLUME_FILLCOLOR;
+}
++ (NSString *) SUMMARY_AVGRATING_ALL_VALUE{
+  return SUMMARY_AVGRATING_ALL_VALUE;
 }
 + (NSString *) SUMMARY_NOREVIEWS_SOURCELOGO{
   return SUMMARY_NOREVIEWS_SOURCELOGO;
@@ -15433,16 +15993,16 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     {
       case 1:
         if (fieldType == TType_LIST) {
-          int _size189;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size189];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size189];
-          int _i190;
-          for (_i190 = 0; _i190 < _size189; ++_i190)
+          int _size204;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size204];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size204];
+          int _i205;
+          for (_i205 = 0; _i205 < _size204; ++_i205)
           {
-            UserPreference *_elem191 = [[UserPreference alloc] init];
-            [_elem191 read: inProtocol];
-            [fieldValue addObject: _elem191];
-            [_elem191 release_stub];
+            UserPreference *_elem206 = [[UserPreference alloc] init];
+            [_elem206 read: inProtocol];
+            [fieldValue addObject: _elem206];
+            [_elem206 release_stub];
           }
           [inProtocol readListEnd];
           [self setUserSettings: fieldValue];
@@ -15467,10 +16027,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
       [outProtocol writeFieldBeginWithName: @"userSettings" type: TType_LIST fieldID: 1];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__userSettings count]];
-        int i193;
-        for (i193 = 0; i193 < [__userSettings count]; i193++)
+        int i208;
+        for (i208 = 0; i208 < [__userSettings count]; i208++)
         {
-          [[__userSettings objectAtIndex: i193] write: outProtocol];
+          [[__userSettings objectAtIndex: i208] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -18492,14 +19052,14 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     {
       case 1:
         if (fieldType == TType_LIST) {
-          int _size194;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size194];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size194];
-          int _i195;
-          for (_i195 = 0; _i195 < _size194; ++_i195)
+          int _size209;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size209];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size209];
+          int _i210;
+          for (_i210 = 0; _i210 < _size209; ++_i210)
           {
-            NSString * _elem196 = [inProtocol readString];
-            [fieldValue addObject: _elem196];
+            NSString * _elem211 = [inProtocol readString];
+            [fieldValue addObject: _elem211];
           }
           [inProtocol readListEnd];
           [self setSummaryCells: fieldValue];
@@ -18524,10 +19084,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
       [outProtocol writeFieldBeginWithName: @"summaryCells" type: TType_LIST fieldID: 1];
       {
         [outProtocol writeListBeginWithElementType: TType_STRING size: [__summaryCells count]];
-        int i198;
-        for (i198 = 0; i198 < [__summaryCells count]; i198++)
+        int i213;
+        for (i213 = 0; i213 < [__summaryCells count]; i213++)
         {
-          [outProtocol writeString: [__summaryCells objectAtIndex: i198]];
+          [outProtocol writeString: [__summaryCells objectAtIndex: i213]];
         }
         [outProtocol writeListEnd];
       }
@@ -19152,6 +19712,533 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 
 @end
 
+@interface getBusinessListings_args : NSObject <TBase, NSCoding> {
+  SearchFilter * __searchCriteria;
+
+  BOOL __searchCriteria_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=searchCriteria, setter=setSearchCriteria:) SearchFilter * searchCriteria;
+#endif
+
+- (id) init;
+- (id) initWithSearchCriteria: (SearchFilter *) searchCriteria;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (SearchFilter *) searchCriteria;
+- (void) setSearchCriteria: (SearchFilter *) searchCriteria;
+#endif
+- (BOOL) searchCriteriaIsSet;
+
+@end
+
+@implementation getBusinessListings_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSearchCriteria: (SearchFilter *) searchCriteria
+{
+  self = [super init];
+  __searchCriteria = [searchCriteria retain_stub];
+  __searchCriteria_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"searchCriteria"])
+  {
+    __searchCriteria = [[decoder decodeObjectForKey: @"searchCriteria"] retain_stub];
+    __searchCriteria_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__searchCriteria_isset)
+  {
+    [encoder encodeObject: __searchCriteria forKey: @"searchCriteria"];
+  }
+}
+
+- (void) dealloc
+{
+  [__searchCriteria release_stub];
+  [super dealloc_stub];
+}
+
+- (SearchFilter *) searchCriteria {
+  return [[__searchCriteria retain_stub] autorelease_stub];
+}
+
+- (void) setSearchCriteria: (SearchFilter *) searchCriteria {
+  [searchCriteria retain_stub];
+  [__searchCriteria release_stub];
+  __searchCriteria = searchCriteria;
+  __searchCriteria_isset = YES;
+}
+
+- (BOOL) searchCriteriaIsSet {
+  return __searchCriteria_isset;
+}
+
+- (void) unsetSearchCriteria {
+  [__searchCriteria release_stub];
+  __searchCriteria = nil;
+  __searchCriteria_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          SearchFilter *fieldValue = [[SearchFilter alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSearchCriteria: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"getBusinessListings_args"];
+  if (__searchCriteria_isset) {
+    if (__searchCriteria != nil) {
+      [outProtocol writeFieldBeginWithName: @"searchCriteria" type: TType_STRUCT fieldID: 1];
+      [__searchCriteria write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"getBusinessListings_args("];
+  [ms appendString: @"searchCriteria:"];
+  [ms appendFormat: @"%@", __searchCriteria];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface GetBusinessListings_result : NSObject <TBase, NSCoding> {
+  GetBusinessListingsResponse * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) GetBusinessListingsResponse * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (GetBusinessListingsResponse *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (GetBusinessListingsResponse *) success;
+- (void) setSuccess: (GetBusinessListingsResponse *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation GetBusinessListings_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (GetBusinessListingsResponse *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (GetBusinessListingsResponse *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (GetBusinessListingsResponse *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          GetBusinessListingsResponse *fieldValue = [[GetBusinessListingsResponse alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"GetBusinessListings_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"GetBusinessListings_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface getActivityFeed_args : NSObject <TBase, NSCoding> {
+}
+
+- (id) init;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+@end
+
+@implementation getActivityFeed_args
+
+- (id) init
+{
+  self = [super init];
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"getActivityFeed_args"];
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"getActivityFeed_args("];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface GetActivityFeed_result : NSObject <TBase, NSCoding> {
+  ActivityResponse * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) ActivityResponse * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (ActivityResponse *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (ActivityResponse *) success;
+- (void) setSuccess: (ActivityResponse *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation GetActivityFeed_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (ActivityResponse *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (ActivityResponse *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (ActivityResponse *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          ActivityResponse *fieldValue = [[ActivityResponse alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"GetActivityFeed_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"GetActivityFeed_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation MobileClient
 - (id) initWithProtocol: (id <TProtocol>) protocol
 {
@@ -19483,10 +20570,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     [outProtocol writeFieldBeginWithName: @"userSettings" type: TType_LIST fieldID: 1];
     {
       [outProtocol writeListBeginWithElementType: TType_STRUCT size: [userSettings count]];
-      int i200;
-      for (i200 = 0; i200 < [userSettings count]; i200++)
+      int i215;
+      for (i215 = 0; i215 < [userSettings count]; i215++)
       {
-        [[userSettings objectAtIndex: i200] write: outProtocol];
+        [[userSettings objectAtIndex: i215] write: outProtocol];
       }
       [outProtocol writeListEnd];
     }
@@ -19873,10 +20960,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     [outProtocol writeFieldBeginWithName: @"summaryCells" type: TType_LIST fieldID: 1];
     {
       [outProtocol writeListBeginWithElementType: TType_STRING size: [summaryCells count]];
-      int i202;
-      for (i202 = 0; i202 < [summaryCells count]; i202++)
+      int i217;
+      for (i217 = 0; i217 < [summaryCells count]; i217++)
       {
-        [outProtocol writeString: [summaryCells objectAtIndex: i202]];
+        [outProtocol writeString: [summaryCells objectAtIndex: i217]];
       }
       [outProtocol writeListEnd];
     }
@@ -19981,6 +21068,81 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 {
   [self send_logout];
   return [self recv_logout];
+}
+
+- (void) send_getBusinessListings: (SearchFilter *) searchCriteria
+{
+  [outProtocol writeMessageBeginWithName: @"getBusinessListings" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"getBusinessListings_args"];
+  if (searchCriteria != nil)  {
+    [outProtocol writeFieldBeginWithName: @"searchCriteria" type: TType_STRUCT fieldID: 1];
+    [searchCriteria write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+}
+
+- (GetBusinessListingsResponse *) recv_getBusinessListings
+{
+  int msgType = 0;
+  [inProtocol readMessageBeginReturningName: nil type: &msgType sequenceID: NULL];
+  if (msgType == TMessageType_EXCEPTION) {
+    TApplicationException * x = [TApplicationException read: inProtocol];
+    [inProtocol readMessageEnd];
+    @throw x;
+  }
+  GetBusinessListings_result * result = [[[GetBusinessListings_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"getBusinessListings failed: unknown result"];
+}
+
+- (GetBusinessListingsResponse *) getBusinessListings: (SearchFilter *) searchCriteria
+{
+  [self send_getBusinessListings : searchCriteria];
+  return [self recv_getBusinessListings];
+}
+
+- (void) send_getActivityFeed
+{
+  [outProtocol writeMessageBeginWithName: @"getActivityFeed" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"getActivityFeed_args"];
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+}
+
+- (ActivityResponse *) recv_getActivityFeed
+{
+  int msgType = 0;
+  [inProtocol readMessageBeginReturningName: nil type: &msgType sequenceID: NULL];
+  if (msgType == TMessageType_EXCEPTION) {
+    TApplicationException * x = [TApplicationException read: inProtocol];
+    [inProtocol readMessageEnd];
+    @throw x;
+  }
+  GetActivityFeed_result * result = [[[GetActivityFeed_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"getActivityFeed failed: unknown result"];
+}
+
+- (ActivityResponse *) getActivityFeed
+{
+  [self send_getActivityFeed];
+  return [self recv_getActivityFeed];
 }
 
 @end
@@ -20146,6 +21308,22 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     [invocation setSelector: s];
     [invocation retainArguments];
     [mMethodMap setValue: invocation forKey: @"logout"];
+  }
+  {
+    SEL s = @selector(process_getBusinessListings_withSequenceID:inProtocol:outProtocol:);
+    NSMethodSignature * sig = [self methodSignatureForSelector: s];
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+    [invocation setSelector: s];
+    [invocation retainArguments];
+    [mMethodMap setValue: invocation forKey: @"getBusinessListings"];
+  }
+  {
+    SEL s = @selector(process_getActivityFeed_withSequenceID:inProtocol:outProtocol:);
+    NSMethodSignature * sig = [self methodSignatureForSelector: s];
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+    [invocation setSelector: s];
+    [invocation retainArguments];
+    [mMethodMap setValue: invocation forKey: @"getActivityFeed"];
   }
   return self;
 }
@@ -20502,6 +21680,40 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
   Logout_result * result = [[Logout_result alloc] init];
   [result setSuccess: [mService logout]];
   [outProtocol writeMessageBeginWithName: @"logout"
+                                    type: TMessageType_REPLY
+                              sequenceID: seqID];
+  [result write: outProtocol];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+  [result release_stub];
+  [args release_stub];
+}
+
+- (void) process_getBusinessListings_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+  getBusinessListings_args * args = [[getBusinessListings_args alloc] init];
+  [args read: inProtocol];
+  [inProtocol readMessageEnd];
+  GetBusinessListings_result * result = [[GetBusinessListings_result alloc] init];
+  [result setSuccess: [mService getBusinessListings: [args searchCriteria]]];
+  [outProtocol writeMessageBeginWithName: @"getBusinessListings"
+                                    type: TMessageType_REPLY
+                              sequenceID: seqID];
+  [result write: outProtocol];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+  [result release_stub];
+  [args release_stub];
+}
+
+- (void) process_getActivityFeed_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+  getActivityFeed_args * args = [[getActivityFeed_args alloc] init];
+  [args read: inProtocol];
+  [inProtocol readMessageEnd];
+  GetActivityFeed_result * result = [[GetActivityFeed_result alloc] init];
+  [result setSuccess: [mService getActivityFeed]];
+  [outProtocol writeMessageBeginWithName: @"getActivityFeed"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
   [result write: outProtocol];
