@@ -1827,22 +1827,22 @@ typedef NSString * SourceCode;
 
 @interface FeedResponse : NSObject <TBase, NSCoding> {
   Response * __response;
-  int64_t __itemsCount;
+  int64_t __count;
   NSMutableArray * __items;
 
   BOOL __response_isset;
-  BOOL __itemsCount_isset;
+  BOOL __count_isset;
   BOOL __items_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
-@property (nonatomic, getter=itemsCount, setter=setItemsCount:) int64_t itemsCount;
+@property (nonatomic, getter=count, setter=setCount:) int64_t count;
 @property (nonatomic, retain, getter=items, setter=setItems:) NSMutableArray * items;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response itemsCount: (int64_t) itemsCount items: (NSMutableArray *) items;
+- (id) initWithResponse: (Response *) response count: (int64_t) count items: (NSMutableArray *) items;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1856,10 +1856,10 @@ typedef NSString * SourceCode;
 - (BOOL) responseIsSet;
 
 #if !__has_feature(objc_arc)
-- (int64_t) itemsCount;
-- (void) setItemsCount: (int64_t) itemsCount;
+- (int64_t) count;
+- (void) setCount: (int64_t) count;
 #endif
-- (BOOL) itemsCountIsSet;
+- (BOOL) countIsSet;
 
 #if !__has_feature(objc_arc)
 - (NSMutableArray *) items;
@@ -2109,21 +2109,21 @@ typedef NSString * SourceCode;
 @interface SocialFeedResponse : NSObject <TBase, NSCoding> {
   Response * __response;
   NSMutableArray * __socialPosts;
-  int64_t __postsCount;
+  int64_t __count;
 
   BOOL __response_isset;
   BOOL __socialPosts_isset;
-  BOOL __postsCount_isset;
+  BOOL __count_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
 @property (nonatomic, retain, getter=socialPosts, setter=setSocialPosts:) NSMutableArray * socialPosts;
-@property (nonatomic, getter=postsCount, setter=setPostsCount:) int64_t postsCount;
+@property (nonatomic, getter=count, setter=setCount:) int64_t count;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts postsCount: (int64_t) postsCount;
+- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts count: (int64_t) count;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -2143,10 +2143,10 @@ typedef NSString * SourceCode;
 - (BOOL) socialPostsIsSet;
 
 #if !__has_feature(objc_arc)
-- (int64_t) postsCount;
-- (void) setPostsCount: (int64_t) postsCount;
+- (int64_t) count;
+- (void) setCount: (int64_t) count;
 #endif
-- (BOOL) postsCountIsSet;
+- (BOOL) countIsSet;
 
 @end
 
@@ -2390,19 +2390,19 @@ typedef NSString * SourceCode;
 
 @interface ActivityResponse : NSObject <TBase, NSCoding> {
   Response * __response;
-  NSMutableDictionary * __activities;
+  NSMutableArray * __activityPeriod;
 
   BOOL __response_isset;
-  BOOL __activities_isset;
+  BOOL __activityPeriod_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=response, setter=setResponse:) Response * response;
-@property (nonatomic, retain, getter=activities, setter=setActivities:) NSMutableDictionary * activities;
+@property (nonatomic, retain, getter=activityPeriod, setter=setActivityPeriod:) NSMutableArray * activityPeriod;
 #endif
 
 - (id) init;
-- (id) initWithResponse: (Response *) response activities: (NSMutableDictionary *) activities;
+- (id) initWithResponse: (Response *) response activityPeriod: (NSMutableArray *) activityPeriod;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -2416,10 +2416,10 @@ typedef NSString * SourceCode;
 - (BOOL) responseIsSet;
 
 #if !__has_feature(objc_arc)
-- (NSMutableDictionary *) activities;
-- (void) setActivities: (NSMutableDictionary *) activities;
+- (NSMutableArray *) activityPeriod;
+- (void) setActivityPeriod: (NSMutableArray *) activityPeriod;
 #endif
-- (BOOL) activitiesIsSet;
+- (BOOL) activityPeriodIsSet;
 
 @end
 
@@ -2480,7 +2480,8 @@ typedef NSString * SourceCode;
 + (int32_t) ERROR_SOCIAL_S3_SVC;
 + (int32_t) ERROR_DISTRIBUTION_SVC;
 + (int32_t) ERROR_USER_SVC;
-+ (int32_t) ERROR_USER_ACTIVITY_SVC;
++ (int32_t) ERROR_ACTIVITY_IDS_SVC;
++ (int32_t) ERROR_USER_ACTIVITY_STAT_SVC;
 + (int32_t) ERROR_AUTH_READ_RATINGS;
 + (int32_t) ERROR_AUTH_READ_SOCIAL;
 + (int32_t) ERROR_VALIDATION_RATINGID;

@@ -114,23 +114,23 @@ enum TimePeriod {
 @end
 
 @interface ActivitySource : NSObject <TBase, NSCoding> {
-  NSString * __id;
+  NSString * __sourceId;
   NSString * __type;
-  NSString * __name;
+  NSString * __sourceName;
 
-  BOOL __id_isset;
+  BOOL __sourceId_isset;
   BOOL __type_isset;
-  BOOL __name_isset;
+  BOOL __sourceName_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+@property (nonatomic, retain, getter=sourceId, setter=setSourceId:) NSString * sourceId;
 @property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
-@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
+@property (nonatomic, retain, getter=sourceName, setter=setSourceName:) NSString * sourceName;
 #endif
 
 - (id) init;
-- (id) initWithId: (NSString *) id type: (NSString *) type name: (NSString *) name;
+- (id) initWithSourceId: (NSString *) sourceId type: (NSString *) type sourceName: (NSString *) sourceName;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -138,10 +138,10 @@ enum TimePeriod {
 - (void) validate;
 
 #if !__has_feature(objc_arc)
-- (NSString *) id;
-- (void) setId: (NSString *) id;
+- (NSString *) sourceId;
+- (void) setSourceId: (NSString *) sourceId;
 #endif
-- (BOOL) idIsSet;
+- (BOOL) sourceIdIsSet;
 
 #if !__has_feature(objc_arc)
 - (NSString *) type;
@@ -150,10 +150,10 @@ enum TimePeriod {
 - (BOOL) typeIsSet;
 
 #if !__has_feature(objc_arc)
-- (NSString *) name;
-- (void) setName: (NSString *) name;
+- (NSString *) sourceName;
+- (void) setSourceName: (NSString *) sourceName;
 #endif
-- (BOOL) nameIsSet;
+- (BOOL) sourceNameIsSet;
 
 @end
 
@@ -305,6 +305,41 @@ enum TimePeriod {
 - (void) setActivityString: (NSString *) activityString;
 #endif
 - (BOOL) activityStringIsSet;
+
+@end
+
+@interface ActivityPeriod : NSObject <TBase, NSCoding> {
+  int __timePeriod;
+  NSMutableArray * __activities;
+
+  BOOL __timePeriod_isset;
+  BOOL __activities_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=timePeriod, setter=setTimePeriod:) int timePeriod;
+@property (nonatomic, retain, getter=activities, setter=setActivities:) NSMutableArray * activities;
+#endif
+
+- (id) init;
+- (id) initWithTimePeriod: (int) timePeriod activities: (NSMutableArray *) activities;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (int) timePeriod;
+- (void) setTimePeriod: (int) timePeriod;
+#endif
+- (BOOL) timePeriodIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableArray *) activities;
+- (void) setActivities: (NSMutableArray *) activities;
+#endif
+- (BOOL) activitiesIsSet;
 
 @end
 

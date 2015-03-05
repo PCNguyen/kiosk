@@ -495,82 +495,82 @@
   return self;
 }
 
-- (id) initWithId: (NSString *) id type: (NSString *) type name: (NSString *) name
+- (id) initWithSourceId: (NSString *) sourceId type: (NSString *) type sourceName: (NSString *) sourceName
 {
   self = [super init];
-  __id = [id retain_stub];
-  __id_isset = YES;
+  __sourceId = [sourceId retain_stub];
+  __sourceId_isset = YES;
   __type = [type retain_stub];
   __type_isset = YES;
-  __name = [name retain_stub];
-  __name_isset = YES;
+  __sourceName = [sourceName retain_stub];
+  __sourceName_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"id"])
+  if ([decoder containsValueForKey: @"sourceId"])
   {
-    __id = [[decoder decodeObjectForKey: @"id"] retain_stub];
-    __id_isset = YES;
+    __sourceId = [[decoder decodeObjectForKey: @"sourceId"] retain_stub];
+    __sourceId_isset = YES;
   }
   if ([decoder containsValueForKey: @"type"])
   {
     __type = [[decoder decodeObjectForKey: @"type"] retain_stub];
     __type_isset = YES;
   }
-  if ([decoder containsValueForKey: @"name"])
+  if ([decoder containsValueForKey: @"sourceName"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
-    __name_isset = YES;
+    __sourceName = [[decoder decodeObjectForKey: @"sourceName"] retain_stub];
+    __sourceName_isset = YES;
   }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__id_isset)
+  if (__sourceId_isset)
   {
-    [encoder encodeObject: __id forKey: @"id"];
+    [encoder encodeObject: __sourceId forKey: @"sourceId"];
   }
   if (__type_isset)
   {
     [encoder encodeObject: __type forKey: @"type"];
   }
-  if (__name_isset)
+  if (__sourceName_isset)
   {
-    [encoder encodeObject: __name forKey: @"name"];
+    [encoder encodeObject: __sourceName forKey: @"sourceName"];
   }
 }
 
 - (void) dealloc
 {
-  [__id release_stub];
+  [__sourceId release_stub];
   [__type release_stub];
-  [__name release_stub];
+  [__sourceName release_stub];
   [super dealloc_stub];
 }
 
-- (NSString *) id {
-  return [[__id retain_stub] autorelease_stub];
+- (NSString *) sourceId {
+  return [[__sourceId retain_stub] autorelease_stub];
 }
 
-- (void) setId: (NSString *) id {
-  [id retain_stub];
-  [__id release_stub];
-  __id = id;
-  __id_isset = YES;
+- (void) setSourceId: (NSString *) sourceId {
+  [sourceId retain_stub];
+  [__sourceId release_stub];
+  __sourceId = sourceId;
+  __sourceId_isset = YES;
 }
 
-- (BOOL) idIsSet {
-  return __id_isset;
+- (BOOL) sourceIdIsSet {
+  return __sourceId_isset;
 }
 
-- (void) unsetId {
-  [__id release_stub];
-  __id = nil;
-  __id_isset = NO;
+- (void) unsetSourceId {
+  [__sourceId release_stub];
+  __sourceId = nil;
+  __sourceId_isset = NO;
 }
 
 - (NSString *) type {
@@ -594,25 +594,25 @@
   __type_isset = NO;
 }
 
-- (NSString *) name {
-  return [[__name retain_stub] autorelease_stub];
+- (NSString *) sourceName {
+  return [[__sourceName retain_stub] autorelease_stub];
 }
 
-- (void) setName: (NSString *) name {
-  [name retain_stub];
-  [__name release_stub];
-  __name = name;
-  __name_isset = YES;
+- (void) setSourceName: (NSString *) sourceName {
+  [sourceName retain_stub];
+  [__sourceName release_stub];
+  __sourceName = sourceName;
+  __sourceName_isset = YES;
 }
 
-- (BOOL) nameIsSet {
-  return __name_isset;
+- (BOOL) sourceNameIsSet {
+  return __sourceName_isset;
 }
 
-- (void) unsetName {
-  [__name release_stub];
-  __name = nil;
-  __name_isset = NO;
+- (void) unsetSourceName {
+  [__sourceName release_stub];
+  __sourceName = nil;
+  __sourceName_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -633,7 +633,7 @@
       case 1:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setId: fieldValue];
+          [self setSourceId: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -649,7 +649,7 @@
       case 3:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setName: fieldValue];
+          [self setSourceName: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -665,10 +665,10 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"ActivitySource"];
-  if (__id_isset) {
-    if (__id != nil) {
-      [outProtocol writeFieldBeginWithName: @"id" type: TType_STRING fieldID: 1];
-      [outProtocol writeString: __id];
+  if (__sourceId_isset) {
+    if (__sourceId != nil) {
+      [outProtocol writeFieldBeginWithName: @"sourceId" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __sourceId];
       [outProtocol writeFieldEnd];
     }
   }
@@ -679,10 +679,10 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__name_isset) {
-    if (__name != nil) {
-      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 3];
-      [outProtocol writeString: __name];
+  if (__sourceName_isset) {
+    if (__sourceName != nil) {
+      [outProtocol writeFieldBeginWithName: @"sourceName" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __sourceName];
       [outProtocol writeFieldEnd];
     }
   }
@@ -696,12 +696,12 @@
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"ActivitySource("];
-  [ms appendString: @"id:"];
-  [ms appendFormat: @"\"%@\"", __id];
+  [ms appendString: @"sourceId:"];
+  [ms appendFormat: @"\"%@\"", __sourceId];
   [ms appendString: @",type:"];
   [ms appendFormat: @"\"%@\"", __type];
-  [ms appendString: @",name:"];
-  [ms appendFormat: @"\"%@\"", __name];
+  [ms appendString: @",sourceName:"];
+  [ms appendFormat: @"\"%@\"", __sourceName];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -1492,6 +1492,192 @@
   [ms appendFormat: @"%@", __target];
   [ms appendString: @",activityString:"];
   [ms appendFormat: @"\"%@\"", __activityString];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation ActivityPeriod
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithTimePeriod: (int) timePeriod activities: (NSMutableArray *) activities
+{
+  self = [super init];
+  __timePeriod = timePeriod;
+  __timePeriod_isset = YES;
+  __activities = [activities retain_stub];
+  __activities_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"timePeriod"])
+  {
+    __timePeriod = [decoder decodeIntForKey: @"timePeriod"];
+    __timePeriod_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"activities"])
+  {
+    __activities = [[decoder decodeObjectForKey: @"activities"] retain_stub];
+    __activities_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__timePeriod_isset)
+  {
+    [encoder encodeInt: __timePeriod forKey: @"timePeriod"];
+  }
+  if (__activities_isset)
+  {
+    [encoder encodeObject: __activities forKey: @"activities"];
+  }
+}
+
+- (void) dealloc
+{
+  [__activities release_stub];
+  [super dealloc_stub];
+}
+
+- (int) timePeriod {
+  return __timePeriod;
+}
+
+- (void) setTimePeriod: (int) timePeriod {
+  __timePeriod = timePeriod;
+  __timePeriod_isset = YES;
+}
+
+- (BOOL) timePeriodIsSet {
+  return __timePeriod_isset;
+}
+
+- (void) unsetTimePeriod {
+  __timePeriod_isset = NO;
+}
+
+- (NSMutableArray *) activities {
+  return [[__activities retain_stub] autorelease_stub];
+}
+
+- (void) setActivities: (NSMutableArray *) activities {
+  [activities retain_stub];
+  [__activities release_stub];
+  __activities = activities;
+  __activities_isset = YES;
+}
+
+- (BOOL) activitiesIsSet {
+  return __activities_isset;
+}
+
+- (void) unsetActivities {
+  [__activities release_stub];
+  __activities = nil;
+  __activities_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_I32) {
+          int fieldValue = [inProtocol readI32];
+          [self setTimePeriod: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size6;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size6];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size6];
+          int _i7;
+          for (_i7 = 0; _i7 < _size6; ++_i7)
+          {
+            Activity *_elem8 = [[Activity alloc] init];
+            [_elem8 read: inProtocol];
+            [fieldValue addObject: _elem8];
+            [_elem8 release_stub];
+          }
+          [inProtocol readListEnd];
+          [self setActivities: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"ActivityPeriod"];
+  if (__timePeriod_isset) {
+    [outProtocol writeFieldBeginWithName: @"timePeriod" type: TType_I32 fieldID: 1];
+    [outProtocol writeI32: __timePeriod];
+    [outProtocol writeFieldEnd];
+  }
+  if (__activities_isset) {
+    if (__activities != nil) {
+      [outProtocol writeFieldBeginWithName: @"activities" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__activities count]];
+        int i10;
+        for (i10 = 0; i10 < [__activities count]; i10++)
+        {
+          [[__activities objectAtIndex: i10] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"ActivityPeriod("];
+  [ms appendString: @"timePeriod:"];
+  [ms appendFormat: @"%i", __timePeriod];
+  [ms appendString: @",activities:"];
+  [ms appendFormat: @"%@", __activities];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }

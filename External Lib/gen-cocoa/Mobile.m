@@ -9711,13 +9711,13 @@
   return self;
 }
 
-- (id) initWithResponse: (Response *) response itemsCount: (int64_t) itemsCount items: (NSMutableArray *) items
+- (id) initWithResponse: (Response *) response count: (int64_t) count items: (NSMutableArray *) items
 {
   self = [super init];
   __response = [response retain_stub];
   __response_isset = YES;
-  __itemsCount = itemsCount;
-  __itemsCount_isset = YES;
+  __count = count;
+  __count_isset = YES;
   __items = [items retain_stub];
   __items_isset = YES;
   return self;
@@ -9731,10 +9731,10 @@
     __response = [[decoder decodeObjectForKey: @"response"] retain_stub];
     __response_isset = YES;
   }
-  if ([decoder containsValueForKey: @"itemsCount"])
+  if ([decoder containsValueForKey: @"count"])
   {
-    __itemsCount = [decoder decodeInt64ForKey: @"itemsCount"];
-    __itemsCount_isset = YES;
+    __count = [decoder decodeInt64ForKey: @"count"];
+    __count_isset = YES;
   }
   if ([decoder containsValueForKey: @"items"])
   {
@@ -9750,9 +9750,9 @@
   {
     [encoder encodeObject: __response forKey: @"response"];
   }
-  if (__itemsCount_isset)
+  if (__count_isset)
   {
-    [encoder encodeInt64: __itemsCount forKey: @"itemsCount"];
+    [encoder encodeInt64: __count forKey: @"count"];
   }
   if (__items_isset)
   {
@@ -9788,21 +9788,21 @@
   __response_isset = NO;
 }
 
-- (int64_t) itemsCount {
-  return __itemsCount;
+- (int64_t) count {
+  return __count;
 }
 
-- (void) setItemsCount: (int64_t) itemsCount {
-  __itemsCount = itemsCount;
-  __itemsCount_isset = YES;
+- (void) setCount: (int64_t) count {
+  __count = count;
+  __count_isset = YES;
 }
 
-- (BOOL) itemsCountIsSet {
-  return __itemsCount_isset;
+- (BOOL) countIsSet {
+  return __count_isset;
 }
 
-- (void) unsetItemsCount {
-  __itemsCount_isset = NO;
+- (void) unsetCount {
+  __count_isset = NO;
 }
 
 - (NSMutableArray *) items {
@@ -9854,7 +9854,7 @@
       case 2:
         if (fieldType == TType_I64) {
           int64_t fieldValue = [inProtocol readI64];
-          [self setItemsCount: fieldValue];
+          [self setCount: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -9897,9 +9897,9 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__itemsCount_isset) {
-    [outProtocol writeFieldBeginWithName: @"itemsCount" type: TType_I64 fieldID: 2];
-    [outProtocol writeI64: __itemsCount];
+  if (__count_isset) {
+    [outProtocol writeFieldBeginWithName: @"count" type: TType_I64 fieldID: 2];
+    [outProtocol writeI64: __count];
     [outProtocol writeFieldEnd];
   }
   if (__items_isset) {
@@ -9929,8 +9929,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"FeedResponse("];
   [ms appendString: @"response:"];
   [ms appendFormat: @"%@", __response];
-  [ms appendString: @",itemsCount:"];
-  [ms appendFormat: @"%qi", __itemsCount];
+  [ms appendString: @",count:"];
+  [ms appendFormat: @"%qi", __count];
   [ms appendString: @",items:"];
   [ms appendFormat: @"%@", __items];
   [ms appendString: @")"];
@@ -11192,15 +11192,15 @@
   return self;
 }
 
-- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts postsCount: (int64_t) postsCount
+- (id) initWithResponse: (Response *) response socialPosts: (NSMutableArray *) socialPosts count: (int64_t) count
 {
   self = [super init];
   __response = [response retain_stub];
   __response_isset = YES;
   __socialPosts = [socialPosts retain_stub];
   __socialPosts_isset = YES;
-  __postsCount = postsCount;
-  __postsCount_isset = YES;
+  __count = count;
+  __count_isset = YES;
   return self;
 }
 
@@ -11217,10 +11217,10 @@
     __socialPosts = [[decoder decodeObjectForKey: @"socialPosts"] retain_stub];
     __socialPosts_isset = YES;
   }
-  if ([decoder containsValueForKey: @"postsCount"])
+  if ([decoder containsValueForKey: @"count"])
   {
-    __postsCount = [decoder decodeInt64ForKey: @"postsCount"];
-    __postsCount_isset = YES;
+    __count = [decoder decodeInt64ForKey: @"count"];
+    __count_isset = YES;
   }
   return self;
 }
@@ -11235,9 +11235,9 @@
   {
     [encoder encodeObject: __socialPosts forKey: @"socialPosts"];
   }
-  if (__postsCount_isset)
+  if (__count_isset)
   {
-    [encoder encodeInt64: __postsCount forKey: @"postsCount"];
+    [encoder encodeInt64: __count forKey: @"count"];
   }
 }
 
@@ -11290,21 +11290,21 @@
   __socialPosts_isset = NO;
 }
 
-- (int64_t) postsCount {
-  return __postsCount;
+- (int64_t) count {
+  return __count;
 }
 
-- (void) setPostsCount: (int64_t) postsCount {
-  __postsCount = postsCount;
-  __postsCount_isset = YES;
+- (void) setCount: (int64_t) count {
+  __count = count;
+  __count_isset = YES;
 }
 
-- (BOOL) postsCountIsSet {
-  return __postsCount_isset;
+- (BOOL) countIsSet {
+  return __count_isset;
 }
 
-- (void) unsetPostsCount {
-  __postsCount_isset = NO;
+- (void) unsetCount {
+  __count_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -11355,7 +11355,7 @@
       case 3:
         if (fieldType == TType_I64) {
           int64_t fieldValue = [inProtocol readI64];
-          [self setPostsCount: fieldValue];
+          [self setCount: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -11393,9 +11393,9 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__postsCount_isset) {
-    [outProtocol writeFieldBeginWithName: @"postsCount" type: TType_I64 fieldID: 3];
-    [outProtocol writeI64: __postsCount];
+  if (__count_isset) {
+    [outProtocol writeFieldBeginWithName: @"count" type: TType_I64 fieldID: 3];
+    [outProtocol writeI64: __count];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -11412,8 +11412,8 @@
   [ms appendFormat: @"%@", __response];
   [ms appendString: @",socialPosts:"];
   [ms appendFormat: @"%@", __socialPosts];
-  [ms appendString: @",postsCount:"];
-  [ms appendFormat: @"%qi", __postsCount];
+  [ms appendString: @",count:"];
+  [ms appendFormat: @"%qi", __count];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -12739,13 +12739,13 @@
   return self;
 }
 
-- (id) initWithResponse: (Response *) response activities: (NSMutableDictionary *) activities
+- (id) initWithResponse: (Response *) response activityPeriod: (NSMutableArray *) activityPeriod
 {
   self = [super init];
   __response = [response retain_stub];
   __response_isset = YES;
-  __activities = [activities retain_stub];
-  __activities_isset = YES;
+  __activityPeriod = [activityPeriod retain_stub];
+  __activityPeriod_isset = YES;
   return self;
 }
 
@@ -12757,10 +12757,10 @@
     __response = [[decoder decodeObjectForKey: @"response"] retain_stub];
     __response_isset = YES;
   }
-  if ([decoder containsValueForKey: @"activities"])
+  if ([decoder containsValueForKey: @"activityPeriod"])
   {
-    __activities = [[decoder decodeObjectForKey: @"activities"] retain_stub];
-    __activities_isset = YES;
+    __activityPeriod = [[decoder decodeObjectForKey: @"activityPeriod"] retain_stub];
+    __activityPeriod_isset = YES;
   }
   return self;
 }
@@ -12771,16 +12771,16 @@
   {
     [encoder encodeObject: __response forKey: @"response"];
   }
-  if (__activities_isset)
+  if (__activityPeriod_isset)
   {
-    [encoder encodeObject: __activities forKey: @"activities"];
+    [encoder encodeObject: __activityPeriod forKey: @"activityPeriod"];
   }
 }
 
 - (void) dealloc
 {
   [__response release_stub];
-  [__activities release_stub];
+  [__activityPeriod release_stub];
   [super dealloc_stub];
 }
 
@@ -12805,25 +12805,25 @@
   __response_isset = NO;
 }
 
-- (NSMutableDictionary *) activities {
-  return [[__activities retain_stub] autorelease_stub];
+- (NSMutableArray *) activityPeriod {
+  return [[__activityPeriod retain_stub] autorelease_stub];
 }
 
-- (void) setActivities: (NSMutableDictionary *) activities {
-  [activities retain_stub];
-  [__activities release_stub];
-  __activities = activities;
-  __activities_isset = YES;
+- (void) setActivityPeriod: (NSMutableArray *) activityPeriod {
+  [activityPeriod retain_stub];
+  [__activityPeriod release_stub];
+  __activityPeriod = activityPeriod;
+  __activityPeriod_isset = YES;
 }
 
-- (BOOL) activitiesIsSet {
-  return __activities_isset;
+- (BOOL) activityPeriodIsSet {
+  return __activityPeriod_isset;
 }
 
-- (void) unsetActivities {
-  [__activities release_stub];
-  __activities = nil;
-  __activities_isset = NO;
+- (void) unsetActivityPeriod {
+  [__activityPeriod release_stub];
+  __activityPeriod = nil;
+  __activityPeriod_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -12852,31 +12852,20 @@
         }
         break;
       case 2:
-        if (fieldType == TType_MAP) {
+        if (fieldType == TType_LIST) {
           int _size199;
-          [inProtocol readMapBeginReturningKeyType: NULL valueType: NULL size: &_size199];
-          NSMutableDictionary * fieldValue = [[NSMutableDictionary alloc] initWithCapacity: _size199];
+          [inProtocol readListBeginReturningElementType: NULL size: &_size199];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size199];
           int _i200;
           for (_i200 = 0; _i200 < _size199; ++_i200)
           {
-            int _key201 = [inProtocol readI32];
-            int _size203;
-            [inProtocol readListBeginReturningElementType: NULL size: &_size203];
-            NSMutableArray * _val202 = [[NSMutableArray alloc] initWithCapacity: _size203];
-            int _i204;
-            for (_i204 = 0; _i204 < _size203; ++_i204)
-            {
-              Activity *_elem205 = [[Activity alloc] init];
-              [_elem205 read: inProtocol];
-              [_val202 addObject: _elem205];
-              [_elem205 release_stub];
-            }
-            [inProtocol readListEnd];
-            [fieldValue setObject: _val202 forKey: [NSNumber numberWithInt: _key201]];
-            [_val202 release_stub];
+            ActivityPeriod *_elem201 = [[ActivityPeriod alloc] init];
+            [_elem201 read: inProtocol];
+            [fieldValue addObject: _elem201];
+            [_elem201 release_stub];
           }
-          [inProtocol readMapEnd];
-          [self setActivities: fieldValue];
+          [inProtocol readListEnd];
+          [self setActivityPeriod: fieldValue];
           [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
@@ -12900,27 +12889,17 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__activities_isset) {
-    if (__activities != nil) {
-      [outProtocol writeFieldBeginWithName: @"activities" type: TType_MAP fieldID: 2];
+  if (__activityPeriod_isset) {
+    if (__activityPeriod != nil) {
+      [outProtocol writeFieldBeginWithName: @"activityPeriod" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeMapBeginWithKeyType: TType_I32 valueType: TType_LIST size: [__activities count]];
-        NSEnumerator * _iter206 = [__activities keyEnumerator];
-        id key207;
-        while ((key207 = [_iter206 nextObject]))
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__activityPeriod count]];
+        int i203;
+        for (i203 = 0; i203 < [__activityPeriod count]; i203++)
         {
-          [outProtocol writeI32: [key207 intValue]];
-          {
-            [outProtocol writeListBeginWithElementType: TType_STRUCT size: [[__activities objectForKey: key207] count]];
-            int i209;
-            for (i209 = 0; i209 < [[__activities objectForKey: key207] count]; i209++)
-            {
-              [[[__activities objectForKey: key207] objectAtIndex: i209] write: outProtocol];
-            }
-            [outProtocol writeListEnd];
-          }
+          [[__activityPeriod objectAtIndex: i203] write: outProtocol];
         }
-        [outProtocol writeMapEnd];
+        [outProtocol writeListEnd];
       }
       [outProtocol writeFieldEnd];
     }
@@ -12937,8 +12916,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"ActivityResponse("];
   [ms appendString: @"response:"];
   [ms appendFormat: @"%@", __response];
-  [ms appendString: @",activities:"];
-  [ms appendFormat: @"%@", __activities];
+  [ms appendString: @",activityPeriod:"];
+  [ms appendFormat: @"%@", __activityPeriod];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -12960,7 +12939,8 @@ static int32_t ERROR_SOCIAL_POST_SVC = 1020;
 static int32_t ERROR_SOCIAL_S3_SVC = 1021;
 static int32_t ERROR_DISTRIBUTION_SVC = 1022;
 static int32_t ERROR_USER_SVC = 1023;
-static int32_t ERROR_USER_ACTIVITY_SVC = 1024;
+static int32_t ERROR_ACTIVITY_IDS_SVC = 1024;
+static int32_t ERROR_USER_ACTIVITY_STAT_SVC = 1025;
 static int32_t ERROR_AUTH_READ_RATINGS = 1101;
 static int32_t ERROR_AUTH_READ_SOCIAL = 1102;
 static int32_t ERROR_VALIDATION_RATINGID = 1103;
@@ -13106,8 +13086,11 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
 + (int32_t) ERROR_USER_SVC{
   return ERROR_USER_SVC;
 }
-+ (int32_t) ERROR_USER_ACTIVITY_SVC{
-  return ERROR_USER_ACTIVITY_SVC;
++ (int32_t) ERROR_ACTIVITY_IDS_SVC{
+  return ERROR_ACTIVITY_IDS_SVC;
+}
++ (int32_t) ERROR_USER_ACTIVITY_STAT_SVC{
+  return ERROR_USER_ACTIVITY_STAT_SVC;
 }
 + (int32_t) ERROR_AUTH_READ_RATINGS{
   return ERROR_AUTH_READ_RATINGS;
@@ -16010,16 +15993,16 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     {
       case 1:
         if (fieldType == TType_LIST) {
-          int _size210;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size210];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size210];
-          int _i211;
-          for (_i211 = 0; _i211 < _size210; ++_i211)
+          int _size204;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size204];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size204];
+          int _i205;
+          for (_i205 = 0; _i205 < _size204; ++_i205)
           {
-            UserPreference *_elem212 = [[UserPreference alloc] init];
-            [_elem212 read: inProtocol];
-            [fieldValue addObject: _elem212];
-            [_elem212 release_stub];
+            UserPreference *_elem206 = [[UserPreference alloc] init];
+            [_elem206 read: inProtocol];
+            [fieldValue addObject: _elem206];
+            [_elem206 release_stub];
           }
           [inProtocol readListEnd];
           [self setUserSettings: fieldValue];
@@ -16044,10 +16027,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
       [outProtocol writeFieldBeginWithName: @"userSettings" type: TType_LIST fieldID: 1];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__userSettings count]];
-        int i214;
-        for (i214 = 0; i214 < [__userSettings count]; i214++)
+        int i208;
+        for (i208 = 0; i208 < [__userSettings count]; i208++)
         {
-          [[__userSettings objectAtIndex: i214] write: outProtocol];
+          [[__userSettings objectAtIndex: i208] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -19069,14 +19052,14 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     {
       case 1:
         if (fieldType == TType_LIST) {
-          int _size215;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size215];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size215];
-          int _i216;
-          for (_i216 = 0; _i216 < _size215; ++_i216)
+          int _size209;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size209];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size209];
+          int _i210;
+          for (_i210 = 0; _i210 < _size209; ++_i210)
           {
-            NSString * _elem217 = [inProtocol readString];
-            [fieldValue addObject: _elem217];
+            NSString * _elem211 = [inProtocol readString];
+            [fieldValue addObject: _elem211];
           }
           [inProtocol readListEnd];
           [self setSummaryCells: fieldValue];
@@ -19101,10 +19084,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
       [outProtocol writeFieldBeginWithName: @"summaryCells" type: TType_LIST fieldID: 1];
       {
         [outProtocol writeListBeginWithElementType: TType_STRING size: [__summaryCells count]];
-        int i219;
-        for (i219 = 0; i219 < [__summaryCells count]; i219++)
+        int i213;
+        for (i213 = 0; i213 < [__summaryCells count]; i213++)
         {
-          [outProtocol writeString: [__summaryCells objectAtIndex: i219]];
+          [outProtocol writeString: [__summaryCells objectAtIndex: i213]];
         }
         [outProtocol writeListEnd];
       }
@@ -20587,10 +20570,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     [outProtocol writeFieldBeginWithName: @"userSettings" type: TType_LIST fieldID: 1];
     {
       [outProtocol writeListBeginWithElementType: TType_STRUCT size: [userSettings count]];
-      int i221;
-      for (i221 = 0; i221 < [userSettings count]; i221++)
+      int i215;
+      for (i215 = 0; i215 < [userSettings count]; i215++)
       {
-        [[userSettings objectAtIndex: i221] write: outProtocol];
+        [[userSettings objectAtIndex: i215] write: outProtocol];
       }
       [outProtocol writeListEnd];
     }
@@ -20977,10 +20960,10 @@ static NSString * IMAGE_LAT_LNG = @"image.latlng";
     [outProtocol writeFieldBeginWithName: @"summaryCells" type: TType_LIST fieldID: 1];
     {
       [outProtocol writeListBeginWithElementType: TType_STRING size: [summaryCells count]];
-      int i223;
-      for (i223 = 0; i223 < [summaryCells count]; i223++)
+      int i217;
+      for (i217 = 0; i217 < [summaryCells count]; i217++)
       {
-        [outProtocol writeString: [summaryCells objectAtIndex: i223]];
+        [outProtocol writeString: [summaryCells objectAtIndex: i217]];
       }
       [outProtocol writeListEnd];
     }

@@ -374,9 +374,6 @@
 		B6B682011AA13BE500B3178D /* icon_small_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FD1AA13BE500B3178D /* icon_small_cars.png */; };
 		B6B682021AA13BE500B3178D /* icon_small_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FD1AA13BE500B3178D /* icon_small_cars.png */; };
 		B6B682031AA13BE500B3178D /* icon_small_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FD1AA13BE500B3178D /* icon_small_cars.png */; };
-		B6B6820D1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B6820C1AA14B0500B3178D /* icon_small_cars_disabled.png */; };
-		B6B6820E1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B6820C1AA14B0500B3178D /* icon_small_cars_disabled.png */; };
-		B6B6820F1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B6820C1AA14B0500B3178D /* icon_small_cars_disabled.png */; };
 		B6CC57D71AA63DC10007DE79 /* Mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CC57D21AA63DC10007DE79 /* Mobile.m */; };
 		B6CC57D81AA63DC10007DE79 /* Mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CC57D21AA63DC10007DE79 /* Mobile.m */; };
 		B6CC57D91AA63DC10007DE79 /* Mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CC57D21AA63DC10007DE79 /* Mobile.m */; };
@@ -637,7 +634,6 @@
 		80D66E8335628A0F06ECFDDE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B681FC1AA13BE500B3178D /* icon_large_cars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_large_cars.png; sourceTree = "<group>"; };
 		B6B681FD1AA13BE500B3178D /* icon_small_cars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small_cars.png; sourceTree = "<group>"; };
-		B6B6820C1AA14B0500B3178D /* icon_small_cars_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small_cars_disabled.png; sourceTree = "<group>"; };
 		B6CC57D11AA63DC10007DE79 /* Mobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mobile.h; sourceTree = "<group>"; };
 		B6CC57D21AA63DC10007DE79 /* Mobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mobile.m; sourceTree = "<group>"; };
 		B6CC57D31AA63DC10007DE79 /* MobileAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAuth.h; sourceTree = "<group>"; };
@@ -904,7 +900,6 @@
 				B6B681FC1AA13BE500B3178D /* icon_large_cars.png */,
 				B6B681FD1AA13BE500B3178D /* icon_small_cars.png */,
 				0F063ADE1A6EFE940092F607 /* bg_locked_text.png */,
-				B6B6820C1AA14B0500B3178D /* icon_small_cars_disabled.png */,
 				0FBF99F81A76EEFC00C25788 /* bg_source_button.png */,
 				0FA737B21A93D77F002CB38D /* bg_5_stars.png */,
 				0F063AE01A6EFE940092F607 /* icon_gplus.png */,
@@ -1378,7 +1373,6 @@
 				0F591A4F1A8BE951000A0541 /* googleJS.js in Resources */,
 				0F591A501A8BE951000A0541 /* Images.xcassets in Resources */,
 				0F591A511A8BE951000A0541 /* bg_locked_text.png in Resources */,
-				B6B6820E1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */,
 				0F591A521A8BE951000A0541 /* icon_small_google.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1415,7 +1409,6 @@
 				0F591AD21A8BE9D0000A0541 /* googleJS.js in Resources */,
 				0F591AD31A8BE9D0000A0541 /* Images.xcassets in Resources */,
 				0F591AD41A8BE9D0000A0541 /* bg_locked_text.png in Resources */,
-				B6B6820F1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */,
 				0F591AD51A8BE9D0000A0541 /* icon_small_google.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1452,7 +1445,6 @@
 				0F1473241A804812001D1C16 /* googleJS.js in Resources */,
 				0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */,
 				0F063AE51A6EFE940092F607 /* bg_locked_text.png in Resources */,
-				B6B6820D1AA14B0500B3178D /* icon_small_cars_disabled.png in Resources */,
 				0FBF99FF1A76EEFC00C25788 /* icon_small_google.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
