@@ -8,6 +8,8 @@
 
 #import "RPKPreferenceStorage.h"
 
+#import "UIApplication+RP.h"
+#import "MobileCommon.h"
 #import <AppSDK/AppLibExtension.h>
 #import <JNKeychain/JNKeychain.h>
 
@@ -36,6 +38,28 @@
 	UserConfig *userConfig = (UserConfig *)[self loadValueForKey:kRSUserConfigKey];
 	
 	return userConfig;
+}
+
+#pragma mark - Source
+
+- (NSString *)getGoogleSourceId
+{
+
+	if([UIApplication rp_googleEnabled]) {
+		for (FacetOption *facetOption in [self loadUserConfig].kioskSources.facetOptions) {
+			if ([facetOption.value isEqualToString:[MobileCommonConstants KIOSK_GOOGLE_REVIEW_SOURCE]]) {
+				if(facetOption.addlPropsIsSet == YES) {
+					for(NSString *propertyName in facetOption.addlProps) {
+						if([propertyName isEqualToString:[MobileCommonConstants PROP_SOURCEID]]) {
+							return [facetOption.addlProps objectForKey:propertyName];
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return @"";
 }
 
 #pragma mark - Location

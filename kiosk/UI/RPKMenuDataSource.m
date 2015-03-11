@@ -24,6 +24,8 @@
 	//--grabing the selected location
 	NSArray *locations = [[self preferenceStorage] allLocations];
 	self.selectedLocationID = [[self preferenceStorage] loadSelectedLocation];
+	NSString *googleSourceId = [[self preferenceStorage] getGoogleSourceId];
+
 	Location *selectedLocation = [[locations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"code == %@", self.selectedLocationID]] firstObject];
 	Location *locationData;
 
@@ -31,14 +33,6 @@
 	NSString *googleURLString = @"";
 	NSString *carsLocationKey = @"";
 
-	Facet *kioskSources = [self userConfig].kioskSources;
-	BOOL googleEnabled = NO;
-	for (FacetOption *facetOption in kioskSources.facetOptions) {
-		if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
-			googleEnabled = YES;
-		}
-	}
-	
 	if (selectedLocation) {
 		locationData = selectedLocation;
 	} else if ([locations count] == 1) {
@@ -53,12 +47,9 @@
 			for(SourceUrl *sourceUrl in locationData.sourceUrls) {
 
 				// If this is a Google-related source.
-				if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
-					// If google is enabled (including in the plist)
-					if(googleEnabled && [UIApplication rp_googleEnabled]) {
-						// Get the Google source url.
-						googleURLString = sourceUrl.sourceUrl;
-					}
+				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
+					// Get the Google source url.
+					googleURLString = sourceUrl.sourceUrl;
 				}
 
 				// If this is a Cars.com source.
