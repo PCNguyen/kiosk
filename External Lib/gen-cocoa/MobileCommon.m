@@ -13280,6 +13280,7 @@ static NSString * SOURCE_ID_SURVEY = @"SURVEY";
 static NSString * SOURCE_ID_KIOSK = @"KIOSK";
 static NSString * SOURCE_GOOGLE_PLACES = @"GOOGLE_PLACES";
 static NSString * SOURCE_CARS = @"CARS";
+static NSString * KIOSK_GOOGLE_REVIEW_SOURCE = @"kiosk.google.sourceid";
 static NSString * PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED = @"db.source.customized";
 static NSString * PREFERENCE_DASHBOARD_SOURCE_DEFAULT = @"db.source.default";
 static NSString * PREFERENCE_REVIEW_FILTER_SOURCE = @"review.filter.source";
@@ -13592,6 +13593,9 @@ static NSString * HTTP_HEADER_CONTENT_MD5 = @"Content-Md5";
 }
 + (NSString *) SOURCE_CARS{
   return SOURCE_CARS;
+}
++ (NSString *) KIOSK_GOOGLE_REVIEW_SOURCE{
+  return KIOSK_GOOGLE_REVIEW_SOURCE;
 }
 + (NSString *) PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED{
   return PREFERENCE_DASHBOARD_SOURCE_CUSTOMIZED;
