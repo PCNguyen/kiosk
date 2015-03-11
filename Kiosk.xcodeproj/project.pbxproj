@@ -1890,7 +1890,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "b00aa921-7f60-4fd9-9ca1-7caac19ecca8";
+				PROVISIONING_PROFILE = "0e3190d0-cdfa-4dc7-8c39-80781dcbb394";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
