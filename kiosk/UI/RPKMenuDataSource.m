@@ -33,9 +33,12 @@
 
 	Facet *kioskSources = [self userConfig].kioskSources;
 	BOOL googleEnabled = NO;
+    NSString *googleSourceId = @"";
+    
 	for (FacetOption *facetOption in kioskSources.facetOptions) {
-		if ([facetOption.value isEqualToString:[MobileCommonConstants SOURCE_ID_GOOGLE]]) {
+		if ([facetOption.value isEqualToString:[MobileCommonConstants KIOSK_GOOGLE_REVIEW_SOURCE]]) {
 			googleEnabled = YES;
+            googleSourceId = [facetOption.addlProps valueForKey:[MobileCommonConstants PROP_SOURCEID]];
 		}
 	}
 	
@@ -53,7 +56,7 @@
 			for(SourceUrl *sourceUrl in locationData.sourceUrls) {
 
 				// If this is a Google-related source.
-				if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
+				if([sourceUrl.source  isEqual: googleSourceId]) {
 					// If google is enabled (including in the plist)
 					if(googleEnabled && [UIApplication rp_googleEnabled]) {
 						// Get the Google source url.
