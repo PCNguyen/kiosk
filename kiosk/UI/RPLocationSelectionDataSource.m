@@ -7,6 +7,7 @@
 //
 
 #import "RPLocationSelectionDataSource.h"
+#import "UIApplication+RP.h"
 #import "RPKUIKit.h"
 #import "MobileCommon.h"
 
@@ -49,7 +50,8 @@
 - (NSMutableDictionary *)parseLocationSelections
 {
 	NSArray *locations = [self userConfig].authLocations;
-	
+	NSString *googleSourceId = [[self preferenceStorage] getGoogleSourceId];
+
 	if ([self.filter length] > 0) {
 		NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", self.filter];
 		locations = [locations filteredArrayUsingPredicate:filterPredicate];
@@ -74,7 +76,7 @@
 			if ([location.sourceUrls count] > 0) {
 				for (SourceUrl *sourceUrl in location.sourceUrls) {
 					// Check for Google Plus/Places sources before enabling Google functionality.
-					if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_GOOGLE_PLACES]]) {
+					if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
 						selection.enabledSources |= LocationSourceGoogle;
 					}
 

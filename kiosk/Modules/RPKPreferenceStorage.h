@@ -27,6 +27,13 @@
  */
 - (UserConfig *)loadUserConfig;
 
+#pragma mark - Source
+/**
+ * get the source id representing the Google source, as defined by the server.
+ *
+ */
+- (NSString *)getGoogleSourceId;
+
 #pragma mark - Location
 
 /**
