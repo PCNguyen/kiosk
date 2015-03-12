@@ -105,7 +105,7 @@
 	if ([carsLocationKey length] > 0) {
 		RPKMenuItem *carsItem = [[RPKMenuItem alloc] init];
 
-		NSString *carsURL = [NSString stringWithFormat:@"%@/survey?key=%@&type=cars&noReviewSources=y", [UIApplication rp_kioskURLString], carsLocationKey];
+		NSString *carsURL = [NSString stringWithFormat:@"%@/survey?key=%@&type=cars&isFromKioskTablet", [UIApplication rp_kioskURLString], carsLocationKey];
 		carsItem.itemURL = [NSURL URLWithString:carsURL];
 		carsItem.imageName = @"icon_large_cars.png";
 		carsItem.itemTitle = NSLocalizedString(@"Take a\nCars Survey", nil);
