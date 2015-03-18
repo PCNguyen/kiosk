@@ -61,42 +61,39 @@
 	
 	//--group
 	for (Location *location in locations) {
-		
-		if ([self shouldParseLocation:location]) {
-			RPKLocationSelection *selection = [RPKLocationSelection new];
-			selection.selectionID = location.code;
-			selection.selectionLabel = location.name;
-			selection.selected = [self.selectedLocations containsObject:selection.selectionID];
-			selection.enabledSources = LocationSourceNone;
+        RPKLocationSelection *selection = [RPKLocationSelection new];
+		selection.selectionID = location.code;
+		selection.selectionLabel = location.name;
+		selection.selected = [self.selectedLocations containsObject:selection.selectionID];
+		selection.enabledSources = LocationSourceNone;
 			
-			if ([location.kioskUrl length] > 0) {
-				selection.enabledSources |= LocationSourceKiosk;
-			}
+		if ([location.kioskUrl length] > 0) {
+			selection.enabledSources |= LocationSourceKiosk;
+		}
 			
-			if ([location.sourceUrls count] > 0) {
-				for (SourceUrl *sourceUrl in location.sourceUrls) {
-					// Check for Google Plus/Places sources before enabling Google functionality.
-					if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
-						selection.enabledSources |= LocationSourceGoogle;
-					}
+		if ([location.sourceUrls count] > 0) {
+			for (SourceUrl *sourceUrl in location.sourceUrls) {
+				// Check for Google Plus/Places sources before enabling Google functionality.
+				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
+					selection.enabledSources |= LocationSourceGoogle;
+				}
 
-					// Check for the Cars.com source before enabling cars.com functionality.
-					if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
-						selection.enabledSources |= LocationSourceCars;
-					}
+				// Check for the Cars.com source before enabling cars.com functionality.
+				if([sourceUrl.source  isEqual: [MobileCommonConstants SOURCE_CARS]]) {
+					selection.enabledSources |= LocationSourceCars;
 				}
 			}
-		
-			//--retrieve the section this location belong to, if not, create new
-			NSString *indexKey = [self indexLabelForName:location.name];
-			NSMutableArray *indexSelections = [selectionDictionary valueForKey:indexKey];
-			if (!indexSelections) {
-				indexSelections = [NSMutableArray array];
-				[selectionDictionary setValue:indexSelections forKey:indexKey];
-			}
-			
-			[indexSelections addObject:selection];
 		}
+		
+		//--retrieve the section this location belong to, if not, create new
+		NSString *indexKey = [self indexLabelForName:location.name];
+		NSMutableArray *indexSelections = [selectionDictionary valueForKey:indexKey];
+		if (!indexSelections) {
+			indexSelections = [NSMutableArray array];
+			[selectionDictionary setValue:indexSelections forKey:indexKey];
+		}
+			
+		[indexSelections addObject:selection];
 	}
 	
 	//--sort
