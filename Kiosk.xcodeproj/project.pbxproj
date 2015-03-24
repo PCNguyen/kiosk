@@ -366,6 +366,9 @@
 		0FD805C41A5D207E00EE1AD6 /* RPKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805C31A5D207E00EE1AD6 /* RPKMenuItem.m */; };
 		0FD805CE1A5D979500EE1AD6 /* RPKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD805CD1A5D979500EE1AD6 /* RPKView.m */; };
 		558CFDC5E2886513739D90B5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D66E8335628A0F06ECFDDE /* libPods.a */; };
+		B25DAD371AC2001C006ABD1C /* Kiosk QA-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */; };
+		B25DAD381AC2005A006ABD1C /* Kiosk Review-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FA046301A8458D500386BE1 /* Kiosk Review-Info.plist */; };
+		B25DAD391AC200E8006ABD1C /* Kiosk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */; };
 		B6B681FA1AA11CD000B3178D /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
 		B6B681FB1AA11CD100B3178D /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
 		B6B681FE1AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
@@ -432,7 +435,7 @@
 		0F591AE21A8D328F000A0541 /* RPKReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKReachabilityManager.m; sourceTree = "<group>"; };
 		0F6F7C671A7C4A0F0084755D /* RPKNoConnectivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNoConnectivityController.h; sourceTree = "<group>"; };
 		0F6F7C681A7C4A0F0084755D /* RPKNoConnectivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNoConnectivityController.m; sourceTree = "<group>"; };
-		0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk QA-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationRepo/r4e-mobile-kiosk/kiosk/Kiosk QA-Info.plist"; sourceTree = "<absolute>"; };
+		0F6F7CEE1A7C52660084755D /* Kiosk QA-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; path = "Kiosk QA-Info.plist"; sourceTree = "<group>"; };
 		0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKReloadView.h; sourceTree = "<group>"; };
 		0F79DC1E1A70556100A4EF9A /* RPKReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKReloadView.m; sourceTree = "<group>"; };
 		0F79DC201A705A3900A4EF9A /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
@@ -446,7 +449,7 @@
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
 		0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskDataSource.h; sourceTree = "<group>"; };
 		0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskDataSource.m; sourceTree = "<group>"; };
-		0FA046301A8458D500386BE1 /* Kiosk Review-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kiosk Review-Info.plist"; path = "/Users/phuocnguyen/Documents/ReputationRepo/r4e-mobile-kiosk/kiosk/Kiosk Review-Info.plist"; sourceTree = "<absolute>"; };
+		0FA046301A8458D500386BE1 /* Kiosk Review-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kiosk Review-Info.plist"; sourceTree = "<group>"; };
 		0FA0ABB31A40ABE1007AA263 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABB71A40ABE1007AA263 /* Kiosk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kiosk-Info.plist"; sourceTree = "<group>"; };
 		0FA0ABB81A40ABE1007AA263 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1348,6 +1351,7 @@
 				0F591A391A8BE951000A0541 /* museosans_100_italic-museosans.ttf in Resources */,
 				0F591A3A1A8BE951000A0541 /* icon_small_google_disabled.png in Resources */,
 				0F591A3B1A8BE951000A0541 /* bg_source_button.png in Resources */,
+				B25DAD371AC2001C006ABD1C /* Kiosk QA-Info.plist in Resources */,
 				0F591A3C1A8BE951000A0541 /* icon_refresh.png in Resources */,
 				0F591A3D1A8BE951000A0541 /* icon_back.png in Resources */,
 				B6B681FF1AA13BE500B3178D /* icon_large_cars.png in Resources */,
@@ -1402,6 +1406,7 @@
 				0F591ACC1A8BE9D0000A0541 /* museosans_900_italic-museosans.ttf in Resources */,
 				0FA737B51A93D77F002CB38D /* bg_5_stars.png in Resources */,
 				0F591ACD1A8BE9D0000A0541 /* museosans_900-museosans.ttf in Resources */,
+				B25DAD381AC2005A006ABD1C /* Kiosk Review-Info.plist in Resources */,
 				0F591ACE1A8BE9D0000A0541 /* icon_gplus.png in Resources */,
 				0F591ACF1A8BE9D0000A0541 /* Settings.bundle in Resources */,
 				0F591AD01A8BE9D0000A0541 /* Podfile in Resources */,
@@ -1445,6 +1450,7 @@
 				0F1473241A804812001D1C16 /* googleJS.js in Resources */,
 				0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */,
 				0F063AE51A6EFE940092F607 /* bg_locked_text.png in Resources */,
+				B25DAD391AC200E8006ABD1C /* Kiosk-Info.plist in Resources */,
 				0FBF99FF1A76EEFC00C25788 /* icon_small_google.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
