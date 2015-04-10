@@ -41,7 +41,8 @@
 
 - (CGRect)titleLabelFrame:(CGRect)backArrowFrame
 {
-	CGFloat xOffset = CGRectGetMaxX(backArrowFrame);
+	CGFloat xSpacing = 5.0f;
+	CGFloat xOffset = CGRectGetMaxX(backArrowFrame) + xSpacing;
 	CGFloat yOffset = 0.0f;
 	CGFloat width = CGRectGetWidth(self.bounds) - xOffset;
 	CGFloat height = CGRectGetHeight(self.bounds);
@@ -53,7 +54,7 @@
 {
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_titleLabel.textColor = self.tintColor;
+		_titleLabel.textColor = [UIColor whiteColor];
 		_titleLabel.textAlignment = NSTextAlignmentLeft;
 		_titleLabel.backgroundColor = [UIColor clearColor];
 	}
@@ -65,9 +66,10 @@
 
 - (CGRect)backArrowFrame
 {
+	CGFloat yPadding = 6.0f;
 	CGFloat xOffset = 0.0f;
-	CGFloat yOffset = 0.0f;
-	CGFloat height = CGRectGetHeight(self.bounds);
+	CGFloat yOffset = yPadding;
+	CGFloat height = CGRectGetHeight(self.bounds) - 2*yPadding;
 	CGFloat width = height * 3/5;
 	
 	return CGRectMake(xOffset, yOffset, width, height);

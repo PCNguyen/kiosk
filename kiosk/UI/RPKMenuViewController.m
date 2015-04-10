@@ -13,6 +13,7 @@
 #import "RPKGoogleViewController.h"
 #import "RPKKioskViewController.h"
 #import "RPKSecuredView.h"
+#import "RPKNavigationItem.h"
 #import "RPKNavigationController.h"
 #import "RPService.h"
 #import "RPAlertController.h"
@@ -208,8 +209,7 @@ NSString *const MVCCellID = @"kMVCCellID";
 	self.spacings = CGSizeMake(0.0f, 60.0f);
 	
 	self.view.backgroundColor = [UIColor ul_colorWithR:10 G:53 B:70 A:1];
-	[self.navigationController setNavigationBarHidden:YES animated:NO];
-
+	
 	[self.view addSubview:self.kioskTitle];
 	[self.view addSubview:self.menuSelectionView];
 	[self.view addSubview:self.securedView];
@@ -262,6 +262,14 @@ NSString *const MVCCellID = @"kMVCCellID";
 			[self validateSources];
 		}
 	}
+	
+	self.title = [[[self dataSource] preferenceStorage] selectedLocation].name;
+	
+	if ([[[self dataSource] preferenceStorage] allLocations].count > 1) {
+		self.navigationItem.leftBarButtonItem = [self backButtonItem];
+	} else {
+		self.navigationItem.leftBarButtonItem = nil;
+	}
 }
 
 - (BOOL)kioskPresent
@@ -287,6 +295,25 @@ NSString *const MVCCellID = @"kMVCCellID";
 	} else if ([[self dataSource].menuItems count] > 1 && [self kioskPresent]) {
 		[self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 	}
+}
+
+#pragma mark - Navigation
+
+- (UIBarButtonItem *)backButtonItem
+{
+	RPKNavigationItem *backItem = [[RPKNavigationItem alloc] initWithTitle:@"Location"];
+	[backItem ul_addTapGestureWithTarget:self action:@selector(handleBackButtonItemTapped:)];
+	
+	backItem.frame = CGRectMake(0.0f, 0.0f, 100.0f, 40.0);
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backItem];
+	
+	return backButton;
+}
+
+- (void)handleBackButtonItemTapped:(id)sender
+{
+	// shortcut using the admistrator code
+	[self handleAdministratorCode:@"RDCLLLL" error:NULL];
 }
 
 #pragma mark - Title
