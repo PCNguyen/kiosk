@@ -270,6 +270,9 @@
 		0F79DC251A705A3900A4EF9A /* icon_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F79DC221A705A3900A4EF9A /* icon_x.png */; };
 		0F79DC281A705FB900A4EF9A /* RPKGoogleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */; };
 		0F79DC2B1A7063F200A4EF9A /* RPKMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */; };
+		0F86F3751AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F86F3741AD81C2400B6AF93 /* RPKNavigationItem.m */; };
+		0F86F3761AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F86F3741AD81C2400B6AF93 /* RPKNavigationItem.m */; };
+		0F86F3771AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F86F3741AD81C2400B6AF93 /* RPKNavigationItem.m */; };
 		0F8FDBFF1A7B2ED40043A3D0 /* RPKAnalyticEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */; };
 		0FA0441F1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0441D1A828E7E00386BE1 /* RPKKioskDataSource.m */; };
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
@@ -447,6 +450,8 @@
 		0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMaskButton.m; sourceTree = "<group>"; };
 		0F86F3711AD7593800B6AF93 /* Kiosk Review.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Kiosk Review.entitlements"; sourceTree = "<group>"; };
 		0F86F3721AD7594A00B6AF93 /* Kiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Kiosk.entitlements; path = Kiosk/Kiosk.entitlements; sourceTree = "<group>"; };
+		0F86F3731AD81C2400B6AF93 /* RPKNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKNavigationItem.h; sourceTree = "<group>"; };
+		0F86F3741AD81C2400B6AF93 /* RPKNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKNavigationItem.m; sourceTree = "<group>"; };
 		0F8FDBFD1A7B2ED40043A3D0 /* RPKAnalyticEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKAnalyticEvent.h; sourceTree = "<group>"; };
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
 		0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskDataSource.h; sourceTree = "<group>"; };
@@ -1191,6 +1196,8 @@
 		0FD805C81A5D974D00EE1AD6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F86F3731AD81C2400B6AF93 /* RPKNavigationItem.h */,
+				0F86F3741AD81C2400B6AF93 /* RPKNavigationItem.m */,
 				0F063AEF1A6F1BB60092F607 /* RPKSecuredView.h */,
 				0F063AF01A6F1BB60092F607 /* RPKSecuredView.m */,
 				0F79DC1D1A70556100A4EF9A /* RPKReloadView.h */,
@@ -1595,6 +1602,7 @@
 				0F5919E61A8BE951000A0541 /* RPKTableViewCell.m in Sources */,
 				0F5919E71A8BE951000A0541 /* UIApplication+RP.m in Sources */,
 				0F5919E81A8BE951000A0541 /* RPKSecuredView.m in Sources */,
+				0F86F3761AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */,
 				B6CC57EF1AA643650007DE79 /* MobileActivity.m in Sources */,
 				0F5919EA1A8BE951000A0541 /* RPKExpirationViewController.m in Sources */,
 				0F5919EB1A8BE951000A0541 /* RPPreferenceDataSource.m in Sources */,
@@ -1698,6 +1706,7 @@
 				0F591A691A8BE9D0000A0541 /* RPKTableViewCell.m in Sources */,
 				0F591A6A1A8BE9D0000A0541 /* UIApplication+RP.m in Sources */,
 				0F591A6B1A8BE9D0000A0541 /* RPKSecuredView.m in Sources */,
+				0F86F3771AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */,
 				B6CC57F01AA643650007DE79 /* MobileActivity.m in Sources */,
 				0F591A6D1A8BE9D0000A0541 /* RPKExpirationViewController.m in Sources */,
 				0F591A6E1A8BE9D0000A0541 /* RPPreferenceDataSource.m in Sources */,
@@ -1801,6 +1810,7 @@
 				0FBF9A021A7705C600C25788 /* RPKTableViewCell.m in Sources */,
 				0FA0E1D81A68862A0011EAC9 /* UIApplication+RP.m in Sources */,
 				0F063AF11A6F1BB60092F607 /* RPKSecuredView.m in Sources */,
+				0F86F3751AD81C2400B6AF93 /* RPKNavigationItem.m in Sources */,
 				B6CC57EE1AA643650007DE79 /* MobileActivity.m in Sources */,
 				0FBF99E11A71C9E400C25788 /* RPKExpirationViewController.m in Sources */,
 				0FBF99E61A71E72500C25788 /* RPPreferenceDataSource.m in Sources */,
