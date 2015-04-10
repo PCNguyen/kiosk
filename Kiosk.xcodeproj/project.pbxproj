@@ -1926,7 +1926,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk Review-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk Review";
-				PROVISIONING_PROFILE = "a861f306-b2f0-40db-ae0c-8280b7fc2a66";
+				PROVISIONING_PROFILE = "a8f627f4-e8ee-4dfe-abcf-5f22650c17bf";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2034,7 +2034,7 @@
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "ca6bc47c-596a-415a-8b2a-ad35d224688f";
+				PROVISIONING_PROFILE = "6a51889b-9037-44bf-869d-9eb3cd95b014";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
