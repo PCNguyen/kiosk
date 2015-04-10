@@ -5,6 +5,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)com.reputation.r4e.Kiosk</string>
+		<string>$(AppIdentifierPrefix)com.reputation.r4e.Kiosk-Review</string>
 	</array>
 </dict>
 </plist>
