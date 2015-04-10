@@ -8,6 +8,7 @@
 
 #import "RPKKioskViewController.h"
 #import "RPKMaskButton.h"
+#import "RPKNavigationItem.h"
 
 #define kKVCSubmitDetectMessage				@"KioskSubmitDetect"
 
@@ -71,6 +72,9 @@
 	[super viewWillAppear:animated];
 	
 	if (self.kioskOnly) {
+		if (self.allowSelectLocation) {
+			self.navigationItem.leftBarButtonItem = [self backButtonItem];
+		}
 		self.navigationItem.rightBarButtonItem = nil;
 	} else {
 		self.navigationItem.rightBarButtonItem = [self logoutButton];
@@ -91,6 +95,28 @@
 	configuration.userContentController = userContentController;
 	
 	return configuration;
+}
+
+#pragma mark - Navigation
+
+- (UIBarButtonItem *)backButtonItem
+{
+	RPKNavigationItem *backItem = [[RPKNavigationItem alloc] initWithTitle:@"Location"];
+	[backItem ul_addTapGestureWithTarget:self action:@selector(handleBackButtonItemTapped:)];
+	
+	backItem.frame = CGRectMake(0.0f, 0.0f, 100.0f, 40.0);
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backItem];
+	
+	return backButton;
+}
+
+- (void)handleBackButtonItemTapped:(id)sender
+{
+	if ([self.delegate respondsToSelector:@selector(kioskViewControllerShowLocation)]) {
+		[self dismissViewControllerAnimated:YES completion:^{
+			[self.delegate kioskViewControllerShowLocation];
+		}];
+	}
 }
 
 #pragma mark - Mask Button

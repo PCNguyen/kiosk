@@ -289,6 +289,8 @@ NSString *const MVCCellID = @"kMVCCellID";
 		RPKKioskViewController *timeWebVC = [[RPKKioskViewController alloc] initWithURL:menuItem.itemURL];
 		timeWebVC.shouldTimedOut = NO;
 		timeWebVC.kioskOnly = YES;
+		timeWebVC.allowSelectLocation = [[self dataSource] preferenceStorage].allLocations.count > 1;
+		timeWebVC.delegate = self;
 		[timeWebVC setAdministratorDelegate:self];
 		RPKNavigationController *navigationHolder = [[RPKNavigationController alloc] initWithRootViewController:timeWebVC];
 		[self.navigationController presentViewController:navigationHolder animated:YES completion:NULL];
@@ -542,6 +544,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 - (void)kioskViewControllerShouldClearInformation
 {
 	self.kioskViewController = nil;
+}
+
+- (void)kioskViewControllerShowLocation
+{
+	[self handleAdministratorCode:@"RDCLLLL" error:NULL];
 }
 
 #pragma mark - Secured View

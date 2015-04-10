@@ -14,12 +14,15 @@
 
 @optional
 - (void)kioskViewControllerShouldClearInformation;
+- (void)kioskViewControllerShowLocation;
 
 @end
 
 @interface RPKKioskViewController : RPKTimedWebViewController
 
 @property (nonatomic, assign) BOOL kioskOnly;
+
+@property (nonatomic, assign) BOOL allowSelectLocation;
 
 @property (nonatomic, weak) id <RPKKioskViewControllerDelegate>delegate;
 
