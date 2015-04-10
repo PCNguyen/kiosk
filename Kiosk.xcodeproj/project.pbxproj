@@ -445,6 +445,8 @@
 		0F79DC271A705FB900A4EF9A /* RPKGoogleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKGoogleMessage.m; sourceTree = "<group>"; };
 		0F79DC291A7063F200A4EF9A /* RPKMaskButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKMaskButton.h; sourceTree = "<group>"; };
 		0F79DC2A1A7063F200A4EF9A /* RPKMaskButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKMaskButton.m; sourceTree = "<group>"; };
+		0F86F3711AD7593800B6AF93 /* Kiosk Review.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Kiosk Review.entitlements"; sourceTree = "<group>"; };
+		0F86F3721AD7594A00B6AF93 /* Kiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Kiosk.entitlements; path = Kiosk/Kiosk.entitlements; sourceTree = "<group>"; };
 		0F8FDBFD1A7B2ED40043A3D0 /* RPKAnalyticEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKAnalyticEvent.h; sourceTree = "<group>"; };
 		0F8FDBFE1A7B2ED40043A3D0 /* RPKAnalyticEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKAnalyticEvent.m; sourceTree = "<group>"; };
 		0FA0441C1A828E7E00386BE1 /* RPKKioskDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskDataSource.h; sourceTree = "<group>"; };
@@ -728,6 +730,8 @@
 		0FA0ABAA1A40ABE1007AA263 = {
 			isa = PBXGroup;
 			children = (
+				0F86F3721AD7594A00B6AF93 /* Kiosk.entitlements */,
+				0F86F3711AD7593800B6AF93 /* Kiosk Review.entitlements */,
 				0FBF99F11A71FDCD00C25788 /* TODO */,
 				0FA0ABDE1A40AE8A007AA263 /* Podfile */,
 				0FA0E1551A6869FF0011EAC9 /* External Lib */,
@@ -1312,9 +1316,22 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
+					0F591A591A8BE9D0000A0541 = {
+						DevelopmentTeam = Z2EXNP9RZT;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = Z2EXNP9RZT;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					0FA0ABCB1A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1921,12 +1938,13 @@
 			baseConfigurationReference = C0ED50DAA540D006EE5FAB5E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_ENTITLEMENTS = "Kiosk Review.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk Review-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk Review";
-				PROVISIONING_PROFILE = "a8f627f4-e8ee-4dfe-abcf-5f22650c17bf";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1936,6 +1954,7 @@
 			baseConfigurationReference = 56D925CD785ADDE3AEA1523A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Kiosk Review.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk Review-Info.plist";
@@ -2029,12 +2048,13 @@
 			baseConfigurationReference = C0ED50DAA540D006EE5FAB5E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "6a51889b-9037-44bf-869d-9eb3cd95b014";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2044,6 +2064,7 @@
 			baseConfigurationReference = 56D925CD785ADDE3AEA1523A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
