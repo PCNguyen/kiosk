@@ -52,8 +52,8 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	[super layoutSubviews];
 
 	self.kioskIndicator.frame = [self kioskIndicatorFrame];
-	self.carsIndicator.frame = [self carsIndicatorFrame:self.kioskIndicator.frame];
-	self.googleIndicator.frame = [self googleIndicatorFrame:self.carsIndicator.frame];
+	self.googleIndicator.frame = [self googleIndicatorFrame:self.kioskIndicator.frame];
+	self.carsIndicator.frame = [self carsIndicatorFrame:self.googleIndicator.frame];
 }
 
 - (void)assignModel:(id)model forIndexPath:(NSIndexPath *)indexPath
@@ -88,6 +88,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
+
 
 - (UIImageView *)googleIndicator
 {
@@ -126,7 +127,7 @@ NSString *const LSVCCellID = @"LSVCCellID";
 	CGFloat height = preferenceFrame.size.height;
 	CGFloat width = height;
 	CGFloat xOffset = preferenceFrame.origin.x - width - self.spacings.width;
-
+	
 	return CGRectMake(xOffset, yOffset, width, height);
 }
 
