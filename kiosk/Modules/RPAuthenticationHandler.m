@@ -218,7 +218,7 @@ NSString *const AHUserInfoKey = @"AHUserInfoKey";
 
 + (void)wipeAccount
 {
-	[JNKeychain deleteValueForKey:AHUserInfoKey];
+	[self updateAccount:nil];
 }
 
 + (void)logout
