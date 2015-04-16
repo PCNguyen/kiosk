@@ -38,7 +38,7 @@
 	<key>CFBundleVersion</key>
 	<string>26</string>
 	<key>Enable Google</key>
-	<false/>
+	<true/>
 	<key>Kiosk Host URL</key>
 	<string>http://reputation.com</string>
 	<key>LSRequiresIPhoneOS</key>
