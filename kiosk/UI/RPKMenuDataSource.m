@@ -47,7 +47,7 @@
 			for(SourceUrl *sourceUrl in locationData.sourceUrls) {
 
 				// If this is a Google-related source.
-				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
+				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId] && sourceUrl.isKioskReviewable && !sourceUrl.isCompetitor) {
 					// Get the Google source url.
 					googleURLString = sourceUrl.sourceUrl;
 				}

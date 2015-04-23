@@ -74,7 +74,7 @@
 		if ([location.sourceUrls count] > 0) {
 			for (SourceUrl *sourceUrl in location.sourceUrls) {
 				// Check for Google Plus/Places sources before enabling Google functionality.
-				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId]) {
+				if([googleSourceId length] > 0 && [sourceUrl.source  isEqual: googleSourceId] && sourceUrl.isKioskReviewable && !sourceUrl.isCompetitor) {
 					selection.enabledSources |= LocationSourceGoogle;
 				}
 
