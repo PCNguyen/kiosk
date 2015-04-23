@@ -427,11 +427,13 @@ typedef NSString * SourceGroup;
   NSString * __source;
   BOOL __isCompetitor;
   TwitterConfig * __twitterConfig;
+  BOOL __isKioskReviewable;
 
   BOOL __sourceUrl_isset;
   BOOL __source_isset;
   BOOL __isCompetitor_isset;
   BOOL __twitterConfig_isset;
+  BOOL __isKioskReviewable_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -439,10 +441,11 @@ typedef NSString * SourceGroup;
 @property (nonatomic, retain, getter=source, setter=setSource:) NSString * source;
 @property (nonatomic, getter=isCompetitor, setter=setIsCompetitor:) BOOL isCompetitor;
 @property (nonatomic, retain, getter=twitterConfig, setter=setTwitterConfig:) TwitterConfig * twitterConfig;
+@property (nonatomic, getter=isKioskReviewable, setter=setIsKioskReviewable:) BOOL isKioskReviewable;
 #endif
 
 - (id) init;
-- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig;
+- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig isKioskReviewable: (BOOL) isKioskReviewable;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -472,6 +475,12 @@ typedef NSString * SourceGroup;
 - (void) setTwitterConfig: (TwitterConfig *) twitterConfig;
 #endif
 - (BOOL) twitterConfigIsSet;
+
+#if !__has_feature(objc_arc)
+- (BOOL) isKioskReviewable;
+- (void) setIsKioskReviewable: (BOOL) isKioskReviewable;
+#endif
+- (BOOL) isKioskReviewableIsSet;
 
 @end
 

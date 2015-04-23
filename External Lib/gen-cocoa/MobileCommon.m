@@ -1491,7 +1491,7 @@
   return self;
 }
 
-- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig
+- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig isKioskReviewable: (BOOL) isKioskReviewable
 {
   self = [super init];
   __sourceUrl = [sourceUrl retain_stub];
@@ -1502,6 +1502,8 @@
   __isCompetitor_isset = YES;
   __twitterConfig = [twitterConfig retain_stub];
   __twitterConfig_isset = YES;
+  __isKioskReviewable = isKioskReviewable;
+  __isKioskReviewable_isset = YES;
   return self;
 }
 
@@ -1528,6 +1530,11 @@
     __twitterConfig = [[decoder decodeObjectForKey: @"twitterConfig"] retain_stub];
     __twitterConfig_isset = YES;
   }
+  if ([decoder containsValueForKey: @"isKioskReviewable"])
+  {
+    __isKioskReviewable = [decoder decodeBoolForKey: @"isKioskReviewable"];
+    __isKioskReviewable_isset = YES;
+  }
   return self;
 }
 
@@ -1548,6 +1555,10 @@
   if (__twitterConfig_isset)
   {
     [encoder encodeObject: __twitterConfig forKey: @"twitterConfig"];
+  }
+  if (__isKioskReviewable_isset)
+  {
+    [encoder encodeBool: __isKioskReviewable forKey: @"isKioskReviewable"];
   }
 }
 
@@ -1639,6 +1650,23 @@
   __twitterConfig_isset = NO;
 }
 
+- (BOOL) isKioskReviewable {
+  return __isKioskReviewable;
+}
+
+- (void) setIsKioskReviewable: (BOOL) isKioskReviewable {
+  __isKioskReviewable = isKioskReviewable;
+  __isKioskReviewable_isset = YES;
+}
+
+- (BOOL) isKioskReviewableIsSet {
+  return __isKioskReviewable_isset;
+}
+
+- (void) unsetIsKioskReviewable {
+  __isKioskReviewable_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -1688,6 +1716,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 5:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setIsKioskReviewable: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -1725,6 +1761,11 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__isKioskReviewable_isset) {
+    [outProtocol writeFieldBeginWithName: @"isKioskReviewable" type: TType_BOOL fieldID: 5];
+    [outProtocol writeBool: __isKioskReviewable];
+    [outProtocol writeFieldEnd];
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -1743,6 +1784,8 @@
   [ms appendFormat: @"%i", __isCompetitor];
   [ms appendString: @",twitterConfig:"];
   [ms appendFormat: @"%@", __twitterConfig];
+  [ms appendString: @",isKioskReviewable:"];
+  [ms appendFormat: @"%i", __isKioskReviewable];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
