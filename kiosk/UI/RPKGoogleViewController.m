@@ -218,7 +218,7 @@ typedef enum {
 	NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlText]
 																		cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
 																	timeoutInterval:30.0f];
-	nonCacheRequest.HTTPShouldHandleCookies = NO;
+	nonCacheRequest.HTTPShouldHandleCookies = YES;
 	[self.webView loadRequest:nonCacheRequest];
 }
 

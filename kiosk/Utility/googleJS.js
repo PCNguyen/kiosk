@@ -28,7 +28,9 @@ function removeGoogleLogin() {
 	eraseCookie("GALX");
 	eraseCookie("APISID");
 	eraseCookie("ACCOUNT_CHOOSER");
-	
+	eraseCookie("OTZ");
+	eraseCookie("S");
+	eraseCookie("libcs");
 	webkit.messageHandlers.CookieClearCompleted.postMessage('done');
 }
 
