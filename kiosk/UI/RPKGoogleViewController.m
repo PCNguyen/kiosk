@@ -459,7 +459,7 @@ typedef enum {
 			[self hideLoading];
 			RPKAnalyticEvent *sourceLoadedEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceLoaded sessionID:self.sessionID];
 			[sourceLoadedEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
-			NSTimeInterval timeLoad = abs([self.dateLoaded timeIntervalSinceNow]);
+			NSTimeInterval timeLoad = fabs([self.dateLoaded timeIntervalSinceNow]);
 			[sourceLoadedEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[sourceLoadedEvent send];
 		} break;
@@ -500,7 +500,7 @@ typedef enum {
 			RPKAnalyticEvent *signinEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSignin sessionID:self.sessionID];
 			[signinEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
 			[signinEvent addProperty:PropertySourceSigninSucess value:kAnalyticSignInSuccess];
-			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
+			NSTimeInterval timeLoad = fabs([self.dateSignIn timeIntervalSinceNow]);
 			[signinEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[signinEvent send];
 			
@@ -511,7 +511,7 @@ typedef enum {
 			[self hideLoading];
 			RPKAnalyticEvent *timedOutEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceTimeOut sessionID:self.sessionID];
 			[timedOutEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
-			NSTimeInterval timeLoad = abs([self.dateSignIn timeIntervalSinceNow]);
+			NSTimeInterval timeLoad = fabs([self.dateSignIn timeIntervalSinceNow]);
 			[timedOutEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[timedOutEvent send];
 		} break;
