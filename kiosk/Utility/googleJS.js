@@ -110,11 +110,23 @@ function triggerReviewWidget()
 
 //--main hook
 function detectNoGplus() {
-	var signupDialog = document.getElementsByClassName('Ea-q')[0];
+    var gPlusWriteReviewBtn = document.getElementsByClassName('ujb b-c-W');
+    var signupDialog = document.getElementsByClassName('Ea-q')[0];
+    if(!gPlusWriteReviewBtn || signupDialog) {
+        var message = {"reason":""}
+        if(signupDialog) {
+            message.reason="g+PlusNotEnabled";
+            webkit.messageHandlers.SignupDetect.postMessage(message);
+        } else {
+            message.reason="unknown";
+            webkit.messageHandlers.SignupDetect.postMessage(message);
+        }
+    }
 	
-	if (signupDialog) {
-		webkit.messageHandlers.SignupDetect.postMessage('true');
-	}
+	
+	//if (signupDialog) {
+	//	webkit.messageHandlers.SignupDetect.postMessage('true');
+	//}
 }
 
 //--main hook

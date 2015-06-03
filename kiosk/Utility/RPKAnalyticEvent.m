@@ -225,6 +225,10 @@
 		case AnalyticEventLocationSelect:
 			return @"K_Location Select";
 			break;
+        case AnalyticEventSourceNoLoad:
+            return @"K_Source_NoLoad";
+            break;
+            
 		default:
 			break;
 	};
@@ -272,6 +276,9 @@
 		case PropertyWebPageName:
 			return @"k_web page name";
 			break;
+        case PropertySourceNoLoadReason:
+            return @"k_source_noload_reason";
+            break;
 		default:
 			break;
 	};

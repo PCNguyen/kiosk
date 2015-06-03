@@ -33,6 +33,7 @@ typedef enum {
 	AnalyticEventSourceTimeOut,
 	AnalyticEventSourceIdle,
 	AnalyticEventWebPageLoad,
+    AnalyticEventSourceNoLoad,
 } RPAnalyticEventName;
 
 typedef enum {
@@ -49,6 +50,7 @@ typedef enum {
 	PropertySourcePageDidLoad,
 	PropertyWebPageName,
 	PropertyWebPageHost,
+    PropertySourceNoLoadReason,
 } RPAnalyticEventProperty;
 
 @interface RPKAnalyticEvent : NSObject

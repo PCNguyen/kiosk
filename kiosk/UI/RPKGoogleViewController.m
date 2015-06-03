@@ -544,6 +544,11 @@ typedef enum {
 		NSMutableURLRequest *nonCacheRequest = [[NSMutableURLRequest alloc] initWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
 		[self.webView loadRequest:nonCacheRequest];
 	} else if ([message.name isEqualToString:kGVCSignupDetectMessage]) {
+        NSDictionary *messageDict = (NSDictionary*)message.body;
+        RPKAnalyticEvent *noGPlusPgEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceNoLoad sessionID:self.sessionID];
+        [noGPlusPgEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+        [noGPlusPgEvent addProperty:PropertySourceNoLoadReason value:[messageDict objectForKey:@"reason"]];
+        [noGPlusPgEvent send];
 		self.pageDidLoad = GooglePageGplusSignup;
 	} else if ([message.name isEqualToString:kGVCDoneDetectMessage]) {
 		[self.doneTask stop];
