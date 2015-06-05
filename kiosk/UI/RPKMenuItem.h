@@ -21,6 +21,12 @@ typedef enum {
 @property (nonatomic, strong) NSURL *itemURL;
 
 /**
+ *  The URL to be redirected incase the itemURL fails
+ */
+@property (nonatomic, strong) NSURL *redirectURL;
+
+
+/**
  *  The logo image name
  */
 @property (nonatomic, strong) NSString *imageName;

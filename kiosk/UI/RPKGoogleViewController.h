@@ -19,5 +19,6 @@
 @interface RPKGoogleViewController : RPKTimedWebViewController
 
 @property (nonatomic, weak) id<RPKGoogleViewControllerDelegate> delegate;
+@property (nonatomic,strong) NSURL *gPlusPageWithReviewUrl;
 
 @end

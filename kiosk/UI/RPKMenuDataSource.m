@@ -80,6 +80,7 @@
 
 		NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", googleURLString];
 		NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
+        googlePlusItem.redirectURL = [NSURL URLWithString:googleURL];
 		googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 		googlePlusItem.imageName = @"icon_gplus.png";
 		googlePlusItem.itemTitle = NSLocalizedString(@"Leave a review on Google", nil);

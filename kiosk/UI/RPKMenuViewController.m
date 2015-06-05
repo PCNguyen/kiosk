@@ -498,10 +498,11 @@ NSString *const MVCCellID = @"kMVCCellID";
 	RPKAnalyticEvent *sourceSelectEvent = [RPKAnalyticEvent analyticEvent:AnalyticEventSourceSelect];
 	
 	if (menuItem.itemType == MenuTypeGoogle) {
-		timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
+        timeWebVC = [[RPKGoogleViewController alloc] initWithURL:menuItem.itemURL];
 		[(RPKGoogleViewController *)timeWebVC setDelegate:self];
 		[timeWebVC setAdministratorDelegate:self];
 		[sourceSelectEvent addProperty:PropertySourceName value:kAnalyticSourceGoogle];
+        ((RPKGoogleViewController *)timeWebVC).gPlusPageWithReviewUrl = menuItem.redirectURL;
 	} else {
 		//--do not create new kiosk view if we want to retain
 		if (!_kioskViewController) {

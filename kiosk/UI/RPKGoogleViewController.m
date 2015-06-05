@@ -38,7 +38,8 @@ typedef enum {
 	GooglePageAccountClearCookie,
 	GooglePageAccountLogin,
 	GooglePageAccountAuthentication,
-	
+	GoogleMyAccount,
+    
 	GooglePageGplus,
 	GooglePageGplusSignup,
 	GooglePageGplusAbout,
@@ -376,6 +377,10 @@ typedef enum {
 				return GooglePageAccount;
 			}
 		}
+        
+        if([[url host] isEqualToString:@"myaccount.google.com"]) {
+            return GoogleMyAccount;
+        }
 		
 		if ([[url host] isEqualToString:@"plus.google.com"]) {
 			if ([pathComponents containsObject:@"about"] || [[url query] rangeOfString:@"review=1"].location != NSNotFound) {
@@ -505,6 +510,12 @@ typedef enum {
 			[signinEvent send];
 			
 		} break;
+            
+        case GoogleMyAccount : {
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
+            [self.webView loadRequest:nsrequest];
+            
+        } break;
 			
 		case GooglePageCustomError: {
 			[self.popupTask stop];
