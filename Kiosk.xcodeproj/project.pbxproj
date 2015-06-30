@@ -2077,7 +2077,7 @@
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "f7d6aef8-c0a8-4fba-acde-0606136e402b";
+				PROVISIONING_PROFILE = "f04ae1e6-ef8c-42aa-a0f2-6eec399bc312";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
