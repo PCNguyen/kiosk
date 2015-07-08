@@ -1321,7 +1321,7 @@
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
 					0F5919D61A8BE951000A0541 = {
-						DevelopmentTeam = Z2EXNP9RZT;
+						DevelopmentTeam = EE57RVF7T8;
 					};
 					0F591A591A8BE9D0000A0541 = {
 						DevelopmentTeam = Z2EXNP9RZT;
@@ -1916,7 +1916,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1931,13 +1931,13 @@
 			baseConfigurationReference = 56D925CD785ADDE3AEA1523A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "0e3190d0-cdfa-4dc7-8c39-80781dcbb394";
+				PROVISIONING_PROFILE = "f04ae1e6-ef8c-42aa-a0f2-6eec399bc312";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -2077,7 +2077,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
