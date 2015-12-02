@@ -48,7 +48,9 @@ typedef enum {
 	GooglePageCustomError,
 } RPKGooglePage;
 
-@interface RPKGoogleViewController () <WKScriptMessageHandler, RPKStarMaskViewDelegate>
+@interface RPKGoogleViewController () <WKScriptMessageHandler, RPKStarMaskViewDelegate>{
+    BOOL successLoginToReview;
+}
 
 @property (nonatomic, strong) ALScheduledTask *popupTask;
 @property (nonatomic, strong) ALScheduledTask *doneTask;
@@ -109,7 +111,8 @@ typedef enum {
 
 - (instancetype)initWithURL:(NSURL *)url
 {
-	if (self = [super initWithURL:url]) {
+    NSURL *newUrl = [NSURL URLWithString:@"https://goo.gl/2KQKg9"];
+	if (self = [super initWithURL:newUrl]) {
 		//--modify user agent
 		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 		[dictionary setObject:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
@@ -178,6 +181,8 @@ typedef enum {
 	[self.webView addConstraint:self.ratingTop];
 	[self.webView ul_addConstraints:[self.starRatingView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 55.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
+    [self.cancelButton setUserInteractionEnabled:NO];
+    [self.submitButton setUserInteractionEnabled:NO];
 }
 
 - (void)viewDidLoad
@@ -190,6 +195,16 @@ typedef enum {
 	
 	self.dateLoaded = [NSDate date];
 	self.sessionID = [[NSUUID UUID] UUIDString];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -443,9 +458,9 @@ typedef enum {
 
 - (void)setPageDidLoad:(RPKGooglePage)pageDidLoad
 {
-	if (pageDidLoad != GooglePageUnknown) {
+	//if (pageDidLoad != GooglePageUnknown) {
 		_pageDidLoad = pageDidLoad;
-	}
+	//}
 	
 	switch (pageDidLoad) {
 			
@@ -483,8 +498,13 @@ typedef enum {
 			break;
 			
 		case GooglePageGplusAbout:
-			[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
-			break;
+        {
+			//[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
+            successLoginToReview = YES;
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?client=safari&rls=en&q=sports+authority&ie=UTF-8&oe=UTF-8#lrd=0x808f9ec46f2aaef3:0xe5797f2ff6a8623,2"]];
+            [self.webView loadRequest:nsrequest];
+        }
+            break;
 		
 		case GooglePageGplusSignup: {
 			[self.popupTask stop];
@@ -530,6 +550,23 @@ typedef enum {
 		default:
 			break;
 	}
+}
+
+#pragma mark - keyboard events
+
+- (void)keyboardDidShow: (NSNotification *) notif{
+    NSLog(@"pop up y %f %f", self.webView.scrollView.contentOffset.y, self.webView.scrollView.contentSize.height);
+    if (successLoginToReview){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.webView.scrollView setContentOffset:CGPointMake(107,  self.webView.scrollView.contentSize.height*0.33)];
+            [self.cancelButton setUserInteractionEnabled:YES];
+            [self.submitButton setUserInteractionEnabled:YES];
+        });
+    }
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif{
+    // Do something here
 }
 
 - (void)dismissWebView

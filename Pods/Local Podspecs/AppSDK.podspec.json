@@ -1,0 +1,149 @@
+{
+  "name": "AppSDK",
+  "version": "0.3.0",
+  "license": "MIT",
+  "homepage": "https://github.com/PCNguyen/AppSDK",
+  "authors": {
+    "PC Nguyen": "tpthn@yahoo.com"
+  },
+  "summary": "Collection Of Tools Neccesary To Start An iOS App",
+  "source": {
+    "git": "https://github.com/PCNguyen/AppSDK.git",
+    "branch": "master"
+  },
+  "requires_arc": true,
+  "platforms": {
+    "ios": "6.0"
+  },
+  "subspecs": [
+    {
+      "name": "AppLib",
+      "source_files": "AppLib/*.{h,m}",
+      "subspecs": [
+        {
+          "name": "Shared",
+          "source_files": "AppLib/Shared/**/*.{h,m}"
+        },
+        {
+          "name": "Extension",
+          "source_files": "AppLib/Extension/**/*.{h,m}"
+        },
+        {
+          "name": "ValueTransformer",
+          "dependencies": {
+            "AppSDK/AppLib/Shared": [
+
+            ]
+          },
+          "source_files": "AppLib/Value Transformer/**/*.{h,m}"
+        },
+        {
+          "name": "Scheduler",
+          "dependencies": {
+            "AppSDK/AppLib/Shared": [
+
+            ]
+          },
+          "source_files": "AppLib/Scheduler/**/*.{h,m}"
+        },
+        {
+          "name": "Threading",
+          "dependencies": {
+            "AppSDK/AppLib/Shared": [
+
+            ]
+          },
+          "source_files": "AppLib/Threading/**/*.{h,m}"
+        }
+      ]
+    },
+    {
+      "name": "DataLib",
+      "dependencies": {
+        "AppSDK/AppLib/Shared": [
+
+        ]
+      },
+      "source_files": "DataLib/*.{h,m}",
+      "subspecs": [
+        {
+          "name": "Shared",
+          "dependencies": {
+            "AppSDK/AppLib/Scheduler": [
+
+            ]
+          },
+          "source_files": "DataLib/Shared/**/*.{h,m}"
+        },
+        {
+          "name": "DiskPersistent",
+          "dependencies": {
+            "AppSDK/DataLib/Shared": [
+
+            ]
+          },
+          "source_files": "DataLib/Disk Persistent/**/*.{h,m}"
+        },
+        {
+          "name": "AppPersistent",
+          "dependencies": {
+            "AppSDK/DataLib/Shared": [
+
+            ]
+          },
+          "source_files": "DataLib/App Persistent/**/*.{h,m}"
+        },
+        {
+          "name": "CoreData",
+          "dependencies": {
+            "AppSDK/DataLib/Shared": [
+
+            ]
+          },
+          "source_files": "DataLib/CoreData/**/*.{h,m}",
+          "frameworks": "CoreData"
+        }
+      ]
+    },
+    {
+      "name": "UILib",
+      "dependencies": {
+        "AppSDK/AppLib/Shared": [
+
+        ],
+        "AppSDK/AppLib/Extension": [
+
+        ]
+      },
+      "source_files": "UILib/*.{h,m}",
+      "frameworks": [
+        "UIKit",
+        "CoreGraphics",
+        "QuartzCore"
+      ],
+      "subspecs": [
+        {
+          "name": "Extension",
+          "source_files": "UILib/Extension/**/*.{h,m}"
+        },
+        {
+          "name": "AutoLayout",
+          "source_files": "UILib/Autolayout/**/*.{h,m}"
+        },
+        {
+          "name": "DataBinding",
+          "dependencies": {
+            "AppSDK/AppLib/ValueTransformer": [
+
+            ]
+          },
+          "source_files": "UILib/Data Binding/**/*.{h,m}"
+        },
+        {
+          "name": "TagTable",
+          "source_files": "UILib/Tag Table/**/*.{h,m}"
+        }
+      ]
+    }
+  ]
+}
