@@ -111,11 +111,11 @@ typedef enum {
 
 - (instancetype)initWithURL:(NSURL *)url
 {
-    NSURL *newUrl = [NSURL URLWithString:@"https://goo.gl/2KQKg9"];
+    NSURL *newUrl = [NSURL URLWithString:@""];
 	if (self = [super initWithURL:newUrl]) {
 		//--modify user agent
 		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-		[dictionary setObject:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
+		[dictionary setObject:@"Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10"
 					   forKey:@"UserAgent"];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
 	}
@@ -165,7 +165,9 @@ typedef enum {
 						   priority:(UILayoutPriorityRequired - 1)];
 	
 	[self.webView addSubview:self.cancelButton];
-	[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:5.0f leftToRight:NO]];
+    [self.cancelButton setFrame:CGRectMake(0, 5, 10, 20)];
+	//[self.webView addConstraints:[self.cancelButton ul_horizontalAlign:NSLayoutFormatAlignAllCenterY withView:self.submitButton distance:5.0f leftToRight:NO]];
+
 	
 	[self.webView addSubview:self.googleThankyou];
 	[self.webView addConstraints:[self.googleThankyou ul_pinWithInset:UIEdgeInsetsZero]];
@@ -181,8 +183,8 @@ typedef enum {
 	[self.webView addConstraint:self.ratingTop];
 	[self.webView ul_addConstraints:[self.starRatingView ul_pinWithInset:UIEdgeInsetsMake(kUIViewUnpinInset, 55.0f, kUIViewUnpinInset, kUIViewUnpinInset)]
 						   priority:(UILayoutPriorityRequired - 1)];
-    [self.cancelButton setUserInteractionEnabled:NO];
-    [self.submitButton setUserInteractionEnabled:NO];
+   // [self.cancelButton setUserInteractionEnabled:NO];
+   // [self.submitButton setUserInteractionEnabled:NO];
 }
 
 - (void)viewDidLoad
@@ -205,6 +207,14 @@ typedef enum {
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    
+    [self.cancelButton setHidden:NO];
+    [self.cancelButton setBackgroundColor:[UIColor clearColor]];
+    [self.cancelButton setAlpha:0.5f];
+   /*
+    [self.submitButton setHidden:NO];
+    [self.submitButton setBackgroundColor:[UIColor blueColor]];
+    [self.submitButton setAlpha:0.5f];*/
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -292,6 +302,12 @@ typedef enum {
 - (void)logout
 {
 	//--disable mask button
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
+    NSError *errors;
+    [[NSFileManager defaultManager] removeItemAtPath:cookiesFolderPath error:&errors];
+     [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
 	self.submitButton.active = NO;
 	
 	[self removeKeyboardMask];
@@ -357,6 +373,7 @@ typedef enum {
 		
 		[webView evaluateJavaScript:javascript completionHandler:nil];
 	}
+    
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
@@ -458,9 +475,9 @@ typedef enum {
 
 - (void)setPageDidLoad:(RPKGooglePage)pageDidLoad
 {
-	//if (pageDidLoad != GooglePageUnknown) {
+	if (pageDidLoad != GooglePageUnknown) {
 		_pageDidLoad = pageDidLoad;
-	//}
+	}
 	
 	switch (pageDidLoad) {
 			
@@ -501,7 +518,7 @@ typedef enum {
         {
 			//[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
             successLoginToReview = YES;
-            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?client=safari&rls=en&q=sports+authority&ie=UTF-8&oe=UTF-8#lrd=0x808f9ec46f2aaef3:0xe5797f2ff6a8623,2"]];
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=Amami%20Sushi%2C%201789%20El%20Camino%20Real%2C%20San%20Bruno%2C%20CA%2094066&ludocid=9429747110387290923&rlst=n&ved=1t%3A10503&ei=JnpfVtefE8qW0gS0wbnIBw&hl=en-US#lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
             [self.webView loadRequest:nsrequest];
         }
             break;
@@ -555,14 +572,14 @@ typedef enum {
 #pragma mark - keyboard events
 
 - (void)keyboardDidShow: (NSNotification *) notif{
-    NSLog(@"pop up y %f %f", self.webView.scrollView.contentOffset.y, self.webView.scrollView.contentSize.height);
+ /*   NSLog(@"pop up y %f %f", self.webView.scrollView.contentOffset.y, self.webView.scrollView.contentSize.height);
     if (successLoginToReview){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.webView.scrollView setContentOffset:CGPointMake(107,  self.webView.scrollView.contentSize.height*0.33)];
             [self.cancelButton setUserInteractionEnabled:YES];
             [self.submitButton setUserInteractionEnabled:YES];
         });
-    }
+    }*/
 }
 
 - (void)keyboardDidHide: (NSNotification *) notif{
@@ -796,7 +813,7 @@ typedef enum {
 		[_cancelButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal];
 		[_cancelButton addTarget:self action:@selector(handleCancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[_cancelButton ul_enableAutoLayout];
-		[_cancelButton ul_fixedSize:CGSizeMake(160.0f, 65.0f)];
+		[_cancelButton ul_fixedSize:CGSizeMake(65.0f, 55.0f)];
 	}
 	
 	return _cancelButton;

@@ -78,7 +78,7 @@
 	if ([googleURLString length] > 0) {
 		RPKMenuItem *googlePlusItem = [[RPKMenuItem alloc] init];
 
-		NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", googleURLString];
+		NSString *googleURL = [NSString stringWithFormat:@"%@?review=1", @"https://www.google.com/search?q=Amami%20Sushi%2C%201789%20El%20Camino%20Real%2C%20San%20Bruno%2C%20CA%2094066&ludocid=9429747110387290923&rlst=n&ved=1t%3A10503&ei=JnpfVtefE8qW0gS0wbnIBw&hl=en-US#lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"];
 		NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
         googlePlusItem.redirectURL = [NSURL URLWithString:googleURL];
 		googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
