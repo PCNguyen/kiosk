@@ -115,7 +115,7 @@ typedef enum {
 	if (self = [super initWithURL:newUrl]) {
 		//--modify user agent
 		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-		[dictionary setObject:@"Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10"
+		[dictionary setObject:@"Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25"
 					   forKey:@"UserAgent"];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
 	}
@@ -480,7 +480,7 @@ typedef enum {
 	}
 	
 	switch (pageDidLoad) {
-			
+
 		case GooglePageAccount:
 			[self toggleCustomViewForLoginScreen:NO];
 			[self hideLoading];
@@ -499,6 +499,7 @@ typedef enum {
 			NSTimeInterval timeLoad = fabs([self.dateLoaded timeIntervalSinceNow]);
 			[sourceLoadedEvent addProperty:PropertySourceTimeLoad value:[NSString stringWithFormat:@"%.0f", timeLoad]];
 			[sourceLoadedEvent send];
+            
 		} break;
 			
 		case GooglePageAccountAuthentication: //--if we land here mean login fail
@@ -518,7 +519,7 @@ typedef enum {
         {
 			//[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
             successLoginToReview = YES;
-            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=Amami%20Sushi%2C%201789%20El%20Camino%20Real%2C%20San%20Bruno%2C%20CA%2094066&ludocid=9429747110387290923&rlst=n&ved=1t%3A10503&ei=JnpfVtefE8qW0gS0wbnIBw&hl=en-US#lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
             [self.webView loadRequest:nsrequest];
         }
             break;
@@ -549,8 +550,11 @@ typedef enum {
 		} break;
             
         case GoogleMyAccount : {
-            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
+            successLoginToReview = YES;
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
             [self.webView loadRequest:nsrequest];
+           // NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
+            //[self.webView loadRequest:nsrequest];
             
         } break;
 			
