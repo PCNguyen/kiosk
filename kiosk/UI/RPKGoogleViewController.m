@@ -48,7 +48,7 @@ typedef enum {
 	GooglePageCustomError,
 } RPKGooglePage;
 
-@interface RPKGoogleViewController () <WKScriptMessageHandler, RPKStarMaskViewDelegate>{
+@interface RPKGoogleViewController () <WKScriptMessageHandler, RPKStarMaskViewDelegate, WKUIDelegate, UIGestureRecognizerDelegate>{
     BOOL successLoginToReview;
 }
 
@@ -187,10 +187,23 @@ typedef enum {
    // [self.submitButton setUserInteractionEnabled:NO];
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)())completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
+    self.webView.UIDelegate = self;
 	self.popupTryCount = 0;
 	
 	[self registerNotification];
@@ -215,6 +228,42 @@ typedef enum {
     [self.submitButton setHidden:NO];
     [self.submitButton setBackgroundColor:[UIColor blueColor]];
     [self.submitButton setAlpha:0.5f];*/
+    
+    
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(tapGestureHandler:)];
+    tgr.delegate = self;  //also add <UIGestureRecognizerDelegate> to @interface
+    [self.webView addGestureRecognizer:tgr];
+}
+
+- (void)tapGestureHandler:(UITapGestureRecognizer *)tgr
+{
+    CGPoint touchPoint = [tgr locationInView:self.webView];
+    
+    if ([self checkIfTouchHitPublishButton:touchPoint]){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self logout];
+            [self dismissWebView];
+        });
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer
+                         :(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)checkIfTouchHitPublishButton:(CGPoint) point{
+    int x = point.x;
+    int y = point.y;
+    if (x>=700 && x <=764){
+        if (y >= 8 && y<=56){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -270,6 +319,7 @@ typedef enum {
 	
 	//--add handler to handle clearing cookies
 	[userContentController addScriptMessageHandler:self name:kGVCClearCookieMessage];
+    [userContentController addScriptMessageHandler:self name:@"buttonClicked"];
 	
 	//--add handler to handle no gplus account
 	[userContentController addScriptMessageHandler:self name:kGVCSignupDetectMessage];
@@ -373,17 +423,51 @@ typedef enum {
 		
 		[webView evaluateJavaScript:javascript completionHandler:nil];
 	}
-    
+    NSString *testJS = @"window.onclick= function()\
+    {\
+    var messageToPost = {'ButtonId':'clickMeButton'};\
+    window.webkit.messageHandlers.buttonClicked.postMessage(messageToPost);\
+    };\
+    ";
+    [self.webView evaluateJavaScript:testJS completionHandler:^(id t, NSError * error) {
+        NSLog(@"error %@", error);
+    }];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
 	self.pageDidLoad = [self googlePageForURL:webView.URL];
+  /*  NSString *testJS = @"if( document.getElementsByClassName('KHlw8e eoc').length>0)\
+    {\
+    alert('KHlw8e eoc Exist');\
+    }else{\
+    alert('KHlw8e eoc doesnt Exist');\
+    }\
+    window.onclick= function()\
+    {\
+    var messageToPost = {'ButtonId':'clickMeButton'};\
+    window.webkit.messageHandlers.buttonClicked.postMessage(messageToPost);\
+    };\
+    var div = document.getElementsByClassName('KHlw8e eoc')[0];          div.addEventListener('click', function (event) {\
+    var messageToPost = {'ButtonId':'clickMeButton'};\
+    window.webkit.messageHandlers.buttonClicked.postMessage(messageToPost);\
+    },false);";
+    [self.webView evaluateJavaScript:testJS completionHandler:^(id t, NSError * error) {
+        NSLog(@"error %@", error);
+    }];*/
+    NSLog(@"webview URL %@", self.webView.URL);
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
 	self.pageDidLoad = [self googlePageForURL:webView.URL];
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    NSLog(@"location %f %f", location.x, location.y);
 }
 
 #pragma mark - WebView Helper
@@ -610,6 +694,9 @@ typedef enum {
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
+    
+    NSLog(@"message %@", message.name);
+    
 	if ([message.name isEqualToString:kGVCClearCookieMessage]) {
 		[RPKCookieHandler clearCookie];
 
