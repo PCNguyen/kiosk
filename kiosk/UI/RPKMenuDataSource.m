@@ -84,13 +84,11 @@
 		NSString *googleURL = googleURLString;
 		NSString *loginURL = [NSString stringWithFormat:@"https://accounts.google.com/ServiceLogin?passive=1209600&continue=%@", [self urlEncodeString:googleURL]];
         googlePlusItem.redirectURL = [NSURL URLWithString:googleURL];
-        NSLog (@"kiosk url %@", googleURLString);
-		googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
+        googlePlusItem.itemURL = [NSURL URLWithString:loginURL];
 		googlePlusItem.imageName = @"icon_gplus.png";
 		googlePlusItem.itemTitle = NSLocalizedString(@"Leave a review on Google", nil);
 		googlePlusItem.isSecured = YES;
 		googlePlusItem.itemType = MenuTypeGoogle;
-        NSLog(@"google RedirectURL %@", googlePlusItem.redirectURL);
 		[menuItems addObject:googlePlusItem];
 	}
 	
