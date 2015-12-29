@@ -519,7 +519,9 @@ typedef enum {
         {
 			//[self.popupTask startAtDate:[NSDate dateWithTimeIntervalSinceNow:self.popupTask.timeInterval]];
             successLoginToReview = YES;
-            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
+            //NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
+            //[self.webView loadRequest:nsrequest];
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
             [self.webView loadRequest:nsrequest];
         }
             break;
@@ -551,9 +553,11 @@ typedef enum {
             
         case GoogleMyAccount : {
             successLoginToReview = YES;
-            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
+          //  NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2"]];
+            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
             [self.webView loadRequest:nsrequest];
-           // NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
+            //NSURLRequest *nsrequest=[NSURLRequest requestWithURL:self.gPlusPageWithReviewUrl];
+            //NSLog(@"glplus address %@", @"https://www.google.com/search?q=amami+sushi&oq=amami+&aqs=chrome.0.69i59l2j0l2j69i57j69i60.3063j0j9&sourceid=chrome&es_sm=91&ie=UTF-8#es_sm=91&istate=kp:xpd&lrd=0x808f7779ed90be7d:0x82dd31093466932b,2");
             //[self.webView loadRequest:nsrequest];
             
         } break;

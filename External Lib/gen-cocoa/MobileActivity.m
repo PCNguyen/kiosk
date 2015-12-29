@@ -1682,7 +1682,7 @@
     if (__activities != nil) {
       [outProtocol writeFieldBeginWithName: @"activities" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: (int)[__activities count]];
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__activities count]];
         int i4;
         for (i4 = 0; i4 < [__activities count]; i4++)
         {

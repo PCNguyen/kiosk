@@ -434,12 +434,14 @@ typedef NSString * SourceGroup;
   BOOL __isCompetitor;
   TwitterConfig * __twitterConfig;
   BOOL __isKioskReviewable;
+  NSString * __kioskUrl;
 
   BOOL __sourceUrl_isset;
   BOOL __source_isset;
   BOOL __isCompetitor_isset;
   BOOL __twitterConfig_isset;
   BOOL __isKioskReviewable_isset;
+  BOOL __kioskUrl_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -448,10 +450,11 @@ typedef NSString * SourceGroup;
 @property (nonatomic, getter=isCompetitor, setter=setIsCompetitor:) BOOL isCompetitor;
 @property (nonatomic, retain, getter=twitterConfig, setter=setTwitterConfig:) TwitterConfig * twitterConfig;
 @property (nonatomic, getter=isKioskReviewable, setter=setIsKioskReviewable:) BOOL isKioskReviewable;
+@property (nonatomic, retain, getter=kioskUrl, setter=setKioskUrl:) NSString * kioskUrl;
 #endif
 
 - (id) init;
-- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig isKioskReviewable: (BOOL) isKioskReviewable;
+- (id) initWithSourceUrl: (NSString *) sourceUrl source: (NSString *) source isCompetitor: (BOOL) isCompetitor twitterConfig: (TwitterConfig *) twitterConfig isKioskReviewable: (BOOL) isKioskReviewable kioskUrl: (NSString *) kioskUrl;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -487,6 +490,12 @@ typedef NSString * SourceGroup;
 - (void) setIsKioskReviewable: (BOOL) isKioskReviewable;
 #endif
 - (BOOL) isKioskReviewableIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) kioskUrl;
+- (void) setKioskUrl: (NSString *) kioskUrl;
+#endif
+- (BOOL) kioskUrlIsSet;
 
 @end
 
@@ -1379,7 +1388,7 @@ typedef NSString * SourceGroup;
 @interface Source : NSObject <TBase, NSCoding> {
   SourceCode __id;
   NSString * __name;
-  NSMutableArray * __urls;
+  NSMutableDictionary * __urls;
   NSString * __smallIconPath;
   NSString * __largeIconPath;
   RatingScale * __overallRS;
@@ -1445,7 +1454,7 @@ typedef NSString * SourceGroup;
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=id, setter=setId:) SourceCode id;
 @property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
-@property (nonatomic, retain, getter=urls, setter=setUrls:) NSMutableArray * urls;
+@property (nonatomic, retain, getter=urls, setter=setUrls:) NSMutableDictionary * urls;
 @property (nonatomic, retain, getter=smallIconPath, setter=setSmallIconPath:) NSString * smallIconPath;
 @property (nonatomic, retain, getter=largeIconPath, setter=setLargeIconPath:) NSString * largeIconPath;
 @property (nonatomic, retain, getter=overallRS, setter=setOverallRS:) RatingScale * overallRS;
@@ -1477,7 +1486,7 @@ typedef NSString * SourceGroup;
 #endif
 
 - (id) init;
-- (id) initWithId: (SourceCode) id name: (NSString *) name urls: (NSMutableArray *) urls smallIconPath: (NSString *) smallIconPath largeIconPath: (NSString *) largeIconPath overallRS: (RatingScale *) overallRS subRatingRS: (NSMutableDictionary *) subRatingRS hasItemizedRatings: (BOOL) hasItemizedRatings allowsComments: (BOOL) allowsComments status: (int) status sourceGroup: (SourceGroup) sourceGroup collectorDefaults: (CollectorDefaults *) collectorDefaults urlRegexp: (NSString *) urlRegexp sendAlerts: (BOOL) sendAlerts hasRating: (BOOL) hasRating scoreable: (BOOL) scoreable publishable: (BOOL) publishable schedulable: (BOOL) schedulable autofindable: (BOOL) autofindable viewable: (BOOL) viewable requestReviewable: (BOOL) requestReviewable industryWeights: (NSMutableDictionary *) industryWeights domain: (NSString *) domain colors: (Colors *) colors listingUrl: (NSString *) listingUrl attributes: (NSMutableArray *) attributes idFields: (NSMutableArray *) idFields createUrl: (NSString *) createUrl claimUrl: (NSString *) claimUrl isListing: (BOOL) isListing preserveDate: (BOOL) preserveDate;
+- (id) initWithId: (SourceCode) id name: (NSString *) name urls: (NSMutableDictionary *) urls smallIconPath: (NSString *) smallIconPath largeIconPath: (NSString *) largeIconPath overallRS: (RatingScale *) overallRS subRatingRS: (NSMutableDictionary *) subRatingRS hasItemizedRatings: (BOOL) hasItemizedRatings allowsComments: (BOOL) allowsComments status: (int) status sourceGroup: (SourceGroup) sourceGroup collectorDefaults: (CollectorDefaults *) collectorDefaults urlRegexp: (NSString *) urlRegexp sendAlerts: (BOOL) sendAlerts hasRating: (BOOL) hasRating scoreable: (BOOL) scoreable publishable: (BOOL) publishable schedulable: (BOOL) schedulable autofindable: (BOOL) autofindable viewable: (BOOL) viewable requestReviewable: (BOOL) requestReviewable industryWeights: (NSMutableDictionary *) industryWeights domain: (NSString *) domain colors: (Colors *) colors listingUrl: (NSString *) listingUrl attributes: (NSMutableArray *) attributes idFields: (NSMutableArray *) idFields createUrl: (NSString *) createUrl claimUrl: (NSString *) claimUrl isListing: (BOOL) isListing preserveDate: (BOOL) preserveDate;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1497,8 +1506,8 @@ typedef NSString * SourceGroup;
 - (BOOL) nameIsSet;
 
 #if !__has_feature(objc_arc)
-- (NSMutableArray *) urls;
-- (void) setUrls: (NSMutableArray *) urls;
+- (NSMutableDictionary *) urls;
+- (void) setUrls: (NSMutableDictionary *) urls;
 #endif
 - (BOOL) urlsIsSet;
 

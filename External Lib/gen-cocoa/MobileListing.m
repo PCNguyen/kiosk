@@ -455,7 +455,7 @@
     if (__timeRanges != nil) {
       [outProtocol writeFieldBeginWithName: @"timeRanges" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: (int)[__timeRanges count]];
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__timeRanges count]];
         int i4;
         for (i4 = 0; i4 < [__timeRanges count]; i4++)
         {
@@ -684,7 +684,7 @@
     if (__dailyHours != nil) {
       [outProtocol writeFieldBeginWithName: @"dailyHours" type: TType_LIST fieldID: 1];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: (int)[__dailyHours count]];
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__dailyHours count]];
         int i9;
         for (i9 = 0; i9 < [__dailyHours count]; i9++)
         {
@@ -1720,7 +1720,7 @@
     if (__photos != nil) {
       [outProtocol writeFieldBeginWithName: @"photos" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRING size: (int)[__photos count]];
+        [outProtocol writeListBeginWithElementType: TType_STRING size: [__photos count]];
         int i14;
         for (i14 = 0; i14 < [__photos count]; i14++)
         {
@@ -1904,7 +1904,7 @@
     if (__categories != nil) {
       [outProtocol writeFieldBeginWithName: @"categories" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRING size: (int)[__categories count]];
+        [outProtocol writeListBeginWithElementType: TType_STRING size: [__categories count]];
         int i19;
         for (i19 = 0; i19 < [__categories count]; i19++)
         {
@@ -2090,7 +2090,7 @@
     if (__businessHours != nil) {
       [outProtocol writeFieldBeginWithName: @"businessHours" type: TType_LIST fieldID: 2];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: (int)[__businessHours count]];
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__businessHours count]];
         int i24;
         for (i24 = 0; i24 < [__businessHours count]; i24++)
         {
@@ -4066,7 +4066,7 @@
     if (__sourceListings != nil) {
       [outProtocol writeFieldBeginWithName: @"sourceListings" type: TType_LIST fieldID: 4];
       {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: (int)[__sourceListings count]];
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__sourceListings count]];
         int i29;
         for (i29 = 0; i29 < [__sourceListings count]; i29++)
         {
