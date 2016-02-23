@@ -1322,7 +1322,7 @@
 				ORGANIZATIONNAME = Reputation;
 				TargetAttributes = {
 					0F5919D61A8BE951000A0541 = {
-						DevelopmentTeam = EE57RVF7T8;
+						DevelopmentTeam = Z2EXNP9RZT;
 					};
 					0F591A591A8BE9D0000A0541 = {
 						DevelopmentTeam = Z2EXNP9RZT;
@@ -1953,7 +1953,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "f04ae1e6-ef8c-42aa-a0f2-6eec399bc312";
+				PROVISIONING_PROFILE = "a9c119bc-c524-4b8f-b4ef-561333d15c6f";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -2099,7 +2099,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "f04ae1e6-ef8c-42aa-a0f2-6eec399bc312";
+				PROVISIONING_PROFILE = "06eb30be-44a2-4d4d-88aa-edac03ece050";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
