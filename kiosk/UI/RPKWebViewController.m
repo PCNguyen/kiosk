@@ -10,6 +10,12 @@
 #import "RPKReachabilityManager.h"
 #import "RPNotificationCenter.h"
 
+@interface RPKWebViewController ()
+
+@property (assign, nonatomic) BOOL isReachable;
+
+@end
+
 @implementation RPKWebViewController
 
 - (instancetype)initWithURL:(NSURL *)url
@@ -17,6 +23,7 @@
 	if (self = [super init]) {
 		_url = url;
 		_enableToolBar = NO;
+        _isReachable = YES;
 	}
 	
 	return self;
@@ -114,9 +121,12 @@
 
 - (void)handleReachabilityChangedNotification:(NSNotification *)notification
 {
-	if ([[RPKReachabilityManager sharedManager] isReachable]) {
+	if ([[RPKReachabilityManager sharedManager] isReachable] && !self.isReachable) {
 		[self loadRequest];
-	}
+        self.isReachable = YES;
+    } else {
+        self.isReachable = NO;
+    }
 }
 
 @end
