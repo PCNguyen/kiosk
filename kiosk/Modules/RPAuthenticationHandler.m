@@ -20,7 +20,7 @@
 
 #import "NSError+RP.h"
 
-#import <AppSDK/UILibDataBinding.h>
+#import "UILibDataBinding.h"
 #import <JNKeychain/JNKeychain.h>
 
 NSString *const RPAuthenticationHandlerActivityBeginNotification = @" RPAuthenticationHandlerActivityBeginNotification";

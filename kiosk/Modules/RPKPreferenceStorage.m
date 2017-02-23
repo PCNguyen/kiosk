@@ -10,7 +10,7 @@
 
 #import "UIApplication+RP.h"
 #import "MobileCommon.h"
-#import <AppSDK/AppLibExtension.h>
+#import "AppLibExtension.h"
 #import <JNKeychain/JNKeychain.h>
 
 #define kRSUserConfigKey					@"UserConfig"

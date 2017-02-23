@@ -10,7 +10,7 @@
 #define kiosk_RPKUIKit_h
 
 #import <UIKit/UIKit.h>
-#import <AppSDK/UILib.h>
+#import "UIlib.h"
 #import <PQFCustomLoaders/PQFCustomLoaders.h>
 
 #import "UIColor+RPK.h"

@@ -15,8 +15,8 @@
 
 #import "NSAttributedString+RP.h"
 
-#import <AppSDK/AppLibExtension.h>
-#import <AppSDK/UILibExtension.h>
+#import "AppLibExtension.h"
+#import "UILibExtension.h"
 
 #pragma mark -
 #define kABButtonCornerRadius				2.0f

@@ -15,7 +15,7 @@
 #import "RPKAnalyticEvent.h"
 #import "RPReferenceHandler.h"
 
-#import <AppSDK/AppLibScheduler.h>
+#import "AppLibScheduler.h"
 
 @interface AppDelegate ()
 

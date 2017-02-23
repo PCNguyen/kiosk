@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import <AppSDK/AppLibShared.h>
+#import "AppLibShared.h"
 
 #import "RPKLayoutManager.h"
 #import "RPKNavigationController.h"

@@ -9,7 +9,7 @@
 #import "RPKWebViewController.h"
 #import "RPKExpirationViewController.h"
 
-#import <AppSDK/AppLibScheduler.h>
+#import "AppLibScheduler.h"
 
 @interface RPKTimedWebViewController : RPKWebViewController <RPKExpirationViewControllerDelegate>
 

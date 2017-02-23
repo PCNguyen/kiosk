@@ -19,7 +19,7 @@
 #import "UIViewController+Alert.h"
 #import "NSError+RP.h"
 
-#import <AppSDK/NSString+AL.h>
+#import "NSString+AL.h"
 
 @interface RPKLoginViewController () <UITextFieldDelegate>
 

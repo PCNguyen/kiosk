@@ -15,7 +15,7 @@
 #import "MobileCommon.h"
 #import "NSError+RP.h"
 
-#import <AppSDK/AppLibExtension.h>
+#import "AppLibExtension.h"
 
 #define kAnalyticSuperDeviceName			@"device name"
 #define kAnalyticSuperLocationName			@"location name"

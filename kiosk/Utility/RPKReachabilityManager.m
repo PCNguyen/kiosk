@@ -9,7 +9,7 @@
 #import "RPKReachabilityManager.h"
 #import "RPNotificationCenter.h"
 
-#import <AppSDK/AppLibShared.h>
+#import "AppLibShared.h"
 #import <Reachability/Reachability.h>
 
 NSString *const RPKReachabilityChangedNotification = @"RPKReachabilityChangedNotification";

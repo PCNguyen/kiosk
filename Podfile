@@ -1,5 +1,4 @@
 platform :ios, '8.0'
-use_frameworks!
 
 def shared_pod
     pod 'Mixpanel', '~> 2.3.5'
@@ -9,6 +8,7 @@ def shared_pod
     pod 'TTTAttributedLabel', '~> 1.9.5'
     pod 'Reachability'
     pod 'JNKeychain'
+    pod 'UIColor+FlatColors'
 end
 
 target :Kiosk do

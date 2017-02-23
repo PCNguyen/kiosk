@@ -14,8 +14,8 @@
 #import "SearchFilter+RP.h"
 #import "UserPreference+RP.h"
 
-#import <AppSDK/UILibDataBinding.h>
-#import <AppSDK/AppLibExtension.h>
+#import "UILibDataBinding.h"
+#import "AppLibExtension.h"
 
 NSString *const RPReferenceHandlerNetworkActivityBeginNotification = @"RPReferenceHandlerNetworkActivityBeginNotification";
 NSString *const RPReferenceHandlerNetworkActivityCompleteNotification = @"RPReferenceHandlerNetworkActivityCompleteNotification";

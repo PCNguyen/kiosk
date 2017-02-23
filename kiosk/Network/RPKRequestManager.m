@@ -8,7 +8,7 @@
 
 #import "RPKRequestManager.h"
 
-#import <AppSDK/AppLibShared.h>
+#import "AppLibShared.h"
 
 @implementation RPKRequestManager
 

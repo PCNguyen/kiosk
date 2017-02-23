@@ -9,8 +9,8 @@
 #import "RPNetworkHandler.h"
 #import "RPNotificationCenter.h"
 
-#import <AppSDK/AppLibShared.h>
-#import <AppSDK/UILibDataBinding.h>
+#import "AppLibShared.h"
+#import "UILibDataBinding.h"
 
 NSString *const RPNetworkHandlerActivityBeginNotification = @"RPNetworkHandlerActivityBeginNotification";
 NSString *const RPNetworkHandlerActivityCompleteNotification = @"RPNetworkHandlerActivityCompleteNotification";

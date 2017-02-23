@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 www. All rights reserved.
 //
 
-#import <AppSDK/AppLibShared.h>
-#import <AppSDK/AppLibScheduler.h>
+#import "AppLibShared.h"
+#import "AppLibScheduler.h"
 
 #import "RPScheduleHandler.h"
 #import "RPReferenceHandler.h"

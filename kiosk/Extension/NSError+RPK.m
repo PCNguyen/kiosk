@@ -8,7 +8,7 @@
 
 #import "NSError+RPK.h"
 
-#import <AFNetworking/AFHTTPRequestOperation.h>
+#import <AFNetworking/AFNetworking.h>
 
 @implementation NSError (RPK)
 

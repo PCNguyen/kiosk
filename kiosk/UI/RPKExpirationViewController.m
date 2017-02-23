@@ -7,8 +7,8 @@
 //
 
 #import <JWGCircleCounter/JWGCircleCounter.h>
-#import <AppSDK/AppLibExtension.h>
-#import <AppSDK/AppLibScheduler.h>
+#import "AppLibExtension.h"
+#import "AppLibScheduler.h"
 
 #import "RPKExpirationViewController.h"
 

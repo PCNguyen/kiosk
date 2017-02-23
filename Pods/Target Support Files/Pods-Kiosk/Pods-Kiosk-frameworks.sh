@@ -82,26 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JNKeychain/JNKeychain.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JWGCircleCounter/JWGCircleCounter.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Mixpanel/Mixpanel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PQFCustomLoaders/PQFCustomLoaders.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Reachability/Reachability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/UIColor+FlatColors/UIColor_FlatColors.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JNKeychain/JNKeychain.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JWGCircleCounter/JWGCircleCounter.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Mixpanel/Mixpanel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PQFCustomLoaders/PQFCustomLoaders.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Reachability/Reachability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/UIColor+FlatColors/UIColor_FlatColors.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
-fi

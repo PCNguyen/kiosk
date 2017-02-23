@@ -7,7 +7,7 @@
 //
 
 #import "DLAppStorage+RP.h"
-#import <AppSDK/AppLibShared.h>
+#import "AppLibShared.h"
 
 @implementation DLAppStorage (RP)
 

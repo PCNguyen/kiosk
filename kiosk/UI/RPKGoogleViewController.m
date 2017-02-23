@@ -18,7 +18,7 @@
 #import "RPNotificationCenter.h"
 #import "UIApplication+RP.h"
 
-#import <AppSDK/AppLibExtension.h>
+#import "AppLibExtension.h"
 
 #define kGVCLogoutURL				@"https://accounts.google.com/ServiceLogin?logout=1"
 

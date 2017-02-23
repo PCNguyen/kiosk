@@ -8,7 +8,7 @@
 
 #import "NSAttributedString+RP.h"
 #import "RPKUIKit.h"
-#import <AppSDK/AppLibExtension.h>
+#import "AppLibExtension.h"
 
 @implementation NSAttributedString (RP)
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Reputation. All rights reserved.
 //
 
-#import <AppSDK/AppLibExtension.h>
+#import "AppLibExtension.h"
 
 #import "RPKMenuViewController.h"
 #import "RPKCollectionViewCell.h"
