@@ -1335,6 +1335,7 @@
 					0FA0ABB21A40ABE1007AA263 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = Z2EXNP9RZT;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -2077,12 +2078,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = Z2EXNP9RZT;
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0ed7ef08-c73b-4b9d-8a6c-aaf22d505dd1";
+				PROVISIONING_PROFILE_SPECIFIER = "Kiosk Enterprise";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2094,12 +2097,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = Z2EXNP9RZT;
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "06eb30be-44a2-4d4d-88aa-edac03ece050";
+				PROVISIONING_PROFILE = "0ed7ef08-c73b-4b9d-8a6c-aaf22d505dd1";
+				PROVISIONING_PROFILE_SPECIFIER = "Kiosk Enterprise";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
