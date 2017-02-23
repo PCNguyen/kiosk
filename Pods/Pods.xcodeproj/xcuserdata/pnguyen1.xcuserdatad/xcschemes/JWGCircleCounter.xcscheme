@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '75094A8CD17CBE1E1BC46DFA'
+               BlueprintIdentifier = '08F084A2E19F47C8A7CB7869F9E5EE57'
                BlueprintName = 'JWGCircleCounter'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libJWGCircleCounter.a'>
+               BuildableName = 'JWGCircleCounter.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

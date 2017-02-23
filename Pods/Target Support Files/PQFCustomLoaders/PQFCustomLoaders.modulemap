@@ -1,0 +1,6 @@
+framework module PQFCustomLoaders {
+  umbrella header "PQFCustomLoaders-umbrella.h"
+
+  export *
+  module * { export * }
+}
