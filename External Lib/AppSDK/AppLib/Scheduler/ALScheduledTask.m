@@ -7,6 +7,7 @@
 //
 
 #import "ALScheduledTask.h"
+#import <UIKit/UIKit.h>
 
 @interface ALScheduledTask ()
 

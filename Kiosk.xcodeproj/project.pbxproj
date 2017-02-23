@@ -48,7 +48,6 @@
 		0F5919EC1A8BE951000A0541 /* TNSStreamTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1791A686AC80011EAC9 /* TNSStreamTransport.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		0F5919ED1A8BE951000A0541 /* RPScheduleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1DA1A6886540011EAC9 /* RPScheduleHandler.m */; };
 		0F5919EE1A8BE951000A0541 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
-		0F5919EF1A8BE951000A0541 /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
 		0F5919F01A8BE951000A0541 /* UIFont+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F063AD21A6EE8790092F607 /* UIFont+RPK.m */; };
 		0F5919F11A8BE951000A0541 /* TSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1631A686AC80011EAC9 /* TSocketServer.m */; };
 		0F5919F21A8BE951000A0541 /* RPLocationSelectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99E51A71E72500C25788 /* RPLocationSelectionDataSource.m */; };
@@ -76,7 +75,6 @@
 		0F591A0A1A8BE951000A0541 /* UIButton+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F91A6888DD0011EAC9 /* UIButton+DynamicHeight.m */; };
 		0F591A0B1A8BE951000A0541 /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
 		0F591A0C1A8BE951000A0541 /* NSError+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1AE1A68828A0011EAC9 /* NSError+RP.m */; };
-		0F591A0D1A8BE951000A0541 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
 		0F591A0E1A8BE951000A0541 /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
 		0F591A0F1A8BE951000A0541 /* UIButton+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F61A6888D50011EAC9 /* UIButton+RP.m */; };
 		0F591A101A8BE951000A0541 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1601A686AC80011EAC9 /* TProtocolUtil.m */; };
@@ -84,7 +82,6 @@
 		0F591A121A8BE951000A0541 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
 		0F591A131A8BE951000A0541 /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
 		0F591A141A8BE951000A0541 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
-		0F591A151A8BE951000A0541 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
 		0F591A161A8BE951000A0541 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1751A686AC80011EAC9 /* TMemoryBuffer.m */; };
 		0F591A171A8BE951000A0541 /* RPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E41A6888090011EAC9 /* RPAlertController.m */; };
 		0F591A181A8BE951000A0541 /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */; };
@@ -191,7 +188,6 @@
 		0F591A8D1A8BE9D0000A0541 /* UIButton+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F91A6888DD0011EAC9 /* UIButton+DynamicHeight.m */; };
 		0F591A8E1A8BE9D0000A0541 /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
 		0F591A8F1A8BE9D0000A0541 /* NSError+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1AE1A68828A0011EAC9 /* NSError+RP.m */; };
-		0F591A901A8BE9D0000A0541 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
 		0F591A911A8BE9D0000A0541 /* RPKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABF11A40C1A8007AA263 /* RPKNavigationController.m */; };
 		0F591A921A8BE9D0000A0541 /* UIButton+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1F61A6888D50011EAC9 /* UIButton+RP.m */; };
 		0F591A931A8BE9D0000A0541 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1601A686AC80011EAC9 /* TProtocolUtil.m */; };
@@ -199,7 +195,6 @@
 		0F591A951A8BE9D0000A0541 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
 		0F591A961A8BE9D0000A0541 /* RPFixedHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99EF1A71E86C00C25788 /* RPFixedHeaderTableView.m */; };
 		0F591A971A8BE9D0000A0541 /* RPKGoogleThankYou.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF99DD1A71ACCA00C25788 /* RPKGoogleThankYou.m */; };
-		0F591A981A8BE9D0000A0541 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
 		0F591A991A8BE9D0000A0541 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1751A686AC80011EAC9 /* TMemoryBuffer.m */; };
 		0F591A9A1A8BE9D0000A0541 /* RPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1E41A6888090011EAC9 /* RPAlertController.m */; };
 		0F591A9B1A8BE9D0000A0541 /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */; };
@@ -288,8 +283,6 @@
 		0FA0AC021A4103FA007AA263 /* UIImage+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0AC011A4103FA007AA263 /* UIImage+RPK.m */; };
 		0FA0AC1A1A489300007AA263 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA0AC191A489300007AA263 /* WebKit.framework */; };
 		0FA0E1001A65D09B0011EAC9 /* NSBundle+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */; };
-		0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */; };
-		0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */; };
 		0FA0E1121A67098E0011EAC9 /* RPKKioskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */; };
 		0FA0E1151A670A7B0011EAC9 /* RPKTimedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E1141A670A7B0011EAC9 /* RPKTimedWebViewController.m */; };
 		0FA0E1811A686AC80011EAC9 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E15A1A686AC80011EAC9 /* TBinaryProtocol.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -414,8 +407,6 @@
 		AE60C1F91E5E9FBE007DDF81 /* UIView+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C61E5E9FBE007DDF81 /* UIView+UL.m */; };
 		AE60C1FA1E5E9FBE007DDF81 /* UIViewController+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C81E5E9FBE007DDF81 /* UIViewController+UL.m */; };
 		AE60C1FB1E5E9FBE007DDF81 /* ULTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1CC1E5E9FBE007DDF81 /* ULTagTableViewController.m */; };
-		B6B681FA1AA11CD000B3178D /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
-		B6B681FB1AA11CD100B3178D /* RPKRestServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */; };
 		B6B681FE1AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
 		B6B681FF1AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
 		B6B682001AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
@@ -529,12 +520,6 @@
 		0FA0AC191A489300007AA263 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RPK.h"; sourceTree = "<group>"; };
 		0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RPK.m"; sourceTree = "<group>"; };
-		0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKRequestManager.h; sourceTree = "<group>"; };
-		0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKRequestManager.m; sourceTree = "<group>"; };
-		0FA0E1091A65D6ED0011EAC9 /* RPKRestServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKRestServiceController.h; sourceTree = "<group>"; };
-		0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKRestServiceController.m; sourceTree = "<group>"; };
-		0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPK.h"; sourceTree = "<group>"; };
-		0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPK.m"; sourceTree = "<group>"; };
 		0FA0E1101A67098E0011EAC9 /* RPKKioskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKKioskViewController.h; sourceTree = "<group>"; };
 		0FA0E1111A67098E0011EAC9 /* RPKKioskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPKKioskViewController.m; sourceTree = "<group>"; };
 		0FA0E1131A670A7B0011EAC9 /* RPKTimedWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPKTimedWebViewController.h; sourceTree = "<group>"; };
@@ -1154,8 +1139,6 @@
 			children = (
 				0FA0E0FE1A65D09B0011EAC9 /* NSBundle+RPK.h */,
 				0FA0E0FF1A65D09B0011EAC9 /* NSBundle+RPK.m */,
-				0FA0E10D1A65D7F10011EAC9 /* NSError+RPK.h */,
-				0FA0E10E1A65D7F10011EAC9 /* NSError+RPK.m */,
 				0FA0E1C11A6883D70011EAC9 /* NSBundle+Extension.h */,
 				0FA0E1C21A6883D70011EAC9 /* NSBundle+Extension.m */,
 				0FA0E1C41A68847E0011EAC9 /* DLAppStorage+RP.h */,
@@ -1269,10 +1252,6 @@
 		0FA0E19B1A686DC20011EAC9 /* REST */ = {
 			isa = PBXGroup;
 			children = (
-				0FA0E1061A65D5AD0011EAC9 /* RPKRequestManager.h */,
-				0FA0E1071A65D5AD0011EAC9 /* RPKRequestManager.m */,
-				0FA0E1091A65D6ED0011EAC9 /* RPKRestServiceController.h */,
-				0FA0E10A1A65D6ED0011EAC9 /* RPKRestServiceController.m */,
 			);
 			name = REST;
 			sourceTree = "<group>";
@@ -2013,7 +1992,6 @@
 				0F5919EC1A8BE951000A0541 /* TNSStreamTransport.m in Sources */,
 				0F5919ED1A8BE951000A0541 /* RPScheduleHandler.m in Sources */,
 				0F5919EE1A8BE951000A0541 /* NSBundle+RPK.m in Sources */,
-				0F5919EF1A8BE951000A0541 /* RPKRestServiceController.m in Sources */,
 				0F5919F01A8BE951000A0541 /* UIFont+RPK.m in Sources */,
 				0F5919F11A8BE951000A0541 /* TSocketServer.m in Sources */,
 				0F5919F21A8BE951000A0541 /* RPLocationSelectionDataSource.m in Sources */,
@@ -2044,7 +2022,6 @@
 				0F591A0A1A8BE951000A0541 /* UIButton+DynamicHeight.m in Sources */,
 				0F591A0B1A8BE951000A0541 /* RPKLayoutManager.m in Sources */,
 				0F591A0C1A8BE951000A0541 /* NSError+RP.m in Sources */,
-				0F591A0D1A8BE951000A0541 /* NSError+RPK.m in Sources */,
 				0F591A0E1A8BE951000A0541 /* RPKNavigationController.m in Sources */,
 				0F591A0F1A8BE951000A0541 /* UIButton+RP.m in Sources */,
 				0F591A101A8BE951000A0541 /* TProtocolUtil.m in Sources */,
@@ -2053,7 +2030,6 @@
 				0F591A131A8BE951000A0541 /* RPFixedHeaderTableView.m in Sources */,
 				B6CC57F21AA643650007DE79 /* MobileListing.m in Sources */,
 				0F591A141A8BE951000A0541 /* RPKGoogleThankYou.m in Sources */,
-				0F591A151A8BE951000A0541 /* RPKRequestManager.m in Sources */,
 				0F591A161A8BE951000A0541 /* TMemoryBuffer.m in Sources */,
 				0F591A171A8BE951000A0541 /* RPAlertController.m in Sources */,
 				0F591A181A8BE951000A0541 /* NSBundle+Extension.m in Sources */,
@@ -2147,7 +2123,6 @@
 				B6CC57D91AA63DC10007DE79 /* Mobile.m in Sources */,
 				0F591A8E1A8BE9D0000A0541 /* RPKLayoutManager.m in Sources */,
 				0F591A8F1A8BE9D0000A0541 /* NSError+RP.m in Sources */,
-				0F591A901A8BE9D0000A0541 /* NSError+RPK.m in Sources */,
 				0F591A911A8BE9D0000A0541 /* RPKNavigationController.m in Sources */,
 				0F591A921A8BE9D0000A0541 /* UIButton+RP.m in Sources */,
 				0F591A931A8BE9D0000A0541 /* TProtocolUtil.m in Sources */,
@@ -2156,7 +2131,6 @@
 				0F591A961A8BE9D0000A0541 /* RPFixedHeaderTableView.m in Sources */,
 				0F591A971A8BE9D0000A0541 /* RPKGoogleThankYou.m in Sources */,
 				B6CC57F31AA643650007DE79 /* MobileListing.m in Sources */,
-				0F591A981A8BE9D0000A0541 /* RPKRequestManager.m in Sources */,
 				0F591A991A8BE9D0000A0541 /* TMemoryBuffer.m in Sources */,
 				0F591A9A1A8BE9D0000A0541 /* RPAlertController.m in Sources */,
 				0F591A9B1A8BE9D0000A0541 /* NSBundle+Extension.m in Sources */,
@@ -2184,7 +2158,6 @@
 				0F591AAF1A8BE9D0000A0541 /* UIView+LayoutFrame.m in Sources */,
 				0F591AB01A8BE9D0000A0541 /* RPKKioskDataSource.m in Sources */,
 				0F591AB11A8BE9D0000A0541 /* RPKOperation.m in Sources */,
-				B6B681FA1AA11CD000B3178D /* RPKRestServiceController.m in Sources */,
 				0F591AB21A8BE9D0000A0541 /* THTTPClient.m in Sources */,
 				0F591AB31A8BE9D0000A0541 /* RPPreferenceService.m in Sources */,
 				0F591AB41A8BE9D0000A0541 /* RPLink.m in Sources */,
@@ -2271,7 +2244,6 @@
 				AE60C1CE1E5E9FBE007DDF81 /* NSArray+AL.m in Sources */,
 				0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */,
 				0FA0E1AF1A68828A0011EAC9 /* NSError+RP.m in Sources */,
-				0FA0E10F1A65D7F10011EAC9 /* NSError+RPK.m in Sources */,
 				0FA0ABF21A40C1A8007AA263 /* RPKNavigationController.m in Sources */,
 				AE60C1D01E5E9FBE007DDF81 /* NSObject+AL.m in Sources */,
 				0FA0E1F71A6888D50011EAC9 /* UIButton+RP.m in Sources */,
@@ -2284,7 +2256,6 @@
 				0FBF99F01A71E86C00C25788 /* RPFixedHeaderTableView.m in Sources */,
 				0FBF99DE1A71ACCA00C25788 /* RPKGoogleThankYou.m in Sources */,
 				B6CC57F11AA643650007DE79 /* MobileListing.m in Sources */,
-				0FA0E1081A65D5AD0011EAC9 /* RPKRequestManager.m in Sources */,
 				0FA0E18B1A686AC80011EAC9 /* TMemoryBuffer.m in Sources */,
 				0FA0E1E51A6888090011EAC9 /* RPAlertController.m in Sources */,
 				AE60C1EC1E5E9FBE007DDF81 /* ULViewDataSource.m in Sources */,
@@ -2332,7 +2303,6 @@
 				0FA0441F1A828E7E00386BE1 /* RPKKioskDataSource.m in Sources */,
 				0FA0E1A71A686EF30011EAC9 /* RPKOperation.m in Sources */,
 				AE60C1F61E5E9FBE007DDF81 /* UITextView+UL.m in Sources */,
-				B6B681FB1AA11CD100B3178D /* RPKRestServiceController.m in Sources */,
 				0FA0E18A1A686AC80011EAC9 /* THTTPClient.m in Sources */,
 				0FA0E2031A6889C40011EAC9 /* RPPreferenceService.m in Sources */,
 				0FBF99F71A73158000C25788 /* RPLink.m in Sources */,
