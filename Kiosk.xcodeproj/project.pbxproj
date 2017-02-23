@@ -407,6 +407,52 @@
 		AE60C1F91E5E9FBE007DDF81 /* UIView+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C61E5E9FBE007DDF81 /* UIView+UL.m */; };
 		AE60C1FA1E5E9FBE007DDF81 /* UIViewController+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C81E5E9FBE007DDF81 /* UIViewController+UL.m */; };
 		AE60C1FB1E5E9FBE007DDF81 /* ULTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1CC1E5E9FBE007DDF81 /* ULTagTableViewController.m */; };
+		AEBD12E91E5EADD200DB76C0 /* NSArray+AL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1551E5E9FBE007DDF81 /* NSArray+AL.m */; };
+		AEBD12EA1E5EADD200DB76C0 /* NSMutableArray+AL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1571E5E9FBE007DDF81 /* NSMutableArray+AL.m */; };
+		AEBD12EB1E5EADD200DB76C0 /* NSObject+AL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1591E5E9FBE007DDF81 /* NSObject+AL.m */; };
+		AEBD12EC1E5EADD200DB76C0 /* NSString+AL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C15B1E5E9FBE007DDF81 /* NSString+AL.m */; };
+		AEBD12ED1E5EADD200DB76C0 /* UIDevice+Compatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C15D1E5E9FBE007DDF81 /* UIDevice+Compatibility.m */; };
+		AEBD12EE1E5EADD200DB76C0 /* ALScheduledTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1601E5E9FBE007DDF81 /* ALScheduledTask.m */; };
+		AEBD12EF1E5EADD200DB76C0 /* ALScheduleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1621E5E9FBE007DDF81 /* ALScheduleManager.m */; };
+		AEBD12F01E5EADD200DB76C0 /* ALSafeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1681E5E9FBE007DDF81 /* ALSafeOperation.m */; };
+		AEBD12F11E5EADD200DB76C0 /* ALPropertiesTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C16C1E5E9FBE007DDF81 /* ALPropertiesTransformer.m */; };
+		AEBD12F21E5EADD200DB76C0 /* ALSetterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C16E1E5E9FBE007DDF81 /* ALSetterTransformer.m */; };
+		AEBD12F31E5EADD200DB76C0 /* DLAppStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1741E5E9FBE007DDF81 /* DLAppStorage.m */; };
+		AEBD12F41E5EADD200DB76C0 /* DLInMemoryAppStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1761E5E9FBE007DDF81 /* DLInMemoryAppStorage.m */; };
+		AEBD12F51E5EADD200DB76C0 /* DLMOCFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C17A1E5E9FBE007DDF81 /* DLMOCFetcher.m */; };
+		AEBD12F61E5EADD200DB76C0 /* DLMOCInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C17C1E5E9FBE007DDF81 /* DLMOCInteraction.m */; };
+		AEBD12F71E5EADD200DB76C0 /* DLMOCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C17F1E5E9FBE007DDF81 /* DLMOCManager.m */; };
+		AEBD12F81E5EADD200DB76C0 /* DLMOCMonitor+Section.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1821E5E9FBE007DDF81 /* DLMOCMonitor+Section.m */; };
+		AEBD12F91E5EADD200DB76C0 /* DLMOCMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1841E5E9FBE007DDF81 /* DLMOCMonitor.m */; };
+		AEBD12FA1E5EADD200DB76C0 /* NSManagedObject+DL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1861E5E9FBE007DDF81 /* NSManagedObject+DL.m */; };
+		AEBD12FB1E5EADD200DB76C0 /* NSManagedObjectContext+DL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1881E5E9FBE007DDF81 /* NSManagedObjectContext+DL.m */; };
+		AEBD12FC1E5EADD200DB76C0 /* DLFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C18D1E5E9FBE007DDF81 /* DLFileManager.m */; };
+		AEBD12FD1E5EADD200DB76C0 /* DLFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C18F1E5E9FBE007DDF81 /* DLFileStorage.m */; };
+		AEBD12FE1E5EADD200DB76C0 /* DLStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1931E5E9FBE007DDF81 /* DLStorage.m */; };
+		AEBD12FF1E5EADD200DB76C0 /* NSUserDefaults+DL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1951E5E9FBE007DDF81 /* NSUserDefaults+DL.m */; };
+		AEBD13001E5EADD200DB76C0 /* NSLayoutConstraint+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1991E5E9FBE007DDF81 /* NSLayoutConstraint+UL.m */; };
+		AEBD13011E5EADD200DB76C0 /* UIView+Hierachy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C19C1E5E9FBE007DDF81 /* UIView+Hierachy.m */; };
+		AEBD13021E5EADD200DB76C0 /* UIView+LayoutPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C19E1E5E9FBE007DDF81 /* UIView+LayoutPosition.m */; };
+		AEBD13031E5EADD200DB76C0 /* UIView+DataBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1A21E5E9FBE007DDF81 /* UIView+DataBinding.m */; };
+		AEBD13041E5EADD200DB76C0 /* UIViewController+DataBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1A41E5E9FBE007DDF81 /* UIViewController+DataBinding.m */; };
+		AEBD13051E5EADD200DB76C0 /* ULDataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1A61E5E9FBE007DDF81 /* ULDataSourceManager.m */; };
+		AEBD13061E5EADD200DB76C0 /* ULManagedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1A81E5E9FBE007DDF81 /* ULManagedDataSource.m */; };
+		AEBD13071E5EADD200DB76C0 /* ULViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1AA1E5E9FBE007DDF81 /* ULViewDataSource.m */; };
+		AEBD13081E5EADD200DB76C0 /* UIActionSheet+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1AD1E5E9FBE007DDF81 /* UIActionSheet+UL.m */; };
+		AEBD13091E5EADD200DB76C0 /* UIAlertView+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1AF1E5E9FBE007DDF81 /* UIAlertView+UL.m */; };
+		AEBD130A1E5EADD200DB76C0 /* UIBarButtonItem+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1B11E5E9FBE007DDF81 /* UIBarButtonItem+UL.m */; };
+		AEBD130B1E5EADD200DB76C0 /* UIColor+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1B31E5E9FBE007DDF81 /* UIColor+UL.m */; };
+		AEBD130C1E5EADD200DB76C0 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1B51E5E9FBE007DDF81 /* UIImage+ImageEffects.m */; };
+		AEBD130D1E5EADD200DB76C0 /* UIImage+StackBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1B71E5E9FBE007DDF81 /* UIImage+StackBlur.m */; };
+		AEBD130E1E5EADD200DB76C0 /* UIImage+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1B91E5E9FBE007DDF81 /* UIImage+UL.m */; };
+		AEBD130F1E5EADD200DB76C0 /* UINavigationBar+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1BC1E5E9FBE007DDF81 /* UINavigationBar+UL.m */; };
+		AEBD13101E5EADD200DB76C0 /* UITextField+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1BE1E5E9FBE007DDF81 /* UITextField+UL.m */; };
+		AEBD13111E5EADD200DB76C0 /* UITextView+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C01E5E9FBE007DDF81 /* UITextView+UL.m */; };
+		AEBD13121E5EADD200DB76C0 /* UIView+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C21E5E9FBE007DDF81 /* UIView+Blur.m */; };
+		AEBD13131E5EADD200DB76C0 /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C41E5E9FBE007DDF81 /* UIView+Border.m */; };
+		AEBD13141E5EADD200DB76C0 /* UIView+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C61E5E9FBE007DDF81 /* UIView+UL.m */; };
+		AEBD13151E5EADD200DB76C0 /* UIViewController+UL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1C81E5E9FBE007DDF81 /* UIViewController+UL.m */; };
+		AEBD13161E5EADD200DB76C0 /* ULTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE60C1CC1E5E9FBE007DDF81 /* ULTagTableViewController.m */; };
 		B6B681FE1AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
 		B6B681FF1AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
 		B6B682001AA13BE500B3178D /* icon_large_cars.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B681FC1AA13BE500B3178D /* icon_large_cars.png */; };
@@ -1969,6 +2015,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEBD12E91E5EADD200DB76C0 /* NSArray+AL.m in Sources */,
+				AEBD12EA1E5EADD200DB76C0 /* NSMutableArray+AL.m in Sources */,
+				AEBD12EB1E5EADD200DB76C0 /* NSObject+AL.m in Sources */,
+				AEBD12EC1E5EADD200DB76C0 /* NSString+AL.m in Sources */,
+				AEBD12ED1E5EADD200DB76C0 /* UIDevice+Compatibility.m in Sources */,
+				AEBD12EE1E5EADD200DB76C0 /* ALScheduledTask.m in Sources */,
+				AEBD12EF1E5EADD200DB76C0 /* ALScheduleManager.m in Sources */,
+				AEBD12F01E5EADD200DB76C0 /* ALSafeOperation.m in Sources */,
+				AEBD12F11E5EADD200DB76C0 /* ALPropertiesTransformer.m in Sources */,
+				AEBD12F21E5EADD200DB76C0 /* ALSetterTransformer.m in Sources */,
+				AEBD12F31E5EADD200DB76C0 /* DLAppStorage.m in Sources */,
+				AEBD12F41E5EADD200DB76C0 /* DLInMemoryAppStorage.m in Sources */,
+				AEBD12F51E5EADD200DB76C0 /* DLMOCFetcher.m in Sources */,
+				AEBD12F61E5EADD200DB76C0 /* DLMOCInteraction.m in Sources */,
+				AEBD12F71E5EADD200DB76C0 /* DLMOCManager.m in Sources */,
+				AEBD12F81E5EADD200DB76C0 /* DLMOCMonitor+Section.m in Sources */,
+				AEBD12F91E5EADD200DB76C0 /* DLMOCMonitor.m in Sources */,
+				AEBD12FA1E5EADD200DB76C0 /* NSManagedObject+DL.m in Sources */,
+				AEBD12FB1E5EADD200DB76C0 /* NSManagedObjectContext+DL.m in Sources */,
+				AEBD12FC1E5EADD200DB76C0 /* DLFileManager.m in Sources */,
+				AEBD12FD1E5EADD200DB76C0 /* DLFileStorage.m in Sources */,
+				AEBD12FE1E5EADD200DB76C0 /* DLStorage.m in Sources */,
+				AEBD12FF1E5EADD200DB76C0 /* NSUserDefaults+DL.m in Sources */,
+				AEBD13001E5EADD200DB76C0 /* NSLayoutConstraint+UL.m in Sources */,
+				AEBD13011E5EADD200DB76C0 /* UIView+Hierachy.m in Sources */,
+				AEBD13021E5EADD200DB76C0 /* UIView+LayoutPosition.m in Sources */,
+				AEBD13031E5EADD200DB76C0 /* UIView+DataBinding.m in Sources */,
+				AEBD13041E5EADD200DB76C0 /* UIViewController+DataBinding.m in Sources */,
+				AEBD13051E5EADD200DB76C0 /* ULDataSourceManager.m in Sources */,
+				AEBD13061E5EADD200DB76C0 /* ULManagedDataSource.m in Sources */,
+				AEBD13071E5EADD200DB76C0 /* ULViewDataSource.m in Sources */,
+				AEBD13081E5EADD200DB76C0 /* UIActionSheet+UL.m in Sources */,
+				AEBD13091E5EADD200DB76C0 /* UIAlertView+UL.m in Sources */,
+				AEBD130A1E5EADD200DB76C0 /* UIBarButtonItem+UL.m in Sources */,
+				AEBD130B1E5EADD200DB76C0 /* UIColor+UL.m in Sources */,
+				AEBD130C1E5EADD200DB76C0 /* UIImage+ImageEffects.m in Sources */,
+				AEBD130D1E5EADD200DB76C0 /* UIImage+StackBlur.m in Sources */,
+				AEBD130E1E5EADD200DB76C0 /* UIImage+UL.m in Sources */,
+				AEBD130F1E5EADD200DB76C0 /* UINavigationBar+UL.m in Sources */,
+				AEBD13101E5EADD200DB76C0 /* UITextField+UL.m in Sources */,
+				AEBD13111E5EADD200DB76C0 /* UITextView+UL.m in Sources */,
+				AEBD13121E5EADD200DB76C0 /* UIView+Blur.m in Sources */,
+				AEBD13131E5EADD200DB76C0 /* UIView+Border.m in Sources */,
+				AEBD13141E5EADD200DB76C0 /* UIView+UL.m in Sources */,
+				AEBD13151E5EADD200DB76C0 /* UIViewController+UL.m in Sources */,
+				AEBD13161E5EADD200DB76C0 /* ULTagTableViewController.m in Sources */,
 				0F5919D91A8BE951000A0541 /* RPKGoogleViewController.m in Sources */,
 				0F5919DA1A8BE951000A0541 /* TApplicationException.m in Sources */,
 				0F5919DB1A8BE951000A0541 /* RPKTimedWebViewController.m in Sources */,
@@ -2339,12 +2431,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = Z2EXNP9RZT;
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e9ebd7fc-a303-4ef8-a301-f99b750fb530";
+				PROVISIONING_PROFILE_SPECIFIER = "Kiosk QA Enterprise";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2356,11 +2450,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Reputation.com Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reputation.com Inc";
+				DEVELOPMENT_TEAM = Z2EXNP9RZT;
 				INFOPLIST_FILE = "$(SRCROOT)/kiosk/Kiosk QA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Kiosk QA";
-				PROVISIONING_PROFILE = "a9c119bc-c524-4b8f-b4ef-561333d15c6f";
+				PROVISIONING_PROFILE = "e9ebd7fc-a303-4ef8-a301-f99b750fb530";
+				PROVISIONING_PROFILE_SPECIFIER = "Kiosk QA Enterprise";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
