@@ -271,7 +271,6 @@
 		0FA0ABB91A40ABE1007AA263 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABB81A40ABE1007AA263 /* main.m */; };
 		0FA0ABBC1A40ABE1007AA263 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */; };
 		0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABC31A40ABE1007AA263 /* Images.xcassets */; };
-		0FA0ABD31A40ABE1007AA263 /* kioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABD21A40ABE1007AA263 /* kioskTests.m */; };
 		0FA0ABDF1A40AE8A007AA263 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FA0ABDE1A40AE8A007AA263 /* Podfile */; };
 		0FA0ABE21A40B0C7007AA263 /* RPKLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE11A40B0C7007AA263 /* RPKLayoutManager.m */; };
 		0FA0ABE91A40B87B007AA263 /* RPKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA0ABE81A40B87B007AA263 /* RPKViewController.m */; };
@@ -476,16 +475,6 @@
 		B6CC57F31AA643650007DE79 /* MobileListing.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CC57ED1AA643650007DE79 /* MobileListing.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		0FA0ABCD1A40ABE1007AA263 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0FA0ABAB1A40ABE1007AA263 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0FA0ABB21A40ABE1007AA263;
-			remoteInfo = kiosk;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0F063AC71A6EE80B0092F607 /* museosans_100_italic-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_100_italic-museosans.ttf"; sourceTree = "<group>"; };
 		0F063AC81A6EE80B0092F607 /* museosans_100-museosans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museosans_100-museosans.ttf"; sourceTree = "<group>"; };
@@ -542,7 +531,6 @@
 		0FA0ABBA1A40ABE1007AA263 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0FA0ABBB1A40ABE1007AA263 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0FA0ABC31A40ABE1007AA263 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0FA0ABCC1A40ABE1007AA263 /* KioskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KioskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA0ABD11A40ABE1007AA263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FA0ABD21A40ABE1007AA263 /* kioskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kioskTests.m; sourceTree = "<group>"; };
 		0FA0ABDE1A40AE8A007AA263 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -870,13 +858,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0FA0ABC91A40ABE1007AA263 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -937,7 +918,6 @@
 			isa = PBXGroup;
 			children = (
 				0FA0ABB31A40ABE1007AA263 /* Kiosk.app */,
-				0FA0ABCC1A40ABE1007AA263 /* KioskTests.xctest */,
 				0F591A571A8BE951000A0541 /* Kiosk QA.app */,
 				0F591ADA1A8BE9D0000A0541 /* Kiosk Review.app */,
 			);
@@ -1724,24 +1704,6 @@
 			productReference = 0FA0ABB31A40ABE1007AA263 /* Kiosk.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0FA0ABCB1A40ABE1007AA263 /* KioskTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0FA0ABD91A40ABE1007AA263 /* Build configuration list for PBXNativeTarget "KioskTests" */;
-			buildPhases = (
-				0FA0ABC81A40ABE1007AA263 /* Sources */,
-				0FA0ABC91A40ABE1007AA263 /* Frameworks */,
-				0FA0ABCA1A40ABE1007AA263 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0FA0ABCE1A40ABE1007AA263 /* PBXTargetDependency */,
-			);
-			name = KioskTests;
-			productName = kioskTests;
-			productReference = 0FA0ABCC1A40ABE1007AA263 /* KioskTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1772,10 +1734,6 @@
 							};
 						};
 					};
-					0FA0ABCB1A40ABE1007AA263 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 0FA0ABB21A40ABE1007AA263;
-					};
 				};
 			};
 			buildConfigurationList = 0FA0ABAE1A40ABE1007AA263 /* Build configuration list for PBXProject "Kiosk" */;
@@ -1794,7 +1752,6 @@
 				0FA0ABB21A40ABE1007AA263 /* Kiosk */,
 				0F5919D61A8BE951000A0541 /* Kiosk QA */,
 				0F591A591A8BE9D0000A0541 /* Kiosk Review */,
-				0FA0ABCB1A40ABE1007AA263 /* KioskTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1905,13 +1862,6 @@
 				0FA0ABC41A40ABE1007AA263 /* Images.xcassets in Resources */,
 				0F063AE51A6EFE940092F607 /* bg_locked_text.png in Resources */,
 				0FBF99FF1A76EEFC00C25788 /* icon_small_google.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0FA0ABCA1A40ABE1007AA263 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2406,23 +2356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0FA0ABC81A40ABE1007AA263 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0FA0ABD31A40ABE1007AA263 /* kioskTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0FA0ABCE1A40ABE1007AA263 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0FA0ABB21A40ABE1007AA263 /* Kiosk */;
-			targetProxy = 0FA0ABCD1A40ABE1007AA263 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0F591A551A8BE951000A0541 /* Debug */ = {
@@ -2578,14 +2512,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z2EXNP9RZT;
 				INFOPLIST_FILE = "kiosk/Kiosk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Kiosk;
-				PROVISIONING_PROFILE = "0ed7ef08-c73b-4b9d-8a6c-aaf22d505dd1";
-				PROVISIONING_PROFILE_SPECIFIER = "Kiosk Enterprise";
+				PROVISIONING_PROFILE = "4aa969c4-76d4-4cbc-a3d6-ac5816e90883";
+				PROVISIONING_PROFILE_SPECIFIER = "Kiosk Dev";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2606,40 +2540,6 @@
 				PROVISIONING_PROFILE = "0ed7ef08-c73b-4b9d-8a6c-aaf22d505dd1";
 				PROVISIONING_PROFILE_SPECIFIER = "Kiosk Enterprise";
 				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
-		0FA0ABDA1A40ABE1007AA263 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = kioskTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = KioskTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kiosk.app/kiosk";
-			};
-			name = Debug;
-		};
-		0FA0ABDB1A40ABE1007AA263 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = kioskTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = KioskTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kiosk.app/kiosk";
 			};
 			name = Release;
 		};
@@ -2678,15 +2578,6 @@
 			buildConfigurations = (
 				0FA0ABD71A40ABE1007AA263 /* Debug */,
 				0FA0ABD81A40ABE1007AA263 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0FA0ABD91A40ABE1007AA263 /* Build configuration list for PBXNativeTarget "KioskTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0FA0ABDA1A40ABE1007AA263 /* Debug */,
-				0FA0ABDB1A40ABE1007AA263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

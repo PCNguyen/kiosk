@@ -19,6 +19,7 @@ typedef void(^RPServiceOperationResponseBlock)(RPKServiceOperation *operation, i
 
 @property (nonatomic, assign) NSInteger retryAttempt;
 @property (nonatomic, strong) NSString *operationID;
+@property (nonatomic, assign) BOOL callbackMainQueue;
 
 - (id)initWithNetworkBlock:(RPServiceOperationBlock)networkBlock
 		responseCompletion:(RPServiceOperationResponseBlock)completion;
